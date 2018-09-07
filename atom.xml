@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-04T02:19:40.395Z</updated>
+  <updated>2018-09-07T05:00:48.426Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安卓Activity移植</title>
+    <link href="http://yoursite.com/2018/09/07/%E5%AE%89%E5%8D%93Activity%E7%A7%BB%E6%A4%8D/"/>
+    <id>http://yoursite.com/2018/09/07/安卓Activity移植/</id>
+    <published>2018-09-07T04:31:55.617Z</published>
+    <updated>2018-09-07T05:00:48.426Z</updated>
+    
+    <content type="html"><![CDATA[<p>这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑 <a id="more"></a></p><h2 id="找不到r">找不到R</h2><p> 这个问题移植完后马上就会遇到，在将layout里的xml文件等都复制过来后，如果问题还存在，直接Android Studio中 Build-Clen Project 一次，问题基本上就解决了</p><h2 id="包名">包名</h2> 形如com.package.XXXXX等问题，复制代码文件时IDE会自动帮我们修正，但布局文件中IDE是不会帮我们纠正过来的,例如<center><code>&quot;tools:context=&quot;.MainActivity&quot;&quot;</code></center><p><br>就要进行修改，或者在标签中出现com.package.XXXX没有修改的情况，只能一个个xml文件去找了</p><h2 id="application">Application</h2><p> 如果在移植的Activity中继承了Application类创造了自己的，那移植过去后一定要在AndroidManifest.xml文件的&lt;application&gt;里的android:name中进行修改</p><h2 id="注册">注册</h2><p> 最后就是一直过去后要在AndroidManifest.xml文件中添加移植过去的Activity，不然运行时会报错，Logcat中也会给出建议</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>SIMLR算法论文个人翻译</title>
