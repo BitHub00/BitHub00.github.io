@@ -85,7 +85,7 @@
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安卓Activity移植">
-<meta property="og:url" content="http://yoursite.com/2018/09/07/安卓Activity移植/index.html">
+<meta property="og:url" content="http://Bithub00.com/2018/09/07/安卓Activity移植/index.html">
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑">
 <meta property="og:locale" content="zh-Hans">
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/07/安卓Activity移植/"/>
+  <link rel="canonical" href="http://Bithub00.com/2018/09/07/安卓Activity移植/"/>
 
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/07/安卓Activity移植/">
+    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2018/09/07/安卓Activity移植/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.shuan">
@@ -361,7 +361,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  254
+                  253
                 </span>
               
 
@@ -386,19 +386,11 @@
       
 
       
-        <p>这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑 <a id="more"></a></p>
-<h2 id="找不到r">找不到R</h2>
-<p> 这个问题移植完后马上就会遇到，在将layout里的xml文件等都复制过来后，如果问题还存在，直接Android Studio中 Build-Clen Project 一次，问题基本上就解决了</p>
-<h2 id="包名">包名</h2>
- 形如com.package.XXXXX等问题，复制代码文件时IDE会自动帮我们修正，但布局文件中IDE是不会帮我们纠正过来的,例如
-<center>
-<code>&quot;tools:context=&quot;.MainActivity&quot;&quot;</code>
-</center>
-<p><br>就要进行修改，或者在标签中出现com.package.XXXX没有修改的情况，只能一个个xml文件去找了</p>
-<h2 id="application">Application</h2>
-<p> 如果在移植的Activity中继承了Application类创造了自己的，那移植过去后一定要在AndroidManifest.xml文件的&lt;application&gt;里的android:name中进行修改</p>
-<h2 id="注册">注册</h2>
-<p> 最后就是一直过去后要在AndroidManifest.xml文件中添加移植过去的Activity，不然运行时会报错，Logcat中也会给出建议</p>
+        <p>这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑<br><a id="more"></a></p>
+<h2 id="找不到R"><a href="#找不到R" class="headerlink" title="找不到R"></a>找不到R</h2><p>&#8194;这个问题移植完后马上就会遇到，在将layout里的xml文件等都复制过来后，如果问题还存在，直接Android Studio中 Build-Clen Project 一次，问题基本上就解决了</p>
+<h2 id="包名"><a href="#包名" class="headerlink" title="包名"></a>包名</h2><p>&#8194;形如com.package.XXXXX等问题，复制代码文件时IDE会自动帮我们修正，但布局文件中IDE是不会帮我们纠正过来的,例如<center><code>&quot;tools:context=&quot;.MainActivity&quot;&quot;</code></center> <br>就要进行修改，或者在标签中出现com.package.XXXX没有修改的情况，只能一个个xml文件去找了</p>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><p>&#8194;如果在移植的Activity中继承了Application类创造了自己的，那移植过去后一定要在AndroidManifest.xml文件的\<application>里的android:name中进行修改</application></p>
+<h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>&#8194;最后就是一直过去后要在AndroidManifest.xml文件中添加移植过去的Activity，不然运行时会报错，Logcat中也会给出建议</p>
 
       
     </div>
@@ -438,6 +430,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/03/范数/" rel="prev" title="L1与L2范数">
+                L1与L2范数 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -521,7 +517,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -534,7 +530,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -574,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#找不到r"><span class="nav-number">1.</span> <span class="nav-text">找不到R</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包名"><span class="nav-number">2.</span> <span class="nav-text">包名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#application"><span class="nav-number">3.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册"><span class="nav-number">4.</span> <span class="nav-text">注册</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#找不到R"><span class="nav-number">1.</span> <span class="nav-text">找不到R</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包名"><span class="nav-number">2.</span> <span class="nav-text">包名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">3.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册"><span class="nav-number">4.</span> <span class="nav-text">注册</span></a></li></ol></div>
             
 
           </div>
@@ -595,7 +591,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
