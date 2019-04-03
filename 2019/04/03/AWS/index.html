@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="AWS:S3 + Athena + Glue  &amp;#8194;  摘要：使用AWS进行大数据的存储与计算">
+<meta name="description" content="摘要：整理一下自己了解的S3、Athena和Glue">
 <meta name="keywords" content="AWS,S3,Athena,Glue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AWS:S3 + Athena + Glue">
 <meta property="og:url" content="http://Bithub00.com/2019/04/03/AWS/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="AWS:S3 + Athena + Glue  &amp;#8194;  摘要：使用AWS进行大数据的存储与计算">
+<meta property="og:description" content="摘要：整理一下自己了解的S3、Athena和Glue">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/03/AgAio8.png">
-<meta property="og:updated_time" content="2019-04-03T10:07:45.349Z">
+<meta property="og:updated_time" content="2019-04-03T10:44:46.178Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AWS:S3 + Athena + Glue">
-<meta name="twitter:description" content="AWS:S3 + Athena + Glue  &amp;#8194;  摘要：使用AWS进行大数据的存储与计算">
+<meta name="twitter:description" content="摘要：整理一下自己了解的S3、Athena和Glue">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/04/03/AgAio8.png">
 
 
@@ -363,7 +363,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  363
+                  357
                 </span>
               
 
@@ -388,10 +388,7 @@
       
 
       
-        <font size="5"><br>AWS:S3 + Athena + Glue<br></font>
-
-<p>&#8194; </p>
-<p><font size="3"><br>摘要：使用AWS进行大数据的存储与计算<br></font><br><a id="more"></a></p>
+        <p><font size="3"><br>摘要：整理一下自己了解的S3、Athena和Glue<br></font><br><a id="more"></a></p>
 <h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p>AWS使用S3（Simple Storage Service）进行存储，它可以存储海量的数据，存储的往往是不常使用的冷数据，而且采取特定的parquet格式进行列式存储或分区，可以节省存储空间而且提升查询性能。</p>
 <h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><p>Athena是一个查询服务，针对S3上存储的数据进行查询。</p>
 <h2 id="元数据系统"><a href="#元数据系统" class="headerlink" title="元数据系统"></a>元数据系统</h2><p>Glue是一个元数据系统，它维护了信息注入数据具体存储的位置以及数据的结构，它本身还提供了ETL的能力。<br>Glue里面几个关键的概念是Database, Table, Crawler, Classifier, Job:</p>

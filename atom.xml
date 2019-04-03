@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2019-04-03T10:07:45.349Z</updated>
+  <updated>2019-04-03T10:44:46.178Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -21,16 +21,13 @@
     <link href="http://Bithub00.com/2019/04/03/AWS/"/>
     <id>http://Bithub00.com/2019/04/03/AWS/</id>
     <published>2019-04-03T09:52:53.423Z</published>
-    <updated>2019-04-03T10:07:45.349Z</updated>
+    <updated>2019-04-03T10:44:46.178Z</updated>
     
-    <content type="html"><![CDATA[<font size="5"><br>AWS:S3 + Athena + Glue<br></font><p>&#8194; </p><p><font size="3"><br>摘要：使用AWS进行大数据的存储与计算<br></font><br><a id="more"></a></p><h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p>AWS使用S3（Simple Storage Service）进行存储，它可以存储海量的数据，存储的往往是不常使用的冷数据，而且采取特定的parquet格式进行列式存储或分区，可以节省存储空间而且提升查询性能。</p><h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><p>Athena是一个查询服务，针对S3上存储的数据进行查询。</p><h2 id="元数据系统"><a href="#元数据系统" class="headerlink" title="元数据系统"></a>元数据系统</h2><p>Glue是一个元数据系统，它维护了信息注入数据具体存储的位置以及数据的结构，它本身还提供了ETL的能力。<br>Glue里面几个关键的概念是Database, Table, Crawler, Classifier, Job:</p><ul><li>Database 跟我们普通理解的数据库的概念是类似的，是一组table的逻辑集合。</li><li>Table 是数据的元数据，它定义数据保存在哪里(比如S3的路径)，有哪些column，怎么分区的。</li><li>Crawler 是元数据的爬虫，你给它一个路径，告诉它每天去爬一次，Crawler就可以及时把更新的元数据，比如新增的分区同步到Glue里面来供计算引擎消费。</li><li>Classifier 是数据结构的解析器，你给Crawler一个S3的路径它怎么就能解析出其中的结构呢，这就是Classifier要干的事情，Glue里面已经内置了一些Classfier, 用户也可以自定义Classifier。</li><li>Job是一个ETL脚本</li></ul><p><img src="https://s2.ax1x.com/2019/04/03/AgAio8.png" alt=""></p>]]></content>
+    <content type="html"><![CDATA[<p><font size="3"><br>摘要：整理一下自己了解的S3、Athena和Glue<br></font><br><a id="more"></a></p><h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p>AWS使用S3（Simple Storage Service）进行存储，它可以存储海量的数据，存储的往往是不常使用的冷数据，而且采取特定的parquet格式进行列式存储或分区，可以节省存储空间而且提升查询性能。</p><h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><p>Athena是一个查询服务，针对S3上存储的数据进行查询。</p><h2 id="元数据系统"><a href="#元数据系统" class="headerlink" title="元数据系统"></a>元数据系统</h2><p>Glue是一个元数据系统，它维护了信息注入数据具体存储的位置以及数据的结构，它本身还提供了ETL的能力。<br>Glue里面几个关键的概念是Database, Table, Crawler, Classifier, Job:</p><ul><li>Database 跟我们普通理解的数据库的概念是类似的，是一组table的逻辑集合。</li><li>Table 是数据的元数据，它定义数据保存在哪里(比如S3的路径)，有哪些column，怎么分区的。</li><li>Crawler 是元数据的爬虫，你给它一个路径，告诉它每天去爬一次，Crawler就可以及时把更新的元数据，比如新增的分区同步到Glue里面来供计算引擎消费。</li><li>Classifier 是数据结构的解析器，你给Crawler一个S3的路径它怎么就能解析出其中的结构呢，这就是Classifier要干的事情，Glue里面已经内置了一些Classfier, 用户也可以自定义Classifier。</li><li>Job是一个ETL脚本</li></ul><p><img src="https://s2.ax1x.com/2019/04/03/AgAio8.png" alt=""></p>]]></content>
     
     <summary type="html">
     
-      &lt;font size=&quot;5&quot;&gt;&lt;br&gt;AWS:S3 + Athena + Glue&lt;br&gt;&lt;/font&gt;
-
-&lt;p&gt;&amp;#8194; &lt;/p&gt;
-&lt;p&gt;&lt;font size=&quot;3&quot;&gt;&lt;br&gt;摘要：使用AWS进行大数据的存储与计算&lt;br&gt;&lt;/font&gt;&lt;br&gt;
+      &lt;p&gt;&lt;font size=&quot;3&quot;&gt;&lt;br&gt;摘要：整理一下自己了解的S3、Athena和Glue&lt;br&gt;&lt;/font&gt;&lt;br&gt;
     
     </summary>
     
