@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="machine-learning,data-mining," />
+  <meta name="keywords" content="数据库," />
 
 
 
@@ -81,20 +81,18 @@
 
 
 
-<meta name="description" content="摘要：看到的一篇很好的介绍L1与L2范数的文章，mark下来  关键词：范数">
-<meta name="keywords" content="machine-learning,data-mining">
+<meta name="description" content="数据库设计 以下所有表默认自带一个自增 id 以下所有表默认自带 created_at 和 updated_at 两个字段 为了方便查询，以下所有下划线命名法在实际设计中可能全部转为驼峰命名法">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="L1与L2范数">
-<meta property="og:url" content="http://Bithub00.com/2019/04/03/范数/index.html">
+<meta property="og:title" content="数据库设计">
+<meta property="og:url" content="http://Bithub00.com/2019/04/10/database/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="摘要：看到的一篇很好的介绍L1与L2范数的文章，mark下来  关键词：范数">
+<meta property="og:description" content="数据库设计 以下所有表默认自带一个自增 id 以下所有表默认自带 created_at 和 updated_at 两个字段 为了方便查询，以下所有下划线命名法在实际设计中可能全部转为驼峰命名法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/04/03/Accl6O.png">
-<meta property="og:updated_time" content="2019-04-03T05:05:17.810Z">
+<meta property="og:updated_time" content="2019-04-10T08:52:10.289Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="L1与L2范数">
-<meta name="twitter:description" content="摘要：看到的一篇很好的介绍L1与L2范数的文章，mark下来  关键词：范数">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/04/03/Accl6O.png">
+<meta name="twitter:title" content="数据库设计">
+<meta name="twitter:description" content="数据库设计 以下所有表默认自带一个自增 id 以下所有表默认自带 created_at 和 updated_at 两个字段 为了方便查询，以下所有下划线命名法在实际设计中可能全部转为驼峰命名法">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://Bithub00.com/2019/04/03/范数/"/>
+  <link rel="canonical" href="http://Bithub00.com/2019/04/10/database/"/>
 
 
 
 
 
-  <title>L1与L2范数 | 原力小站</title>
+  <title>数据库设计 | 原力小站</title>
   
 
 
@@ -281,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2019/04/03/范数/">
+    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2019/04/10/database/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.shuan">
@@ -298,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">L1与L2范数</h1>
+          <h1 class="post-title" itemprop="name headline">数据库设计</h1>
         
 
         <div class="post-meta">
@@ -310,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-03T12:59:52+08:00">
-                2019-04-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T16:50:19+08:00">
+                2019-04-10
               </time>
             
 
@@ -329,8 +327,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/04/03/范数/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/03/范数/" itemprop="commentCount"></span>
+                <a href="/2019/04/10/database/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/10/database/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -338,7 +336,7 @@
 
           
           
-             <span id="/2019/04/03/范数/" class="leancloud_visitors" data-flag-title="L1与L2范数">
+             <span id="/2019/04/10/database/" class="leancloud_visitors" data-flag-title="数据库设计">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,7 +361,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  27
+                  540
                 </span>
               
 
@@ -388,12 +386,372 @@
       
 
       
-        <font size="3"><br>摘要：看到的一篇很好的介绍L1与L2范数的文章，mark下来<br></font>
-
-<font size="3">关键词：范数</font>
-
-<a id="more"></a>
-<p><img src="https://s2.ax1x.com/2019/04/03/Accl6O.png" alt=""></p>
+        <h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><ul>
+<li>以下所有表默认自带一个自增 <code>id</code></li>
+<li>以下所有表默认自带 <code>created_at</code> 和 <code>updated_at</code> 两个字段</li>
+<li>为了方便查询，以下所有下划线命名法在实际设计中可能全部转为驼峰命名法<a id="more"></a>
+</li>
+</ul>
+<h3 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h3><h4 id="manager"><a href="#manager" class="headerlink" title="manager"></a>manager</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>varchar</td>
+<td>姓名</td>
+<td>not null</td>
+</tr>
+<tr>
+<td>card_id</td>
+<td>varchar</td>
+<td>校园卡号</td>
+<td>not null</td>
+</tr>
+<tr>
+<td>authorizerId</td>
+<td>int</td>
+<td>授权人 id</td>
+<td>外键，引用自 manager 表的 id 属性</td>
+</tr>
+<tr>
+<td>privilege</td>
+<td>tinyint</td>
+<td>0 为超级管理员，1为普通管理员，其余待定</td>
+<td>not null</td>
+</tr>
+</tbody>
+</table>
+<h4 id="student"><a href="#student" class="headerlink" title="student"></a>student</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>card_id</td>
+<td>varchar</td>
+<td>校园卡号</td>
+<td>无</td>
+</tr>
+<tr>
+<td>stu_id</td>
+<td>varchar</td>
+<td>学号</td>
+<td>primary key</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar</td>
+<td>姓名</td>
+<td>not null</td>
+</tr>
+<tr>
+<td>college</td>
+<td>varchar</td>
+<td>学院</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h4 id="teacher"><a href="#teacher" class="headerlink" title="teacher"></a>teacher</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>varchar</td>
+<td>讲师名称</td>
+<td>not null</td>
+</tr>
+<tr>
+<td>college</td>
+<td>varchar</td>
+<td>所属单位</td>
+<td>not null</td>
+</tr>
+<tr>
+<td>intro</td>
+<td>text</td>
+<td>老师简介</td>
+<td>无</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>varchar</td>
+<td>手机号码</td>
+<td>无</td>
+</tr>
+<tr>
+<td>office</td>
+<td>varchar</td>
+<td>办公地址</td>
+<td>无</td>
+</tr>
+<tr>
+<td>email</td>
+<td>varchar</td>
+<td>邮箱</td>
+<td>无</td>
+</tr>
+<tr>
+<td>image_url</td>
+<td>varchar</td>
+<td>导师照片 url</td>
+<td>无</td>
+</tr>
+<tr>
+<td>teach_form</td>
+<td>varchar</td>
+<td>授课形式</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h4 id="teach-topic"><a href="#teach-topic" class="headerlink" title="teach_topic"></a>teach_topic</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>teacher_id</td>
+<td>int</td>
+<td>讲师 id</td>
+<td>外键，引用自 teacher 表的 id 属性</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>varchar</td>
+<td>授课专题</td>
+<td>not null</td>
+</tr>
+</tbody>
+</table>
+<h3 id="课程信息"><a href="#课程信息" class="headerlink" title="课程信息"></a>课程信息</h3><h4 id="course"><a href="#course" class="headerlink" title="course"></a>course</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>course_name</td>
+<td>varchar</td>
+<td>课程名称</td>
+<td>not null</td>
+</tr>
+<tr>
+<td>teacher_id</td>
+<td>int</td>
+<td>讲师 id</td>
+<td>外键，引用自 teacher 表的 id 属性</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>datetime</td>
+<td>上课开始时间</td>
+<td>not null</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>datetime</td>
+<td>上课结束时间</td>
+<td>not null</td>
+</tr>
+<tr>
+<td>course_id</td>
+<td>varchar</td>
+<td>课程编号</td>
+<td>primary key</td>
+</tr>
+<tr>
+<td>location</td>
+<td>varchar</td>
+<td>上课地址</td>
+<td>not null</td>
+</tr>
+</tbody>
+</table>
+<h4 id="course-student"><a href="#course-student" class="headerlink" title="course_student"></a>course_student</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>course_id</td>
+<td>varchar</td>
+<td>课程编号</td>
+<td>外键，引用自 course 表的 course_id 属性</td>
+</tr>
+<tr>
+<td>stu_id</td>
+<td>varchar</td>
+<td>学生学号</td>
+<td>外键，引用自 student 表的 stu_id 属性</td>
+</tr>
+</tbody>
+</table>
+<h3 id="评价模板"><a href="#评价模板" class="headerlink" title="评价模板"></a>评价模板</h3><h4 id="comment-template"><a href="#comment-template" class="headerlink" title="comment_template"></a>comment_template</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>template_name</td>
+<td>varchar</td>
+<td>模板名称</td>
+<td>not null</td>
+</tr>
+</tbody>
+</table>
+<h4 id="template-question"><a href="#template-question" class="headerlink" title="template_question"></a>template_question</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>template_id</td>
+<td>int</td>
+<td>模板 id</td>
+<td>外键，引用自 comment_template 表的 id 属性</td>
+</tr>
+<tr>
+<td>question</td>
+<td>text</td>
+<td>问题</td>
+<td>not null</td>
+</tr>
+<tr>
+<td>_type</td>
+<td>tinyint</td>
+<td>问题类型，0为打分题，1为问答题，其余待定</td>
+<td>not null</td>
+</tr>
+</tbody>
+</table>
+<h3 id="评价信息"><a href="#评价信息" class="headerlink" title="评价信息"></a>评价信息</h3><h4 id="course-comment"><a href="#course-comment" class="headerlink" title="course_comment"></a>course_comment</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>course_id</td>
+<td>varchar</td>
+<td>课程编号</td>
+<td>外键，引用自 course 表的 course_id 属性</td>
+</tr>
+<tr>
+<td>template_id</td>
+<td>int</td>
+<td>模板 id</td>
+<td>外键，引用自 comment_template 表的 id 属性</td>
+</tr>
+</tbody>
+</table>
+<h4 id="comment"><a href="#comment" class="headerlink" title="comment"></a>comment</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>course_id</td>
+<td>varchar</td>
+<td>课程编号</td>
+<td>外键，引用自 course 表的 course_id 属性</td>
+</tr>
+<tr>
+<td>stu_id</td>
+<td>varchar</td>
+<td>学生学号</td>
+<td>外键，引用自 student 表的 stu_id 属性</td>
+</tr>
+<tr>
+<td>star</td>
+<td>tinyint</td>
+<td>1为精选评论</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h4 id="comment-result"><a href="#comment-result" class="headerlink" title="comment_result"></a>comment_result</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>comment_id</td>
+<td>int</td>
+<td>评价 id</td>
+<td>外键，引用自 comment 表的 id 属性</td>
+</tr>
+<tr>
+<td>question_id</td>
+<td>int</td>
+<td>问题 id</td>
+<td>外键，引用自 template_question 表的 id 属性</td>
+</tr>
+<tr>
+<td>result</td>
+<td>text</td>
+<td>问题结果，根据问题类型来决定存储值类型</td>
+<td>not null</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -411,9 +769,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/machine-learning/" rel="tag">#machine-learning</a>
-          
-            <a href="/tags/data-mining/" rel="tag">#data-mining</a>
+            <a href="/tags/数据库/" rel="tag">#数据库</a>
           
         </div>
       
@@ -426,8 +782,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/07/安卓Activity移植/" rel="next" title="安卓Activity移植">
-                <i class="fa fa-chevron-left"></i> 安卓Activity移植
+              <a href="/2019/04/10/api/" rel="next" title="API接口设计">
+                <i class="fa fa-chevron-left"></i> API接口设计
               </a>
             
           </div>
@@ -435,10 +791,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/03/AWS/" rel="prev" title="AWS:S3 + Athena + Glue">
-                AWS:S3 + Athena + Glue <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -493,8 +845,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -556,6 +917,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.</span> <span class="nav-text">数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户信息"><span class="nav-number">1.1.</span> <span class="nav-text">用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#manager"><span class="nav-number">1.1.1.</span> <span class="nav-text">manager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#student"><span class="nav-number">1.1.2.</span> <span class="nav-text">student</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#teacher"><span class="nav-number">1.1.3.</span> <span class="nav-text">teacher</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#teach-topic"><span class="nav-number">1.1.4.</span> <span class="nav-text">teach_topic</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课程信息"><span class="nav-number">1.2.</span> <span class="nav-text">课程信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#course"><span class="nav-number">1.2.1.</span> <span class="nav-text">course</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#course-student"><span class="nav-number">1.2.2.</span> <span class="nav-text">course_student</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评价模板"><span class="nav-number">1.3.</span> <span class="nav-text">评价模板</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#comment-template"><span class="nav-number">1.3.1.</span> <span class="nav-text">comment_template</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#template-question"><span class="nav-number">1.3.2.</span> <span class="nav-text">template_question</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评价信息"><span class="nav-number">1.4.</span> <span class="nav-text">评价信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#course-comment"><span class="nav-number">1.4.1.</span> <span class="nav-text">course_comment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#comment"><span class="nav-number">1.4.2.</span> <span class="nav-text">comment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#comment-result"><span class="nav-number">1.4.3.</span> <span class="nav-text">comment_result</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
