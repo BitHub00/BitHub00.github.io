@@ -90,7 +90,7 @@
 <meta property="og:description" content="摘要：整理一下自己了解的S3、Athena和Glue">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/03/AgAio8.png">
-<meta property="og:updated_time" content="2019-04-10T08:48:54.845Z">
+<meta property="og:updated_time" content="2019-04-10T10:32:06.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AWS:S3 + Athena + Glue">
 <meta name="twitter:description" content="摘要：整理一下自己了解的S3、Athena和Glue">
@@ -363,7 +363,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  910
+                  909
                 </span>
               
 
@@ -389,13 +389,13 @@
 
       
         <p><font size="3"><br>摘要：整理一下自己了解的S3、Athena和Glue<br></font><br><a id="more"></a></p>
-<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p>AWS使用S3（Simple Storage Service）进行存储，它可以存储海量的数据，存储的往往是不常使用的冷数据，而且采取特定的parquet格式进行列式存储或分区，可以节省存储空间而且提升查询性能。</p>
-<p>使用S3存储动态数据会使得系统依赖于S3本身的可用性，可以通过增加缓存层或CDN服务来减轻影响。</p>
-<p>S3提供REST接口,两个组成层次是容器bucket和对象object。容器是S3最上面的分类,所有的对象都是放在容器里,因此容器名称必须是唯一的,每个对象都有唯一可识别的URL,尽量避免对容器进行操作，使用对象名称就可以实现分层次和分类了。</p>
+<h2 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h2><p>AWS使用S3（Simple Storage Service）进行存储，它可以存储海量的数据，存储的往往是不常使用的冷数据，而且采取特定的Parquet格式进行列式存储或分区，可以节省存储空间而且提升查询性能。</p>
+<p>使用S3存储动态数据会使得系统依赖于S3本身的可用性，可以通过增加缓存层或CDN(Content Deliver Network)服务来减轻影响。</p>
+<p>S3提供REST接口,两个组成层次是容器(bucket)和对象(object)。容器是S3最上面的分类，所有的对象都放在容器里，因此容器名称必须是唯一的，每个对象都有唯一可识别的URL，应该尽量避免对容器进行操作，使用对象名称就可以实现分层次和分类了.</p>
 <p>存储在S3的对象，除了本身的值以外,还会记录标头、元数据、访问控制列表等等，标头中存储了对象类型等信息，元数据就是用户自己定义的表头，为键值对，访问控制列表就是访问权限。因为S3有所谓偷窥对象的功能，即只读取对象的标头的信息，我们可以先看标头信息，再决定要不要把对象读取下来。</p>
 <p>S3没有目录的概念，是扁平化的存储结构，“photo/1.jpg”和“photo/2.jpg”可能存在于不同的服务器集群。</p>
-<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><p>Athena是一个查询服务，针对S3上存储的数据进行查询。</p>
-<h2 id="元数据系统"><a href="#元数据系统" class="headerlink" title="元数据系统"></a>元数据系统</h2><p>Glue是一个元数据系统，它维护了信息注入数据具体存储的位置以及数据的结构，它本身还提供了ETL的能力。<br>Glue里面几个关键的概念是Database, Table, Crawler, Classifier, Job:</p>
+<h2 id="Athena"><a href="#Athena" class="headerlink" title="Athena"></a>Athena</h2><p>Athena是一个查询服务，针对S3上存储的数据进行查询。</p>
+<h2 id="Glue"><a href="#Glue" class="headerlink" title="Glue"></a>Glue</h2><p>Glue是一个元数据系统，它维护了信息诸如数据具体存储的位置以及数据的结构，它本身还提供了ETL的能力。<br>Glue里面几个关键的概念是Database, Table, Crawler, Classifier, Job:</p>
 <ul>
 <li>Database 跟我们普通理解的数据库的概念是类似的，是一组table的逻辑集合。</li>
 <li>Table 是数据的元数据，它定义数据保存在哪里(比如S3的路径)，有哪些column，怎么分区的。</li>
@@ -601,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储"><span class="nav-number">1.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">2.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元数据系统"><span class="nav-number">3.</span> <span class="nav-text">元数据系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glue与Athena"><span class="nav-number">4.</span> <span class="nav-text">Glue与Athena</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">4.1.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Athena与S3"><span class="nav-number">5.</span> <span class="nav-text">Athena与S3</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#S3"><span class="nav-number">1.</span> <span class="nav-text">S3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Athena"><span class="nav-number">2.</span> <span class="nav-text">Athena</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glue"><span class="nav-number">3.</span> <span class="nav-text">Glue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glue与Athena"><span class="nav-number">4.</span> <span class="nav-text">Glue与Athena</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">4.1.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Athena与S3"><span class="nav-number">5.</span> <span class="nav-text">Athena与S3</span></a></li></ol></div>
             
 
           </div>
