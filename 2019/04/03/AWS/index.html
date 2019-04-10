@@ -90,7 +90,7 @@
 <meta property="og:description" content="摘要：整理一下自己了解的S3、Athena和Glue">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/03/AgAio8.png">
-<meta property="og:updated_time" content="2019-04-10T06:03:36.525Z">
+<meta property="og:updated_time" content="2019-04-10T08:30:12.162Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AWS:S3 + Athena + Glue">
 <meta name="twitter:description" content="摘要：整理一下自己了解的S3、Athena和Glue">
@@ -363,7 +363,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  849
+                  896
                 </span>
               
 
@@ -389,11 +389,11 @@
 
       
         <p><font size="3"><br>摘要：整理一下自己了解的S3、Athena和Glue<br></font><br><a id="more"></a></p>
-<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p> &#8194;AWS使用S3（Simple Storage Service）进行存储，它可以存储海量的数据，存储的往往是不常使用的冷数据，而且采取特定的parquet格式进行列式存储或分区，可以节省存储空间而且提升查询性能。</p>
-<p>&#8194;使用S3存储动态数据会使得系统依赖于S3本身的可用性，可以通过增加缓存层或CDN服务来减轻影响。</p>
-<p>&#8194;S3提供REST接口,两个组成层次是容器bucket和对象object。容器是S3最上面的分类,所有的对象都是放在容器里,因此容器名称必须是唯一的,每个对象都有唯一可识别的URL,尽量避免对容器进行操作，使用对象名称就可以实现分层次和分类了。</p>
-<p>&#8194;存储在S3的对象，除了本身的值以外,还会记录标头、元数据、访问控制列表等等，标头中存储了对象类型等信息，元数据就是用户自己定义的表头，为键值对，访问控制列表就是访问权限。因为S3有所谓偷窥对象的功能，即只读取对象的标头的信息，我们可以先看标头信息，再决定要不要把对象读取下来。</p>
-<p>&#8194;S3没有目录的概念，是扁平化的存储价格，“photo/1.jpg”和“photo/2.jpg”可能存在于不同的服务器集群。</p>
+<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p>AWS使用S3（Simple Storage Service）进行存储，它可以存储海量的数据，存储的往往是不常使用的冷数据，而且采取特定的parquet格式进行列式存储或分区，可以节省存储空间而且提升查询性能。</p>
+<p>使用S3存储动态数据会使得系统依赖于S3本身的可用性，可以通过增加缓存层或CDN服务来减轻影响。</p>
+<p>S3提供REST接口,两个组成层次是容器bucket和对象object。容器是S3最上面的分类,所有的对象都是放在容器里,因此容器名称必须是唯一的,每个对象都有唯一可识别的URL,尽量避免对容器进行操作，使用对象名称就可以实现分层次和分类了。</p>
+<p>存储在S3的对象，除了本身的值以外,还会记录标头、元数据、访问控制列表等等，标头中存储了对象类型等信息，元数据就是用户自己定义的表头，为键值对，访问控制列表就是访问权限。因为S3有所谓偷窥对象的功能，即只读取对象的标头的信息，我们可以先看标头信息，再决定要不要把对象读取下来。</p>
+<p>S3没有目录的概念，是扁平化的存储结构，“photo/1.jpg”和“photo/2.jpg”可能存在于不同的服务器集群。</p>
 <h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><p>Athena是一个查询服务，针对S3上存储的数据进行查询。</p>
 <h2 id="元数据系统"><a href="#元数据系统" class="headerlink" title="元数据系统"></a>元数据系统</h2><p>Glue是一个元数据系统，它维护了信息注入数据具体存储的位置以及数据的结构，它本身还提供了ETL的能力。<br>Glue里面几个关键的概念是Database, Table, Crawler, Classifier, Job:</p>
 <ul>
@@ -405,6 +405,14 @@
 </ul>
 <p><img src="https://s2.ax1x.com/2019/04/03/AgAio8.png" alt=""></p>
 <h2 id="Glue与Athena"><a href="#Glue与Athena" class="headerlink" title="Glue与Athena"></a>Glue与Athena</h2><p>AWS Glue 是一项完全托管的 ETL (提取、转换和加载) 服务，能够对数据进行分类、清理和扩充，并在各种数据存储之间可靠地移动数据。AWS Glue 爬网程序自动从源数据推断数据库和表架构，从而将关联的元数据存储在 AWS Glue 数据目录中。当您在 Athena 中创建表时，您可以选择使用 AWS Glue 爬网程序创建表。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><ul>
+<li><p><a href="https://aws.amazon.com/cn/blogs/big-data/build-a-data-lake-foundation-with-aws-glue-and-amazon-s3/" target="_blank" rel="noopener">使用Glue读取csv并转换成Parquet格式随后使用Athena查询</a></p>
+</li>
+<li><p><a href="https://aws.amazon.com/cn/blogs/database/how-to-extract-transform-and-load-data-for-analytic-processing-using-aws-glue-part-2/" target="_blank" rel="noopener">How to extract, transform, and load data for analytic processing using AWS Glue (Part 2)</a></p>
+</li>
+<li><p><a href="https://gorillalogic.com/blog/in-search-of-happiness-a-quick-etl-use-case-with-aws-glue-redshift/" target="_blank" rel="noopener">In Search of Happiness: A Quick ETL Use Case with AWS Glue + Redshift</a></p>
+</li>
+</ul>
 <h2 id="Athena与S3"><a href="#Athena与S3" class="headerlink" title="Athena与S3"></a>Athena与S3</h2><p>Athena 可帮助您分析在 Amazon S3 中存储的非结构化、半结构化和结构化数据。示例包括 CSV、JSON 或列式数据格式，如 Apache Parquet 和 Apache ORC。您可以使用 ANSI SQL 通过 Athena 运行临时查询，而无需将数据聚合或加载到 Athena 中。</p>
 
       
@@ -587,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储"><span class="nav-number">1.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">2.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元数据系统"><span class="nav-number">3.</span> <span class="nav-text">元数据系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glue与Athena"><span class="nav-number">4.</span> <span class="nav-text">Glue与Athena</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Athena与S3"><span class="nav-number">5.</span> <span class="nav-text">Athena与S3</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储"><span class="nav-number">1.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">2.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元数据系统"><span class="nav-number">3.</span> <span class="nav-text">元数据系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glue与Athena"><span class="nav-number">4.</span> <span class="nav-text">Glue与Athena</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">4.1.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Athena与S3"><span class="nav-number">5.</span> <span class="nav-text">Athena与S3</span></a></li></ol></div>
             
 
           </div>
