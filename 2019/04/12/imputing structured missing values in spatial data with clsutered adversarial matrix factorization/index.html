@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="一种基于对抗模型用于补全带有结构性缺失信息的空间数据的矩阵分解技术  &amp;#8194;  摘要：在数据分析时，缺失的数据总是会成为一个重大的挑战，因为它带来了不确定性。在许多领域中，矩阵补全技术有着出色的表现。然而，在特定的空间数据集如地理坐标点时，这种传统的矩阵补全技术有着两个主要的限制：第一，这些方法往往假设缺失的数据是随机产生的，而这种假设对于空间数据集可能并不总是成立；第二，它们可能无法运用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-12T16:43:30.835Z">
+<meta property="og:updated_time" content="2019-04-12T16:56:39.067Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="imputing structured missing values in spatial data with clsutered adversarial matrix factorization论文个人翻译">
 <meta name="twitter:description" content="一种基于对抗模型用于补全带有结构性缺失信息的空间数据的矩阵分解技术  &amp;#8194;  摘要：在数据分析时，缺失的数据总是会成为一个重大的挑战，因为它带来了不确定性。在许多领域中，矩阵补全技术有着出色的表现。然而，在特定的空间数据集如地理坐标点时，这种传统的矩阵补全技术有着两个主要的限制：第一，这些方法往往假设缺失的数据是随机产生的，而这种假设对于空间数据集可能并不总是成立；第二，它们可能无法运用">
@@ -143,7 +143,7 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
-  </script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -157,7 +157,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <a href="https://github.com/BitHub00" 
@@ -935,6 +935,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 
   
 
