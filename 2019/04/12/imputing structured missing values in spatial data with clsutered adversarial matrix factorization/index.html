@@ -93,7 +93,25 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/13/AqRJ7F.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/13/AqRG0U.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/13/AqR8mT.png">
-<meta property="og:updated_time" content="2019-04-13T01:03:59.114Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/AzcSM9.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/AzcULn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/AzctMj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/AzcNss.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/Azcho6.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/AzcIJO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/Azc5FK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/Azg6tf.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/Azgch8.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/AzgyAP.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/Azg29S.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/Az29N6.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/Azgvu9.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/Az2pAx.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/AzgzH1.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/AzgxBR.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/Az2l8S.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/17/Az2QC8.png">
+<meta property="og:updated_time" content="2019-04-17T11:41:08.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="imputing structured missing values in spatial data with clsutered adversarial matrix factorization">
 <meta name="twitter:description" content="一种基于对抗模型用于补全带有结构性缺失信息的空间数据的矩阵分解技术  &amp;#8194;  摘要：在数据分析时，缺失的数据总是会成为一个重大的挑战，因为它带来了不确定性。在许多领域中，矩阵补全技术有着出色的表现。然而，在特定的空间数据集如地理坐标点时，这种传统的矩阵补全技术有着两个主要的限制：第一，这些方法往往假设缺失的数据是随机产生的，而这种假设对于空间数据集可能并不总是成立；第二，它们可能无法运用">
@@ -366,7 +384,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,491
+                  4,690
                 </span>
               
 
@@ -405,12 +423,8 @@
 <p>&#8194; 生成对抗网络（GAN）被广泛地用于生成图像【5】【16】。在【8】【14】中，作者提出了一个想法，利用GAN的思想和整幅图片的结构来推测一幅图片中随机缺失的像素。虽然这个想法在这类问题上效果较好，但它补全图片时是将每张图片看成一个个独立的个体，而空间数据与此相反，它们之间有着强烈的依赖性。</p>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="A-矩阵分解引入"><a href="#A-矩阵分解引入" class="headerlink" title="A.矩阵分解引入"></a>A.矩阵分解引入</h3><p>&#8194; 矩阵分解在推荐系统中十分常用，例如如下的一个评分矩阵，列为用户，行为物品，矩阵中的值为用户对物品的评分，如电影和书籍。现实情况中这个评分矩阵往往很稀疏，许多物品上缺少用户的评分，而推荐系统就是要预估用户在某个物品上的评分来判断用户对它的倾向程度，从而进行推荐。</p>
 <p><img src="https://s2.ax1x.com/2019/04/13/AqRtk4.png" alt=""></p>
-<div align="center"><br>图1 评分矩阵<br></div>
-
 <p>&#8194; 矩阵分解的方法是将原始评分矩阵$R^{m\times n}$分解成两个矩阵$P^{m\times k}$和$Q^{k\times n}$，根据评分矩阵中已有的值来判断分解是否准确，而判别标准常用均方差。如图所示。</p>
 <p><img src="https://s2.ax1x.com/2019/04/13/AqRJ7F.png" alt=""></p>
-<div align="center"><br>图2 矩阵分解<br></div>
-
 <p>&#8194; 分解后的矩阵P和Q可以称为特征因子（latent factor），其中要求分解后$k&lt;&lt;min(m,n)$，即低秩要求，因为如果输入矩阵满秩，则各元素行之间线性无关，如果有线性相关关系，则某个元素行可以通过其他行的线性组合表示，相当于引入了冗余的信息，这样就可以将矩阵投影到更低维的空间，只保留非冗余信息，同时冗余信息可以用来对缺失值进行补全。</p>
 <p>&#8194; 矩阵分解的直观意义为，找出矩阵中的潜在特征，如图2中假设特征为3，特征可以是书籍作者、类型等等，而矩阵P表示用户对某个特征的喜爱程度，而矩阵Q表示某个物品与该特征的关联程度。</p>
 <h3 id="B-低秩补全"><a href="#B-低秩补全" class="headerlink" title="B.低秩补全"></a>B.低秩补全</h3><p>&#8194; 给定一个带有缺失值的矩阵，矩阵补全技术旨在通过已有值的某种潜在的结构来对缺失值进行估计补全。一个常用的潜在结构是矩阵的低秩性，因为它可以将该矩阵投影到一个去除冗余信息的子空间中，低秩意味着矩阵中的值存在线性关系，因此某些值可以通过另外的值来线性表示，如同坐标系中的基底一样。在这类方法中有凸也有非凸的技术。凸方法通过对矩阵迹的约束来保证具有良好理论性的全局最优结果，而诸如矩阵分解的非凸方法进行局部搜索过程并提供更大的灵活性和效率。给定一个矩阵$X\in R^{d\times n}$，n代表样本个数，d代表特征维度，矩阵分解技术通过将X分解为两个矩阵U和V，$U\in R^{d\times n}$，$V\in R^{r\times n}$要求$r &lt; min(d, n)$；U和V的求解可以通过对下列式子运用块坐标下降法求得：</p>
@@ -420,7 +434,50 @@
 <p>&#8194; 矩阵分解在推荐系统中使用较为普遍，它用来估计一个用户在某项新物品上的评分。</p>
 <p>&#8194; 将此方法应用于空间数据集时，矩阵分解不会包含有关数据集中空间聚类结构的先验知识信息。 然而，这些先验知识通常有助于发现需要的子空间。此外，对于结构化缺失值问题，经典矩阵补全提供较差的结果，因为缺失值不是随机的。</p>
 <h3 id="C-聚类对抗式矩阵分解"><a href="#C-聚类对抗式矩阵分解" class="headerlink" title="C.聚类对抗式矩阵分解"></a>C.聚类对抗式矩阵分解</h3><p>&#8194; 为了解决上一小节中提到的矩阵分解的两个局限性，我们提出了一种新的聚类对抗矩阵分解框架。 在我们的框架中，我们找到整个样本的聚类信息，并将补全值的概率分布与已有值的分布靠近，以得到可靠的补全结果。X为输入矩阵，每一列代表一个数据样本，有些数据点有完整的特征信息，而某些数据点以结构性缺失了某些特征信息。我们将输入矩阵中完整部分记为$X_n$，而缺失部分记为$X_m$。我们假设每个数据点都符合某个概率分布$p_{data(x)}$。接下来的公式中包含两个部分：矩阵重构以及概率分布近似。</p>
-
+<h4 id="矩阵重构"><a href="#矩阵重构" class="headerlink" title="矩阵重构"></a>矩阵重构</h4><p>&#8194; 为了利用数据的低秩属性和空间聚类结构，我们决定在矩阵分解中使用l2聚类项：</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/AzcSM9.png" alt=""></p>
+<p>&#8194; 式中$v_i$代表矩阵V中第i列，$r_1,r_2,r_3$均为正则化参数，第二项和第三项加的约束是为了防止过拟合，最后一项则用来引入空间数据集中的聚类结构信息。$d_{ij}$是第i个样本和第j个样本的相似度，它可以手动设置，原则为：当$v_i$和$v_j$很靠近即在同一类时，将$d_{ij}$的值设置得较大，反之较小。$r_3$用来调整结构信息在重构时所占的比重，如果$r_3$较大，则对一个样本的缺失数据进行估计补全时会更多的参考同一类其它数据点的信息。因此当$r_3$为0时，结构信息将不被使用，这也使得这个式子变成了常规的矩阵分解方法。而对于UV矩阵直观的理解为，U为特征因子，而V为样本因子，如同推荐系统里的用户因子和物品因子，两者相互独立。</p>
+<h4 id="生成对抗网络思想（GAN）"><a href="#生成对抗网络思想（GAN）" class="headerlink" title="生成对抗网络思想（GAN）"></a>生成对抗网络思想（GAN）</h4><p>&#8194; 在继续讲到使用概率分布近似来优化前，先引入生成对抗网络的基本思想加深理解。GAN的非常的直观，就是生成器和判别器两个极大极小的博弈。</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/AzcULn.png" alt=""></p>
+<p>GAN的目标函数为：</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/AzctMj.png" alt=""></p>
+<p>&#8194; 从判别器D的角度看，它希望自己能尽可能区分真实样本和虚假样本，因此希望 D(x)尽可能大，D(G(z))尽可能小，即 V(D,G)尽可能大。从生成器G的角度看，它希望自己尽可能骗过D，也就是希望 D(G(z))尽可能大，即 V(D,G)V(D,G) 尽可能小。两个模型相对抗，最后达到全局最优。</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/AzcNss.png" alt=""></p>
+<p>&#8194; 图中，黑色曲线是真实样本的概率分布函数，绿色曲线是虚假样本的概率分布函数，蓝色曲线是判别器D的输出，它的值越大表示这个样本越有可能是真实样本。最下方的平行线是噪声z，它映射到了x。</p>
+<p>&#8194; 一开始， 虽然 G(z)和x是在同一个特征空间里的，但它们分布的差异很大，这时，虽然鉴别真实样本和虚假样本的模型 D性能也不强，但它很容易就能把两者区分开来，而随着训练的推进，虚假样本的分布逐渐与真实样本重合，D虽然也在不断更新，但也已经力不从心了。</p>
+<p>&#8194; 最后，黑线和绿线最后几乎重合，模型达到了最优状态，这时 判别器的输出对于任意样本都是 0.5。</p>
+<h4 id="GAN的最优化"><a href="#GAN的最优化" class="headerlink" title="GAN的最优化"></a>GAN的最优化</h4><p>&#8194; 在建立好理论框架后，需要对所需要的生成器G和判别器D进行优化，在此之前先引入交叉熵的概念：它一般用来求目标与预测值之间的差距。</p>
+<p>&#8194; 在信息论与编码中，熵可以用来衡量信息量的多少，而如果我们对于同一个随机变量 x 有两个单独的概率分布 P(x) 和 Q(x)，我们可以使用 KL 散度来衡量这两个分布的差异，计算式如下：</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/Azcho6.png" alt=""></p>
+<p>&#8194; 在机器学习中，P往往用来表示样本的真实分布，比如[1,0,0]表示当前样本属于第一类。Q用来表示模型所预测的分布，比如[0.7,0.2,0.1]，直观的理解就是如果用P来描述样本，那么就非常完美。而用Q来描述样本，虽然可以大致描述，但并不是那么的完美，信息量不足，需要额外的一些“信息增量”才能达到和P一样完美的描述。如果我们的Q通过反复训练，也能完美的描述样本，那么就不再需要额外的“信息增量”，此时Q就等价于P。</p>
+<p>而对KL散度的计算式进行变形，可以得到：</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/AzcIJO.png" alt=""></p>
+<p>等式的前一项即为P的熵，而后一项就是交叉熵的计算式：</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/Azc5FK.png" alt=""></p>
+<p>&#8194; 在机器学习中，我们需要评估labels和predictions之间的差距，可以使用KL散度，即$D_{KL}(y\mid\mid\hat{y})$，由于KL散度中的前一部分−H(y)即P的熵不变，故在优化过程中，只需要关注交叉熵就可以了。所以一般在机器学习中直接用用交叉熵做损失函数，评估模型。</p>
+<p>&#8194; 在引入交叉熵后，就可以定义最优化表达式。首先我们需要定义一个判别器 D以判别样本是不是从$p_{data(x)}$分布中取出来的，因此有:</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/Azg6tf.png" alt=""></p>
+<p>&#8194; 其中E代表取期望。这一项是根据「正类」（即辨别出 x 属于真实数据data）的对数损失函数而构建的。最大化这一项相当于令判别器 D在 x 服从于 data 的概率密度时能准确地预测 D(x)=1，即：</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/Azgch8.png" alt=""></p>
+<p>另外一项是企图欺骗判别器的生成器 G。该项根据「负类」的对数损失函数而构建，即</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/AzgyAP.png" alt=""></p>
+<p>因此目标函数为：</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/Azg29S.png" alt=""></p>
+<p>它的含义是，对于D而言要尽量使公式最大化（识别能力强），而对于G又想使它最小（生成的数据接近实际数据）。整个训练是一个迭代过程。极小极大化博弈可以分开理解，即在给定G的情况下先最大化$V(D,G)$而来得到D，然后固定D，并最小化$V(D,G)$而得到G。其中，给定 G，最大化$V(D,G)$评估了$P_g$和$P_{data}$之间的差异或距离。</p>
+<h4 id="概率分布近似"><a href="#概率分布近似" class="headerlink" title="概率分布近似"></a>概率分布近似</h4><p>&#8194; 接下来，论文中就使用生成对抗网络中的对抗策略来使得推算样本具有与完整数据类似的概率分布。为了实现这一目标，我们使用鉴别器来区分推算和完整样本之间的分布差异：</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/Az29N6.png" alt=""></p>
+<p>&#8194; 其中$p_r(x_r)$代表估计值的概率分布，它将从补全的矩阵Xr中得到；$x_r$代表从$p_r(x_r)$中选取的一个数据点；D为一个鉴别器，我们通过一个以SOFTMAX为输出层的全连接的深度神经网络来实现。D将输出一个概率值，判断输入的数据为已有值还是估计值。我们使用了负交叉熵作为损失函数，通过最大化$l_d$得到一个鉴别器D，能够有效地区分已有值与估计值</p>
+<h4 id="完整公式"><a href="#完整公式" class="headerlink" title="完整公式"></a>完整公式</h4><p>将前节提到的两个部分进行合并，我们得到了如下的公式：</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/Azgvu9.png" alt=""></p>
+<p>&#8194; 其中λ是用来平衡矩阵重构与概率分布近似所占比例的一个参数，因此最小化该式时，不仅使得重构的矩阵与已有值所构成的矩阵的误差尽可能得小，同时通过鉴别器使得这两者的概率分布尽可能相似。这个同时最大最小化的要求就像是进行一场对抗。一方面，鉴别器尽可能地区别重构样本与已有样本的概率分布，而另一方面，重构矩阵又尽可能地逼近已有值的概率分布，以骗过鉴别器。因此当算法收敛时，重构矩阵的概率分布将会近似于已有值，训练出一个有效的鉴别器，同时重构矩阵的值也足够接近实际值以至于可以骗过这个鉴别器。在最小化部分中，我们求解出使得误差最小的矩阵U和V，接着使用它们来进行缺失值的计算。同时，这个部分也尽可能地让估计值去骗过鉴别器。而在最大化部分中，鉴别器通过区分已有值与最小化部分所得的估计值来进行更新，整个框架的流程如图所示。</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/Az2pAx.png" alt=""></p>
+<h4 id="最优化"><a href="#最优化" class="headerlink" title="最优化"></a>最优化</h4><p>然而在实际情况中，输入样本的概率分布往往是未知的，因此，我们使用如下式子来进行近似：在每次的更新迭代中，我们随机从Xn与Xr选取k个样本，来计算概率分布：</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/AzgzH1.png" alt=""><br><img src="https://s2.ax1x.com/2019/04/17/AzgxBR.png" alt=""></p>
+<p>&#8194; 其中r1与rk分别代表从Xn中选取的k个样本中的第一个和最后一个，q1和qk从Xr中选取的k个样本中的第一个和最后一个，$X^i_n$和$X^i_r$分别代表从Xn与Xr中所选取的第i个样本。因此，上面的合成式将变成：</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/Az2l8S.png" alt=""></p>
+<p>算法流程如下所示：</p>
+<p><img src="https://s2.ax1x.com/2019/04/17/Az2QC8.png" alt=""></p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2>
       
     </div>
     
@@ -599,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关工作"><span class="nav-number">2.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-矩阵分解引入"><span class="nav-number">3.1.</span> <span class="nav-text">A.矩阵分解引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-低秩补全"><span class="nav-number">3.2.</span> <span class="nav-text">B.低秩补全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-聚类对抗式矩阵分解"><span class="nav-number">3.3.</span> <span class="nav-text">C.聚类对抗式矩阵分解</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关工作"><span class="nav-number">2.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-矩阵分解引入"><span class="nav-number">3.1.</span> <span class="nav-text">A.矩阵分解引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-低秩补全"><span class="nav-number">3.2.</span> <span class="nav-text">B.低秩补全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-聚类对抗式矩阵分解"><span class="nav-number">3.3.</span> <span class="nav-text">C.聚类对抗式矩阵分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵重构"><span class="nav-number">3.3.1.</span> <span class="nav-text">矩阵重构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成对抗网络思想（GAN）"><span class="nav-number">3.3.2.</span> <span class="nav-text">生成对抗网络思想（GAN）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GAN的最优化"><span class="nav-number">3.3.3.</span> <span class="nav-text">GAN的最优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概率分布近似"><span class="nav-number">3.3.4.</span> <span class="nav-text">概率分布近似</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整公式"><span class="nav-number">3.3.5.</span> <span class="nav-text">完整公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最优化"><span class="nav-number">3.3.6.</span> <span class="nav-text">最优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">4.</span> <span class="nav-text">实验</span></a></li></ol></div>
             
 
           </div>
@@ -649,7 +706,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共13.0k字</span>
+  <span class="post-count">博客全站共15.2k字</span>
 </div>
         
 
