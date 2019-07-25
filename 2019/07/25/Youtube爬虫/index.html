@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,Youtube,爬虫," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="原力小站" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="爬取相关频道Related Channels">
+<meta name="keywords" content="python,Youtube,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Youtube爬虫">
+<meta property="og:url" content="http://Bithub00.com/2019/07/25/Youtube爬虫/index.html">
+<meta property="og:site_name" content="原力小站">
+<meta property="og:description" content="爬取相关频道Related Channels">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-25T02:54:41.533Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Youtube爬虫">
+<meta name="twitter:description" content="爬取相关频道Related Channels">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Bithub00.com/2019/07/25/Youtube爬虫/"/>
+
+
+
+
+
+  <title>Youtube爬虫 | 原力小站</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43ca6a51990599ac3de948cb708d3909";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/BitHub00" 
+      class="github-corner" 
+      aria-label="View source on Github">
+      <svg width="80" height="80" viewBox="0 0 250 250" 
+      style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" 
+      aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+      </svg>
+    </a>
+      <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+      </style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">原力小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">扎导的原版正联出了吗？</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2019/07/25/Youtube爬虫/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.shuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="原力小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Youtube爬虫</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-25T10:31:32+08:00">
+                2019-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/25/Youtube爬虫/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/25/Youtube爬虫/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/07/25/Youtube爬虫/" class="leancloud_visitors" data-flag-title="Youtube爬虫">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,370
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="爬取相关频道Related-Channels"><a href="#爬取相关频道Related-Channels" class="headerlink" title="爬取相关频道Related Channels"></a>爬取相关频道Related Channels</h3><a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># scrapy crawl related_channel_spider 命令行启动爬虫</span></span><br><span class="line"></span><br><span class="line">youtube_url = <span class="string">'https://www.youtube.com'</span></span><br><span class="line">kol = collections.OrderedDict()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RelatedChannelsSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'related_channel_spider'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close</span><span class="params">(spider, reason)</span>:</span></span><br><span class="line">        <span class="comment"># 爬虫结束后将爬取结果写入json文件</span></span><br><span class="line">        file_kol = open(<span class="string">'RelatedChannels_new.json'</span>, <span class="string">'a'</span>)</span><br><span class="line">        json.dump(kol, file_kol, sort_keys=<span class="keyword">True</span>, indent=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># 爬虫数据来源:Youtube 频道链接</span></span><br><span class="line">        file_name = <span class="string">'kol_utm_campaign_ad.xlsx'</span></span><br><span class="line">        Channels = pd.read_excel(file_name, sheet_name=<span class="string">'ad_channel_new'</span>, header=<span class="number">0</span>, </span><br><span class="line">        usecols=[<span class="string">'Channel'</span>])</span><br><span class="line">        Titles = pd.read_excel(file_name, sheet_name=<span class="string">'ad_channel_new'</span>, header=<span class="number">0</span>, </span><br><span class="line">        usecols=[<span class="string">'KolName'</span>])</span><br><span class="line">        length = len(Channels)</span><br><span class="line">        start_urls = []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, length):</span><br><span class="line">            url = &#123;&#125;</span><br><span class="line">            url[<span class="string">'url'</span>] = Channels[i:i + <span class="number">1</span>].values.item()</span><br><span class="line">            url[<span class="string">'title'</span>] = Titles[i:i + <span class="number">1</span>].values.item()</span><br><span class="line">            start_urls.append(url)</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> start_urls:</span><br><span class="line">            request = scrapy.Request(url[<span class="string">'url'</span>], callback=self.parse)</span><br><span class="line">            request.meta[<span class="string">'title'</span>] = url[<span class="string">'title'</span>]</span><br><span class="line">            <span class="keyword">yield</span> request</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        related = collections.OrderedDict()</span><br><span class="line">        meta = response.meta</span><br><span class="line">        channel_title = meta[<span class="string">'title'</span>]</span><br><span class="line">        channel_url = response.url</span><br><span class="line">        <span class="keyword">yield</span> &#123;</span><br><span class="line">            <span class="string">'channel_title'</span>: channel_title,</span><br><span class="line">            <span class="string">'channel_url'</span>: channel_url</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"># xpath解析网页</span></span><br><span class="line">        channel_item_lis = response.xpath(</span><br><span class="line">            <span class="string">'//li[contains(@class,</span></span><br><span class="line"><span class="string">            "branded-page-related-channels-item")]'</span></span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">for</span> channel_item_li <span class="keyword">in</span> channel_item_lis:</span><br><span class="line">            related_channel_title = channel_item_li.xpath(</span><br><span class="line">                <span class="string">'span/div[contains(@class, </span></span><br><span class="line"><span class="string">                "yt-lockup-content")]/h3/a/text()'</span></span><br><span class="line">                ).extract()[<span class="number">0</span>]</span><br><span class="line">            relative_url = channel_item_li.xpath(</span><br><span class="line">                <span class="string">'span/div[contains(@class, </span></span><br><span class="line"><span class="string">                "yt-lockup-content")]/h3/a/@href'</span></span><br><span class="line">                ).extract()[<span class="number">0</span>]</span><br><span class="line">            related[related_channel_title] = youtube_url</span><br><span class="line">             + relative_url</span><br><span class="line">            print(related_channel_title, youtube_url</span><br><span class="line">             + relative_url)</span><br><span class="line">        <span class="keyword">if</span> related:</span><br><span class="line">            kol[channel_title] = related</span><br></pre></td></tr></table></figure>
+<h3 id="爬取视频评论-包含评论内容、评论日期等"><a href="#爬取视频评论-包含评论内容、评论日期等" class="headerlink" title="爬取视频评论(包含评论内容、评论日期等)"></a>爬取视频评论(包含评论内容、评论日期等)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> lxml.html</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> lxml.cssselect <span class="keyword">import</span> CSSSelector</span><br><span class="line"></span><br><span class="line">YOUTUBE_COMMENTS_URL = </span><br><span class="line"><span class="string">'https://www.youtube.com/all_comments?v=&#123;youtube_id&#125;'</span></span><br><span class="line">YOUTUBE_COMMENTS_AJAX_URL = </span><br><span class="line"><span class="string">'https://www.youtube.com/comment_ajax'</span></span><br><span class="line">youtube_video_url = </span><br><span class="line"><span class="string">'https://www.youtube.com/watch?v='</span></span><br><span class="line"></span><br><span class="line">USER_AGENT = <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_value</span><span class="params">(html, key, num_chars=<span class="number">2</span>)</span>:</span></span><br><span class="line">    pos_begin = html.find(key) + len(key) + num_chars</span><br><span class="line">    pos_end = html.find(<span class="string">'"'</span>, pos_begin)</span><br><span class="line">    <span class="keyword">return</span> html[pos_begin: pos_end]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">extract_comments</span><span class="params">(html)</span>:</span></span><br><span class="line">    tree = lxml.html.fromstring(html)</span><br><span class="line">    item_sel = CSSSelector(<span class="string">'.comment-item'</span>)</span><br><span class="line">    text_sel = CSSSelector(<span class="string">'.comment-text-content'</span>)</span><br><span class="line">    time_sel = CSSSelector(<span class="string">'.time'</span>)</span><br><span class="line">    author_sel = CSSSelector(<span class="string">'.user-name'</span>)</span><br><span class="line">    <span class="comment"># vote_sel = CSSSelector('.like-count') 是否爬取评论点赞数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> item_sel(tree):</span><br><span class="line">        <span class="keyword">yield</span> &#123;</span><br><span class="line">            <span class="string">'cid'</span>: item.get(<span class="string">'data-cid'</span>),</span><br><span class="line">            <span class="string">'text'</span>: text_sel(item)[<span class="number">0</span>].text_content(),</span><br><span class="line">            <span class="string">'time'</span>: time_sel(item)[<span class="number">0</span>].text_content().strip(),</span><br><span class="line">            <span class="string">'author'</span>: author_sel(item)[<span class="number">0</span>].text_content()</span><br><span class="line">          <span class="comment"># 'like-count': vote_sel(item)[0].text_content()</span></span><br><span class="line">               &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">extract_reply_cids</span><span class="params">(html)</span>:</span></span><br><span class="line">    tree = lxml.html.fromstring(html)</span><br><span class="line">    sel = CSSSelector(<span class="string">'.comment-replies-header &gt; .load-comments'</span>)</span><br><span class="line">    <span class="keyword">return</span> [i.get(<span class="string">'data-cid'</span>) <span class="keyword">for</span> i <span class="keyword">in</span> sel(tree)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ajax_request</span><span class="params">(session, url, params, data, retries=<span class="number">10</span>, sleep=<span class="number">20</span>)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(retries):</span><br><span class="line">        response = session.post(url, params=params, data=data)</span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">            response_dict = json.loads(response.text)</span><br><span class="line">            <span class="keyword">return</span> response_dict.get(<span class="string">'page_token'</span>, <span class="keyword">None</span>),</span><br><span class="line">            response_dict[<span class="string">'html_content'</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            time.sleep(sleep)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_comments</span><span class="params">(youtube_id, sleep=<span class="number">1</span>)</span>:</span></span><br><span class="line">    session = requests.Session()</span><br><span class="line">    session.headers[<span class="string">'User-Agent'</span>] = USER_AGENT</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取初始页面的评论</span></span><br><span class="line">    response = session.get(YOUTUBE_COMMENTS_URL.format(youtube_id=youtube_id))</span><br><span class="line">    html = response.text</span><br><span class="line">    reply_cids = extract_reply_cids(html)</span><br><span class="line"></span><br><span class="line">    ret_cids = []</span><br><span class="line">    <span class="keyword">for</span> comment <span class="keyword">in</span> extract_comments(html):</span><br><span class="line">        ret_cids.append(comment[<span class="string">'cid'</span>])</span><br><span class="line">        <span class="keyword">yield</span> comment</span><br><span class="line"></span><br><span class="line">    page_token = find_value(html, <span class="string">'data-token'</span>)</span><br><span class="line">    session_token = find_value(html, <span class="string">'XSRF_TOKEN'</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">    first_iteration = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取剩下的评论(等同于点击'show more')</span></span><br><span class="line">    <span class="keyword">while</span> page_token:</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'video_id'</span>: youtube_id,</span><br><span class="line">            <span class="string">'session_token'</span>: session_token</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        params = &#123;</span><br><span class="line">            <span class="string">'action_load_comments'</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="string">'order_by_time'</span>: <span class="keyword">True</span>,</span><br><span class="line">            <span class="string">'filter'</span>: youtube_id</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> first_iteration:</span><br><span class="line">            params[<span class="string">'order_menu'</span>] = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            data[<span class="string">'page_token'</span>] = page_token</span><br><span class="line"></span><br><span class="line">        response = ajax_request(session, YOUTUBE_COMMENTS_AJAX_URL, params, data)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> response:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        page_token, html = response</span><br><span class="line"></span><br><span class="line">        reply_cids += extract_reply_cids(html)</span><br><span class="line">        <span class="keyword">for</span> comment <span class="keyword">in</span> extract_comments(html):</span><br><span class="line">            <span class="keyword">if</span> comment[<span class="string">'cid'</span>] <span class="keyword">not</span> <span class="keyword">in</span> ret_cids:</span><br><span class="line">                ret_cids.append(comment[<span class="string">'cid'</span>])</span><br><span class="line">                <span class="keyword">yield</span> comment</span><br><span class="line"></span><br><span class="line">        first_iteration = <span class="keyword">False</span></span><br><span class="line">        time.sleep(sleep)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取评论回复</span></span><br><span class="line">    <span class="keyword">for</span> cid <span class="keyword">in</span> reply_cids:</span><br><span class="line">        data = &#123;<span class="string">'comment_id'</span>: cid,</span><br><span class="line">                <span class="string">'video_id'</span>: youtube_id,</span><br><span class="line">                <span class="string">'can_reply'</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="string">'session_token'</span>: session_token&#125;</span><br><span class="line"></span><br><span class="line">        params = &#123;<span class="string">'action_load_replies'</span>: <span class="number">1</span>,</span><br><span class="line">                  <span class="string">'order_by_time'</span>: <span class="keyword">False</span>,</span><br><span class="line">                  <span class="string">'filter'</span>: youtube_id,</span><br><span class="line">                  <span class="string">'tab'</span>: <span class="string">'inbox'</span>&#125;</span><br><span class="line"></span><br><span class="line">        response = ajax_request(session, YOUTUBE_COMMENTS_AJAX_URL, params, data)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> response:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        _, html = response</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> comment <span class="keyword">in</span> extract_comments(html):</span><br><span class="line">            <span class="keyword">if</span> comment[<span class="string">'cid'</span>] <span class="keyword">not</span> <span class="keyword">in</span> ret_cids:</span><br><span class="line">                ret_cids.append(comment[<span class="string">'cid'</span>])</span><br><span class="line">                <span class="keyword">yield</span> comment</span><br><span class="line">        time.sleep(sleep)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span> <span class="comment"># 使用</span></span><br><span class="line">    <span class="keyword">for</span> comment <span class="keyword">in</span> download_comments(videoId):</span><br><span class="line">    ···</span><br></pre></td></tr></table></figure>
+<h3 id="爬取某个视频主所有的视频"><a href="#爬取某个视频主所有的视频" class="headerlink" title="爬取某个视频主所有的视频"></a>爬取某个视频主所有的视频</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用Selenium</span></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">Channel_videos = <span class="string">'https://www.youtube.com/channel/UCGK0RMoHboOVUbdxDhLD1xw/videos'</span></span><br><span class="line">Video_Lists = []</span><br><span class="line">option = webdriver.ChromeOptions()</span><br><span class="line">option.add_argument(<span class="string">'headless'</span>)</span><br><span class="line">youtube_url = <span class="string">'https://www.youtube.com'</span></span><br><span class="line">browser = webdriver.Chrome(chrome_options=option, executable_path=<span class="string">'D:\Tool\Software\chromedriver_win32\\chromedriver.exe'</span>)</span><br><span class="line"><span class="comment"># 去掉option选项可以让chrome在前台显示，看看模拟的效果</span></span><br><span class="line">browser = webdriver.Chrome(executable_path=<span class="string">'D:\Tool\Software\chromedriver_win32\\chromedriver.exe'</span>)</span><br><span class="line">browser.get(Channel_videos)</span><br><span class="line">time.sleep(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">old_height = browser.execute_script(<span class="string">"return document.documentElement.scrollHeight;"</span>)</span><br><span class="line">browser.execute_script(<span class="string">"window.scrollTo(0, document.documentElement.scrollHeight);"</span>)</span><br><span class="line">time.sleep(<span class="number">5</span>)</span><br><span class="line">new_height = browser.execute_script(<span class="string">"return document.documentElement.scrollHeight;"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟浏览器向下滚动页面，直到所有视频都被加载出来</span></span><br><span class="line"><span class="keyword">while</span> new_height != old_height:</span><br><span class="line">    old_height = new_height</span><br><span class="line">    browser.execute_script(<span class="string">"window.scrollTo(0, document.documentElement.scrollHeight);"</span>)</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    new_height = browser.execute_script(<span class="string">"return document.documentElement.scrollHeight;"</span>)</span><br><span class="line"></span><br><span class="line">    html = browser.page_source</span><br><span class="line">    soup = BeautifulSoup(html, <span class="string">'lxml'</span>)</span><br><span class="line">    videoList = soup.findAll(<span class="string">"a"</span>, &#123;<span class="string">"class"</span>: <span class="string">"yt-simple-endpoint style-scope ytd-grid-video-renderer"</span>&#125;)</span><br><span class="line">    <span class="keyword">for</span> video <span class="keyword">in</span> videoList:</span><br><span class="line">        ···</span><br></pre></td></tr></table></figure>
+<h3 id="获取视频的播放量和发布日期"><a href="#获取视频的播放量和发布日期" class="headerlink" title="获取视频的播放量和发布日期"></a>获取视频的播放量和发布日期</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 因为Youtube API每日有访问限制，超过它的配额后就无法再使用接口获取某个视频的播放量和发布日期了，使用爬虫就没有这种限制</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">youtube_video_url = <span class="string">'https://www.youtube.com/watch?v='</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">viewCount</span><span class="params">()</span>:</span></span><br><span class="line">        videoId = <span class="string">'P4ItC6jWN0s'</span></span><br><span class="line">        url = <span class="string">"https://www.youtube.com/watch"</span></span><br><span class="line">        querystring = &#123;<span class="string">"v"</span>: videoId&#125;</span><br><span class="line">        payload = <span class="string">""</span></span><br><span class="line">        headers = &#123;</span><br><span class="line">            <span class="string">'Content-Type'</span>: <span class="string">"application/json"</span>,</span><br><span class="line">            <span class="string">'User-Agent'</span>: <span class="string">"PostmanRuntime/7.15.0"</span>,</span><br><span class="line">            <span class="string">'Accept'</span>: <span class="string">"*/*"</span>,</span><br><span class="line">            <span class="string">'Cache-Control'</span>: <span class="string">"no-cache"</span>,</span><br><span class="line">            <span class="string">'Postman-Token'</span>: <span class="string">"296c1155-2adc-4028-95c2-26cffec91784,f5c8088f-432f-4a67-a815-13464bfca373"</span>,</span><br><span class="line">            <span class="string">'Host'</span>: <span class="string">"www.youtube.com"</span>,</span><br><span class="line">            <span class="string">'cookie'</span>: <span class="string">"YSC=nwR5fai12Kg; VISITOR_INFO1_LIVE=gAl5VFO7Gjo; PREF=f1=50000000; GPS=1"</span>,</span><br><span class="line">            <span class="string">'accept-encoding'</span>: <span class="string">"gzip, deflate"</span>,</span><br><span class="line">            <span class="string">'Connection'</span>: <span class="string">"keep-alive"</span>,</span><br><span class="line">            <span class="string">'cache-control'</span>: <span class="string">"no-cache"</span></span><br><span class="line">        &#125;</span><br><span class="line">        response = requests.request(<span class="string">"GET"</span>, url, data=payload, headers=headers, params=querystring)</span><br><span class="line">        html = etree.HTML(response.text)</span><br><span class="line">        datePublished = html.xpath(<span class="string">'//meta[@itemprop="datePublished"]/@content'</span>)</span><br><span class="line">        <span class="keyword">if</span> datePublished:</span><br><span class="line">            datePublished = datePublished[<span class="number">0</span>]</span><br><span class="line">            view_count = html.xpath(<span class="string">'//meta[@itemprop="interactionCount"]/@content'</span>)</span><br><span class="line">            <span class="keyword">if</span> view_count:</span><br><span class="line">                view_count = int(view_count[<span class="number">0</span>])</span><br><span class="line">                print(datePublished, view_count)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'Not Exist:'</span>,videoId)</span><br><span class="line"></span><br><span class="line">    file = open(<span class="string">'video_statstics.json'</span>, <span class="string">'a'</span>)</span><br><span class="line">    json.dump(video_statstics, file, indent=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    viewCount()</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/Youtube/" rel="tag">#Youtube</a>
+          
+            <a href="/tags/爬虫/" rel="tag">#爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/25/python常用操作/" rel="next" title="python常用操作">
+                <i class="fa fa-chevron-left"></i> python常用操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="Mr.shuan" />
+            
+              <p class="site-author-name" itemprop="name">Mr.shuan</p>
+              <p class="site-description motion-element" itemprop="description">May 4th be with you</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#爬取相关频道Related-Channels"><span class="nav-number">1.</span> <span class="nav-text">爬取相关频道Related Channels</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爬取视频评论-包含评论内容、评论日期等"><span class="nav-number">2.</span> <span class="nav-text">爬取视频评论(包含评论内容、评论日期等)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爬取某个视频主所有的视频"><span class="nav-number">3.</span> <span class="nav-text">爬取某个视频主所有的视频</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取视频的播放量和发布日期"><span class="nav-number">4.</span> <span class="nav-text">获取视频的播放量和发布日期</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.shuan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共16.7k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'yfqHuQnnOVtQFUYkBt8hCuPk-gzGzoHsz',
+        appKey: '04fMIxrudywlX8NlYX71hCnM',
+        placeholder: 'May 4th be with you',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("yfqHuQnnOVtQFUYkBt8hCuPk-gzGzoHsz", "04fMIxrudywlX8NlYX71hCnM");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+
+</body>
+</html>
