@@ -361,7 +361,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  865
+                  839
                 </span>
               
 
@@ -400,8 +400,7 @@
 </ol>
 <h4 id="符号定义"><a href="#符号定义" class="headerlink" title="符号定义"></a>符号定义</h4><p>$r_{ui}$定义为用户$u$对物品$i$的一次观测值，例如购买物品的次数或浏览网页的次数，在电视节目推荐中，它代表完整观看某个节目的次数，0.7表示观看了节目的70%。区别于显式数据将空缺数据当作缺失值处理，我们将缺失值置为0，表示没有此观测记录。</p>
 <h4 id="隐语义模型"><a href="#隐语义模型" class="headerlink" title="隐语义模型"></a>隐语义模型</h4><p>隐语义模型通过用户特征向量$x_u\in R^f$和物品特征向量$y_i\in R^f$来进行预测，预测评分用上面两个向量的内积形式表示：$\hat{r}_{ui}=x_u^Ty_i$，具体细节可见另一篇博客<a href="http://www.bithub00.com/2019/04/12/imputing%20structured%20missing%20values%20in%20spatial%20data%20with%20clsutered%20adversarial%20matrix%20factorization/" target="_blank" rel="noopener">矩阵分解引入</a>。目标函数表示为：</p>
-<p>$$min_{x_<em>,y_</em>}\sum_{r_{ui}\ is\ known}(r_{ui}-x_u^Ty_i)^2+\lambda(\mid\mid x_u \mid\mid^2+\mid\mid y_i \mid\mid^2)$$</p>
-<p>公式中的$\lambda$作为正则化参数，用于<a href="http://www.bithub00.com/2019/04/03/%E8%8C%83%E6%95%B0/" target="_blank" rel="noopener">约束</a>模型，参数的求解常使用随机梯度下降。然而这种方法在应用于隐式反馈数据时需要做调整</p>
+<script type="math/tex; mode=display">min_{x_*,y_*}\sum_{r_{ui}\ is\ known}(r_{ui}-x_u^Ty_i)^2+\lambda(\mid\mid x_u \mid\mid^2+\mid\mid y_i \mid\mid^2)</script><p>公式中的$\lambda$作为正则化参数，用于<a href="http://www.bithub00.com/2019/04/03/%E8%8C%83%E6%95%B0/" target="_blank" rel="noopener">约束</a>模型，参数的求解常使用随机梯度下降。然而这种方法在应用于隐式反馈数据时需要做调整</p>
 <h4 id="论文提出的模型"><a href="#论文提出的模型" class="headerlink" title="论文提出的模型"></a>论文提出的模型</h4>
       
     </div>
@@ -635,7 +634,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共17.5k字</span>
+  <span class="post-count">博客全站共17.6k字</span>
 </div>
         
 
@@ -970,7 +969,24 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
 
 

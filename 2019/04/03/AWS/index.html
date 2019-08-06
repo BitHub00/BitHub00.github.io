@@ -388,7 +388,8 @@
       
 
       
-        <p><font size="3"><br>整理一下自己了解的S3、Athena和Glue<br></font><br><a id="more"></a></p>
+        <p><font size="3"><br>整理一下自己了解的S3、Athena和Glue
+</font><br><a id="more"></a></p>
 <h2 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h2><p>AWS使用S3（Simple Storage Service）进行存储，它可以存储海量的数据，存储的往往是不常使用的冷数据，而且采取特定的Parquet格式进行列式存储或分区，可以节省存储空间而且提升查询性能。</p>
 <p>使用S3存储动态数据会使得系统依赖于S3本身的可用性，可以通过增加缓存层或CDN(Content Deliver Network)服务来减轻影响。</p>
 <p>S3提供REST接口,两个组成层次是容器(bucket)和对象(object)。容器是S3最上面的分类，所有的对象都放在容器里，因此容器名称必须是唯一的，每个对象都有唯一可识别的URL，应该尽量避免对容器进行操作，使用对象名称就可以实现分层次和分类了.</p>
@@ -660,7 +661,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共17.5k字</span>
+  <span class="post-count">博客全站共17.6k字</span>
 </div>
         
 
@@ -969,33 +970,30 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
 </script>
 
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
