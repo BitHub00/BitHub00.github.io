@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="用本文记录学习推荐系统的过程，以及一些实用的资料与资源。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-06T03:45:33.058Z">
+<meta property="og:updated_time" content="2019-08-06T09:05:01.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统学习记录">
 <meta name="twitter:description" content="用本文记录学习推荐系统的过程，以及一些实用的资料与资源。">
@@ -361,7 +361,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  839
+                  1,536
                 </span>
               
 
@@ -401,7 +401,27 @@
 <h4 id="符号定义"><a href="#符号定义" class="headerlink" title="符号定义"></a>符号定义</h4><p>$r_{ui}$定义为用户$u$对物品$i$的一次观测值，例如购买物品的次数或浏览网页的次数，在电视节目推荐中，它代表完整观看某个节目的次数，0.7表示观看了节目的70%。区别于显式数据将空缺数据当作缺失值处理，我们将缺失值置为0，表示没有此观测记录。</p>
 <h4 id="隐语义模型"><a href="#隐语义模型" class="headerlink" title="隐语义模型"></a>隐语义模型</h4><p>隐语义模型通过用户特征向量$x_u\in R^f$和物品特征向量$y_i\in R^f$来进行预测，预测评分用上面两个向量的内积形式表示：$\hat{r}_{ui}=x_u^Ty_i$，具体细节可见另一篇博客<a href="http://www.bithub00.com/2019/04/12/imputing%20structured%20missing%20values%20in%20spatial%20data%20with%20clsutered%20adversarial%20matrix%20factorization/" target="_blank" rel="noopener">矩阵分解引入</a>。目标函数表示为：</p>
 <script type="math/tex; mode=display">min_{x_*,y_*}\sum_{r_{ui}\ is\ known}(r_{ui}-x_u^Ty_i)^2+\lambda(\mid\mid x_u \mid\mid^2+\mid\mid y_i \mid\mid^2)</script><p>公式中的$\lambda$作为正则化参数，用于<a href="http://www.bithub00.com/2019/04/03/%E8%8C%83%E6%95%B0/" target="_blank" rel="noopener">约束</a>模型，参数的求解常使用随机梯度下降。然而这种方法在应用于隐式反馈数据时需要做调整</p>
-<h4 id="论文提出的模型"><a href="#论文提出的模型" class="headerlink" title="论文提出的模型"></a>论文提出的模型</h4>
+<h4 id="论文提出的模型"><a href="#论文提出的模型" class="headerlink" title="论文提出的模型"></a>论文提出的模型</h4><p>首先引入一个二值变量$p_{ui}$来标识用户对物品是否产生过行为如购买、观看等等：</p>
+<script type="math/tex; mode=display">
+p_{ui} =
+\begin{cases}
+1, &r_{ui} > 0\\
+0, &r_{ui} = 0
+\end{cases}</script><p>注意，$p_{ui}=1$只是暗示了用户喜欢某个物品的可能，而且$r_{ui}$的数值越大应该表示喜欢的可能性越大，因此再引入变量表示这种可能性：</p>
+<script type="math/tex; mode=display">c_{ui}=1+\alpha r_{ui}</script><p>引入$c_{ui}$后，对于每一个观测值，我们有一个最小的可能性1，随着观测值的增大，可能性也在逐渐增大，这里的可能性与概率的含义不同，论文中将常数$\alpha$设为40 \<br>我们的目标是为每一个用户和物品分别得到一个用户特征向量$x_u\in R^f$和物品特征向量$y_i\in R^f$，则预测值可以通过两个向量的内积表示：$p_{ui}=x^T_uy_i$，即预测用户是否会对某个物品产生行为，则目标函数可表示为：</p>
+<script type="math/tex; mode=display">min_{x_*,y_*}L(X,Y)=min_{x_*,y_*}\sum_{u,i}c_{ui}(p_{ui}-x_u^Ty_i)^2+\lambda(\sum_u\mid\mid x_u \mid\mid^2+\sum_i\mid\mid y_i \mid\mid^2)</script><p>同理，第二项为约束项，防止过拟合于训练数据。下一步就是根据目标函数进行求解，因为原始表达式计算复杂度太高，输入的数据集为$m\ast n$的矩阵，m为用户数，n为物品数，规模很容易达到百万级，需要进行相应的优化。\<br>我们引入交替最小二乘法(Alternate Least Sqaures)， 目标函数需要优化用户和物品两个维度，可以先固定物品这个维度，对用户唯独进行优化，我的推导过程（论文只给了结果表达式）：\<br>对$x_u$求导，可得：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial L}{\partial x_u} & = -2\sum_i(p_{ui}-x^T_uy_i)y_ic_{ui}+2\lambda x_u \\
+& = -2\sum_i(p_{ui}-y_i^Tx_u)y_ic_{ui} + 2\lambda x_u \\
+& = -2Y^TC_up(u)+2Y^TC_uYx_u+2\lambda x_u
+\end{aligned}</script><p>其中$Y_{n\ast f}$为含有所有物品特征向量的矩阵，f类似隐语义模型中的隐含特征，可见<a href="http://www.bithub00.com/2019/04/12/imputing%20structured%20missing%20values%20in%20spatial%20data%20with%20clsutered%20adversarial%20matrix%20factorization/" target="_blank" rel="noopener">矩阵分解引入</a>中的解释。令求导结果为0，则有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+Y^TC_uYx_u+\lambda Ix_u & = Y^TC_uP_u \\
+x_u & = (Y^TC_uY+\lambda I)^{-1}Y^TC_up(u)
+\end{aligned}</script><p>观察表达式，计算复杂度的瓶颈在于计算$Y^TC^uY$这一部分，计算每一个用户的时间复杂度为$O(f^2n)$，我们使用线性代数的知识进行简单的变形：$Y^TC^uY=Y^TY+Y^T(C^u-I)Y$，其中$Y^TY$与用户u无关，可以在迭代开始时预先计算，而$Y^T(C^u-I)Y$中的$C^u-I$只有$n_u$个非零值，其中$n_u$是用户u$r_{ui}&gt;0$的个数，很明显$n_u\ll n$。同样地，$C^up(u)$也只含有$n_u$个非零值，则此时对于单个用户$x_u$的计算复杂度为$O(f^2n_u+f^3)$，其中$O(f^3)$求逆的时间复杂度，总共有m个用户，所以总的时间复杂度为$O(f^2N+f^3m)$，N为总的非零值的个数，隐含特征f的个数通常设置为20-200。则$y_i$的表达式同理：</p>
+<script type="math/tex; mode=display">y_i=(X^TC^iX+\lambda I)^{-1}X^TC^ip(i)</script>
       
     </div>
     
@@ -634,7 +654,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共17.6k字</span>
+  <span class="post-count">小站全站共18.3k字</span>
 </div>
         
 

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2019-08-06T03:45:33.058Z</updated>
+  <updated>2019-08-06T09:05:01.189Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://Bithub00.com/2019/08/05/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/"/>
     <id>http://Bithub00.com/2019/08/05/推荐系统/</id>
     <published>2019-08-05T11:40:06.163Z</published>
-    <updated>2019-08-06T03:45:33.058Z</updated>
+    <updated>2019-08-06T09:05:01.189Z</updated>
     
-    <content type="html"><![CDATA[<p>用本文记录学习推荐系统的过程，以及一些实用的资料与资源。<br><a id="more"></a></p><h3 id="推荐系统数据集"><a href="#推荐系统数据集" class="headerlink" title="推荐系统数据集"></a><a href="http://cseweb.ucsd.edu/~jmcauley/datasets.html" target="_blank" rel="noopener">推荐系统数据集</a></h3><h3 id="基于隐式反馈数据的推荐系统【理论及python实践】"><a href="#基于隐式反馈数据的推荐系统【理论及python实践】" class="headerlink" title="基于隐式反馈数据的推荐系统【理论及python实践】"></a>基于隐式反馈数据的推荐系统【理论及python实践】</h3><blockquote><p>Yifan Hu， Yehuda Koren， Chris Volinsky.Collaborative Filtering for Implicit Feedback Datasets[J].IEEE International Conference on Data Mining，2008</p></blockquote><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>隐式反馈(Implict)就是用户的行为数据，包括点击，浏览和停留等，它不像评分和点赞一样直观地表示了用户的喜好。实际情况中像评分这种显式数据往往很难获得，因为它输入用户额外的进行操作，而像点击这种隐式反馈的数据，是随着用户的行为自然产生的，不需要额外的获取成本，因此实际情况中隐式反馈的数据规模要远大于显式反馈，因此很有必要研究基于隐式反馈数据的推荐系统</p><p>隐式反馈数据的特征：</p><ol><li>没有负样本。不同于评分，用户可以通过打低分来表达对某个物品的厌恶，我们只能通过点击猜测用户可能对某个物品有偏好，而不能通过没有点击来说明用户不喜欢，可能只是他还没接触过这个物品。处理显式数据时，缺失的评分项可以当作缺失值处理，而处理隐式数据时，为了避免只得到正向反馈，必须要对数据整体进行分析。</li><li>隐含很多的噪声数据。例如用户购买某个物品，不代表他一定喜欢这个物品，可能只是作为礼物或者其它原因，而给一个物品打高分可以很大程度上表示他偏好这个用品。</li><li>数值含义不同。在显式数据里，数值的含义代表偏好程度，如评分；而隐式数据里，数值代表置信度，往往表现为行为的频率，例如观看次数等等。频率越高，我们越能确定它与用户的偏好相关联，而不是一个偶然性情况。</li><li>评价指标不同。传统的推荐系统可以使用如均方根误差(Mean Square Error)来判断预测的好坏，而隐式数据上会有不同。</li></ol><h4 id="符号定义"><a href="#符号定义" class="headerlink" title="符号定义"></a>符号定义</h4><p>$r_{ui}$定义为用户$u$对物品$i$的一次观测值，例如购买物品的次数或浏览网页的次数，在电视节目推荐中，它代表完整观看某个节目的次数，0.7表示观看了节目的70%。区别于显式数据将空缺数据当作缺失值处理，我们将缺失值置为0，表示没有此观测记录。</p><h4 id="隐语义模型"><a href="#隐语义模型" class="headerlink" title="隐语义模型"></a>隐语义模型</h4><p>隐语义模型通过用户特征向量$x_u\in R^f$和物品特征向量$y_i\in R^f$来进行预测，预测评分用上面两个向量的内积形式表示：$\hat{r}_{ui}=x_u^Ty_i$，具体细节可见另一篇博客<a href="http://www.bithub00.com/2019/04/12/imputing%20structured%20missing%20values%20in%20spatial%20data%20with%20clsutered%20adversarial%20matrix%20factorization/" target="_blank" rel="noopener">矩阵分解引入</a>。目标函数表示为：</p><script type="math/tex; mode=display">min_{x_*,y_*}\sum_{r_{ui}\ is\ known}(r_{ui}-x_u^Ty_i)^2+\lambda(\mid\mid x_u \mid\mid^2+\mid\mid y_i \mid\mid^2)</script><p>公式中的$\lambda$作为正则化参数，用于<a href="http://www.bithub00.com/2019/04/03/%E8%8C%83%E6%95%B0/" target="_blank" rel="noopener">约束</a>模型，参数的求解常使用随机梯度下降。然而这种方法在应用于隐式反馈数据时需要做调整</p><h4 id="论文提出的模型"><a href="#论文提出的模型" class="headerlink" title="论文提出的模型"></a>论文提出的模型</h4>]]></content>
+    <content type="html"><![CDATA[<p>用本文记录学习推荐系统的过程，以及一些实用的资料与资源。<br><a id="more"></a></p><h3 id="推荐系统数据集"><a href="#推荐系统数据集" class="headerlink" title="推荐系统数据集"></a><a href="http://cseweb.ucsd.edu/~jmcauley/datasets.html" target="_blank" rel="noopener">推荐系统数据集</a></h3><h3 id="基于隐式反馈数据的推荐系统【理论及python实践】"><a href="#基于隐式反馈数据的推荐系统【理论及python实践】" class="headerlink" title="基于隐式反馈数据的推荐系统【理论及python实践】"></a>基于隐式反馈数据的推荐系统【理论及python实践】</h3><blockquote><p>Yifan Hu， Yehuda Koren， Chris Volinsky.Collaborative Filtering for Implicit Feedback Datasets[J].IEEE International Conference on Data Mining，2008</p></blockquote><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>隐式反馈(Implict)就是用户的行为数据，包括点击，浏览和停留等，它不像评分和点赞一样直观地表示了用户的喜好。实际情况中像评分这种显式数据往往很难获得，因为它输入用户额外的进行操作，而像点击这种隐式反馈的数据，是随着用户的行为自然产生的，不需要额外的获取成本，因此实际情况中隐式反馈的数据规模要远大于显式反馈，因此很有必要研究基于隐式反馈数据的推荐系统</p><p>隐式反馈数据的特征：</p><ol><li>没有负样本。不同于评分，用户可以通过打低分来表达对某个物品的厌恶，我们只能通过点击猜测用户可能对某个物品有偏好，而不能通过没有点击来说明用户不喜欢，可能只是他还没接触过这个物品。处理显式数据时，缺失的评分项可以当作缺失值处理，而处理隐式数据时，为了避免只得到正向反馈，必须要对数据整体进行分析。</li><li>隐含很多的噪声数据。例如用户购买某个物品，不代表他一定喜欢这个物品，可能只是作为礼物或者其它原因，而给一个物品打高分可以很大程度上表示他偏好这个用品。</li><li>数值含义不同。在显式数据里，数值的含义代表偏好程度，如评分；而隐式数据里，数值代表置信度，往往表现为行为的频率，例如观看次数等等。频率越高，我们越能确定它与用户的偏好相关联，而不是一个偶然性情况。</li><li>评价指标不同。传统的推荐系统可以使用如均方根误差(Mean Square Error)来判断预测的好坏，而隐式数据上会有不同。</li></ol><h4 id="符号定义"><a href="#符号定义" class="headerlink" title="符号定义"></a>符号定义</h4><p>$r_{ui}$定义为用户$u$对物品$i$的一次观测值，例如购买物品的次数或浏览网页的次数，在电视节目推荐中，它代表完整观看某个节目的次数，0.7表示观看了节目的70%。区别于显式数据将空缺数据当作缺失值处理，我们将缺失值置为0，表示没有此观测记录。</p><h4 id="隐语义模型"><a href="#隐语义模型" class="headerlink" title="隐语义模型"></a>隐语义模型</h4><p>隐语义模型通过用户特征向量$x_u\in R^f$和物品特征向量$y_i\in R^f$来进行预测，预测评分用上面两个向量的内积形式表示：$\hat{r}_{ui}=x_u^Ty_i$，具体细节可见另一篇博客<a href="http://www.bithub00.com/2019/04/12/imputing%20structured%20missing%20values%20in%20spatial%20data%20with%20clsutered%20adversarial%20matrix%20factorization/" target="_blank" rel="noopener">矩阵分解引入</a>。目标函数表示为：</p><script type="math/tex; mode=display">min_{x_*,y_*}\sum_{r_{ui}\ is\ known}(r_{ui}-x_u^Ty_i)^2+\lambda(\mid\mid x_u \mid\mid^2+\mid\mid y_i \mid\mid^2)</script><p>公式中的$\lambda$作为正则化参数，用于<a href="http://www.bithub00.com/2019/04/03/%E8%8C%83%E6%95%B0/" target="_blank" rel="noopener">约束</a>模型，参数的求解常使用随机梯度下降。然而这种方法在应用于隐式反馈数据时需要做调整</p><h4 id="论文提出的模型"><a href="#论文提出的模型" class="headerlink" title="论文提出的模型"></a>论文提出的模型</h4><p>首先引入一个二值变量$p_{ui}$来标识用户对物品是否产生过行为如购买、观看等等：</p><script type="math/tex; mode=display">p_{ui} =\begin{cases}1, &r_{ui} > 0\\0, &r_{ui} = 0\end{cases}</script><p>注意，$p_{ui}=1$只是暗示了用户喜欢某个物品的可能，而且$r_{ui}$的数值越大应该表示喜欢的可能性越大，因此再引入变量表示这种可能性：</p><script type="math/tex; mode=display">c_{ui}=1+\alpha r_{ui}</script><p>引入$c_{ui}$后，对于每一个观测值，我们有一个最小的可能性1，随着观测值的增大，可能性也在逐渐增大，这里的可能性与概率的含义不同，论文中将常数$\alpha$设为40 \<br>我们的目标是为每一个用户和物品分别得到一个用户特征向量$x_u\in R^f$和物品特征向量$y_i\in R^f$，则预测值可以通过两个向量的内积表示：$p_{ui}=x^T_uy_i$，即预测用户是否会对某个物品产生行为，则目标函数可表示为：</p><script type="math/tex; mode=display">min_{x_*,y_*}L(X,Y)=min_{x_*,y_*}\sum_{u,i}c_{ui}(p_{ui}-x_u^Ty_i)^2+\lambda(\sum_u\mid\mid x_u \mid\mid^2+\sum_i\mid\mid y_i \mid\mid^2)</script><p>同理，第二项为约束项，防止过拟合于训练数据。下一步就是根据目标函数进行求解，因为原始表达式计算复杂度太高，输入的数据集为$m\ast n$的矩阵，m为用户数，n为物品数，规模很容易达到百万级，需要进行相应的优化。\<br>我们引入交替最小二乘法(Alternate Least Sqaures)， 目标函数需要优化用户和物品两个维度，可以先固定物品这个维度，对用户唯独进行优化，我的推导过程（论文只给了结果表达式）：\<br>对$x_u$求导，可得：</p><script type="math/tex; mode=display">\begin{aligned}\frac{\partial L}{\partial x_u} & = -2\sum_i(p_{ui}-x^T_uy_i)y_ic_{ui}+2\lambda x_u \\& = -2\sum_i(p_{ui}-y_i^Tx_u)y_ic_{ui} + 2\lambda x_u \\& = -2Y^TC_up(u)+2Y^TC_uYx_u+2\lambda x_u\end{aligned}</script><p>其中$Y_{n\ast f}$为含有所有物品特征向量的矩阵，f类似隐语义模型中的隐含特征，可见<a href="http://www.bithub00.com/2019/04/12/imputing%20structured%20missing%20values%20in%20spatial%20data%20with%20clsutered%20adversarial%20matrix%20factorization/" target="_blank" rel="noopener">矩阵分解引入</a>中的解释。令求导结果为0，则有：</p><script type="math/tex; mode=display">\begin{aligned}Y^TC_uYx_u+\lambda Ix_u & = Y^TC_uP_u \\x_u & = (Y^TC_uY+\lambda I)^{-1}Y^TC_up(u)\end{aligned}</script><p>观察表达式，计算复杂度的瓶颈在于计算$Y^TC^uY$这一部分，计算每一个用户的时间复杂度为$O(f^2n)$，我们使用线性代数的知识进行简单的变形：$Y^TC^uY=Y^TY+Y^T(C^u-I)Y$，其中$Y^TY$与用户u无关，可以在迭代开始时预先计算，而$Y^T(C^u-I)Y$中的$C^u-I$只有$n_u$个非零值，其中$n_u$是用户u$r_{ui}&gt;0$的个数，很明显$n_u\ll n$。同样地，$C^up(u)$也只含有$n_u$个非零值，则此时对于单个用户$x_u$的计算复杂度为$O(f^2n_u+f^3)$，其中$O(f^3)$求逆的时间复杂度，总共有m个用户，所以总的时间复杂度为$O(f^2N+f^3m)$，N为总的非零值的个数，隐含特征f的个数通常设置为20-200。则$y_i$的表达式同理：</p><script type="math/tex; mode=display">y_i=(X^TC^iX+\lambda I)^{-1}X^TC^ip(i)</script>]]></content>
     
     <summary type="html">
     
@@ -243,9 +243,9 @@
     </summary>
     
     
-      <category term="data-mining" scheme="http://Bithub00.com/tags/data-mining/"/>
-    
       <category term="machine-learning" scheme="http://Bithub00.com/tags/machine-learning/"/>
+    
+      <category term="data-mining" scheme="http://Bithub00.com/tags/data-mining/"/>
     
   </entry>
   
@@ -292,9 +292,9 @@
     </summary>
     
     
-      <category term="machine-learning" scheme="http://Bithub00.com/tags/machine-learning/"/>
-    
       <category term="SIMLR" scheme="http://Bithub00.com/tags/SIMLR/"/>
+    
+      <category term="machine-learning" scheme="http://Bithub00.com/tags/machine-learning/"/>
     
   </entry>
   
