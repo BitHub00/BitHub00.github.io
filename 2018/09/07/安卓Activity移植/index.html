@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-07T05:00:48.426Z">
+<meta property="og:updated_time" content="2019-08-06T04:38:29.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安卓Activity移植">
 <meta name="twitter:description" content="这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑">
@@ -361,7 +361,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  254
+                  253
                 </span>
               
 
@@ -388,7 +388,7 @@
       
         <p>这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑<br><a id="more"></a></p>
 <h2 id="找不到R"><a href="#找不到R" class="headerlink" title="找不到R"></a>找不到R</h2><p>&#8194;这个问题移植完后马上就会遇到，在将layout里的xml文件等都复制过来后，如果问题还存在，直接Android Studio中 Build-Clen Project 一次，问题基本上就解决了</p>
-<h2 id="包名"><a href="#包名" class="headerlink" title="包名"></a>包名</h2><p>&#8194;形如com.package.XXXXX等问题，复制代码文件时IDE会自动帮我们修正，但布局文件中IDE是不会帮我们纠正过来的,例如<center>`"tools:context=".MainActivity""`</center> &lt;/br&gt;就要进行修改，或者在标签中出现com.package.XXXX没有修改的情况，只能一个个xml文件去找了</p>
+<h2 id="包名"><a href="#包名" class="headerlink" title="包名"></a>包名</h2><p>&#8194;形如com.package.XXXXX等问题，复制代码文件时IDE会自动帮我们修正，但布局文件中IDE是不会帮我们纠正过来的,例如<center>`"tools:context=".MainActivity""`</center>就要进行修改，或者在标签中出现com.package.XXXX没有修改的情况，只能一个个xml文件去找了</p>
 <h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><p>&#8194;如果在移植的Activity中继承了Application类创造了自己的，那移植过去后一定要在AndroidManifest.xml文件的\<application>里的android:name中进行修改</application></p>
 <h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>&#8194;最后就是一直过去后要在AndroidManifest.xml文件中添加移植过去的Activity，不然运行时会报错，Logcat中也会给出建议</p>
 
@@ -627,8 +627,8 @@
 
 
 <div class="theme-info">
-  <div class="powered-by"></div>
-  <span class="post-count">博客全站共17.6k字</span>
+  <span class="post-meta-divider">|</span>
+  <span class="post-count">小站全站共17.6k字</span>
 </div>
         
 
