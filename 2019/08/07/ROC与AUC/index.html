@@ -90,7 +90,9 @@
 <meta property="og:description" content="用本文记录自己对ROC曲线与AUC值的学习和理解">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/07/eIKD5d.png">
-<meta property="og:updated_time" content="2019-08-07T08:50:29.675Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/08/07/eI82Mn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/08/07/eI8jZ6.png">
+<meta property="og:updated_time" content="2019-08-07T09:29:21.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RUC与AOC">
 <meta name="twitter:description" content="用本文记录自己对ROC曲线与AUC值的学习和理解">
@@ -363,7 +365,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  401
+                  708
                 </span>
               
 
@@ -413,6 +415,10 @@ FPR & =1-\frac{TN}{TN+FP} \\
 </ul>
 <p>其实ROC的曲线的横坐标和纵坐标是没有相关性的，不能把ROC曲线当成函数曲线来分析，应该把它看成无数个点，每个点都代表一个分类器，其横纵坐标代表了这个分类器的性能。为了更好的理解ROC曲线，引入ROC空间的概念：</p>
 <p><img src="https://s2.ax1x.com/2019/08/07/eIKD5d.png" alt="ROC空间"></p>
+<p>A,B,C,C’为四个分类器，指标如下：</p>
+<p><img src="https://s2.ax1x.com/2019/08/07/eI82Mn.png" alt="分类器"><br>其中C’的性能最好，B的准确率为0.5，几乎是随即分类，图中左上角的点为完美分类，它代表所有的分类完全正确，分类为1的点完全正确，分类为0的点没有错误。  </p>
+<p>典型的ROC曲线：  </p>
+<p><img src="https://s2.ax1x.com/2019/08/07/eI8jZ6.png" alt="eI8jZ6.png"><br>仔细观察ROC曲线，发现其都是上升的曲线（斜率大于0），且都通过点（0,0）和点（1,1）。其实，这些点代表着一个分类器在不同阈值下的分类效果，具体的，曲线从左往右可以认为是阈值从0到1的变化过程。当分类器阈值为0，代表不加以识别全部判断为0，此时TP=FP=0，当分类器阈值为1，代表不加以识别全部判断为1，此时FN=TN=0。所以，ROC曲线描述的其实是分类器性能随着分类器阈值的变化而变化的过程。对于ROC曲线，一个重要的特征是它的面积，面积为0.5为随机分类，识别能力为0，面积越接近于1识别能力越强，面积等于1为完全识别。</p>
 
       
     </div>
@@ -621,7 +627,7 @@ FPR & =1-\frac{TN}{TN+FP} \\
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共20.1k字</span>
+  <span class="post-count">小站全站共20.4k字</span>
 </div>
         
 

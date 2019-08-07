@@ -105,7 +105,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/07/31/Pdhq1K.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/07/31/PdhL6O.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/07/31/PdhOXD.png">
-<meta property="og:updated_time" content="2019-08-07T09:17:18.008Z">
+<meta property="og:updated_time" content="2019-08-07T09:19:27.860Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SIMLR算法论文个人翻译">
 <meta name="twitter:description" content="基于多核函数的单细胞RNA序列分析与可视化算法   &amp;#8194;   摘要：我们将要介绍的SIMLR算法，在理论框架和软件应用上已经实现，它从输入的单细胞RNA序列中学习到一种相似度的信息，随后可以用这种信息来实现降维、聚类和可视化等后续处理。在七个公开的数据集上我们对算法进行了检验并于一些常用的算法进行了比较分析。结果证明了SIMLR算法对大规模数据的良好处理以及极大程度上提高了聚类的效果，">
@@ -448,7 +448,7 @@
 
 <p><img src="https://s1.ax1x.com/2018/07/31/Pdh3TA.png" alt=""></p>
 <p>&#8194; 因此，每一个核函数被一对参数(σ，k).我们设定k = 10，12，14,…,30 以及σ = 1.0，1.25，1.5，1.75，2，产生了55个不同的核函数。然而，实践证明，算法对核函数的数量以及参数的选择并不敏感。</p>
-<h3 id="初始化："><a href="#初始化：" class="headerlink" title="初始化："></a>初始化：</h3><ul>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><ul>
 <li>核函数的权重w被初始化为核函数数量的倒数：</li>
 </ul>
 <p><img src="https://s1.ax1x.com/2018/07/31/PdhTt1.png" alt=""></p>
@@ -492,7 +492,7 @@
 <p>&#8194; 这是一个经典的用来衡量基因和相似度之间相关性的无监督特征排序算法。表达式的值越高，则基因在不同细胞中的表达越重要。然而，表达式对相似度矩阵中的噪声值非常敏感。为了克服这个问题，我们随机选取一定比例的细胞（如细胞总数的80%），随后根据剩余细胞的相似度矩阵来对基因进行排序。</p>
 <h3 id="大规模数据集上的应用："><a href="#大规模数据集上的应用：" class="headerlink" title="大规模数据集上的应用："></a>大规模数据集上的应用：</h3><p>&#8194; 我们在含有数万个细胞的数据集上进行了试验，关键因素在于用KNN相似度来近似于细胞的相似度。第一步，我们采用了目前更为先进的近邻搜索算法<a href="https://github.com/spotify/annoy" target="_blank" rel="noopener">ANNOY</a>，ANNOY算法认为，一个近邻点的近邻也可能是一个近邻点。因此，在构建出KNN图后，算法只更新每个细胞所预先选定的前k个近邻点。因为得到的相似度矩阵是稀疏的，我们使用<a href="http://yixuan.cos.name/spectra/" target="_blank" rel="noopener">Spectra</a>来对L进行求解。当我们按照这种方式而不是进行涉及到矩阵求逆运算的闭式求解，我们只需要在有限次的迭代中就可以得到一个结果。</p>
 <p>&#8194; 在我们得到相似度矩阵后，我们就可以进行细胞可视化和细胞聚类了。聚类时，从t-SNE算法中获得嵌入的低维空间的过程的计算量很大。相反，我们采用了一种谱聚类算法，它基本上等同于我们的SIMLR算法中对矩阵L应用k均值。这种简单的算法对稀疏相似性的聚类非常有效，并可扩展到数以万计的细胞中。对于可视化，由于我们仅将细胞到细胞的相似性映射到二维或三维空间，因此应用t-SNE算法在计算上仍是可行的。我们对tSNE算法中的Barnes–Hut算法进行了调整。</p>
-<h2 id="数据来源："><a href="#数据来源：" class="headerlink" title="数据来源："></a>数据来源：</h2><p>&#8194; 我们在本文中使用了七个单细胞RNA-seq的数据集。前四个数据集每个包含少于1,000个细胞，而最后三个数据集包含数千到数万个细胞。下面是所有单细胞RNA-seq数据集的详细描述。</p>
+<h2 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h2><p>&#8194; 我们在本文中使用了七个单细胞RNA-seq的数据集。前四个数据集每个包含少于1,000个细胞，而最后三个数据集包含数千到数万个细胞。下面是所有单细胞RNA-seq数据集的详细描述。</p>
 <p>&#8194;（1）11个细胞群，包括神经细胞和血细胞（Pollen数据集）。该数据集旨在测试低覆盖率单细胞RNA-seq在鉴别不同细胞群体方面的效用，因此含有多种细胞类型的混合物：皮肤细胞，多能干细胞，血细胞和神经细胞。该数据集包括在高深度和低深度处测序的样本。我们分析了高深度样本，每个样本的平均测序数为890万。</p>
 <p>&#8194; （2）具有感觉亚型的神经元细胞（Usoskin数据集）。该数据集包含来自小鼠背根神经节的622个细胞，每个细胞平均有114万个读段。作者将细胞分为四种神经元类型：肽能伤害性伤害感受器，非肽能伤害性伤害感受器，含神经丝，含酪氨酸羟化酶。</p>
 <p>&#8194; （3）不同细胞周期阶段的胚胎干细胞（Buettner数据集）。该数据集来自对照研究，该对照研究量化了细胞周期对个体小鼠胚胎干细胞（mESC）中基因表达水平的影响。对于182个细胞中的每一个细胞，获得平均五十万个读数，并且至少20％的读数被定位于mm9小鼠基因组上的已知外显子。使用荧光激活细胞分选将细胞分选为细胞周期的三个阶段，并且使用金标准Hoechst染色对它们进行验证。</p>
@@ -695,7 +695,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景介绍及概览"><span class="nav-number">1.</span> <span class="nav-text">背景介绍及概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法详述："><span class="nav-number">2.</span> <span class="nav-text">算法详述：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核函数的构建"><span class="nav-number">2.1.</span> <span class="nav-text">核函数的构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化："><span class="nav-number">2.2.</span> <span class="nav-text">初始化：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化算法"><span class="nav-number">2.3.</span> <span class="nav-text">优化算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后续分析"><span class="nav-number">3.</span> <span class="nav-text">后续分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#降维处理："><span class="nav-number">3.1.</span> <span class="nav-text">降维处理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可视化："><span class="nav-number">3.2.</span> <span class="nav-text">可视化：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于相似度矩阵的基因排序："><span class="nav-number">3.3.</span> <span class="nav-text">基于相似度矩阵的基因排序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大规模数据集上的应用："><span class="nav-number">3.4.</span> <span class="nav-text">大规模数据集上的应用：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据来源："><span class="nav-number">4.</span> <span class="nav-text">数据来源：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景介绍及概览"><span class="nav-number">1.</span> <span class="nav-text">背景介绍及概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法详述："><span class="nav-number">2.</span> <span class="nav-text">算法详述：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核函数的构建"><span class="nav-number">2.1.</span> <span class="nav-text">核函数的构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">2.2.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化算法"><span class="nav-number">2.3.</span> <span class="nav-text">优化算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后续分析"><span class="nav-number">3.</span> <span class="nav-text">后续分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#降维处理："><span class="nav-number">3.1.</span> <span class="nav-text">降维处理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可视化："><span class="nav-number">3.2.</span> <span class="nav-text">可视化：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于相似度矩阵的基因排序："><span class="nav-number">3.3.</span> <span class="nav-text">基于相似度矩阵的基因排序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大规模数据集上的应用："><span class="nav-number">3.4.</span> <span class="nav-text">大规模数据集上的应用：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据来源"><span class="nav-number">4.</span> <span class="nav-text">数据来源</span></a></li></ol></div>
             
 
           </div>
@@ -739,7 +739,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共20.1k字</span>
+  <span class="post-count">小站全站共20.4k字</span>
 </div>
         
 
