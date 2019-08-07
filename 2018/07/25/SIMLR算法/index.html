@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/07/31/PdhMOe.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/07/31/PdhKyD.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/07/31/Pdh1wd.png">
-<meta property="og:updated_time" content="2019-08-07T07:59:26.844Z">
+<meta property="og:updated_time" content="2019-08-07T09:03:26.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SIMLR算法论文个人翻译">
 <meta name="twitter:description" content="基于多核函数的单细胞RNA序列分析与可视化算法   &amp;#8194;   摘要：我们将要介绍的SIMLR算法，在理论框架和软件应用上已经实现，它从输入的单细胞RNA序列中学习到一种相似度的信息，随后可以用这种信息来实现降维、聚类和可视化等后续处理。在七个公开的数据集上我们对算法进行了检验并于一些常用的算法进行了比较分析。结果证明了SIMLR算法对大规模数据的良好处理以及极大程度上提高了聚类的效果，">
@@ -421,9 +421,7 @@
 <h2 id="算法详述："><a href="#算法详述：" class="headerlink" title="算法详述："></a>算法详述：</h2><h3 id="算法的具体实现以及数据的可靠性："><a href="#算法的具体实现以及数据的可靠性：" class="headerlink" title="算法的具体实现以及数据的可靠性："></a>算法的具体实现以及数据的可靠性：</h3><p>SIMLR算法提供了Matlab和R语言两个版本的实现（<a href="https://github.com/BatzoglouLabSU/SIMLR）" target="_blank" rel="noopener">https://github.com/BatzoglouLabSU/SIMLR）</a></p>
 <p>&#8194; k-means算法的实现我们使用了Matlab和R语言自带的模块。而SNE算法我们修改了两个语言中这一模块的源代码。四个公开的数据集随着源代码一起被提供。而三个大型的数据集可以在相应的平台上得到。输入一个N×M的的基因表达矩阵，N代表细胞个数，M代表基因数。SIMLR算法将输出一个S×S的相似性矩阵。其中Sij表示两个细胞之间的相似度。给定一个细胞种类数C，算法假定输出的相似度矩阵将有一个含C个分块的分块对角矩阵，各个分块中的细胞更为相似。我们对两个细胞之间的距离定义为：</p>
 <div align="center">
-
 ![](https://s1.ax1x.com/2018/07/31/PdhuQO.png) 其中wl代表核函数的权重
-
 </div>
 
 <font size="4"> 
@@ -675,7 +673,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -773,7 +771,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共20.0k字</span>
+  <span class="post-count">小站全站共20.2k字</span>
 </div>
         
 

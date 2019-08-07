@@ -89,10 +89,12 @@
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="用本文记录自己对ROC曲线与AUC值的学习和理解">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-07T07:58:09.488Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/08/07/eIKD5d.png">
+<meta property="og:updated_time" content="2019-08-07T08:50:29.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RUC与AOC">
 <meta name="twitter:description" content="用本文记录自己对ROC曲线与AUC值的学习和理解">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/08/07/eIKD5d.png">
 
 
 
@@ -361,7 +363,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  186
+                  401
                 </span>
               
 
@@ -388,16 +390,29 @@
       
         <p>用本文记录自己对ROC曲线与AUC值的学习和理解<br><a id="more"></a><br>ROC曲线与AUC值常被用来评价一个二分类器的好坏，以下内容出自项亮《推荐系统实践》的“分类问题”一节：</p>
 <blockquote>
-<p>对于二类分类问题常用的评价指标是精确率(precision)和召回率(recall)，通常以关注的类为正类，其他类为负类，分类器在测试数据集上的预测或正确或不正确，4种情况出现的总数分别记作：  </p>
+<p>对于二类分类问题常用的评价指标是精确率(precision)和召回率(recall)，通常以关注的类为正类，其他类为负类，分类器可将实例分成正类(positive)和负类(negative)，预测时会出现4种情况：  </p>
 <ul>
-<li>TP——将正类预测为正类数</li>
-<li>FN——将正类预测为负类数</li>
-<li>FP——将负类预测为正类数</li>
-<li>TN——将负类预测为负类数  </li>
+<li>TP (True Positice)——将正类预测为正类数</li>
+<li>FN (False Negative)——将正类预测为负类数</li>
+<li>FP (False Positive)——将负类预测为正类数</li>
+<li>TN (True Negative)——将负类预测为负类数  </li>
 </ul>
 <p>精确率定义为</p>
 <script type="math/tex; mode=display">P =\frac{TP}{TP + FP}</script><p>召回率定义为</p>
 <script type="math/tex; mode=display">R =\frac{TP}{TP + FN}</script></blockquote>
+<p>而ROC曲线与上面的定义有关，FPR(False Positive Rate)为x轴，它以TPR(True Positive Rate)为y轴，它们的定义分别为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+TPR & = \frac{TP}{TP+FN} \\
+FPR & =1-\frac{TN}{TN+FP} \\
+& = \frac{FP}{TN+FP}
+\end{aligned}</script><p>可以看到，TPR与召回率的定义是一样的，直观理解是：</p>
+<ul>
+<li>横坐标：伪正类率(False positive rate， FPR)，<strong>预测为正但实际为负</strong>的样本占所有<strong>负例样本</strong>的比例；</li>
+<li>纵坐标：真正类率(True positive rate， TPR)，<strong>预测为正且实际为正</strong>的样本占<strong>所有正例样本</strong>的比例。</li>
+</ul>
+<p>其实ROC的曲线的横坐标和纵坐标是没有相关性的，不能把ROC曲线当成函数曲线来分析，应该把它看成无数个点，每个点都代表一个分类器，其横纵坐标代表了这个分类器的性能。为了更好的理解ROC曲线，引入ROC空间的概念：</p>
+<p><img src="https://s2.ax1x.com/2019/08/07/eIKD5d.png" alt="ROC空间"></p>
 
       
     </div>
@@ -524,7 +539,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -606,7 +621,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共20.0k字</span>
+  <span class="post-count">小站全站共20.2k字</span>
 </div>
         
 
