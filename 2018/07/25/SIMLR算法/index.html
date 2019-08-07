@@ -92,9 +92,10 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/07/31/PdhleH.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/07/31/PdhGFI.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/07/31/PdhMOe.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/07/31/PdhuQO.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/07/31/PdhKyD.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/07/31/Pdh1wd.png">
-<meta property="og:updated_time" content="2019-08-07T09:03:26.259Z">
+<meta property="og:updated_time" content="2019-08-07T09:08:41.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SIMLR算法论文个人翻译">
 <meta name="twitter:description" content="基于多核函数的单细胞RNA序列分析与可视化算法   &amp;#8194;   摘要：我们将要介绍的SIMLR算法，在理论框架和软件应用上已经实现，它从输入的单细胞RNA序列中学习到一种相似度的信息，随后可以用这种信息来实现降维、聚类和可视化等后续处理。在七个公开的数据集上我们对算法进行了检验并于一些常用的算法进行了比较分析。结果证明了SIMLR算法对大规模数据的良好处理以及极大程度上提高了聚类的效果，">
@@ -367,7 +368,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5,435
+                  5,415
                 </span>
               
 
@@ -420,10 +421,7 @@
 <p><img src="https://s1.ax1x.com/2018/07/31/PdhMOe.png" alt=""><br>&#8194; 图表3： 2维可视化结果的比较。坐标轴无实际意义。每个点代表一个细胞，而靠得越近的点代表相似度越高。数据可视化时没有输入真实的标签信息，在算法的输出时才让各个数据点标上真实的颜色以检验算法的效果。</p>
 <h2 id="算法详述："><a href="#算法详述：" class="headerlink" title="算法详述："></a>算法详述：</h2><h3 id="算法的具体实现以及数据的可靠性："><a href="#算法的具体实现以及数据的可靠性：" class="headerlink" title="算法的具体实现以及数据的可靠性："></a>算法的具体实现以及数据的可靠性：</h3><p>SIMLR算法提供了Matlab和R语言两个版本的实现（<a href="https://github.com/BatzoglouLabSU/SIMLR）" target="_blank" rel="noopener">https://github.com/BatzoglouLabSU/SIMLR）</a></p>
 <p>&#8194; k-means算法的实现我们使用了Matlab和R语言自带的模块。而SNE算法我们修改了两个语言中这一模块的源代码。四个公开的数据集随着源代码一起被提供。而三个大型的数据集可以在相应的平台上得到。输入一个N×M的的基因表达矩阵，N代表细胞个数，M代表基因数。SIMLR算法将输出一个S×S的相似性矩阵。其中Sij表示两个细胞之间的相似度。给定一个细胞种类数C，算法假定输出的相似度矩阵将有一个含C个分块的分块对角矩阵，各个分块中的细胞更为相似。我们对两个细胞之间的距离定义为：</p>
-<div align="center">
-![](https://s1.ax1x.com/2018/07/31/PdhuQO.png) 其中wl代表核函数的权重
-</div>
-
+<p><img src="https://s1.ax1x.com/2018/07/31/PdhuQO.png" alt=""><br>其中wl代表核函数的权重</p>
 <font size="4"> 
 算法依据如下损失函数来计算细胞与细胞之间的相似性：
 </font>
@@ -435,7 +433,7 @@
 
 <h3 id="核函数的构建：我们以带有不同超参数的高斯核为基础构建不同的核函数，实践证明相对其它核函数高斯核的表现更好。"><a href="#核函数的构建：我们以带有不同超参数的高斯核为基础构建不同的核函数，实践证明相对其它核函数高斯核的表现更好。" class="headerlink" title="核函数的构建：我们以带有不同超参数的高斯核为基础构建不同的核函数，实践证明相对其它核函数高斯核的表现更好。"></a>核函数的构建：我们以带有不同超参数的高斯核为基础构建不同的核函数，实践证明相对其它核函数高斯核的表现更好。</h3><p><img src="https://s1.ax1x.com/2018/07/31/Pdh1wd.png" alt=""></p>
 <p>式中||ci - cj||表示细胞i和j之间的欧几里得距离。</p>
-<font size="3"> 方差ɛij的定义式如下：</font>
+<font size="3"> 方差ɛij的定义式如下：</font>  
 ![](https://s1.ax1x.com/2018/07/31/Pdh3TA.png)
 
 &#8194; 因此，每一个核函数被一对参数(σ，k).我们设定k = 10，12，14,…,30 以及σ = 1.0，1.25，1.5，1.75，2，产生了55个不同的核函数。然而，实践证明，算法对核函数的数量以及参数的选择并不敏感。
@@ -518,7 +516,7 @@
 </div>
 
 <p>&#8194; 这是一个经典的用来衡量基因和相似度之间相关性的无监督特征排序算法。表达式的值越高，则基因在不同细胞中的表达越重要。然而，表达式对相似度矩阵中的噪声值非常敏感。为了克服这个问题，我们随机选取一定比例的细胞（如细胞总数的80%），随后根据剩余细胞的相似度矩阵来对基因进行排序。</p>
-<h3 id="大规模数据集上的应用："><a href="#大规模数据集上的应用：" class="headerlink" title="大规模数据集上的应用："></a>大规模数据集上的应用：</h3><p>&#8194; 我们在含有数万个细胞的数据集上进行了试验，关键因素在于用KNN相似度来近似于细胞的相似度。第一步，我们采用了目前更为先进的近邻搜索算法ANNOY (<a href="https://github.com/spotify/annoy)，ANNOY算法认为，一个近邻点的近邻也可能是一个近邻点。因此，在构建出KNN图后，算法只更新每个细胞所预先选定的前k个近邻点。因为得到的相似度矩阵是稀疏的，我们使用Spectra" target="_blank" rel="noopener">https://github.com/spotify/annoy)，ANNOY算法认为，一个近邻点的近邻也可能是一个近邻点。因此，在构建出KNN图后，算法只更新每个细胞所预先选定的前k个近邻点。因为得到的相似度矩阵是稀疏的，我们使用Spectra</a> (<a href="http://yixuan.cos.name/spectra/)来对L进行求解。当我们按照这种方式而不是进行涉及到矩阵求逆运算的闭式求解，我们只需要在有限次的迭代中就可以得到一个结果。" target="_blank" rel="noopener">http://yixuan.cos.name/spectra/)来对L进行求解。当我们按照这种方式而不是进行涉及到矩阵求逆运算的闭式求解，我们只需要在有限次的迭代中就可以得到一个结果。</a></p>
+<h3 id="大规模数据集上的应用："><a href="#大规模数据集上的应用：" class="headerlink" title="大规模数据集上的应用："></a>大规模数据集上的应用：</h3><p>&#8194; 我们在含有数万个细胞的数据集上进行了试验，关键因素在于用KNN相似度来近似于细胞的相似度。第一步，我们采用了目前更为先进的近邻搜索算法<a href="https://github.com/spotify/annoy" target="_blank" rel="noopener">ANNOY</a>，ANNOY算法认为，一个近邻点的近邻也可能是一个近邻点。因此，在构建出KNN图后，算法只更新每个细胞所预先选定的前k个近邻点。因为得到的相似度矩阵是稀疏的，我们使用<a href="http://yixuan.cos.name/spectra/" target="_blank" rel="noopener">Spectra</a>来对L进行求解。当我们按照这种方式而不是进行涉及到矩阵求逆运算的闭式求解，我们只需要在有限次的迭代中就可以得到一个结果。</p>
 <p>&#8194; 在我们得到相似度矩阵后，我们就可以进行细胞可视化和细胞聚类了。聚类时，从t-SNE算法中获得嵌入的低维空间的过程的计算量很大。相反，我们采用了一种谱聚类算法，它基本上等同于我们的SIMLR算法中对矩阵L应用k均值。这种简单的算法对稀疏相似性的聚类非常有效，并可扩展到数以万计的细胞中。对于可视化，由于我们仅将细胞到细胞的相似性映射到二维或三维空间，因此应用t-SNE算法在计算上仍是可行的。我们对tSNE算法中的Barnes–Hut算法进行了调整。</p>
 <h2 id="数据来源："><a href="#数据来源：" class="headerlink" title="数据来源："></a>数据来源：</h2><p>&#8194; 我们在本文中使用了七个单细胞RNA-seq的数据集。前四个数据集每个包含少于1,000个细胞，而最后三个数据集包含数千到数万个细胞。下面是所有单细胞RNA-seq数据集的详细描述。</p>
 <p>&#8194;（1）11个细胞群，包括神经细胞和血细胞（Pollen数据集）。该数据集旨在测试低覆盖率单细胞RNA-seq在鉴别不同细胞群体方面的效用，因此含有多种细胞类型的混合物：皮肤细胞，多能干细胞，血细胞和神经细胞。该数据集包括在高深度和低深度处测序的样本。我们分析了高深度样本，每个样本的平均测序数为890万。</p>
