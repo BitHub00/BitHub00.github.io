@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2019-08-20T03:44:56.866Z</updated>
+  <updated>2019-08-20T03:48:48.633Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://Bithub00.com/2019/08/20/pdf/"/>
     <id>http://Bithub00.com/2019/08/20/pdf/</id>
     <published>2019-08-20T03:24:15.386Z</published>
-    <updated>2019-08-20T03:44:56.866Z</updated>
+    <updated>2019-08-20T03:48:48.633Z</updated>
     
-    <content type="html"><![CDATA[<p>平时生活中经常会需要将word转换成pdf，比如个人简历，然而直接使用word的另存为pdf的话，文字部分虽然清晰，但会造成图像的失真。<br><a id="more"></a><br>如果是简历的话自己的照片就糊成一团了，这第一印象就不好了，即使是用网上所说的调整什么压缩选项也没用，该失真还是失真，今天记录一种可行的方法，需要用到Adobe pdf软件，相信很多人都有安装。</p><ul><li>首先，在编辑好的word中点击文件-打印，打印机选择Adobe pdf：</li></ul><p><img src="https://s2.ax1x.com/2019/08/20/mGKRf0.png" alt="adobe pdf"></p><ul><li>接着，点击打印机属性，默认设置这里选择下拉菜单的第一项印刷质量，然后点击编辑：</li></ul><p><img src="https://s2.ax1x.com/2019/08/20/mGMVc8.png" alt="印刷质量"></p><ul><li>左边列表中选择“图像”，然后将“彩色图像”这一区域的采样和压缩选项关闭：</li></ul><p><img src="https://s2.ax1x.com/2019/08/20/mGMsgK.png" alt="关闭采样和压缩"><br>这里的300可以自己设置，数值越大图像质量越好，当然转换的pdf文件也就越大</p><ul><li>可以选择左下角的另存为保存设置，方便下次使用，或者直接点击确定，也会提示你进行保存：</li></ul><p><img src="https://s2.ax1x.com/2019/08/20/mG1E1x.png" alt="另存为"></p><ul><li><p>保存完后，回到刚刚的窗口，在默认设置中选择刚刚保存的设置，点击确定，然后在打印页面选择打印就可以了，这时候输出的pdf图像就不会失真</p></li><li><p>虽然图像不会失真，但是pdf文件往往也会变大了很多，不便于邮件发送和查看，这时候推荐一个pdf压缩的网站：<a href="https://www.ilovepdf.com/zh-cn" target="_blank" rel="noopener">ilovepdf</a>，对自己的pdf进行压缩就可以了</p></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>平时生活中经常会需要将word转换成pdf，比如个人简历，然而直接使用word的另存为pdf的话，文字部分虽然清晰，但会造成图像的失真。<br><a id="more"></a><br>如果是简历的话自己的照片就糊成一团了，这第一印象就不好了，即使是用网上所说的调整什么压缩选项也没用，该失真还是失真，今天记录一种可行的方法，需要用到Adobe pdf软件，相信很多人都有安装。</p><ul><li>首先，在编辑好的word中点击文件-打印，打印机选择Adobe pdf：</li></ul><p><img src="https://s2.ax1x.com/2019/08/20/mGKRf0.png" alt="adobe pdf"></p><ul><li>接着，点击打印机属性，默认设置这里选择下拉菜单的第一项印刷质量，然后点击编辑：</li></ul><p><img src="https://s2.ax1x.com/2019/08/20/mGMVc8.png" alt="印刷质量"></p><ul><li>左边列表中选择“图像”，然后将“彩色图像”这一区域的采样和压缩选项关闭：</li></ul><p><img src="https://s2.ax1x.com/2019/08/20/mGMsgK.png" alt="关闭采样和压缩">这里的300可以自己设置，数值越大图像质量越好，当然转换的pdf文件也就越大</p><ul><li>可以选择左下角的另存为保存设置，方便下次使用，或者直接点击确定，也会提示你进行保存：</li></ul><p><img src="https://s2.ax1x.com/2019/08/20/mG1E1x.png" alt="另存为"></p><ul><li><p>保存完后，回到刚刚的窗口，在默认设置中选择刚刚保存的设置，点击确定，然后在打印页面选择打印就可以了，这时候输出的pdf图像就不会失真</p></li><li><p>虽然图像不会失真，但是pdf文件往往也会变大了很多，不便于邮件发送和查看，这时候推荐一个pdf压缩的网站：<a href="https://www.ilovepdf.com/zh-cn" target="_blank" rel="noopener">ilovepdf</a>，对自己的pdf进行压缩就可以了</p></li></ul>]]></content>
     
     <summary type="html">
     
