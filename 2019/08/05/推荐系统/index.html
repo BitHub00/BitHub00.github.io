@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/07/e5hMTK.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/07/e54m9g.png">
-<meta property="og:updated_time" content="2019-08-13T07:23:53.860Z">
+<meta property="og:updated_time" content="2019-08-13T08:09:34.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统学习记录">
 <meta name="twitter:description" content="用本文记录学习推荐系统的过程，以及一些实用的资料与资源。">
@@ -354,7 +354,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,938
+                  3,924
                 </span>
               
 
@@ -380,7 +380,10 @@
 
       
         <p>用本文记录学习推荐系统的过程，以及一些实用的资料与资源。<br><a id="more"></a></p>
-<h2 id="推荐系统数据集"><a href="#推荐系统数据集" class="headerlink" title="推荐系统数据集"></a>推荐系统数据集</h2><p><a href="http://cseweb.ucsd.edu/~jmcauley/datasets.html" target="_blank" rel="noopener">UCSD</a><br><a href="https://gist.github.com/entaroadun/1653794" target="_blank" rel="noopener">github</a></p>
+<h2 id="推荐系统数据集"><a href="#推荐系统数据集" class="headerlink" title="推荐系统数据集"></a>推荐系统数据集</h2><ol>
+<li><a href="http://cseweb.ucsd.edu/~jmcauley/datasets.html" target="_blank" rel="noopener">UCSD</a></li>
+<li><a href="https://gist.github.com/entaroadun/1653794" target="_blank" rel="noopener">github</a></li>
+</ol>
 <h2 id="基于隐式反馈数据的推荐系统【理论及python实践】"><a href="#基于隐式反馈数据的推荐系统【理论及python实践】" class="headerlink" title="基于隐式反馈数据的推荐系统【理论及python实践】"></a>基于隐式反馈数据的推荐系统【理论及python实践】</h2><blockquote>
 <p>Yifan Hu,Yehuda Koren,Chris Volinsky.<a href="http://yifanhu.net/PUB/cf.pdf" target="_blank" rel="noopener">Collaborative Filtering for Implicit Feedback Datasets</a>[J].IEEE International Conference on Data Mining，2008</p>
 </blockquote>
@@ -414,7 +417,7 @@ p_{ui} =
 \begin{aligned}
 Y^TC_uYx_u+\lambda Ix_u & = Y^TC_uP_u \\
 x_u & = (Y^TC_uY+\lambda I)^{-1}Y^TC_up(u)
-\end{aligned}</script><p>观察表达式，计算复杂度的瓶颈在于计算$Y^TC^uY$这一部分，计算每一个用户的时间复杂度为$O(f^2n)$，我们使用线性代数的知识进行简单的变形：$Y^TC^uY=Y^TY+Y^T(C^u-I)Y$，其中$Y^TY$与用户u无关，可以在迭代开始时预先计算，而$Y^T(C^u-I)Y$中的$C^u-I$只有$n_u$个非零值，其中$n_u$是用户u$r_{ui}&gt;0$的个数，很明显$n_u\ll n$。同样地，$C^up(u)$也只含有$n_u$个非零值，则此时对于单个用户$x_u$的计算复杂度为$O(f^2n_u+f^3)$，其中$O(f^3)$求逆的时间复杂度，总共有m个用户，所以总的时间复杂度为$O(f^2N+f^3m)$，N为总的非零值的个数，隐含特征f的个数通常设置为20-200。则$y_i$的表达式同理：</p>
+\end{aligned}</script><p>观察表达式，计算复杂度的瓶颈在于计算$Y^TC^uY$这一部分，计算每一个用户的时间复杂度为$O(f^2n)$，我们使用线性代数的知识进行简单的变形：$Y^TC^uY=Y^TY+Y^T(C^u-I)Y$，其中$Y^TY$与用户u无关，可以在迭代开始时预先计算，而$Y^T(C^u-I)Y$中的$C^u-I$只有$n_u$个非零值，其中$n_u$是用户u$r_{ui}&gt;0$的个数，很明显$n_u\ll n$。同样地，$C^up(u)$也只含有$n_u$个非零值，则此时对于单个用户$x_u$的计算复杂度为$O(f^2n_u+f^3)$，其中$O(f^3)$求逆的时间复杂度，总共有m个用户，所以总的时间复杂度为$O(f^2N+f^3m)$，N为总的非零值的个数，隐含特征f的个数通常设置为$20-200$。则$y_i$的表达式同理：</p>
 <script type="math/tex; mode=display">y_i=(X^TC^iX+\lambda I)^{-1}X^TC^ip(i)</script><h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p>理解完论文框架后，使用一个<a href="http://archive.ics.uci.edu/ml/machine-learning-databases/00352" target="_blank" rel="noopener">数据集</a>进行实践，自己构建一个基于隐式反馈数据的推荐系统。数据集来源于UCI大学的机器学习资源库，它包含了一个位于英国的网上零售商时间跨度为八个月的所以购买记录，数据集中包含了InvoiceNo StockCode Description Quantity InvoiceDate UnitPrice CustomID Country这些字段。</p>
 <h4 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h4><ul>
 <li>下载数据并读取<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">retail_data = pd.read_excel(<span class="string">'Online Retail.xlsx'</span>)</span><br><span class="line">print(retail_data.info())</span><br><span class="line"></span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>'&gt;</span></span><br><span class="line"><span class="class"><span class="title">RangeIndex</span>:</span> <span class="number">541909</span> entries, <span class="number">0</span> to <span class="number">541908</span></span><br><span class="line">Data columns (total <span class="number">8</span> columns):</span><br><span class="line">InvoiceNo      <span class="number">541909</span> non-null object</span><br><span class="line">StockCode      <span class="number">541909</span> non-null object</span><br><span class="line">Description    <span class="number">540455</span> non-null object</span><br><span class="line">Quantity       <span class="number">541909</span> non-null int64</span><br><span class="line">InvoiceDate    <span class="number">541909</span> non-null datetime64[ns]</span><br><span class="line">UnitPrice      <span class="number">541909</span> non-null float64</span><br><span class="line">CustomerID     <span class="number">406829</span> non-null float64</span><br><span class="line">Country        <span class="number">541909</span> non-null object</span><br><span class="line">dtypes: datetime64[ns](<span class="number">1</span>), float64(<span class="number">2</span>), int64(<span class="number">1</span>), object(<span class="number">4</span>)</span><br><span class="line">memory usage: <span class="number">33.1</span>+ MB</span><br></pre></td></tr></table></figure>
@@ -425,7 +428,7 @@ x_u & = (Y^TC_uY+\lambda I)^{-1}Y^TC_up(u)
 <p>接下来需要做的是</p>
 <ul>
 <li><p>对于某个用户，将他购买的相同物品的数目进行求和</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cleaned_retail[<span class="string">'CustomerID'</span>] = cleaned_retail.CustomerID.astype(int)</span><br><span class="line">cleaned_retail = cleaned_retail[[<span class="string">'StockCode'</span>, <span class="string">'Quantity'</span>, <span class="string">'CustomerID'</span>]] <span class="comment">#只需要这三个字段，其它像日期等不需要 </span></span><br><span class="line">grouped_cleaned = cleaned_retail.groupby([<span class="string">'CustomerID'</span>, <span class="string">'StockCode'</span>]).sum().reset_index()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cleaned_retail[<span class="string">'CustomerID'</span>] = cleaned_retail.CustomerID.astype(int)</span><br><span class="line">cleaned_retail = cleaned_retail[[<span class="string">'StockCode'</span>, <span class="string">'Quantity'</span>, <span class="string">'CustomerID'</span>]]</span><br><span class="line">grouped_cleaned = cleaned_retail.groupby([<span class="string">'CustomerID'</span>, <span class="string">'StockCode'</span>]).sum().reset_index()</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将求和结果中的0置为1，数目为0的情况往往是顾客进行了退货，这种情况我们也当作顾客购买了商品，而不是当作没购买的情况处理</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grouped_cleaned.Quantity.loc[grouped_cleaned.Quantity == <span class="number">0</span>] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
@@ -608,7 +611,7 @@ x_u & = (Y^TC_uY+\lambda I)^{-1}Y^TC_up(u)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -621,7 +624,7 @@ x_u & = (Y^TC_uY+\lambda I)^{-1}Y^TC_up(u)
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -719,7 +722,7 @@ x_u & = (Y^TC_uY+\lambda I)^{-1}Y^TC_up(u)
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共22.5k字</span>
+  <span class="post-count">小站全站共22.9k字</span>
 </div>
         
 
