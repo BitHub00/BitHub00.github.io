@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="错误描述执行以下代码时会报错：12345678wait = WebDriverWait(browser, 10)input = wait.until(    EC.presence_of_element_located    (        By.ID, &apos;search&apos;     )) PyCharm会提示：TypeError: init() takes 2 positional argumen">
+<meta name="description" content="错误描述执行以下代码时会报错：12345678wait = WebDriverWait(browser, 10)input = wait.until(    EC.presence_of_element_located    (        By.ID, &apos;search&apos;     ))">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Selenium">
+<meta property="og:title" content="[object Object]">
 <meta property="og:url" content="http://Bithub00.com/2019/08/21/TypeError/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="错误描述执行以下代码时会报错：12345678wait = WebDriverWait(browser, 10)input = wait.until(    EC.presence_of_element_located    (        By.ID, &apos;search&apos;     )) PyCharm会提示：TypeError: init() takes 2 positional argumen">
+<meta property="og:description" content="错误描述执行以下代码时会报错：12345678wait = WebDriverWait(browser, 10)input = wait.until(    EC.presence_of_element_located    (        By.ID, &apos;search&apos;     ))">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-21T07:43:14.802Z">
+<meta property="og:updated_time" content="2019-08-21T07:47:31.111Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Selenium">
-<meta name="twitter:description" content="错误描述执行以下代码时会报错：12345678wait = WebDriverWait(browser, 10)input = wait.until(    EC.presence_of_element_located    (        By.ID, &apos;search&apos;     )) PyCharm会提示：TypeError: init() takes 2 positional argumen">
+<meta name="twitter:title" content="[object Object]">
+<meta name="twitter:description" content="错误描述执行以下代码时会报错：12345678wait = WebDriverWait(browser, 10)input = wait.until(    EC.presence_of_element_located    (        By.ID, &apos;search&apos;     ))">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>Selenium | 原力小站</title>
+  <title>[object Object] | 原力小站</title>
   
 
 
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Selenium</h1>
+          <h1 class="post-title" itemprop="name headline">[object Object]</h1>
         
 
         <div class="post-meta">
@@ -326,7 +326,7 @@
 
           
           
-             <span id="/2019/08/21/TypeError/" class="leancloud_visitors" data-flag-title="Selenium">
+             <span id="/2019/08/21/TypeError/" class="leancloud_visitors" data-flag-title="[object Object]">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -377,6 +377,7 @@
 
       
         <h3 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h3><p>执行以下代码时会报错：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wait = WebDriverWait(browser, <span class="number">10</span>)</span><br><span class="line">input = wait.until</span><br><span class="line">(</span><br><span class="line">    EC.presence_of_element_located</span><br><span class="line">    (</span><br><span class="line">        By.ID, <span class="string">'search'</span> </span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>PyCharm会提示：TypeError: <strong>init</strong>() takes 2 positional arguments but 3 were given。</p>
 <h3 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h3><p>在<a href="https://github.com/SeleniumHQ/selenium/blob/80adb709873815b88bb57494a6908f8b86285766/py/selenium/webdriver/support/expected_conditions.py#L53" target="_blank" rel="noopener">expected conditions.py</a>中找到<a href="https://github.com/SeleniumHQ/selenium/blob/80adb709873815b88bb57494a6908f8b86285766/py/selenium/webdriver/support/expected_conditions.py#L53" target="_blank" rel="noopener">presence_of_element_located</a>类</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">presence_of_element_located</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">""" An expectation for checking that an element is present on the DOM</span></span><br><span class="line"><span class="string">    of a page. This does not necessarily mean that the element is visible.</span></span><br><span class="line"><span class="string">    locator - used to find the element</span></span><br><span class="line"><span class="string">    returns the WebElement once it is located</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, locator)</span>:</span></span><br><span class="line">        self.locator = locator</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, driver)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> _find_element(driver, self.locator)</span><br></pre></td></tr></table></figure>
