@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2019-09-08T09:16:30.777Z</updated>
+  <updated>2019-09-09T03:15:01.004Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>托福备考</title>
+    <link href="http://Bithub00.com/2019/09/09/%E6%89%98%E7%A6%8F%E5%A4%87%E8%80%83/"/>
+    <id>http://Bithub00.com/2019/09/09/托福备考/</id>
+    <published>2019-09-09T03:02:28.587Z</published>
+    <updated>2019-09-09T03:15:01.004Z</updated>
+    
+    <content type="html"><![CDATA[<p>8月25号香港荃湾考试局托福首考，9月4号出分102成功分手，R29L28S22W23，没有报过补习班，分享自己复习的经验，希望能帮助大家<br><a id="more"></a></p><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我跟很多人的经验可能都不同，首先英语是我的兴趣爱好，因为我是DC粉丝，学英语就为了无障碍看原版漫画，扇贝打卡800多天了，原版书和新闻广播也会有涉及，其实这次托福我只复习了半个月，还是在早10晚9的实习期间挤时间复习的，所以我也会把当初有帮助的知乎回答贴在这里，我自认为自己的写作准备方法是有效的，只是可能准备时间不是很充分没用上，话不多说进入正题:</p><center class="half">    <img src="https://s2.ax1x.com/2019/09/09/nJrma6.jpg" width="208"> <img src="https://s2.ax1x.com/2019/09/08/n3jKfg.png" width="200"></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;8月25号香港荃湾考试局托福首考，9月4号出分102成功分手，R29L28S22W23，没有报过补习班，分享自己复习的经验，希望能帮助大家&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="托福" scheme="http://Bithub00.com/tags/%E6%89%98%E7%A6%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>C++刷题</title>
@@ -219,11 +239,11 @@
     </summary>
     
     
+      <category term="机器学习" scheme="http://Bithub00.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="GAN" scheme="http://Bithub00.com/tags/GAN/"/>
     
       <category term="矩阵分解" scheme="http://Bithub00.com/tags/%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/"/>
-    
-      <category term="机器学习" scheme="http://Bithub00.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
