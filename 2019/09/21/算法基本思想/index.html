@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="算法," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑">
-<meta name="keywords" content="Android">
+<meta name="description" content="算法设计常见的5种基本技巧，有贪婪算法、分治算法、动态规划、随机化算法和回溯算法。">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安卓Activity移植">
-<meta property="og:url" content="http://Bithub00.com/2018/09/07/安卓Activity移植/index.html">
+<meta property="og:title" content="算法基本思想">
+<meta property="og:url" content="http://Bithub00.com/2019/09/21/算法基本思想/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑">
+<meta property="og:description" content="算法设计常见的5种基本技巧，有贪婪算法、分治算法、动态规划、随机化算法和回溯算法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-06T04:38:29.791Z">
+<meta property="og:updated_time" content="2019-09-21T02:06:07.789Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="安卓Activity移植">
-<meta name="twitter:description" content="这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑">
+<meta name="twitter:title" content="算法基本思想">
+<meta name="twitter:description" content="算法设计常见的5种基本技巧，有贪婪算法、分治算法、动态规划、随机化算法和回溯算法。">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://Bithub00.com/2018/09/07/安卓Activity移植/"/>
+  <link rel="canonical" href="http://Bithub00.com/2019/09/21/算法基本思想/"/>
 
 
 
 
 
-  <title>安卓Activity移植 | 原力小站</title>
+  <title>算法基本思想 | 原力小站</title>
   
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2018/09/07/安卓Activity移植/">
+    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2019/09/21/算法基本思想/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.shuan">
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">安卓Activity移植</h1>
+          <h1 class="post-title" itemprop="name headline">算法基本思想</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-07T12:31:55+08:00">
-                2018-09-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-21T10:02:42+08:00">
+                2019-09-21
               </time>
             
 
@@ -326,7 +326,7 @@
 
           
           
-             <span id="/2018/09/07/安卓Activity移植/" class="leancloud_visitors" data-flag-title="安卓Activity移植">
+             <span id="/2019/09/21/算法基本思想/" class="leancloud_visitors" data-flag-title="算法基本思想">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  253
+                  618
                 </span>
               
 
@@ -376,11 +376,12 @@
       
 
       
-        <p>这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑<br><a id="more"></a></p>
-<h2 id="找不到R"><a href="#找不到R" class="headerlink" title="找不到R"></a>找不到R</h2><p>&#8194;这个问题移植完后马上就会遇到，在将layout里的xml文件等都复制过来后，如果问题还存在，直接Android Studio中 Build-Clen Project 一次，问题基本上就解决了</p>
-<h2 id="包名"><a href="#包名" class="headerlink" title="包名"></a>包名</h2><p>&#8194;形如com.package.XXXXX等问题，复制代码文件时IDE会自动帮我们修正，但布局文件中IDE是不会帮我们纠正过来的,例如<center>`"tools:context=".MainActivity""`</center>就要进行修改，或者在标签中出现com.package.XXXX没有修改的情况，只能一个个xml文件去找了</p>
-<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><p>&#8194;如果在移植的Activity中继承了Application类创造了自己的，那移植过去后一定要在AndroidManifest.xml文件的\<application>里的android:name中进行修改</application></p>
-<h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>&#8194;最后就是一直过去后要在AndroidManifest.xml文件中添加移植过去的Activity，不然运行时会报错，Logcat中也会给出建议</p>
+        <p>算法设计常见的5种基本技巧，有贪婪算法、分治算法、动态规划、随机化算法和回溯算法。<br><a id="more"></a></p>
+<h3 id="贪婪算法"><a href="#贪婪算法" class="headerlink" title="贪婪算法"></a>贪婪算法</h3><p>虽然每次的选择都是局部最优，当在算法结束的时候，其期望是全局最优才是正确的。不过有时，在不同条件与要求下时，最优解的答案可能不止有一个或不一样，而贪婪算法也可以得出一个近似的答案。</p>
+<h3 id="分治算法"><a href="#分治算法" class="headerlink" title="分治算法"></a>分治算法</h3><p>分治算法不是简单的递归，而是将大的问题递归解决较小的问题，然后从子问题的解构建原问题的解。比如，快速排序和归并排序算分治算法，而图的递归深度搜索和二叉树的递归遍历则不是分治算法的运用。</p>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>动态规划与分治算法的区别是，两种算法同样是将较大的问题分解成较小问题，而动态规划对这些较小的问题并不是对原问题明晰的分割，其中一部分是被重复求解的，因此动态规划将较小问题的解记录下来，使得在处理较大问题的时候，可以不用重复去处理较小的问题，而是直接利用所记录的较小问题的答案来求解。</p>
+<h3 id="随机化算法"><a href="#随机化算法" class="headerlink" title="随机化算法"></a>随机化算法</h3><p>随机化算法的一个应用是在快速排序中对枢纽元素的选择，使得算法的运行时间不止依赖于特定的输入，还而且还依赖于所出现的随机数。虽然一个随机化算法的最坏情形运行时间常常与非随机化算法的最坏情形运行时间相同，但两者还是有区别的，好的随机化算法没有坏的输入，而只有坏的随机数。</p>
+<h3 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h3><p>回溯算法相当于穷举搜索的巧妙实现，对比蛮力的穷举搜索，回溯算法可以对一些不符合要求的或者是重复的情况进行裁剪，不再对其进行搜索，以减少搜索的工作量提高效率。比如，在图运用回溯算法的深度优先搜索遍历中，会对已搜索遍历过的顶点进行标记，避免下次的回溯搜索中对再次出现的该顶点进行重复遍历。</p>
 
       
     </div>
@@ -398,7 +399,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag">#Android</a>
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
         </div>
       
@@ -411,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/25/SIMLR算法/" rel="next" title="SIMLR算法论文个人翻译">
-                <i class="fa fa-chevron-left"></i> SIMLR算法论文个人翻译
+              <a href="/2019/09/11/一亩三分地/" rel="next" title="一亩三分地题库+新手上路答案">
+                <i class="fa fa-chevron-left"></i> 一亩三分地题库+新手上路答案
               </a>
             
           </div>
@@ -420,10 +421,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/03/范数/" rel="prev" title="L1与L2范数">
-                L1与L2范数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -574,7 +571,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#找不到R"><span class="nav-number">1.</span> <span class="nav-text">找不到R</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包名"><span class="nav-number">2.</span> <span class="nav-text">包名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">3.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册"><span class="nav-number">4.</span> <span class="nav-text">注册</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#贪婪算法"><span class="nav-number">1.</span> <span class="nav-text">贪婪算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分治算法"><span class="nav-number">2.</span> <span class="nav-text">分治算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划"><span class="nav-number">3.</span> <span class="nav-text">动态规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机化算法"><span class="nav-number">4.</span> <span class="nav-text">随机化算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回溯算法"><span class="nav-number">5.</span> <span class="nav-text">回溯算法</span></a></li></ol></div>
             
 
           </div>

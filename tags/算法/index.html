@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -81,18 +81,16 @@
 
 
 
-<meta name="description" content="这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑">
-<meta name="keywords" content="Android">
-<meta property="og:type" content="article">
-<meta property="og:title" content="安卓Activity移植">
-<meta property="og:url" content="http://Bithub00.com/2018/09/07/安卓Activity移植/index.html">
+<meta name="description" content="May 4th be with you">
+<meta property="og:type" content="website">
+<meta property="og:title" content="原力小站">
+<meta property="og:url" content="http://Bithub00.com/tags/算法/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑">
+<meta property="og:description" content="May 4th be with you">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-06T04:38:29.791Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="安卓Activity移植">
-<meta name="twitter:description" content="这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑">
+<meta name="twitter:title" content="原力小站">
+<meta name="twitter:description" content="May 4th be with you">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://Bithub00.com/2018/09/07/安卓Activity移植/"/>
+  <link rel="canonical" href="http://Bithub00.com/tags/算法/"/>
 
 
 
 
 
-  <title>安卓Activity移植 | 原力小站</title>
+  <title>标签: 算法 | 原力小站</title>
   
 
 
@@ -157,7 +155,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <a href="https://github.com/BitHub00" 
@@ -265,185 +263,54 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>算法<small>标签</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2018/09/07/安卓Activity移植/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.shuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="原力小站">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2019/09/21/算法基本思想/" itemprop="url">
+              
+                <span itemprop="name">算法基本思想</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">安卓Activity移植</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-07T12:31:55+08:00">
-                2018-09-07
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2019-09-21T10:02:42+08:00"
+              content="2019-09-21" >
+          09-21
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/09/07/安卓Activity移植/" class="leancloud_visitors" data-flag-title="安卓Activity移植">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  253
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>这篇文章记录一下之前将写的一个Activity加入现有应用时遇到的坑<br><a id="more"></a></p>
-<h2 id="找不到R"><a href="#找不到R" class="headerlink" title="找不到R"></a>找不到R</h2><p>&#8194;这个问题移植完后马上就会遇到，在将layout里的xml文件等都复制过来后，如果问题还存在，直接Android Studio中 Build-Clen Project 一次，问题基本上就解决了</p>
-<h2 id="包名"><a href="#包名" class="headerlink" title="包名"></a>包名</h2><p>&#8194;形如com.package.XXXXX等问题，复制代码文件时IDE会自动帮我们修正，但布局文件中IDE是不会帮我们纠正过来的,例如<center>`"tools:context=".MainActivity""`</center>就要进行修改，或者在标签中出现com.package.XXXX没有修改的情况，只能一个个xml文件去找了</p>
-<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><p>&#8194;如果在移植的Activity中继承了Application类创造了自己的，那移植过去后一定要在AndroidManifest.xml文件的\<application>里的android:name中进行修改</application></p>
-<h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>&#8194;最后就是一直过去后要在AndroidManifest.xml文件中添加移植过去的Activity，不然运行时会报错，Logcat中也会给出建议</p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Android/" rel="tag">#Android</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/07/25/SIMLR算法/" rel="next" title="SIMLR算法论文个人翻译">
-                <i class="fa fa-chevron-left"></i> SIMLR算法论文个人翻译
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/03/范数/" rel="prev" title="L1与L2范数">
-                L1与L2范数 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -451,13 +318,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
 
         </div>
         
@@ -478,17 +338,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -564,22 +415,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#找不到R"><span class="nav-number">1.</span> <span class="nav-text">找不到R</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包名"><span class="nav-number">2.</span> <span class="nav-text">包名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">3.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册"><span class="nav-number">4.</span> <span class="nav-text">注册</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -729,10 +564,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
@@ -905,7 +736,33 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -923,12 +780,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-  
-  
-
-  
   
 
 
