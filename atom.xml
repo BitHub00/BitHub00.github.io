@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2019-09-21T02:06:07.789Z</updated>
+  <updated>2019-09-23T02:53:32.068Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>协同过滤</title>
+    <link href="http://Bithub00.com/2019/09/23/%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%E6%80%BB%E7%BB%93/"/>
+    <id>http://Bithub00.com/2019/09/23/协同过滤总结/</id>
+    <published>2019-09-23T02:52:32.259Z</published>
+    <updated>2019-09-23T02:53:32.068Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="协同过滤-collaborative-filtering"><a href="#协同过滤-collaborative-filtering" class="headerlink" title="协同过滤(collaborative filtering)"></a>协同过滤(collaborative filtering)</h1><h2 id="直观解释"><a href="#直观解释" class="headerlink" title="直观解释"></a>直观解释</h2><p>协同过滤是推荐算法中最常用的算法之一，它根据user与item的交互，发现item之间的相关性，或者发现user之间的相关性，进行推荐。比如你有位朋友看电影的爱好跟你类似，然后最近新上了《调音师》，他觉得不错，就会推荐给你，这是最简单的基于user的协同过滤算法（user-based collaboratIve filtering），还有一种是基于item的协同过滤算法（item-based collaborative filtering），比如你非常喜欢电影《当幸福来敲门的时候》，那么观影系统可能会推荐一些类似的励志片给你，比如《风雨哈佛路》等。如下主要分析user-based，item-based同理。</p><h2 id="导图"><a href="#导图" class="headerlink" title="导图"></a>导图</h2><p><img src="https://uploader.shimo.im/f/8mslGdORa5YzVRXW!thumbnail" alt="图片"></p><h2 id="核心公式"><a href="#核心公式" class="headerlink" title="核心公式"></a>核心公式</h2><ul><li><p>符号定义<br>$r_{u,i}$：user $u$ 对 item $i$ 的评分<br>$\bar{r}_{u}$：user $u$ 的平均评分<br>$P_{a,b}$：用户$a,b$都有评价的items集合</p></li><li><p>核心公式</p></li></ul><ol><li>item-based CF 邻域方法预测公式</li></ol><script type="math/tex; mode=display">\operatorname{Pred}(u, i)=\overline{r}_{u}+\frac{\sum_{j \in S_{i}}\left(\operatorname{sim}(i, j) \times r_{u, j}\right)}{\sum_{j \in S_{i}} \operatorname{sim}(i, j)}</script><ol><li>偏差优化目标</li></ol><script type="math/tex; mode=display">\min _{b} \sum_{(u, i) \in K}\left(r_{(u, i)}-\mu-b_{u}-b_{i}\right)^{2}</script><p>其中$(u，i) \in K$表示所有的评分，$\mu$总评分均值，$b_u$为user $u$的偏差，$b_i$为item $i$ 的偏差。</p><ol><li><ul><li>加入正则项后的Funk SVD 优化公式</li></ul></li></ol><script type="math/tex; mode=display">\min _{u v} \sum_{(u, i) \in k n o w n}\left(r_{u,i}-u_{u} v_{i}\right)+\lambda\left(|u|^{2}+|v|^{2}\right)</script><p>其中$u_u$为user $u$的偏好，即为user特征矩阵$U$的第$u$行，$v_i$为item $i$的特征，即为特征矩阵$V$的第$i$列</p><h2 id="注意要点"><a href="#注意要点" class="headerlink" title="注意要点"></a>注意要点</h2><ul><li><p>相似度与距离之间的关系<br>  距离越大，相似度越小；距离越小，相似度越高。即在求解最大相似度的时候可以转为求解最小距离。</p></li><li><p>在协同过滤中，常用的相似度函数有哪些，简要说明</p><ul><li>杰卡德相似度（Jaccard similarity）<br>公式：</li></ul><script type="math/tex; mode=display">sim_{jaccard}(u_{1}, u_{2})=\frac{ \text {items} \text { bought by } u_{1}\  and\  u_{2}}{ \text { items  bought by  } u_{1}\  or\  u_{2}}</script><p>适用于二元情况，即定性情况，比如买或者没买，喜欢或者不喜欢，在数据稀疏的情况，可以转为二元应用。</p><ul><li><p>余弦相似度<br>公式：</p><script type="math/tex; mode=display">\operatorname{sim}(u_{1}, u_{2})=\frac{r_{u_{1}} \cdot r_{u_{2}}}{\left|r_{u_{1}}\right|_{2}|r_{u_{2}}|_{2}}=\frac{\sum_{i \in P_{u_1,u_2}} r_{u_{1}, i} r_{u_{2}, i}}{\sqrt{\sum_{i \in P_{u_1}} r_{u_{1},i}^{2}} \sqrt{\sum_{i \in P_{u_2}}r_{u_{2},i}^{2}}}</script><p>考虑不同用户的评价范围不一样，比如乐天派一般评分范围一般会高于悲观的人，会将评分进行去中心化再进行计算，即</p></li><li>修正余弦相似度，公式变为</li></ul><script type="math/tex; mode=display">\operatorname{sim}(u_{1}, u_{2})=\frac{r_{u_{1}} \cdot r_{u_{2}}}{\left|r_{u_{1}}\right|_{2}|r_{u_{2}}|_{2}}=\frac{\sum_{i \in P_{u_1,u_2}} (r_{u_{1}, i}-{\bar{r}_{u_{1}}}) (r_{u_{2}, i}-\bar{r}_{u_2})}{\sqrt{\sum_{i \in P_{u_1}} (r_{u_{1},i}-\bar{r}_{u_{1}})^{2}} \sqrt{\sum_{i \in P_{u_2}}(r_{u_{2},i}-\bar{r}_{u_{2}})^{2}}}</script><p>适用于定量情况，比如评分场景，要求数据具有一定的稠密度。注意如果计算一个评价很少电影的用户与一个评价很多电影的用户会导致相似度为0.</p><ul><li><p>皮尔森相关系数<br>公式：</p><script type="math/tex; mode=display">\operatorname{sim}(u_1, u_2)=\frac{\sum_{i \in P_{u_1.u_2}}\left(r_{u_1, i}-\overline{r}_{u_1}\right)\left(r_{u_2, i}-\overline{r}_{u_2}\right)}{\sqrt{\sum_{i \in P_{u_1.u_2}}\left(r_{u_1, i}-\overline{r}_{u_1}\right)^{2}} \sqrt{\sum_{i \in P_{u_1.u_2}}\left(r_{u_2, i}-\overline{r}_{u_2}\right)^{2}}}</script><p>皮尔森系数跟修正的余弦相似度几乎一致，两者的区别在于分母上，皮尔逊系数的分母采用的评分集是两个用户的共同评分集（就是两个用户都对这个物品有评价），而修正的余弦系数则采用两个用户各自的评分集。</p></li><li><p>$L_{p}-norms$<br>公式：</p><script type="math/tex; mode=display">sim(u_1,u_2) =\frac{1}{ \sqrt[p]{| r_{u_1}-r_{u_2} |^p}+1}</script><p>$p$取不同的值对应不同的距离公式，空间距离公式存在的不足这边也存在。对数值比较敏感。</p></li></ul></li><li><p>有了相似度测量后，那么基于邻域的推荐思路是怎样的呢？<br>过滤掉被评论较少的items以及较少评价的users，然后计算完users之间的相似度后，寻找跟目标user偏好既有大量相同的items，又存在不同的items的近邻几个users(可采用K-top、阈值法、聚类等方式)，然后进行推荐。步骤如下：<br>(1) 选择：选出最相似几个用户，将这些用户所喜欢的物品提取出来并过滤掉目标用户已经喜欢的物品<br>(2) 评估：对余下的物品进行评分与相似度加权<br>(3) 排序：根据加权之后的值进行排序<br>(4) 推荐：由排序结果对目标用户进行推荐</p></li><li><p>协同过滤算法具有特征学习的特点，试解释原理以及如何学习</p></li></ul><ol><li>特征学习：把users做为行，items作为列，即得评分矩阵$R_{m,n}=[r_{i,j}]$，通过矩阵分解的方式进行特征学习，即将评分矩阵分解为$R=U_{m,d}V_{d,n}$，其中$U_{m,d}$为用户特征矩阵，$V_{d,n}$表示items特征矩阵，其中$d$表示对items进行$d$个主题划分。举个简单例子，比如看电影的评分矩阵划分后，$U$中每一列表示电影的一种主题成分，比如搞笑、动作等，$V$中每一行表示一个用户的偏好，比如喜欢搞笑的程度，喜欢动作的程度，值越大说明越喜欢。这样，相当于，把电影进行了主题划分，把人物偏好也进行主题划分，主题是评分矩阵潜在特征。</li><li>学习方式:SVD<br>分解式为</li></ol><script type="math/tex; mode=display">R_{m,n}=U_{m,m}\Sigma_{m,n}V_{n,n}^T</script><p>其中$U$为user特征矩阵，$\Sigma$为权重矩阵体现对应特征提供的信息量，$V$为item特征矩阵。同时可通过SVD进行降维处理，如下<br><img src="https://uploader.shimo.im/f/dk4h20R8bkQUajmh!thumbnail" alt="图片"><br> 奇异值分解的方式，便于处理要目标user（直接添加到用户特征矩阵的尾部即可），然而要求评分矩阵元素不能为空，因此需要事先进行填充处理，同时由于user和item的数量都比较多，矩阵分解的方式计算量大，且矩阵为静态的需要随时更新，因此实际中比较少用。   </p><ol><li>Funk SVD， Funk SVD 是去掉SVD的$\Sigma$成分，优化如下目标函数，可通过梯度下降法，得到的$U,V$矩阵</li></ol><script type="math/tex; mode=display">J=\min _{u v} \sum_{(u, i) \in k n o w n}\left(r_{u,i}-u_{u} v_{i}\right)+\lambda\left(|u|^{2}+|v|^{2}\right)</script><p>Funk SVD 只要利用全部有评价的信息，不需要就空置进行处理，同时可以采用梯度下降法，优化较为方便，较为常用。</p><p>有了user特征信息和item特征信息，就可用$u_{u} v_{i}$对目标用户进行评分预测，如果目标用户包含在所计算的特征矩阵里面的话。针对于新user、新item，协同过滤失效。</p><ul><li><p>如何简单计算user偏差以及item偏差？</p><script type="math/tex; mode=display">b_u=\frac{1}{|I_u|}\sum_{i \in I_u}(r_{u,i}-\mu) \\b_i=\frac{1}{|U_i|}\sum_{u \in U_i}(r_{u,i}-b_u-\mu)</script></li><li><p>如何选择协同过滤算法是基于user还是基于item<br>一般，谁的量多就不选谁。然而基于user的会给推荐目标带来惊喜，选择的范围更为宽阔，而不是基于推荐目标当前的相似item。因此如果要给推荐目标意想不到的推荐，就选择基于user的方式。可以两者结合。</p></li></ul><ul><li>协同过滤的优缺点</li><li><p>缺点：<br> (1)稀疏性—— 这是协同过滤中最大的问题，大部分数据不足只能推荐比较流行的items，因为很多人只有对少量items进行评价，而且一般items的量非常多，很难找到近邻。导致大量的user木有数据可推荐（一般推荐比较流行的items），大量的item不会被推荐<br> (2)孤独用户——孤独user具有非一般的品味，难以找到近邻，所以推荐不准确<br> (3)冷启动——只有大量的评分之后，才能协同出较多信息，所以前期数据比较少，推荐相对不准确；而如果没有人进行评分，将无法被推荐<br> (4)相似性——协同过滤是与内容无关的推荐，只根据用户行为，所以倾向于推荐较为流行的items。</p></li><li><p>优点：  </p><pre><code>(1)不需要领域知识，存在users和items的互动，便能进行推荐   (2)简单易于理解  (3)相似度计算可预计算，预测效率高</code></pre></li><li><p>协同过滤与关联规则的异同<br>关联规则是不考虑tems或者使用它们的users情况下分析内容之间的关系，而协同过滤是不考虑内容直接分析items之间的关系或者users之间的关系。两者殊途同归均能用于推荐系统，但是计算方式不同。</p></li><li><p>实践中的一些注意点<br>(1) 过滤掉被评价较少的items<br>(2) 过滤掉评价较少的users<br>(3) 可用聚类方式缩小搜索空间，但是面临找不到相同偏好的用户（如果用户在分界点，被误分的情况），这种方式通过缩小搜索空间的方式优化协同过滤算法<br>(4) 使用的时候，可以考虑时间范围，偏好随着时间的改变会改变</p></li></ul><h2 id="面试真题"><a href="#面试真题" class="headerlink" title="面试真题"></a>面试真题</h2><p>使用协同过滤算法之前，数据应该如何进行预处理？<br>协同过滤的方式有哪些？<br>如何通过相似度计算设计协同过滤推荐系统？<br>请谈谈你对协同过滤中特征学习的理解？<br>如何将协同过滤用于推荐系统？<br>FUNK SVD相对于SVD有哪些优势？<br>如何求解FUNK SVD？<br>请描述下协同过滤的优缺点？  </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;协同过滤-collaborative-filtering&quot;&gt;&lt;a href=&quot;#协同过滤-collaborative-filtering&quot; class=&quot;headerlink&quot; title=&quot;协同过滤(collaborative filtering)&quot;&gt;&lt;/a&gt;协
+      
+    
+    </summary>
+    
+    
+      <category term="推荐系统" scheme="http://Bithub00.com/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/"/>
+    
+      <category term="协同过滤" scheme="http://Bithub00.com/tags/%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/"/>
+    
+  </entry>
   
   <entry>
     <title>算法基本思想</title>
@@ -445,26 +470,6 @@
     
     
       <category term="机器学习" scheme="http://Bithub00.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Jupyter Notebook 的快捷键</title>
-    <link href="http://Bithub00.com/2018/07/24/jupyter%20notebook%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
-    <id>http://Bithub00.com/2018/07/24/jupyter notebook快捷键/</id>
-    <published>2018-07-24T06:16:20.378Z</published>
-    <updated>2018-07-24T06:22:27.766Z</updated>
-    
-    <content type="html"><![CDATA[<p>Jupyter Notebook 有两种键盘输入模式。编辑模式，允许你往单元中键入代码或文本；这时的单元框线是绿色的。命令模式，键盘输入运行程序命令；这时的单元框线是灰色。<br><a id="more"></a></p><h3 id="命令模式-按键-Esc-开启"><a href="#命令模式-按键-Esc-开启" class="headerlink" title="命令模式 (按键 Esc 开启)"></a>命令模式 (按键 Esc 开启)</h3><ul><li><strong>Enter</strong> : 转入编辑模式</li><li><strong>Shift-Enter</strong> : 运行本单元，选中下个单元</li><li><strong>Ctrl-Enter</strong> : 运行本单元</li><li><strong>Alt-Enter</strong> : 运行本单元，在其下插入新单元</li><li><strong>Y</strong> : 单元转入代码状态</li><li><strong>M</strong> :单元转入markdown状态</li><li><strong>R</strong> : 单元转入raw状态</li><li><strong>1</strong> : 设定 1 级标题</li><li><strong>2</strong> : 设定 2 级标题</li><li><strong>3</strong> : 设定 3 级标题</li><li><strong>4</strong> : 设定 4 级标题</li><li><strong>5</strong> : 设定 5 级标题</li><li><strong>6</strong> : 设定 6 级标题</li><li><strong>Up</strong> : 选中上方单元</li><li><strong>K</strong> : 选中上方单元</li><li><strong>Down</strong> : 选中下方单元</li><li><strong>J</strong> : 选中下方单元</li><li><strong>Shift-K</strong> : 扩大选中上方单元</li><li><strong>Shift-J</strong> : 扩大选中下方单元</li><li><strong>A</strong> : 在上方插入新单元</li><li><strong>B</strong> : 在下方插入新单元</li><li><strong>X</strong> : 剪切选中的单元</li><li><strong>C</strong> : 复制选中的单元</li><li><strong>Shift-V</strong> : 粘贴到上方单元</li><li><strong>V</strong> : 粘贴到下方单元</li><li><strong>Z</strong> : 恢复删除的最后一个单元</li><li><strong>D,D</strong> : 删除选中的单元</li><li><strong>Shift-M</strong> : 合并选中的单元</li><li><strong>Ctrl-S</strong> : 文件存盘</li><li><strong>S</strong> : 文件存盘</li><li><strong>L</strong> : 转换行号</li><li><strong>O</strong> : 转换输出</li><li><strong>Shift-O</strong> : 转换输出滚动</li><li><strong>Esc</strong> : 关闭页面</li><li><strong>Q</strong> : 关闭页面</li><li><strong>H</strong> : 显示快捷键帮助</li><li><strong>I,I</strong> : 中断Notebook内核</li><li><strong>0,0</strong> : 重启Notebook内核</li><li><strong>Shift</strong> : 忽略</li><li><strong>Shift-Space</strong> : 向上滚动</li><li><strong>Space</strong> : 向下滚动</li></ul><h3 id="编辑模式-Enter-键启动"><a href="#编辑模式-Enter-键启动" class="headerlink" title="编辑模式 ( Enter 键启动)"></a>编辑模式 ( Enter 键启动)</h3><ul><li><strong>Tab</strong> : 代码补全或缩进</li><li><strong>Shift-Tab</strong> : 提示</li><li><strong>Ctrl-]</strong> : 缩进</li><li><strong>Ctrl-[</strong> : 解除缩进</li><li><strong>Ctrl-A</strong> : 全选</li><li><strong>Ctrl-Z</strong> : 复原</li><li><strong>Ctrl-Shift-Z</strong> : 再做</li><li><strong>Ctrl-Y</strong> : 再做</li><li><strong>Ctrl-Home</strong> : 跳到单元开头</li><li><strong>Ctrl-Up</strong> : 跳到单元开头</li><li><strong>Ctrl-End</strong> : 跳到单元末尾</li><li><strong>Ctrl-Down</strong> : 跳到单元末尾</li><li><strong>Ctrl-Left</strong> : 跳到左边一个字首</li><li><strong>Ctrl-Right</strong> : 跳到右边一个字首</li><li><strong>Ctrl-Backspace</strong> : 删除前面一个字</li><li><strong>Ctrl-Delete</strong> : 删除后面一个字</li><li><strong>Esc</strong> : 进入命令模式</li><li><strong>Ctrl-M</strong> : 进入命令模式</li><li><strong>Shift-Enter</strong> : 运行本单元，选中下一单元</li><li><strong>Ctrl-Enter</strong> : 运行本单元</li><li><strong>Alt-Enter</strong> : 运行本单元，在下面插入一单元</li><li><strong>Ctrl-Shift—</strong> : 分割单元</li><li><strong>Ctrl-Shift-Subtract</strong> : 分割单元</li><li><strong>Ctrl-S</strong> : 文件存盘</li><li><strong>Shift</strong> : 忽略</li><li><strong>Up</strong> : 光标上移或转入上一单元</li><li><strong>Down</strong> :光标下移或转入下一单元</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Jupyter Notebook 有两种键盘输入模式。编辑模式，允许你往单元中键入代码或文本；这时的单元框线是绿色的。命令模式，键盘输入运行程序命令；这时的单元框线是灰色。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://Bithub00.com/tags/python/"/>
     
   </entry>
   
