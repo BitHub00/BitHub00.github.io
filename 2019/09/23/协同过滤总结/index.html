@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://uploader.shimo.im/f/8mslGdORa5YzVRXW!thumbnail">
 <meta property="og:image" content="https://uploader.shimo.im/f/dk4h20R8bkQUajmh!thumbnail">
-<meta property="og:updated_time" content="2019-09-23T02:53:32.068Z">
+<meta property="og:updated_time" content="2019-09-23T03:07:45.982Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="协同过滤">
 <meta name="twitter:description" content="协同过滤(collaborative filtering)直观解释协同过滤是推荐算法中最常用的算法之一，它根据user与item的交互，发现item之间的相关性，或者发现user之间的相关性，进行推荐。比如你有位朋友看电影的爱好跟你类似，然后最近新上了《调音师》，他觉得不错，就会推荐给你，这是最简单的基于user的协同过滤算法（user-based collaboratIve filtering）">
@@ -379,7 +379,7 @@
       
 
       
-        <h1 id="协同过滤-collaborative-filtering"><a href="#协同过滤-collaborative-filtering" class="headerlink" title="协同过滤(collaborative filtering)"></a>协同过滤(collaborative filtering)</h1><h2 id="直观解释"><a href="#直观解释" class="headerlink" title="直观解释"></a>直观解释</h2><p>协同过滤是推荐算法中最常用的算法之一，它根据user与item的交互，发现item之间的相关性，或者发现user之间的相关性，进行推荐。比如你有位朋友看电影的爱好跟你类似，然后最近新上了《调音师》，他觉得不错，就会推荐给你，这是最简单的基于user的协同过滤算法（user-based collaboratIve filtering），还有一种是基于item的协同过滤算法（item-based collaborative filtering），比如你非常喜欢电影《当幸福来敲门的时候》，那么观影系统可能会推荐一些类似的励志片给你，比如《风雨哈佛路》等。如下主要分析user-based，item-based同理。</p>
+        <h1 id="协同过滤-collaborative-filtering"><a href="#协同过滤-collaborative-filtering" class="headerlink" title="协同过滤(collaborative filtering)"></a>协同过滤(collaborative filtering)</h1><h2 id="直观解释"><a href="#直观解释" class="headerlink" title="直观解释"></a>直观解释</h2><p>协同过滤是推荐算法中最常用的算法之一，它根据user与item的交互，发现item之间的相关性，或者发现user之间的相关性，进行推荐。比如你有位朋友看电影的爱好跟你类似，然后最近新上了《调音师》，他觉得不错，就会推荐给你，这是最简单的基于user的协同过滤算法（user-based collaboratIve filtering），还有一种是基于item的协同过滤算法（item-based collaborative filtering），比如你非常喜欢电影《当幸福来敲门的时候》，那么观影系统可能会推荐一些类似的励志片给你，比如《风雨哈佛路》等。如下主要分析user-based，item-based同理。<br><a id="more"></a></p>
 <h2 id="导图"><a href="#导图" class="headerlink" title="导图"></a>导图</h2><p><img src="https://uploader.shimo.im/f/8mslGdORa5YzVRXW!thumbnail" alt="图片"></p>
 <h2 id="核心公式"><a href="#核心公式" class="headerlink" title="核心公式"></a>核心公式</h2><ul>
 <li><p>符号定义<br>$r_{u,i}$：user $u$ 对 item $i$ 的评分<br>$\bar{r}_{u}$：user $u$ 的平均评分<br>$P_{a,b}$：用户$a,b$都有评价的items集合</p>
@@ -984,7 +984,33 @@ b_i=\frac{1}{|U_i|}\sum_{u \in U_i}(r_{u,i}-b_u-\mu)</script></li>
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1002,12 +1028,6 @@ b_i=\frac{1}{|U_i|}\sum_{u \in U_i}(r_{u,i}-b_u-\mu)</script></li>
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-  
-  
-
-  
   
 
 
