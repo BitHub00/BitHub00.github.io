@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="k-means1.kmeans简介1.1聚类算法（clustering Algorithms）介绍聚类是一种无监督学习—对大量未知标注的数据集，按数据的内在相似性将数据集划分为多个类别，使类别内的数据相似度较大而类别间的数据相似度较小。 聚类算法可以分为原型聚类（k均值算法（k-means）、学习向量量化、（Learning Vector Quantization -LVQ）、高斯混合聚类（Mix">
+<meta name="description" content="k-means1.kmeans简介1.1聚类算法（clustering Algorithms）介绍聚类是一种无监督学习—对大量未知标注的数据集，按数据的内在相似性将数据集划分为多个类别，使类别内的数据相似度较大而类别间的数据相似度较小。">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="K-means总结">
 <meta property="og:url" content="http://Bithub00.com/2019/09/23/kmeans总结/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="k-means1.kmeans简介1.1聚类算法（clustering Algorithms）介绍聚类是一种无监督学习—对大量未知标注的数据集，按数据的内在相似性将数据集划分为多个类别，使类别内的数据相似度较大而类别间的数据相似度较小。 聚类算法可以分为原型聚类（k均值算法（k-means）、学习向量量化、（Learning Vector Quantization -LVQ）、高斯混合聚类（Mix">
+<meta property="og:description" content="k-means1.kmeans简介1.1聚类算法（clustering Algorithms）介绍聚类是一种无监督学习—对大量未知标注的数据集，按数据的内在相似性将数据集划分为多个类别，使类别内的数据相似度较大而类别间的数据相似度较小。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-23T06:16:42.591Z">
+<meta property="og:updated_time" content="2019-09-23T11:36:29.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="K-means总结">
-<meta name="twitter:description" content="k-means1.kmeans简介1.1聚类算法（clustering Algorithms）介绍聚类是一种无监督学习—对大量未知标注的数据集，按数据的内在相似性将数据集划分为多个类别，使类别内的数据相似度较大而类别间的数据相似度较小。 聚类算法可以分为原型聚类（k均值算法（k-means）、学习向量量化、（Learning Vector Quantization -LVQ）、高斯混合聚类（Mix">
+<meta name="twitter:description" content="k-means1.kmeans简介1.1聚类算法（clustering Algorithms）介绍聚类是一种无监督学习—对大量未知标注的数据集，按数据的内在相似性将数据集划分为多个类别，使类别内的数据相似度较大而类别间的数据相似度较小。">
 
 
 
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,717
+                  1,716
                 </span>
               
 
@@ -376,7 +376,7 @@
       
 
       
-        <h1 id="k-means"><a href="#k-means" class="headerlink" title="k-means"></a>k-means</h1><h2 id="1-kmeans简介"><a href="#1-kmeans简介" class="headerlink" title="1.kmeans简介"></a>1.kmeans简介</h2><h3 id="1-1聚类算法（clustering-Algorithms）介绍"><a href="#1-1聚类算法（clustering-Algorithms）介绍" class="headerlink" title="1.1聚类算法（clustering Algorithms）介绍"></a>1.1聚类算法（clustering Algorithms）介绍</h3><p>聚类是一种无监督学习—对大量未知标注的数据集，按数据的内在相似性将数据集划分为多个类别，使类别内的数据相似度较大而类别间的数据相似度较小。</p>
+        <h1 id="k-means"><a href="#k-means" class="headerlink" title="k-means"></a>k-means</h1><h2 id="1-kmeans简介"><a href="#1-kmeans简介" class="headerlink" title="1.kmeans简介"></a>1.kmeans简介</h2><h3 id="1-1聚类算法（clustering-Algorithms）介绍"><a href="#1-1聚类算法（clustering-Algorithms）介绍" class="headerlink" title="1.1聚类算法（clustering Algorithms）介绍"></a>1.1聚类算法（clustering Algorithms）介绍</h3><p>聚类是一种无监督学习—对大量未知标注的数据集，按数据的内在相似性将数据集划分为多个类别，使类别内的数据相似度较大而类别间的数据相似度较小。<br><a id="more"></a></p>
 <p>聚类算法可以分为原型聚类（k均值算法（k-means）、学习向量量化、（Learning Vector Quantization -LVQ）、高斯混合聚类（Mixture-of-Gaussian），密度聚类（DBSCAN），层次聚类（AGNES）等。</p>
 <h2 id="2-kmeans原理详解"><a href="#2-kmeans原理详解" class="headerlink" title="2.kmeans原理详解"></a>2.kmeans原理详解</h2><p>k-means是一种常见的聚类算法，也叫k均值或k平均。通过迭代的方式，每次迭代都将数据集中的各个点划分到距离它最近的簇内，这里的距离即数据点到簇中心的距离。</p>
 <p>kmean步骤：</p>
@@ -475,7 +475,7 @@ L(X) = \sum_{i=1}^{k}{\sum_{j\in C_i}{(x_{ij}-\bar{x_i})^2}}</script><p><strong>
 </tr>
 <tr>
 <td style="text-align:left">Dunn’s index</td>
-<td style="text-align:center">$\frac{\min_{i=1}^M{\min_{j=i+1}^M{d(c_i, c_j)}}}{\max_{k=1}^M{diam(c_k)}}$ <br>$where d(c_i, c_j)=\min_{x \in c_i, x’ \in c_j}{\parallel x-x’ \parallel}^2 and$ <br> $diam(c_k)=\max_{x, x’ \in c_k}{\parallel x-x’ \parallel}^2$</td>
+<td style="text-align:center">$\frac{\min_{i=1}^M{\min_{j=i+1}^M{d(c_i, c_j)}}}{\max_{k=1}^M{diam(c_k)}}$ <br>$where d(c_i, c_j)=$ $\min_{x \in c_i, x’ \in c_j}{\parallel x-x’ \parallel}^2$ <br> $diam(c_k)=$ $\max_{x, x’ \in c_k}{\parallel x-x’ \parallel}^2$</td>
 <td style="text-align:left">本质上也是簇间距离和簇内距离之比</td>
 <td style="text-align:left">越大越好</td>
 </tr>
