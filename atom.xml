@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2019-10-21T09:06:16.540Z</updated>
+  <updated>2019-10-21T09:16:11.588Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://Bithub00.com/2019/10/21/%E9%AB%98%E6%96%AF%E5%85%88%E9%AA%8C%E4%B8%8EL2%E6%AD%A3%E5%88%99/"/>
     <id>http://Bithub00.com/2019/10/21/高斯先验与L2正则/</id>
     <published>2019-10-21T08:48:26.354Z</published>
-    <updated>2019-10-21T09:06:16.540Z</updated>
+    <updated>2019-10-21T09:16:11.588Z</updated>
     
-    <content type="html"><![CDATA[<p>本篇博客探讨一下为什么说L2正则等同于高斯先验分布<br><a id="more"></a></p><p>首先我们假设现在需要从一些样本点$(x_1,y_1)···(x_N,y_N)$中来估计参数 $\beta$，假设输出$y$与输入$x$之间线性相关，并且受噪声$\epsilon$影响:</p><script type="math/tex; mode=display">y_n=\beta x_n+\epsilon</script><p>这里的$\epsilon$服从均值为0，方差为$\sigma^2$的高斯分布，问题转换为如下的似然估计：</p><script type="math/tex; mode=display">\prod_{n=1}^N N(y_n|\beta x_n, \sigma^2)</script><p>接下来我们引入高斯先验分布$N(\beta|0, \frac{1}{\lambda})$，这里的$\lambda$是一个正数值，把这个先验分布与上面的似然估计相结合，我们得到：</p><script type="math/tex; mode=display">\prod_{n=1}^N N(y_n|\beta x_n, \sigma^2)N(\beta|0, \frac{1}{\lambda})</script><p>对这个式子取对数，并且对常数进行化简，因为它们不影响优化的结果，我们得到：</p><script type="math/tex; mode=display">\sum_{n=1}^N-\frac{1}{\sigma^2}(y_n-\beta x_n)^2-\lambda \beta^2+const</script><p>根据最大似然的原则，我们需要最大化上面这个式子，这时就可以看出来为什么说高斯先验分布与L2正则等价了。</p>]]></content>
+    <content type="html"><![CDATA[<p>本篇博客探讨一下为什么说L2正则等同于高斯先验分布<br><a id="more"></a></p><p>首先我们假设现在需要从一些样本点$(x_1,y_1)···(x_N,y_N)$中来估计参数 $\beta$，假设输出$y$与输入$x$之间线性相关，并且受噪声$\epsilon$影响:</p><script type="math/tex; mode=display">y_n=\beta x_n+\epsilon</script><p>这里的$\epsilon$服从均值为0，方差为$\sigma^2$的高斯分布，问题转换为如下的似然估计式子：</p><script type="math/tex; mode=display">\prod_{n=1}^N N(y_n|\beta x_n, \sigma^2)</script><p>接下来我们引入高斯先验分布$N(\beta|0, \frac{1}{\lambda})$，这里的$\lambda$是一个正数值，把这个先验分布与上面的似然估计相结合，我们得到：</p><script type="math/tex; mode=display">\prod_{n=1}^N N(y_n|\beta x_n, \sigma^2)N(\beta|0, \frac{1}{\lambda})</script><p>对这个式子取对数，并且对常数进行化简，因为它们不影响优化的结果，我们得到：</p><script type="math/tex; mode=display">\sum_{n=1}^N-\frac{1}{\sigma^2}(y_n-\beta x_n)^2-\lambda \beta^2+const</script><p>根据最大似然的原则，我们需要最大化上面这个式子，这时就可以看出来为什么说高斯先验分布与L2正则等价了。</p>]]></content>
     
     <summary type="html">
     
