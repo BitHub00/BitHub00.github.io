@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2019-10-21T09:16:11.588Z</updated>
+  <updated>2019-10-21T12:29:37.804Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -17,11 +17,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>矩阵求导和迹</title>
+    <link href="http://Bithub00.com/2019/10/21/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E5%92%8C%E8%BF%B9/"/>
+    <id>http://Bithub00.com/2019/10/21/矩阵求导和迹/</id>
+    <published>2019-10-21T12:22:04.624Z</published>
+    <updated>2019-10-21T12:29:37.804Z</updated>
+    
+    <content type="html"><![CDATA[<p>看到的一篇很好的介绍矩阵求导和迹的<a href="https://www.zybuluo.com/wjcper2008/note/662700" target="_blank" rel="noopener">文章</a>，mark下来</p><a id="more"></a><p><img src="https://s2.ax1x.com/2019/10/21/K1l0Nq.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;看到的一篇很好的介绍矩阵求导和迹的&lt;a href=&quot;https://www.zybuluo.com/wjcper2008/note/662700&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;文章&lt;/a&gt;，mark下来&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数学" scheme="http://Bithub00.com/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>高斯先验分布与L2正则</title>
     <link href="http://Bithub00.com/2019/10/21/%E9%AB%98%E6%96%AF%E5%85%88%E9%AA%8C%E4%B8%8EL2%E6%AD%A3%E5%88%99/"/>
     <id>http://Bithub00.com/2019/10/21/高斯先验与L2正则/</id>
     <published>2019-10-21T08:48:26.354Z</published>
-    <updated>2019-10-21T09:16:11.588Z</updated>
+    <updated>2019-10-21T12:22:33.264Z</updated>
     
     <content type="html"><![CDATA[<p>本篇博客探讨一下为什么说L2正则等同于高斯先验分布<br><a id="more"></a></p><p>首先我们假设现在需要从一些样本点$(x_1,y_1)···(x_N,y_N)$中来估计参数 $\beta$，假设输出$y$与输入$x$之间线性相关，并且受噪声$\epsilon$影响:</p><script type="math/tex; mode=display">y_n=\beta x_n+\epsilon</script><p>这里的$\epsilon$服从均值为0，方差为$\sigma^2$的高斯分布，问题转换为如下的似然估计式子：</p><script type="math/tex; mode=display">\prod_{n=1}^N N(y_n|\beta x_n, \sigma^2)</script><p>接下来我们引入高斯先验分布$N(\beta|0, \frac{1}{\lambda})$，这里的$\lambda$是一个正数值，把这个先验分布与上面的似然估计相结合，我们得到：</p><script type="math/tex; mode=display">\prod_{n=1}^N N(y_n|\beta x_n, \sigma^2)N(\beta|0, \frac{1}{\lambda})</script><p>对这个式子取对数，并且对常数进行化简，因为它们不影响优化的结果，我们得到：</p><script type="math/tex; mode=display">\sum_{n=1}^N-\frac{1}{\sigma^2}(y_n-\beta x_n)^2-\lambda \beta^2+const</script><p>根据最大似然的原则，我们需要最大化上面这个式子，这时就可以看出来为什么说高斯先验分布与L2正则等价了。</p>]]></content>
     
@@ -32,7 +52,7 @@
     </summary>
     
     
-      <category term="概率统计" scheme="http://Bithub00.com/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/"/>
+      <category term="数学" scheme="http://Bithub00.com/tags/%E6%95%B0%E5%AD%A6/"/>
     
   </entry>
   
@@ -440,28 +460,6 @@
     
     
       <category term="AWS" scheme="http://Bithub00.com/tags/AWS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>L1与L2范数</title>
-    <link href="http://Bithub00.com/2019/04/03/%E8%8C%83%E6%95%B0/"/>
-    <id>http://Bithub00.com/2019/04/03/范数/</id>
-    <published>2019-04-03T04:59:52.310Z</published>
-    <updated>2019-08-07T08:00:29.935Z</updated>
-    
-    <content type="html"><![CDATA[<font size="3">看到的一篇很好的介绍L1与L2范数的文章，mark下来</font><a id="more"></a><p><img src="https://s2.ax1x.com/2019/04/03/Accl6O.png" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;font size=&quot;3&quot;&gt;
-看到的一篇很好的介绍L1与L2范数的文章，mark下来
-&lt;/font&gt;
-    
-    </summary>
-    
-    
-      <category term="机器学习" scheme="http://Bithub00.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
