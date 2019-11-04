@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="以本文记录自己毕业设计中的学习过程。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-04T07:01:10.902Z">
+<meta property="og:updated_time" content="2019-11-04T07:04:42.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="毕业设计">
 <meta name="twitter:description" content="以本文记录自己毕业设计中的学习过程。">
@@ -385,7 +385,7 @@
 <p>以下是自己的一点笔记：</p>
 <script type="math/tex; mode=display">
 \min_{W,H}\lVert Y-WH^T \rVert^2_F</script><p>两篇论文共同点：都利用了样本点的邻域信息，GRNMF为miRNA-disease，NRLMF为drug-target，而两篇论文都选取了前k个相似的样本而不是全部相似样本，目的是为了避免引入噪声。使用[0,1]区间连续取值的相似度而不是0/1的二值变量，相似度越大的两个样本它们各自的特征向量应该越相似。</p>
-<h4 id="GRNMF"><a href="#GRNMF" class="headerlink" title="GRNMF"></a>GRNMF</h4><p>模型所使用的数据集没有提供现成的相似度，因此论文的一个创新点在于计算miRNA和disease的相似度矩阵，其中disease使用的是根据现有的有向无环图结构类型的数据进行计算，而miRNA是通过引入gene作为中介来计算，使用的是基因网络数据HumanNet。</p>
+<h3 id="GRNMF"><a href="#GRNMF" class="headerlink" title="GRNMF"></a>GRNMF</h3><p>模型所使用的数据集没有提供现成的相似度，因此论文的一个创新点在于计算miRNA和disease的相似度矩阵，其中disease使用的是根据现有的有向无环图结构类型的数据进行计算，而miRNA是通过引入gene作为中介来计算，使用的是基因网络数据HumanNet。</p>
 <p>在得到目标式进行优化之前，GRNMF的另一个创新之处在于对输入的数据矩阵Y先利用刚刚得到的相似度来进行更新，想法同NRLMF一样，也是认为没有观测值的miRNA或disease会造成精度的损失。这里同样是根据相似性去取一个k近邻，但与NRLMF不同之处在于不是更新特征向量，而是对输入矩阵逐行（miRNA）、逐列（disease）进行更新分别得到矩阵$Y_m$和$Y_d$。</p>
 <script type="math/tex; mode=display">
 Y_m(m_q) = \frac{1}{Q_m}\textstyle\sum_{i=1}^Kw_iY(m_i)</script><p>对不存在观测值即$Y_{ij}$=0的数据用$\frac{Y_m + Y_d}{2}$来进行更新。接下来就是构建目标式，同时引入邻域信息。</p>
@@ -401,7 +401,7 @@ X_{ij} =
 <h3 id="NRLMF"><a href="#NRLMF" class="headerlink" title="NRLMF"></a>NRLMF</h3><p>论文的目标是建模计算某个药物会对某个目标产生作用的概率值，概率的计算使用的是矩阵分解后得到的特征向量，药品和目标分别对应u和v</p>
 <script type="math/tex; mode=display">
 p_{ij} = \frac{exp(u_iv_j^T)}{1 + exp(u_iv_j^T)}</script><p>论文的一个创新之处在于，对于已经得到实验验证的样本，模型中会赋予更高的权重。对于样本出现的概率使用的是似然函数进行估计，同时对特征矩阵U和V假设高斯先验分布，均值为0，方差为$\sigma^2​$。可以证明这等同于引入L2正则。优化的目标式就等同于最大化取对数后的似然函数。</p>
-<p>(6)式证明：</p>
+<p>(6)式推导：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 p(U,V|Y,\sigma^2_d,\sigma^2_t) &\propto  p(Y|U,V)p(U|\sigma^2_d)p(V|\sigma^2_t) \\
@@ -630,7 +630,7 @@ y_n=\beta x_n+\epsilon</script><p>这里的$\epsilon$服从均值为0，方差�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NRLMF与GRNMF"><span class="nav-number">1.</span> <span class="nav-text">NRLMF与GRNMF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GRNMF"><span class="nav-number">1.0.1.</span> <span class="nav-text">GRNMF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GRNMF中的邻域"><span class="nav-number">1.0.2.</span> <span class="nav-text">GRNMF中的邻域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NRLMF"><span class="nav-number">1.1.</span> <span class="nav-text">NRLMF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NRLMF中的邻域"><span class="nav-number">1.1.1.</span> <span class="nav-text">NRLMF中的邻域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#证明高斯先验分布与L2正则的等价性"><span class="nav-number">1.1.2.</span> <span class="nav-text">证明高斯先验分布与L2正则的等价性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">1.1.3.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可优化的地方"><span class="nav-number">1.1.4.</span> <span class="nav-text">可优化的地方</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#GRNMF-1"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">GRNMF</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NRLMF-1"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">NRLMF</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NRLMF与GRNMF"><span class="nav-number">1.</span> <span class="nav-text">NRLMF与GRNMF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GRNMF"><span class="nav-number">1.1.</span> <span class="nav-text">GRNMF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GRNMF中的邻域"><span class="nav-number">1.1.1.</span> <span class="nav-text">GRNMF中的邻域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NRLMF"><span class="nav-number">1.2.</span> <span class="nav-text">NRLMF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NRLMF中的邻域"><span class="nav-number">1.2.1.</span> <span class="nav-text">NRLMF中的邻域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#证明高斯先验分布与L2正则的等价性"><span class="nav-number">1.2.2.</span> <span class="nav-text">证明高斯先验分布与L2正则的等价性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">1.2.3.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可优化的地方"><span class="nav-number">1.2.4.</span> <span class="nav-text">可优化的地方</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#GRNMF-1"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">GRNMF</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NRLMF-1"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">NRLMF</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
