@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="以本文记录自己毕业设计中的学习过程。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-04T07:04:42.161Z">
+<meta property="og:updated_time" content="2019-11-04T07:12:09.786Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="毕业设计">
 <meta name="twitter:description" content="以本文记录自己毕业设计中的学习过程。">
@@ -432,13 +432,13 @@ y_n=\beta x_n+\epsilon</script><p>这里的$\epsilon$服从均值为0，方差�
 <script type="math/tex; mode=display">
 \sum_{n=1}^N-\frac{1}{\sigma^2}(y_n-\beta x_n)^2-\lambda \beta^2+const</script><p>根据最大似然的原则，我们需要最大化上面这个式子，这时就可以看出来为什么说高斯先验分布与L2正则等价了。</p>
 <p>接下来是引入拉普拉斯约束来对特征向量进行优化，论文的另一个创新之处在于在约束中加入了邻域的信息，如上一节所讲。之后便是对目标函数进行优化得到迭代式以进行特征向量的更新。</p>
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><ul>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
 <li>NRLMF(13)式的求导结果</li>
 </ul>
-<h4 id="可优化的地方"><a href="#可优化的地方" class="headerlink" title="可优化的地方"></a>可优化的地方</h4><h5 id="GRNMF-1"><a href="#GRNMF-1" class="headerlink" title="GRNMF"></a>GRNMF</h5><ul>
+<h3 id="可优化的地方"><a href="#可优化的地方" class="headerlink" title="可优化的地方"></a>可优化的地方</h3><h4 id="GRNMF-1"><a href="#GRNMF-1" class="headerlink" title="GRNMF"></a>GRNMF</h4><ul>
 <li>利用邻域信息时，GRNMF只是用了一种聚类方法ClusterOne进行聚类，如果用多种聚类方法，多个结果中都被聚在同一类中认为可信度更高会不会更好？</li>
 </ul>
-<h5 id="NRLMF-1"><a href="#NRLMF-1" class="headerlink" title="NRLMF"></a>NRLMF</h5><ul>
+<h4 id="NRLMF-1"><a href="#NRLMF-1" class="headerlink" title="NRLMF"></a>NRLMF</h4><ul>
 <li>如果像GRNMF一样不仅利用相似度得到邻域信息，还用其它聚类算法的聚类结果作为邻域信息会不会更好？</li>
 </ul>
 
@@ -630,7 +630,7 @@ y_n=\beta x_n+\epsilon</script><p>这里的$\epsilon$服从均值为0，方差�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NRLMF与GRNMF"><span class="nav-number">1.</span> <span class="nav-text">NRLMF与GRNMF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GRNMF"><span class="nav-number">1.1.</span> <span class="nav-text">GRNMF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GRNMF中的邻域"><span class="nav-number">1.1.1.</span> <span class="nav-text">GRNMF中的邻域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NRLMF"><span class="nav-number">1.2.</span> <span class="nav-text">NRLMF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NRLMF中的邻域"><span class="nav-number">1.2.1.</span> <span class="nav-text">NRLMF中的邻域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#证明高斯先验分布与L2正则的等价性"><span class="nav-number">1.2.2.</span> <span class="nav-text">证明高斯先验分布与L2正则的等价性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">1.2.3.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可优化的地方"><span class="nav-number">1.2.4.</span> <span class="nav-text">可优化的地方</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#GRNMF-1"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">GRNMF</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NRLMF-1"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">NRLMF</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NRLMF与GRNMF"><span class="nav-number">1.</span> <span class="nav-text">NRLMF与GRNMF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GRNMF"><span class="nav-number">1.1.</span> <span class="nav-text">GRNMF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GRNMF中的邻域"><span class="nav-number">1.1.1.</span> <span class="nav-text">GRNMF中的邻域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NRLMF"><span class="nav-number">1.2.</span> <span class="nav-text">NRLMF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NRLMF中的邻域"><span class="nav-number">1.2.1.</span> <span class="nav-text">NRLMF中的邻域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#证明高斯先验分布与L2正则的等价性"><span class="nav-number">1.2.2.</span> <span class="nav-text">证明高斯先验分布与L2正则的等价性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.3.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可优化的地方"><span class="nav-number">1.4.</span> <span class="nav-text">可优化的地方</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GRNMF-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">GRNMF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NRLMF-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">NRLMF</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
