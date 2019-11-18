@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2019-11-18T03:31:08.144Z</updated>
+  <updated>2019-11-18T09:52:18.610Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计量经济学课程笔记</title>
+    <link href="http://Bithub00.com/2019/11/18/%E8%AE%A1%E9%87%8F%E7%BB%8F%E6%B5%8E%E5%AD%A6/"/>
+    <id>http://Bithub00.com/2019/11/18/计量经济学/</id>
+    <published>2019-11-18T09:17:46.871Z</published>
+    <updated>2019-11-18T09:52:18.610Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇博客记录计量经济学课程学习过程中的笔记<br><a id="more"></a></p><h3 id="OLS估计"><a href="#OLS估计" class="headerlink" title="OLS估计"></a>OLS估计</h3><p>假设样本$(x_1,y_1)…(x_n,y_n)$近似分布在一条直线两侧，模型为</p><script type="math/tex; mode=display">y_i=\beta_0+\beta_1x_i+u_i</script><p>直观上看最佳的拟合应该使数据点都尽量靠近所拟合的直线，转化为数学表达式就是对于每个样本点的实际观测值与拟合值之间的差$\hat{u_i}=y_i-\hat{y_i}$应尽可能小，其中$\hat{y_i}=\hat{\beta_0}+\hat{\beta_1}x_i$为拟合值。<br>为了避免符号导致求和时进行相互抵消，使用残差平方和来表示实际观测值与拟合值之间的差：</p><script type="math/tex; mode=display">S(\hat{\beta_0},\hat{\beta_1})=\sum_{i=1}^{n}\hat{u_i}^2=\sum_{i=1}^{n}(y_i-\hat{\beta_0}-\hat{\beta_1}x_i)^2</script><p>则最小二乘法的目的就是最小化这个残差平方和来估计参数$\hat{\beta_0}$和$\hat{\beta_1}$。记$S(\hat{\beta_0},\hat{\beta_1})=\sum(y_i-\hat{\beta_0}-\hat{\beta_1}x_i)^2$，则目标变成求解这个二元函数的最小值点，由微积分中求函数最值的办法进行求导：</p><script type="math/tex; mode=display">\begin{cases}\frac{\partial S(\hat{\beta_0},\hat{\beta_1})}{\partial\hat{\beta_0}} = 0 \\\\\frac{\partial S(\hat{\beta_0},\hat{\beta_1})}{\partial\hat{\beta_1}} = 0 \end{cases}</script><p>得到如下方程组：</p><script type="math/tex; mode=display">\begin{cases}\sum_{i=1}^n(y_i-\hat{\beta_0}-\hat{\beta_1}x_i)=0 \\\\\sum_{i=1}^n(y_i-\hat{\beta_0}-\hat{\beta_1}x_i)x_i=0\end{cases}</script><p>由第一个式子得到：</p><script type="math/tex; mode=display">\hat{\beta_0}=\bar{y}-\hat{\beta_1\bar{x}}</script><p>将它代入第二个式子，得到：</p><script type="math/tex; mode=display">\hat{\beta_1}=\frac{\sum x_iy_i-n\bar{x}\bar{y}}{\sum x_i^2-n(\bar{x})^2}=\frac{\sum(x_i-\bar{x})(y_i-\bar{y})}{\sum(x_i-\bar{x})^2}=\frac{S_{xy}}{S_x^2}</script><p>这样我们就得到了两个位置参数的回归估计。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇博客记录计量经济学课程学习过程中的笔记&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="数学" scheme="http://Bithub00.com/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>Laplace先验与L1正则</title>
@@ -408,29 +428,6 @@
       <category term="GAN" scheme="http://Bithub00.com/tags/GAN/"/>
     
       <category term="矩阵分解" scheme="http://Bithub00.com/tags/%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据库设计</title>
-    <link href="http://Bithub00.com/2019/04/10/database/"/>
-    <id>http://Bithub00.com/2019/04/10/database/</id>
-    <published>2019-04-10T08:50:19.836Z</published>
-    <updated>2019-04-10T08:52:10.289Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><ul><li>以下所有表默认自带一个自增 <code>id</code></li><li>以下所有表默认自带 <code>created_at</code> 和 <code>updated_at</code> 两个字段</li><li>为了方便查询，以下所有下划线命名法在实际设计中可能全部转为驼峰命名法<a id="more"></a></li></ul><h3 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h3><h4 id="manager"><a href="#manager" class="headerlink" title="manager"></a>manager</h4><div class="table-container"><table><thead><tr><th>字段</th><th>类型</th><th>描述</th><th>约束</th></tr></thead><tbody><tr><td>name</td><td>varchar</td><td>姓名</td><td>not null</td></tr><tr><td>card_id</td><td>varchar</td><td>校园卡号</td><td>not null</td></tr><tr><td>authorizerId</td><td>int</td><td>授权人 id</td><td>外键，引用自 manager 表的 id 属性</td></tr><tr><td>privilege</td><td>tinyint</td><td>0 为超级管理员，1为普通管理员，其余待定</td><td>not null</td></tr></tbody></table></div><h4 id="student"><a href="#student" class="headerlink" title="student"></a>student</h4><div class="table-container"><table><thead><tr><th>字段</th><th>类型</th><th>描述</th><th>约束</th></tr></thead><tbody><tr><td>card_id</td><td>varchar</td><td>校园卡号</td><td>无</td></tr><tr><td>stu_id</td><td>varchar</td><td>学号</td><td>primary key</td></tr><tr><td>name</td><td>varchar</td><td>姓名</td><td>not null</td></tr><tr><td>college</td><td>varchar</td><td>学院</td><td>无</td></tr></tbody></table></div><h4 id="teacher"><a href="#teacher" class="headerlink" title="teacher"></a>teacher</h4><div class="table-container"><table><thead><tr><th>字段</th><th>类型</th><th>描述</th><th>约束</th></tr></thead><tbody><tr><td>name</td><td>varchar</td><td>讲师名称</td><td>not null</td></tr><tr><td>college</td><td>varchar</td><td>所属单位</td><td>not null</td></tr><tr><td>intro</td><td>text</td><td>老师简介</td><td>无</td></tr><tr><td>phone</td><td>varchar</td><td>手机号码</td><td>无</td></tr><tr><td>office</td><td>varchar</td><td>办公地址</td><td>无</td></tr><tr><td>email</td><td>varchar</td><td>邮箱</td><td>无</td></tr><tr><td>image_url</td><td>varchar</td><td>导师照片 url</td><td>无</td></tr><tr><td>teach_form</td><td>varchar</td><td>授课形式</td><td>无</td></tr></tbody></table></div><h4 id="teach-topic"><a href="#teach-topic" class="headerlink" title="teach_topic"></a>teach_topic</h4><div class="table-container"><table><thead><tr><th>字段</th><th>类型</th><th>描述</th><th>约束</th></tr></thead><tbody><tr><td>teacher_id</td><td>int</td><td>讲师 id</td><td>外键，引用自 teacher 表的 id 属性</td></tr><tr><td>topic</td><td>varchar</td><td>授课专题</td><td>not null</td></tr></tbody></table></div><h3 id="课程信息"><a href="#课程信息" class="headerlink" title="课程信息"></a>课程信息</h3><h4 id="course"><a href="#course" class="headerlink" title="course"></a>course</h4><div class="table-container"><table><thead><tr><th>字段</th><th>类型</th><th>描述</th><th>约束</th></tr></thead><tbody><tr><td>course_name</td><td>varchar</td><td>课程名称</td><td>not null</td></tr><tr><td>teacher_id</td><td>int</td><td>讲师 id</td><td>外键，引用自 teacher 表的 id 属性</td></tr><tr><td>start_time</td><td>datetime</td><td>上课开始时间</td><td>not null</td></tr><tr><td>end_time</td><td>datetime</td><td>上课结束时间</td><td>not null</td></tr><tr><td>course_id</td><td>varchar</td><td>课程编号</td><td>primary key</td></tr><tr><td>location</td><td>varchar</td><td>上课地址</td><td>not null</td></tr></tbody></table></div><h4 id="course-student"><a href="#course-student" class="headerlink" title="course_student"></a>course_student</h4><div class="table-container"><table><thead><tr><th>字段</th><th>类型</th><th>描述</th><th>约束</th></tr></thead><tbody><tr><td>course_id</td><td>varchar</td><td>课程编号</td><td>外键，引用自 course 表的 course_id 属性</td></tr><tr><td>stu_id</td><td>varchar</td><td>学生学号</td><td>外键，引用自 student 表的 stu_id 属性</td></tr></tbody></table></div><h3 id="评价模板"><a href="#评价模板" class="headerlink" title="评价模板"></a>评价模板</h3><h4 id="comment-template"><a href="#comment-template" class="headerlink" title="comment_template"></a>comment_template</h4><div class="table-container"><table><thead><tr><th>字段</th><th>类型</th><th>描述</th><th>约束</th></tr></thead><tbody><tr><td>template_name</td><td>varchar</td><td>模板名称</td><td>not null</td></tr></tbody></table></div><h4 id="template-question"><a href="#template-question" class="headerlink" title="template_question"></a>template_question</h4><div class="table-container"><table><thead><tr><th>字段</th><th>类型</th><th>描述</th><th>约束</th></tr></thead><tbody><tr><td>template_id</td><td>int</td><td>模板 id</td><td>外键，引用自 comment_template 表的 id 属性</td></tr><tr><td>question</td><td>text</td><td>问题</td><td>not null</td></tr><tr><td>_type</td><td>tinyint</td><td>问题类型，0为打分题，1为问答题，其余待定</td><td>not null</td></tr></tbody></table></div><h3 id="评价信息"><a href="#评价信息" class="headerlink" title="评价信息"></a>评价信息</h3><h4 id="course-comment"><a href="#course-comment" class="headerlink" title="course_comment"></a>course_comment</h4><div class="table-container"><table><thead><tr><th>字段</th><th>类型</th><th>描述</th><th>约束</th></tr></thead><tbody><tr><td>course_id</td><td>varchar</td><td>课程编号</td><td>外键，引用自 course 表的 course_id 属性</td></tr><tr><td>template_id</td><td>int</td><td>模板 id</td><td>外键，引用自 comment_template 表的 id 属性</td></tr></tbody></table></div><h4 id="comment"><a href="#comment" class="headerlink" title="comment"></a>comment</h4><div class="table-container"><table><thead><tr><th>字段</th><th>类型</th><th>描述</th><th>约束</th></tr></thead><tbody><tr><td>course_id</td><td>varchar</td><td>课程编号</td><td>外键，引用自 course 表的 course_id 属性</td></tr><tr><td>stu_id</td><td>varchar</td><td>学生学号</td><td>外键，引用自 student 表的 stu_id 属性</td></tr><tr><td>star</td><td>tinyint</td><td>1为精选评论</td><td>无</td></tr></tbody></table></div><h4 id="comment-result"><a href="#comment-result" class="headerlink" title="comment_result"></a>comment_result</h4><div class="table-container"><table><thead><tr><th>字段</th><th>类型</th><th>描述</th><th>约束</th></tr></thead><tbody><tr><td>comment_id</td><td>int</td><td>评价 id</td><td>外键，引用自 comment 表的 id 属性</td></tr><tr><td>question_id</td><td>int</td><td>问题 id</td><td>外键，引用自 template_question 表的 id 属性</td></tr><tr><td>result</td><td>text</td><td>问题结果，根据问题类型来决定存储值类型</td><td>not null</td></tr></tbody></table></div>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;数据库设计&quot;&gt;&lt;a href=&quot;#数据库设计&quot; class=&quot;headerlink&quot; title=&quot;数据库设计&quot;&gt;&lt;/a&gt;数据库设计&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;以下所有表默认自带一个自增 &lt;code&gt;id&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;以下所有表默认自带 &lt;code&gt;created_at&lt;/code&gt; 和 &lt;code&gt;updated_at&lt;/code&gt; 两个字段&lt;/li&gt;
-&lt;li&gt;为了方便查询，以下所有下划线命名法在实际设计中可能全部转为驼峰命名法
-    
-    </summary>
-    
-    
-      <category term="数据库" scheme="http://Bithub00.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
