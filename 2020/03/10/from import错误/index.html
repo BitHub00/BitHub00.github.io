@@ -81,18 +81,21 @@
 
 
 
-<meta name="description" content="读取excel文件某一列">
+<meta name="description" content="错误描述使用Pycharm的时候，使用from引入自己模块报错：">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python常用操作">
-<meta property="og:url" content="http://Bithub00.com/2019/07/25/python常用操作/index.html">
+<meta property="og:title" content="Pycharm from xx import出错">
+<meta property="og:url" content="http://Bithub00.com/2020/03/10/from import错误/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="读取excel文件某一列">
+<meta property="og:description" content="错误描述使用Pycharm的时候，使用from引入自己模块报错：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-22T11:17:38.180Z">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8CvYlj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8Cvt6s.png">
+<meta property="og:updated_time" content="2020-03-10T03:14:51.117Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python常用操作">
-<meta name="twitter:description" content="读取excel文件某一列">
+<meta name="twitter:title" content="Pycharm from xx import出错">
+<meta name="twitter:description" content="错误描述使用Pycharm的时候，使用from引入自己模块报错：">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/03/10/8CvYlj.png">
 
 
 
@@ -122,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://Bithub00.com/2019/07/25/python常用操作/"/>
+  <link rel="canonical" href="http://Bithub00.com/2020/03/10/from import错误/"/>
 
 
 
 
 
-  <title>python常用操作 | 原力小站</title>
+  <title>Pycharm from xx import出错 | 原力小站</title>
   
 
 
@@ -279,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2019/07/25/python常用操作/">
+    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2020/03/10/from import错误/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.shuan">
@@ -296,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python常用操作</h1>
+          <h1 class="post-title" itemprop="name headline">Pycharm from xx import出错</h1>
         
 
         <div class="post-meta">
@@ -308,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-25T10:13:08+08:00">
-                2019-07-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T10:55:52+08:00">
+                2020-03-10
               </time>
             
 
@@ -326,7 +329,7 @@
 
           
           
-             <span id="/2019/07/25/python常用操作/" class="leancloud_visitors" data-flag-title="python常用操作">
+             <span id="/2020/03/10/from import错误/" class="leancloud_visitors" data-flag-title="Pycharm from xx import出错">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,7 +354,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  345
+                  66
                 </span>
               
 
@@ -376,36 +379,9 @@
       
 
       
-        <ul>
-<li><p>读取excel文件某一列</p>
-<a id="more"></a>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">names = pd.read_excel(</span><br><span class="line">    <span class="string">'NOT_EXIST_List.xlsx'</span>,</span><br><span class="line">    sheet_name=<span class="string">'NOT EXIST'</span>, </span><br><span class="line">    header=<span class="number">0</span>, </span><br><span class="line">    usecols=[<span class="string">'KolName'</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(names)):</span><br><span class="line">    name = names[i:i + <span class="number">1</span>].values.item()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>List去重</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">List = pd.unique(List).tolist()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将接口返回值解析成json格式</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request</span><br><span class="line">response = requests.request(</span><br><span class="line">    <span class="string">"GET"</span>, url,</span><br><span class="line">    data=payload, </span><br><span class="line">    headers=headers,</span><br><span class="line">    params=querystring)</span><br><span class="line">json_response = json.loads(response.text)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>移除字符串中的标点符号</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">removePunctuation</span><span class="params">(text)</span>:</span></span><br><span class="line">    str = <span class="string">''</span>.join(c <span class="keyword">for</span> c <span class="keyword">in</span> text <span class="keyword">if</span> c <span class="keyword">not</span> <span class="keyword">in</span> string.punctuation)</span><br><span class="line">    <span class="keyword">return</span> str</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>读取和写入json文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">file = open(<span class="string">'XXX.json'</span>, <span class="string">'r'</span>)</span><br><span class="line">XXX = json.loads(file.read())</span><br><span class="line">file = open(<span class="string">'XXX.json'</span>, <span class="string">'a'</span>)</span><br><span class="line">json.dump(XXX, file, indent=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将List写入excel文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(List, columns=[<span class="string">'name'</span>, <span class="string">'url'</span>])</span><br><span class="line">writer = pd.ExcelWriter(<span class="string">'remain.xlsx'</span>)</span><br><span class="line">df.to_excel(writer, <span class="string">'remain'</span>)</span><br><span class="line">writer.save()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>dict根据key排序</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sortdict</span><span class="params">(data)</span>:</span></span><br><span class="line">    result = collections.OrderedDict()</span><br><span class="line">    dict = sorted(data.items(), key=<span class="keyword">lambda</span> d: d[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(dict)):</span><br><span class="line">        result[dict[i][<span class="number">0</span>]] = dict[i][<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>以追加方式写入excel</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">rexcel = open_workbook(<span class="string">"ad_match_new.xls"</span>)</span><br><span class="line">rows = rexcel.sheets()[<span class="number">0</span>].nrows</span><br><span class="line">excel = copy(rexcel)</span><br><span class="line">table = excel.get_sheet(<span class="number">0</span>)</span><br><span class="line">row = rows</span><br><span class="line">table.write(row, <span class="number">0</span>, title)</span><br><span class="line">table.write(row, <span class="number">1</span>, channel)</span><br><span class="line">table.write(row, <span class="number">2</span>, video_url)</span><br><span class="line">table.write(row, <span class="number">3</span>, url)</span><br><span class="line">row += <span class="number">1</span></span><br><span class="line">excel.save(<span class="string">"ad_match_new.xls"</span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<p>好处是在爬取数据或者使用接口时可以动态保存数据，不需要全部爬取完后再一次性存储，避免中途出错导致前功尽弃</p>
-</blockquote>
+        <h3 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h3><p>使用Pycharm的时候，使用from引入自己模块报错：<br><a id="more"></a><br><img src="https://s2.ax1x.com/2020/03/10/8CvYlj.png" alt=""></p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>pycharm不会将当前文件目录自动加入sourse_path，右键源代码目录make_directory as–&gt;sources root将当前工作的文件夹加入就行了</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p><img src="https://s2.ax1x.com/2020/03/10/8Cvt6s.png" alt=""></p>
 
       
     </div>
@@ -436,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/12/imputing structured missing values in spatial data with clsutered adversarial matrix factorization/" rel="next" title="imputing structured missing values in spatial data with clsutered adversarial matrix factorization">
-                <i class="fa fa-chevron-left"></i> imputing structured missing values in spatial data with clsutered adversarial matrix factorization
+              <a href="/2019/11/18/计量经济学/" rel="next" title="计量经济学课程笔记">
+                <i class="fa fa-chevron-left"></i> 计量经济学课程笔记
               </a>
             
           </div>
@@ -445,10 +421,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/25/Youtube爬虫/" rel="prev" title="Youtube爬虫">
-                Youtube爬虫 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -503,8 +475,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -580,6 +561,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误描述"><span class="nav-number">1.</span> <span class="nav-text">错误描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原因"><span class="nav-number">2.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
