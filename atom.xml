@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2020-06-08T02:46:47.856Z</updated>
+  <updated>2020-06-08T02:55:56.080Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://Bithub00.com/2020/06/08/ubuntu%E6%93%8D%E4%BD%9C/"/>
     <id>http://Bithub00.com/2020/06/08/ubuntu操作/</id>
     <published>2020-06-08T02:31:17.355Z</published>
-    <updated>2020-06-08T02:46:47.856Z</updated>
+    <updated>2020-06-08T02:55:56.080Z</updated>
     
-    <content type="html"><![CDATA[<p>用本文记录Ubuntu操作时遇到的一些问题和解决方法，自己试过成功的<br><a id="more"></a></p><ul><li><p>修改Ubuntu的apt-get源为国内镜像源<br><a href="https://blog.csdn.net/zgljl2012/article/details/79065174" target="_blank" rel="noopener">CSDN</a></p></li><li><p>Ubuntu16.04安装python3.5同时保持python2.7<br><a href="https://askubuntu.com/questions/1142982/install-python-3-alongside-python-2-7-on-ubuntu-18-04" target="_blank" rel="noopener">askubuntu</a></p></li><li><p>修改Ubuntu的pip源为阿里源<br><a href="https://blog.csdn.net/w5688414/article/details/104439181" target="_blank" rel="noopener">CSDN</a></p></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>用本文记录Ubuntu操作时遇到的一些问题和解决方法，自己试过成功的<br><a id="more"></a></p><ul><li><p>修改Ubuntu的apt-get源为国内镜像源 <a href="https://blog.csdn.net/zgljl2012/article/details/79065174" target="_blank" rel="noopener">CSDN</a></p></li><li><p>Ubuntu16.04安装python3.5同时保留python2.7 <a href="https://askubuntu.com/questions/1142982/install-python-3-alongside-python-2-7-on-ubuntu-18-04" target="_blank" rel="noopener">askubuntu</a></p></li><li><p>修改Ubuntu的pip源为阿里源 <a href="https://blog.csdn.net/w5688414/article/details/104439181" target="_blank" rel="noopener">CSDN</a></p></li></ul>]]></content>
     
     <summary type="html">
     
