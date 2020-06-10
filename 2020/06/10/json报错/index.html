@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="机器学习," />
+  <meta name="keywords" content="python," />
 
 
 
@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="k-means1.kmeans简介1.1聚类算法（clustering Algorithms）介绍聚类是一种无监督学习—对大量未知标注的数据集，按数据的内在相似性将数据集划分为多个类别，使类别内的数据相似度较大而类别间的数据相似度较小。">
-<meta name="keywords" content="机器学习">
+<meta name="description" content="解决方法：将判断条件由1if response.status_code == 200: 改为1if response.content:">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="K-means总结">
-<meta property="og:url" content="http://Bithub00.com/2019/09/23/kmeans总结/index.html">
+<meta property="og:title" content="json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决">
+<meta property="og:url" content="http://Bithub00.com/2020/06/10/json报错/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="k-means1.kmeans简介1.1聚类算法（clustering Algorithms）介绍聚类是一种无监督学习—对大量未知标注的数据集，按数据的内在相似性将数据集划分为多个类别，使类别内的数据相似度较大而类别间的数据相似度较小。">
+<meta property="og:description" content="解决方法：将判断条件由1if response.status_code == 200: 改为1if response.content:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-23T11:36:29.364Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/06/10/toiGm4.png">
+<meta property="og:updated_time" content="2020-06-10T01:59:36.363Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="K-means总结">
-<meta name="twitter:description" content="k-means1.kmeans简介1.1聚类算法（clustering Algorithms）介绍聚类是一种无监督学习—对大量未知标注的数据集，按数据的内在相似性将数据集划分为多个类别，使类别内的数据相似度较大而类别间的数据相似度较小。">
+<meta name="twitter:title" content="json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决">
+<meta name="twitter:description" content="解决方法：将判断条件由1if response.status_code == 200: 改为1if response.content:">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/06/10/toiGm4.png">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://Bithub00.com/2019/09/23/kmeans总结/"/>
+  <link rel="canonical" href="http://Bithub00.com/2020/06/10/json报错/"/>
 
 
 
 
 
-  <title>K-means总结 | 原力小站</title>
+  <title>json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决 | 原力小站</title>
   
 
 
@@ -279,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2019/09/23/kmeans总结/">
+    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2020/06/10/json报错/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.shuan">
@@ -296,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">K-means总结</h1>
+          <h1 class="post-title" itemprop="name headline">json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</h1>
         
 
         <div class="post-meta">
@@ -308,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-23T14:15:16+08:00">
-                2019-09-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-10T09:49:59+08:00">
+                2020-06-10
               </time>
             
 
@@ -326,7 +328,7 @@
 
           
           
-             <span id="/2019/09/23/kmeans总结/" class="leancloud_visitors" data-flag-title="K-means总结">
+             <span id="/2020/06/10/json报错/" class="leancloud_visitors" data-flag-title="json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,7 +353,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,716
+                  21
                 </span>
               
 
@@ -376,121 +378,10 @@
       
 
       
-        <h1 id="k-means"><a href="#k-means" class="headerlink" title="k-means"></a>k-means</h1><h2 id="1-kmeans简介"><a href="#1-kmeans简介" class="headerlink" title="1.kmeans简介"></a>1.kmeans简介</h2><h3 id="1-1聚类算法（clustering-Algorithms）介绍"><a href="#1-1聚类算法（clustering-Algorithms）介绍" class="headerlink" title="1.1聚类算法（clustering Algorithms）介绍"></a>1.1聚类算法（clustering Algorithms）介绍</h3><p>聚类是一种无监督学习—对大量未知标注的数据集，按数据的内在相似性将数据集划分为多个类别，使类别内的数据相似度较大而类别间的数据相似度较小。<br><a id="more"></a></p>
-<p>聚类算法可以分为原型聚类（k均值算法（k-means）、学习向量量化、（Learning Vector Quantization -LVQ）、高斯混合聚类（Mixture-of-Gaussian），密度聚类（DBSCAN），层次聚类（AGNES）等。</p>
-<h2 id="2-kmeans原理详解"><a href="#2-kmeans原理详解" class="headerlink" title="2.kmeans原理详解"></a>2.kmeans原理详解</h2><p>k-means是一种常见的聚类算法，也叫k均值或k平均。通过迭代的方式，每次迭代都将数据集中的各个点划分到距离它最近的簇内，这里的距离即数据点到簇中心的距离。</p>
-<p>kmean步骤：</p>
-<ol>
-<li>随机初始化k个簇中心坐标</li>
-<li>计算数据集内所有点到k个簇中心的距离，并将数据点划分近最近的簇</li>
-<li>更新簇中心坐标为当前簇内节点的坐标平均值</li>
-<li>重复2、3步骤直到簇中心坐标不再改变（收敛了）</li>
-</ol>
-<p><strong>优缺点及改进算法</strong></p>
-<p>优点：效率高、适用于大规模数据集</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>缺点</th>
-<th>改进</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>k值的确定</td>
-<td>ISODATA</td>
-<td>当属于某个簇的样本数过少时把这个簇去除，<br>当属于某个簇的样本数过多、分散程度较大时把这个簇分为两个子簇</td>
-</tr>
-<tr>
-<td>对奇异点敏感</td>
-<td>k-median</td>
-<td>中位数代替平均值作为簇中心</td>
-</tr>
-<tr>
-<td>只能找到球状群</td>
-<td>GMM</td>
-<td>以高斯分布考虑簇内数据点的分布</td>
-</tr>
-<tr>
-<td>分群结果不稳定</td>
-<td>k-means++</td>
-<td>初始的聚类中心之间的相互距离要尽可能的远</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="算法十问"><a href="#算法十问" class="headerlink" title="算法十问"></a>算法十问</h2><p><strong>k值的选取</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">k-means算法要求事先知道数据集能分为几群，主要有两种方法定义k。</span><br><span class="line"></span><br><span class="line">elbow method通过绘制k和损失函数的关系图，选拐点处的k值。</span><br><span class="line"></span><br><span class="line">经验选取人工据经验先定几个k，多次随机初始化中心选经验上最适合的。</span><br><span class="line"></span><br><span class="line">通常都是以经验选取，因为实际操作中拐点不明显，且elbow method效率不高。</span><br></pre></td></tr></table></figure>
-<p><strong>K-means算法中初始点的选择对最终结果的影响</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k-means选择的初始点不同获得的最终分类结果也可能不同，随机选择的中心会导致K-means陷入局部最优解。</span><br></pre></td></tr></table></figure>
-<p><strong>为什么在计算k-means之前要将数据点在各维度上归一化</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">因为数据点各维度的量级不同。</span><br><span class="line">举个栗子，最近正好做完基于RFM模型的会员分群，每个会员分别有R（最近一次购买距今的时长）、F（来店消费的频率）和M（购买金额）。如果这是一家奢侈品商店，你会发现M的量级（可能几万元）远大于F（可能平均10次以下），如果不归一化就算k-means，相当于F这个特征完全无效。如果我希望能把常客与其他顾客区别开来，不归一化就做不到。</span><br></pre></td></tr></table></figure>
-<p><strong>k-means不适用哪些数据</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 数据特征极强相关的数据集，因为会很难收敛（损失函数是非凸函数），一般要用kernal k-means，将数据点映射到更高维度再分群。</span><br><span class="line">2. 数据集可分出来的簇密度不一，或有很多离群值（outliers），这时候考虑使用密度聚类。</span><br></pre></td></tr></table></figure>
-<p><strong>k-means 中常用的距离度量</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">K-means中比较常用的距离度量是欧几里得距离和余弦相似度。</span><br></pre></td></tr></table></figure>
-<p><strong>K-means是否会一直陷入选择质心的循环停不下来（为什么迭代次数后会收敛）？</strong></p>
-<p>从k-means的第三步我们可以看出，每回迭代都会用簇内点的<strong>平均值</strong>去更新簇中心，所以最终簇内的平方误差和（SSE, sum of squared error）一定最小。 平方误差和的公式如下：</p>
-<script type="math/tex; mode=display">
-L(X) = \sum_{i=1}^{k}{\sum_{j\in C_i}{(x_{ij}-\bar{x_i})^2}}</script><p><strong>聚类和分类区别</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 产生的结果相同（将数据进行分类）</span><br><span class="line">2. 聚类事先没有给出标签（无监督学习）</span><br></pre></td></tr></table></figure>
-<p><strong>如何对k-means聚类效果进行评估</strong></p>
-<p>回到聚类的定义，我们希望得到簇内数据相似度尽可能地大，而簇间相似度尽可能地小。常见的评估方式：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">名称</th>
-<th style="text-align:center">公式</th>
-<th style="text-align:left">含义</th>
-<th style="text-align:left">如何比较</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">sum of squares within clusters(SSW)</td>
-<td style="text-align:center">$\sum_{i=1}^{K}{ \parallel x_i-c_{l_i} \parallel ^2}$</td>
-<td style="text-align:left">所有簇内差异之和</td>
-<td style="text-align:left">越小越好</td>
-</tr>
-<tr>
-<td style="text-align:left">sum of squares between clusters(SSB)</td>
-<td style="text-align:center">$\sum_{i=1}^{K}{n_i \parallel c_i-\bar{x} \parallel ^2}$</td>
-<td style="text-align:left">簇心与簇内均值差异的加权和</td>
-<td style="text-align:left">越大越好</td>
-</tr>
-<tr>
-<td style="text-align:left">Calinski-Harabasz</td>
-<td style="text-align:center">$\frac{\frac{SSB}{K-1}}{\frac{SSW}{N-K}}$</td>
-<td style="text-align:left">簇间距离和簇内距离之比（除数是惩罚项，因为SSW下降地比较快）</td>
-<td style="text-align:left">越大越好</td>
-</tr>
-<tr>
-<td style="text-align:left">Ball&amp;Hall</td>
-<td style="text-align:center">$\frac{SSW}{K}$</td>
-<td style="text-align:left">几乎同SSW</td>
-<td style="text-align:left">越小越好</td>
-</tr>
-<tr>
-<td style="text-align:left">Dunn’s index</td>
-<td style="text-align:center">$\frac{\min_{i=1}^M{\min_{j=i+1}^M{d(c_i, c_j)}}}{\max_{k=1}^M{diam(c_k)}}$ <br>$where d(c_i, c_j)=$ $\min_{x \in c_i, x’ \in c_j}{\parallel x-x’ \parallel}^2$ <br> $diam(c_k)=$ $\max_{x, x’ \in c_k}{\parallel x-x’ \parallel}^2$</td>
-<td style="text-align:left">本质上也是簇间距离和簇内距离之比</td>
-<td style="text-align:left">越大越好</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>另一个常见的方法是画图，将不同簇的数据点用不同颜色表示。这么做的好处是最直观，缺点是无法处理高维的数据，它最多能展示三维的数据集。<br>如果维数不多也可以做一定的降维处理（PCA）后再画图，但会损失一定的信息量。 </p>
-<p>聚类算法几乎没有统一的评估指标，可能还需要根据聚类目标想评估方式，如对会员作分群以后，我想检查分得的群体之间是否确实有差异，这时候可以用MANOVA计算，当p值小于0.01说明分群合理。</p>
-<p><strong>K-means中空聚类的处理</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果所有的点在指派步骤都未分配到某个簇，就会得到空簇。如果这种情况发生，则需要某种策略来选择一个替补质心，否则的话，平方误差将会偏大。一种方法是选择一个距离当前任何质心最远的点。这将消除当前对总平方误差影响最大的点。另一种方法是从具有最大SEE的簇中选择一个替补的质心。这将分裂簇并降低聚类的总SEE。如果有多个空簇，则该过程重复多次。另外编程实现时，要注意空簇可能导致的程序bug。</span><br></pre></td></tr></table></figure>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ol>
-<li>Mann A K, Kaur N. Review paper on clustering techniques[J]. Global Journal of Computer Science and Technology, 2013.</li>
-<li><a href="https://blog.csdn.net/hua111hua/article/details/86556322" target="_blank" rel="noopener">https://blog.csdn.net/hua111hua/article/details/86556322</a></li>
-<li>REZAEI M. Clustering validation[J].</li>
-</ol>
+        <a id="more"></a>
+<p>解决方法：<br>将判断条件由<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br></pre></td></tr></table></figure></p>
+<p>改为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> response.content:</span><br></pre></td></tr></table></figure></p>
+<p>  <img src="https://s1.ax1x.com/2020/06/10/toiGm4.png" alt=""></p>
 
       
     </div>
@@ -508,7 +399,7 @@ L(X) = \sum_{i=1}^{k}{\sum_{j\in C_i}{(x_{ij}-\bar{x_i})^2}}</script><p><strong>
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+            <a href="/tags/python/" rel="tag">#python</a>
           
         </div>
       
@@ -521,8 +412,8 @@ L(X) = \sum_{i=1}^{k}{\sum_{j\in C_i}{(x_{ij}-\bar{x_i})^2}}</script><p><strong>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/23/协同过滤总结/" rel="next" title="协同过滤">
-                <i class="fa fa-chevron-left"></i> 协同过滤
+              <a href="/2020/06/08/ubuntu操作/" rel="next" title="Ubuntu操作">
+                <i class="fa fa-chevron-left"></i> Ubuntu操作
               </a>
             
           </div>
@@ -530,10 +421,6 @@ L(X) = \sum_{i=1}^{k}{\sum_{j\in C_i}{(x_{ij}-\bar{x_i})^2}}</script><p><strong>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/21/高斯先验与L2正则/" rel="prev" title="高斯先验分布与L2正则">
-                高斯先验分布与L2正则 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -588,17 +475,8 @@ L(X) = \sum_{i=1}^{k}{\sum_{j\in C_i}{(x_{ij}-\bar{x_i})^2}}</script><p><strong>
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -674,22 +552,6 @@ L(X) = \sum_{i=1}^{k}{\sum_{j\in C_i}{(x_{ij}-\bar{x_i})^2}}</script><p><strong>
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#k-means"><span class="nav-number">1.</span> <span class="nav-text">k-means</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-kmeans简介"><span class="nav-number">1.1.</span> <span class="nav-text">1.kmeans简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1聚类算法（clustering-Algorithms）介绍"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1聚类算法（clustering Algorithms）介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-kmeans原理详解"><span class="nav-number">1.2.</span> <span class="nav-text">2.kmeans原理详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法十问"><span class="nav-number">1.3.</span> <span class="nav-text">算法十问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考資料"><span class="nav-number">1.4.</span> <span class="nav-text">參考資料</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -1015,33 +877,7 @@ L(X) = \sum_{i=1}^{k}{\sum_{j\in C_i}{(x_{ij}-\bar{x_i})^2}}</script><p><strong>
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script>
-
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1059,6 +895,12 @@ L(X) = \sum_{i=1}^{k}{\sum_{j\in C_i}{(x_{ij}-\bar{x_i})^2}}</script><p><strong>
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
+
+
+  
+  
+
+  
   
 
 
