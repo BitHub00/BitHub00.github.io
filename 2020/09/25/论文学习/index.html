@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="推荐系统，数据库," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="原力小站" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="对看过的论文做一个记录">
+<meta name="keywords" content="推荐系统，数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文">
+<meta property="og:url" content="http://Bithub00.com/2020/09/25/论文学习/index.html">
+<meta property="og:site_name" content="原力小站">
+<meta property="og:description" content="对看过的论文做一个记录">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/29/0ZY5mF.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/29/0ePimF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/29/0Z2M40.jpg">
+<meta property="og:updated_time" content="2020-09-29T07:24:08.336Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="论文">
+<meta name="twitter:description" content="对看过的论文做一个记录">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/09/29/0ZY5mF.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Bithub00.com/2020/09/25/论文学习/"/>
+
+
+
+
+
+  <title>论文 | 原力小站</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43ca6a51990599ac3de948cb708d3909";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/BitHub00" 
+      class="github-corner" 
+      aria-label="View source on Github">
+      <svg width="80" height="80" viewBox="0 0 250 250" 
+      style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" 
+      aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+      </svg>
+    </a>
+      <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+      </style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">原力小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">扎导的原版正联出了吗？</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2020/09/25/论文学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.shuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="原力小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">论文</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-25T08:27:51+08:00">
+                2020-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/09/25/论文学习/" class="leancloud_visitors" data-flag-title="论文">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  960
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对看过的论文做一个记录<br><a id="more"></a></p>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="ARROW-Approximating-Reachability-using-Random-walks-Over-Web-scale-Graphs-ICDE2019"><a href="#ARROW-Approximating-Reachability-using-Random-walks-Over-Web-scale-Graphs-ICDE2019" class="headerlink" title="ARROW: Approximating Reachability using Random walks Over Web-scale Graphs[ICDE2019]"></a>ARROW: Approximating Reachability using Random walks Over Web-scale Graphs[ICDE2019]</h2><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>给定一个有向图$G=(V,E)$以及一系列顶点对$(u,v)$,判断两个顶点之间是否连通，对应两种查询情况：  </p>
+<ul>
+<li>Chained Queries：查询路径上每条边开始于上一条边结束，并且总时间在规定的范围内</li>
+<li>Snapshot Queries：对于一个动态变化的图，在给定的时间范围内至少在$c$个快闪图中存在连通</li>
+</ul>
+<h3 id="创新之处"><a href="#创新之处" class="headerlink" title="创新之处"></a>创新之处</h3><ol>
+<li>以起始顶点和目的顶点各自进行多次固定长度的随机漫步构建两个集合，两个集合的交集非空说明连通</li>
+<li>对于随机漫步的长度及次数的选取给出了理论证明<br> 2.1 随机漫步的长度：有向图中最长的最短路径的长度，通过10次的深度优先搜索得到<br> 2.2 随机漫步的次数：类比于扔球问题，给定$n$个篮子和数量相等的红球与蓝球，需要扔多少个球来保证有一个篮子中同时有红球与蓝球的概率高？红球可以看作起始顶点$u$可以到达的顶点，蓝球可以看作目的顶点$v$可以到达的顶点</li>
+<li>模型的一个假设前提是构建的两个反向的随机漫步的平稳分布应尽可能接近，这对应于正向随机漫步选定一个出边的概率与反向随机漫步选定一个入边的概率相等，而这个概率恰等于顶点度的倒数。使用同配性(assortativity)作为这两个平稳分布接近程度的指标。</li>
+</ol>
+<h1 id="图神经网络"><a href="#图神经网络" class="headerlink" title="图神经网络"></a>图神经网络</h1><h2 id="Semi-Supervised-Classification-with-Graph-Convolutional-Network-ICLR2017"><a href="#Semi-Supervised-Classification-with-Graph-Convolutional-Network-ICLR2017" class="headerlink" title="Semi-Supervised Classification with Graph Convolutional Network [ICLR2017]"></a>Semi-Supervised Classification with Graph Convolutional Network [ICLR2017]</h2><h3 id="解决的问题-1"><a href="#解决的问题-1" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>如何将神经网络应用在图结构数据上？</p>
+<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>给定以下输入：  </p>
+<ol>
+<li>图中顶点的特征矩阵，维度为$N\times D$，其中$N$为顶点数量，$D$为特征数量  </li>
+<li>图的结构信息，如邻接矩阵$A$  </li>
+</ol>
+<p>输出：  </p>
+<ol>
+<li>图中顶点的特征表示$Z$，维度为$N\times F$，其中$F$为特征数量</li>
+</ol>
+<p>如果套用神经网络模型，每一层可以用一个非线性函数进行表示：</p>
+<script type="math/tex; mode=display">H^{(l+1)}=f(H^{(l)},A)</script><p>其中$H^{(0)}=X,H^{(L)}=Z$，问题在于如何选取函数$f(.,.)$</p>
+<h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><p>提出了一种可能的函数形式：  </p>
+<script type="math/tex; mode=display">f(H^{(l)},A)=\sigma(\hat{D}^{-\frac{1}{2}}\hat{A}\hat{D}^{-\frac{1}{2}}H^{(l)}W^{(l)})</script><p>其中$\hat{A}=A+I$，因为与矩阵$A$相乘表示对于每个顶点，我们对除了自身外所有邻居顶点的特征向量进行求和，因此加上单位矩阵是为了引入自环。而正则化是避免与矩阵$A$相乘改变特征向量的规模</p>
+<h2 id="Neural-Graph-Collaborative-Filtering-SIGIR19"><a href="#Neural-Graph-Collaborative-Filtering-SIGIR19" class="headerlink" title="Neural Graph Collaborative Filtering[SIGIR19]"></a>Neural Graph Collaborative Filtering[SIGIR19]</h2><h3 id="解决的问题-2"><a href="#解决的问题-2" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>在现有的推荐模型中，用户和物品的embedding只考虑了它们自身的特征，没有考虑用户-物品的交互信息</p>
+<h3 id="做法及创新-1"><a href="#做法及创新-1" class="headerlink" title="做法及创新"></a>做法及创新</h3><script type="math/tex; mode=display">
+\hat{y}_{NGCF}(u,i)={e^*_u}^Te^*_i \\
+e^*_u = e_u^{(0)}||\dotsb||e_u^{(L)} \\
+e^*_i = e_i^{(0)}||\dotsb||e_i^{(L)} \\
+e_u^{(l)}=LeakyReLU(m^{(l)}_{u\leftarrow u}+\sum_{i\in N_u}m^{(l)}_{u\leftarrow i}) \\
+\begin{cases}
+m^{(l)}_{u\leftarrow i}=p_{ui}(W_1^{(l)}e_i^{(l-1)}+W_2^{(l)}(e_i^{(l-1)}\odot e_u^{(l-1)})) \\\\
+m^{(l)}_{u\leftarrow u}=W_1^{(l)}e_u^{(l-1)}
+\end{cases} \\
+m_{u\leftarrow i}=\frac{1}{\sqrt{|N_u||N_i|}}(W_1e_i+W_2(e_i\odot e_u))</script><ol>
+<li><p>通过堆叠$l$层embedding传播层，一个用户（物品）可以获得它的$l$跳邻居所传播的信息，如下图所示，通过这种方法来建模用户-物品交互信息中的高阶connectivity，下图展示的是一个三阶的例子:</p>
+<div align="center">
+<img src="https://s1.ax1x.com/2020/09/29/0ZY5mF.jpg" width="400" height="200" alt="0ZY5mF.jpg" border="0">
+<img src="https://s1.ax1x.com/2020/09/29/0ePimF.png" width="68%" alt="0ePimF.png" border="0">
+<img src="https://s1.ax1x.com/2020/09/29/0Z2M40.jpg" width="400" height="200" alt="0Z2M40.jpg" border="0">
+</div>
+</li>
+<li><p>传统GCN推荐方法中，message embedding只考虑物品embedding$e_i$，论文中将用户embedding与物品embedding的交互也纳入考虑，解释为“This makes the message dependent on the affinity between $e_i$ and<br>$e_u$, e.g., passing more messages from the similar items.”</p>
+</li>
+<li><p>两个层面上的dropout：message &amp; node dropout。前者表示在第$l$层传播层中，只有部分信息会对最后的表示有贡献；后者表示在第$l$层传播层中，随机地丢弃一些顶点。</p>
+</li>
+</ol>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>Gowalla、Yelp2018、Amazon-book</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/推荐系统，数据库/" rel="tag">#推荐系统，数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/25/d2l/" rel="next" title="d2l学习笔记">
+                <i class="fa fa-chevron-left"></i> d2l学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="Mr.shuan" />
+            
+              <p class="site-author-name" itemprop="name">Mr.shuan</p>
+              <p class="site-description motion-element" itemprop="description">May 4th be with you</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://joaquinchou.com/" title="喵语小站" target="_blank">喵语小站</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库"><span class="nav-number">1.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ARROW-Approximating-Reachability-using-Random-walks-Over-Web-scale-Graphs-ICDE2019"><span class="nav-number">1.1.</span> <span class="nav-text">ARROW: Approximating Reachability using Random walks Over Web-scale Graphs[ICDE2019]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.1.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创新之处"><span class="nav-number">1.1.2.</span> <span class="nav-text">创新之处</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图神经网络"><span class="nav-number">2.</span> <span class="nav-text">图神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Semi-Supervised-Classification-with-Graph-Convolutional-Network-ICLR2017"><span class="nav-number">2.1.</span> <span class="nav-text">Semi-Supervised Classification with Graph Convolutional Network [ICLR2017]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">问题描述</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">2.1.2.</span> <span class="nav-text">做法及创新</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Graph-Collaborative-Filtering-SIGIR19"><span class="nav-number">2.2.</span> <span class="nav-text">Neural Graph Collaborative Filtering[SIGIR19]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-2"><span class="nav-number">2.2.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">做法及创新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-number">2.2.3.</span> <span class="nav-text">数据集</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.shuan</span>
+
+  
+</div>
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">原力小站已到访<span id="busuanzi_value_site_pv"></span>人次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">欢迎第<span id="busuanzi_value_site_uv"></span>位绝地武士
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <span class="post-meta-divider">|</span>
+  <span class="post-count">小站全站共68.4k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("yfqHuQnnOVtQFUYkBt8hCuPk-gzGzoHsz", "04fMIxrudywlX8NlYX71hCnM");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+
+</body>
+</html>

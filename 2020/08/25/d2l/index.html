@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="深度学习," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="原力小站" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Dive into Deep Learning学习笔记">
+<meta name="keywords" content="深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="d2l学习笔记">
+<meta property="og:url" content="http://Bithub00.com/2020/08/25/d2l/index.html">
+<meta property="og:site_name" content="原力小站">
+<meta property="og:description" content="Dive into Deep Learning学习笔记">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/13/wBP7xf.png">
+<meta property="og:updated_time" content="2020-09-29T07:23:19.267Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="d2l学习笔记">
+<meta name="twitter:description" content="Dive into Deep Learning学习笔记">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/09/13/wBP7xf.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Bithub00.com/2020/08/25/d2l/"/>
+
+
+
+
+
+  <title>d2l学习笔记 | 原力小站</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43ca6a51990599ac3de948cb708d3909";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/BitHub00" 
+      class="github-corner" 
+      aria-label="View source on Github">
+      <svg width="80" height="80" viewBox="0 0 250 250" 
+      style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" 
+      aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+      </svg>
+    </a>
+      <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+      </style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">原力小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">扎导的原版正联出了吗？</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2020/08/25/d2l/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.shuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="原力小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">d2l学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-25T12:07:04+08:00">
+                2020-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/08/25/d2l/" class="leancloud_visitors" data-flag-title="d2l学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,512
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://github.com/d2l-ai/d2l-en" target="_blank" rel="noopener">Dive into Deep Learning</a>学习笔记</p>
+<a id="more"></a>
+<h1 id="d2l学习记录"><a href="#d2l学习记录" class="headerlink" title="d2l学习记录"></a>d2l学习记录</h1><h2 id="第二章-Preliminaries"><a href="#第二章-Preliminaries" class="headerlink" title="第二章 Preliminaries"></a>第二章 Preliminaries</h2><ol>
+<li>用with torch.no_grad()将不想被追踪的操作代码块包裹起来，这种方法在评估模型的时候很常用，因为在评估模型时，我们并不需要计算可训练参数（requires_grad=True）的梯度。</li>
+<li>grad在反向传播过程中是累加的(accumulated)，这意味着每一次运行反向传播，梯度都会累加之前的梯度，所以一般在反向传播之前需把梯度清零。</li>
+<li>在y.backward()时，如果y是标量，则不需要为backward()传入任何参数；否则，需要传入一个与y同形的Tensor。</li>
+<li>view()返回的新Tensor与源Tensor虽然可能有不同的size，但是是共享data的，也即更改其中的一个，另外一个也会跟着改变。</li>
+<li>在测试模型时，我们为了拿到更加确定性的结果，一般需要关闭dropout。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> isinstance(net, torch.nn.Module):</span><br><span class="line">            net.eval() <span class="comment"># 评估模式, 这会关闭dropout</span></span><br><span class="line">            acc_sum += (net(X).argmax(dim=<span class="number">1</span>) == y).float().sum().item()</span><br><span class="line">            net.train() <span class="comment"># 改回训练模式</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="第三章-Linear-Neural-Networks"><a href="#第三章-Linear-Neural-Networks" class="headerlink" title="第三章 Linear Neural Networks"></a>第三章 Linear Neural Networks</h2><h3 id="cross-entropy-loss"><a href="#cross-entropy-loss" class="headerlink" title="cross-entropy loss"></a>cross-entropy loss</h3><p>给定含n个样本的数据集$\{X,Y\}$，我们可以通过将模型的预测标签与实际标签进行比较来查看模型的效果，即最大化$P(Y|X)=\prod_{i=1}^nP(y^{(i)}|x^{(i)})$，根据最大似然准则，这等同于最小化负的对数似然函数：</p>
+<script type="math/tex; mode=display">-\log P(Y|X)=\sum_{i=1}^{n}-\log P(y^{(i)}|x^{(i)})=\sum_{i=1}^{n}l(y^{(i)}|\hat{y}^{(i)})</script><p>假设数据集中共有q个类别，则给定真实标签$y$与模型预测标签$\hat{y}$，损失函数l为所谓的交叉熵：</p>
+<script type="math/tex; mode=display">l(y,\hat{y})=-\sum^q_{j=1}y_j\log\hat{y_j}</script><p>代入softmax的表达式：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+l(y,\hat{y})&= 
+-\sum_{j=1}^qy_j\log \frac{\exp(o_j)}{\sum^q_{k=1}\exp(o_k)} \\
+&= \sum^q_{j=1}y_j\log \sum^q_{k=1}\exp (o_k)-\sum^q_{k=1}y_j\log \exp (o_j) \\
+&= \log \sum^q_{k=1}\exp (o_k)-\sum^q_{j=1}y_jo_j
+\end{aligned}</script><p>softmax可以看作是一个单层神经网络：<br><img src="https://s1.ax1x.com/2020/09/13/wBP7xf.png" alt="wBP7xf.png"></p>
+<p>将损失函数对任意一个$o_j$求导，得到：</p>
+<script type="math/tex; mode=display">\partial_{o_j}l(y,\hat{y}) = \frac{\exp(o_j)}{\sum^q_{k=1}\exp(o_k)} - y_j = softmax(o)_j-y_j</script><p>这表示模型预测标签与真实标签之间的差距。在任意指数族模型中，对数似然函数的梯度都是这样的形式。</p>
+<p>对交叉熵的形式做更深入的理解，给定一个分布p，信息论指出，该分布的熵为  </p>
+<script type="math/tex; mode=display">H[p]=\sum_j-p(j)\log p(j)</script><p>给定一个需要压缩的数据流，如果数据流中的数据是完全一致的，则预测下一个数据和对数据进行压缩是非常简单的。当我们不能准确预测下一个数据j，预测结果与实际结果之间的差别会带来所谓的surprisal，用数学形式表达为$\log \frac{1}{P(j)}=-\log P(j)$。<br>The cross-entropy from p to q, denoted H(p,q), is the expected surprisal of an observer with subjective probabilities p.</p>
+<h2 id="第五章-Deep-Learning-Computation"><a href="#第五章-Deep-Learning-Computation" class="headerlink" title="第五章 Deep Learning Computation"></a>第五章 Deep Learning Computation</h2><ol>
+<li><p>如果一个Tensor是Parameter，那么它会自动被添加到模型的参数列表里。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyModel</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, **kwargs)</span>:</span></span><br><span class="line">        super(MyModel, self).__init__(**kwargs)</span><br><span class="line">        self.weight1 = nn.Parameter(torch.rand(<span class="number">20</span>, <span class="number">20</span>))</span><br><span class="line">        self.weight2 = torch.rand(<span class="number">20</span>, <span class="number">20</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">n = MyModel()</span><br><span class="line"><span class="keyword">for</span> name, param <span class="keyword">in</span> n.named_parameters():</span><br><span class="line">    print(name)</span><br><span class="line"></span><br><span class="line">weight1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>共享参数，如果我们传入Sequential的模块是同一个Module实例的话参数也是共享的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FancyMLP</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, **kwargs)</span>:</span></span><br><span class="line">        super(FancyMLP, self).__init__(**kwargs)</span><br><span class="line"></span><br><span class="line">        self.rand_weight = torch.rand((<span class="number">20</span>, <span class="number">20</span>), requires_grad=<span class="keyword">False</span>) <span class="comment"># 不可训练参数（常数参数）</span></span><br><span class="line">        self.linear = nn.Linear(<span class="number">20</span>, <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        x = self.linear(x)</span><br><span class="line">        <span class="comment"># 使用创建的常数参数，以及nn.functional中的relu函数和mm函数</span></span><br><span class="line">        x = nn.functional.relu(torch.mm(x, self.rand_weight.data) + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 复用全连接层。等价于两个全连接层共享参数</span></span><br><span class="line">        x = self.linear(x)</span><br><span class="line">        <span class="comment"># 控制流，这里我们需要调用item函数来返回标量进行比较</span></span><br><span class="line">        <span class="keyword">while</span> x.norm().item() &gt; <span class="number">1</span>:</span><br><span class="line">            x /= <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> x.norm().item() &lt; <span class="number">0.8</span>:</span><br><span class="line">            x *= <span class="number">10</span></span><br><span class="line">        <span class="keyword">return</span> x.sum()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果一个Tensor是Parameter，那么它会自动被添加到模型的参数列表里。所以在自定义含模型参数的层时，我们应该将参数定义成Parameter。</p>
+</li>
+<li>PyTorch中保存和加载训练模型推荐保存和加载state_dict。state_dict是一个从参数名称隐射到参数Tesnor的字典对象。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MLP</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(MLP, self).__init__()</span><br><span class="line">        self.hidden = nn.Linear(<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">        self.act = nn.ReLU()</span><br><span class="line">        self.output = nn.Linear(<span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        a = self.act(self.hidden(x))</span><br><span class="line">        <span class="keyword">return</span> self.output(a)</span><br><span class="line"></span><br><span class="line">net = MLP()</span><br><span class="line">net.state_dict()</span><br><span class="line"></span><br><span class="line">OrderedDict([(<span class="string">'hidden.weight'</span>, tensor([[ <span class="number">0.2448</span>,  <span class="number">0.1856</span>, <span class="number">-0.5678</span>],</span><br><span class="line">                      [ <span class="number">0.2030</span>, <span class="number">-0.2073</span>, <span class="number">-0.0104</span>]])),</span><br><span class="line">             (<span class="string">'hidden.bias'</span>, tensor([<span class="number">-0.3117</span>, <span class="number">-0.4232</span>])),</span><br><span class="line">             (<span class="string">'output.weight'</span>, tensor([[<span class="number">-0.4556</span>,  <span class="number">0.4084</span>]])),</span><br><span class="line">             (<span class="string">'output.bias'</span>, tensor([<span class="number">-0.3573</span>]))])</span><br><span class="line"><span class="comment"># 只有具有可学习参数的层(卷积层、线性层等)才有state_dict中的条目。优化器(optim)也有一个state_dict，其中包含关于优化器状态以及所使用的超参数的信息。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="第八章-Recurrent-Neural-Networks"><a href="#第八章-Recurrent-Neural-Networks" class="headerlink" title="第八章 Recurrent Neural Networks"></a>第八章 Recurrent Neural Networks</h2><ol>
+<li><p>scatter() 一般可以用来对标签进行 one-hot 编码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># self[i][ index[i][j][k] ][k] = src[i][j][k]  # if dim == 1</span></span><br><span class="line"></span><br><span class="line">class_num = <span class="number">10</span></span><br><span class="line">batch_size = <span class="number">4</span></span><br><span class="line">label = torch.LongTensor(batch_size, <span class="number">1</span>).random_() % class_num</span><br><span class="line"><span class="comment">#tensor([[6],</span></span><br><span class="line"><span class="comment">#        [0],</span></span><br><span class="line"><span class="comment">#        [3],</span></span><br><span class="line"><span class="comment">#        [2]])</span></span><br><span class="line">torch.zeros(batch_size, class_num).scatter_(<span class="number">1</span>, label, <span class="number">1</span>)</span><br><span class="line"><span class="comment">#tensor([[0., 0., 0., 0., 0., 0., 1., 0., 0., 0.],</span></span><br><span class="line"><span class="comment">#        [1., 0., 0., 0., 0., 0., 0., 0., 0., 0.],</span></span><br><span class="line"><span class="comment">#        [0., 0., 0., 1., 0., 0., 0., 0., 0., 0.],</span></span><br><span class="line"><span class="comment">#        [0., 0., 1., 0., 0., 0., 0., 0., 0., 0.]])</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在随机采样中，每个样本是原始序列上任意截取的一段序列。相邻的两个随机小批量在原始序列上的位置不一定相毗邻。因此，我们无法用一个小批量最终时间步的隐藏状态来初始化下一个小批量的隐藏状态。在训练模型时，每次随机采样前都需要重新初始化隐藏状态。</p>
+</li>
+<li>另一方面，当多个相邻小批量通过传递隐藏状态串联起来时，模型参数的梯度计算将依赖所有串联起来的小批量序列。同一迭代周期中，随着迭代次数的增加，梯度的计算开销会越来越大。 为了使模型参数的梯度计算只依赖一次迭代读取的小批量序列，我们可以在每次读取小批量前将隐藏状态从计算图中分离出来。</li>
+<li>torch.view等方法操作需要连续的Tensor，transpose、permute 操作虽然没有修改底层一维数组，但是新建了一份Tensor元信息，并在新的元信息中的 重新指定 stride。torch.view 方法约定了不修改数组本身，只是使用新的形状查看数据。如果我们在 transpose、permute 操作后执行 view，Pytorch 会报错。<blockquote>
+<p>Tensor多维数组底层实现是使用一块连续内存的1维数组（行优先顺序存储，下文描述），Tensor在元信息里保存了多维数组的形状，在访问元素时，通过多维度索引转化成1维数组相对于数组起始位置的偏移量即可找到对应的数据。某些Tensor操作（如transpose、permute、narrow、expand）与原Tensor是共享内存中的数据，不会改变底层数组的存储，但原来在语义上相邻、内存里也相邻的元素在执行这样的操作后，在语义上相邻，但在内存不相邻，即不连续了（is not contiguous）。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="第十一章-Optimization-Algorithms"><a href="#第十一章-Optimization-Algorithms" class="headerlink" title="第十一章 Optimization Algorithms"></a>第十一章 Optimization Algorithms</h2><h3 id="动量法"><a href="#动量法" class="headerlink" title="动量法"></a>动量法</h3><p>如果同一位置上，目标函数在竖直方向($x_2$轴方向）比在水平方向（$x_1$轴方向）的斜率的绝对值更大，则给定学习率，梯度下降迭代自变量时会使自变量在竖直方向比在水平方向移动幅度更大。那么，我们需要一个较小的学习率从而避免自变量在竖直方向上越过目标函数最优解。然而，这会造成自变量在水平方向上朝最优解移动变慢。  </p>
+<p>动量法看作是对最近$1/(1−γ)$个时间步的$x_t$值的加权平均，而且离当前时间步$t$越近的$x_t$值获得的权重越大。动量法在每个时间步的自变量更新量近似于将最近1/(1−γ)个时间步的普通更新量（即学习率乘以梯度）做了指数加权移动平均后再除以1−γ。所以，在动量法中，自变量在各个方向上的移动幅度不仅取决当前梯度，还取决于过去的各个梯度在各个方向上是否一致。</p>
+<h3 id="AdaGrad和RMSProp"><a href="#AdaGrad和RMSProp" class="headerlink" title="AdaGrad和RMSProp"></a>AdaGrad和RMSProp</h3><p>如果目标函数有关自变量中某个元素的偏导数一直都较大，那么该元素的学习率将下降较快；反之，如果目标函数有关自变量中某个元素的偏导数一直都较小，那么该元素的学习率将下降较慢。然而，由于$s_t$一直在累加按元素平方的梯度，自变量中每个元素的学习率在迭代过程中一直在降低（或不变）。所以，当学习率在迭代早期降得较快且当前解依然不佳时，AdaGrad算法在迭代后期由于学习率过小，可能较难找到一个有用的解。  </p>
+<p>不同于AdaGrad算法里状态变量$s_t$是截至时间步$t$所有小批量随机梯度$g_t$按元素平方和，RMSProp算法将这些梯度按元素平方做指数加权移动平均。$s_t$所以可以看作是最近1/(1−γ)个时间步的小批量随机梯度平方项的加权平均。如此一来，自变量每个元素的学习率在迭代过程中就不再一直降低（或不变）。</p>
+<p>Adam算法在RMSProp算法基础上对小批量随机梯度也做了指数加权移动平均。</p>
+<h2 id="第十四章-自然语言处理"><a href="#第十四章-自然语言处理" class="headerlink" title="第十四章 自然语言处理"></a>第十四章 自然语言处理</h2><ol>
+<li>求类比词问题可以定义为：对于类比关系中的4个词 $a:b::c:d$，给定前3个词$a、b和c，求d$。设词$w$的词向量为$vec(w)$，求类比词的思路是，搜索与$vec(c)+vec(b)-vec(a)$的结果向量最相似的词向量。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/10/json报错/" rel="next" title="json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决">
+                <i class="fa fa-chevron-left"></i> json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/25/论文学习/" rel="prev" title="论文">
+                论文 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="Mr.shuan" />
+            
+              <p class="site-author-name" itemprop="name">Mr.shuan</p>
+              <p class="site-description motion-element" itemprop="description">May 4th be with you</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://joaquinchou.com/" title="喵语小站" target="_blank">喵语小站</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#d2l学习记录"><span class="nav-number">1.</span> <span class="nav-text">d2l学习记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-Preliminaries"><span class="nav-number">1.1.</span> <span class="nav-text">第二章 Preliminaries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-Linear-Neural-Networks"><span class="nav-number">1.2.</span> <span class="nav-text">第三章 Linear Neural Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cross-entropy-loss"><span class="nav-number">1.2.1.</span> <span class="nav-text">cross-entropy loss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五章-Deep-Learning-Computation"><span class="nav-number">1.3.</span> <span class="nav-text">第五章 Deep Learning Computation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第八章-Recurrent-Neural-Networks"><span class="nav-number">1.4.</span> <span class="nav-text">第八章 Recurrent Neural Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第十一章-Optimization-Algorithms"><span class="nav-number">1.5.</span> <span class="nav-text">第十一章 Optimization Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动量法"><span class="nav-number">1.5.1.</span> <span class="nav-text">动量法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AdaGrad和RMSProp"><span class="nav-number">1.5.2.</span> <span class="nav-text">AdaGrad和RMSProp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第十四章-自然语言处理"><span class="nav-number">1.6.</span> <span class="nav-text">第十四章 自然语言处理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.shuan</span>
+
+  
+</div>
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">原力小站已到访<span id="busuanzi_value_site_pv"></span>人次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">欢迎第<span id="busuanzi_value_site_uv"></span>位绝地武士
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <span class="post-meta-divider">|</span>
+  <span class="post-count">小站全站共68.4k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("yfqHuQnnOVtQFUYkBt8hCuPk-gzGzoHsz", "04fMIxrudywlX8NlYX71hCnM");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+
+</body>
+</html>

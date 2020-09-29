@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="读取excel文件某一列">
+<meta name="description" content="Python 读取excel文件某一列">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python常用操作">
 <meta property="og:url" content="http://Bithub00.com/2019/07/25/python常用操作/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="读取excel文件某一列">
+<meta property="og:description" content="Python 读取excel文件某一列">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-22T11:17:38.180Z">
+<meta property="og:updated_time" content="2020-09-28T04:38:28.170Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python常用操作">
-<meta name="twitter:description" content="读取excel文件某一列">
+<meta name="twitter:description" content="Python 读取excel文件某一列">
 
 
 
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  345
+                  390
                 </span>
               
 
@@ -376,7 +376,7 @@
       
 
       
-        <ul>
+        <h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><ul>
 <li><p>读取excel文件某一列</p>
 <a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">names = pd.read_excel(</span><br><span class="line">    <span class="string">'NOT_EXIST_List.xlsx'</span>,</span><br><span class="line">    sheet_name=<span class="string">'NOT EXIST'</span>, </span><br><span class="line">    header=<span class="number">0</span>, </span><br><span class="line">    usecols=[<span class="string">'KolName'</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(names)):</span><br><span class="line">    name = names[i:i + <span class="number">1</span>].values.item()</span><br></pre></td></tr></table></figure>
@@ -406,6 +406,9 @@
 <blockquote>
 <p>好处是在爬取数据或者使用接口时可以动态保存数据，不需要全部爬取完后再一次性存储，避免中途出错导致前功尽弃</p>
 </blockquote>
+<h2 id="PyTorch"><a href="#PyTorch" class="headerlink" title="PyTorch"></a>PyTorch</h2><ul>
+<li>得到一个张量中每一行的第一个非零元素的索引<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">idx = torch.arrange(data.shape[<span class="number">1</span>], <span class="number">0</span>, <span class="number">-1</span>)</span><br><span class="line">tmp2 = data * idx</span><br><span class="line">indices = torch.argmax(tmp2, <span class="number">1</span>, keepdim=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -503,8 +506,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -523,7 +535,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -536,7 +548,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -581,6 +593,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Python"><span class="nav-number">1.</span> <span class="nav-text">Python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PyTorch"><span class="nav-number">2.</span> <span class="nav-text">PyTorch</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -618,7 +646,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共64.8k字</span>
+  <span class="post-count">小站全站共68.4k字</span>
 </div>
         
 
