@@ -93,7 +93,8 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/09/29/0ePimF.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/09/29/0Z2M40.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2020/09/29/0evf4P.png">
-<meta property="og:updated_time" content="2020-09-29T14:17:22.912Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/04/0JtcnS.png">
+<meta property="og:updated_time" content="2020-10-05T03:00:11.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文学习">
 <meta name="twitter:description" content="对看过的论文做一个记录">
@@ -356,7 +357,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,389
+                  1,923
                 </span>
               
 
@@ -469,6 +470,30 @@ c_{v\rightarrow u}=\frac{1}{\sqrt{|N_u||N_v|}}\sum_{i\in N_u\cap N_v}\frac{1}{|N
 <li>用户$v$越不活跃系数越大$\frac{1}{|N_v|}$</li>
 </ul>
 <h3 id="数据集-1"><a href="#数据集-1" class="headerlink" title="数据集"></a>数据集</h3><p>Gowalla、Yelp2018、Amazon-Book</p>
+<h2 id="Simplifying-Graph-Convolutional-Networks-PMLR’19"><a href="#Simplifying-Graph-Convolutional-Networks-PMLR’19" class="headerlink" title="Simplifying Graph Convolutional Networks[PMLR’19]"></a>Simplifying Graph Convolutional Networks[PMLR’19]</h2><h3 id="解决的问题-4"><a href="#解决的问题-4" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>图卷积网络中可能引入了一些不必要的复杂性及冗余的计算</p>
+<h3 id="做法及创新-3"><a href="#做法及创新-3" class="headerlink" title="做法及创新"></a>做法及创新</h3><p><img src="https://s1.ax1x.com/2020/10/04/0JtcnS.png" alt="0JtcnS.png" border="0">  </p>
+<ol>
+<li>移除图卷积网络各层之间的非线性关系，合并各层之间的权重矩阵</li>
+</ol>
+<h4 id="原始图卷积网络"><a href="#原始图卷积网络" class="headerlink" title="原始图卷积网络"></a>原始图卷积网络</h4><p>对于一个输入的图，图卷积网络利用多层网络为每个顶点的特征$x_i$学习一个新的特征表示，随即输入一个线性分类器。对第$k$层网络，输入为$H^{(k-1)}$，输出为$H^{(k)}$，其中$H^{(0)}=X$。一个$K$层的图卷积网络等价于对图中每个顶点的特征向量$x_i$应用一个$K$层感知机，不同之处在于顶点的隐层表示local averaging：</p>
+<script type="math/tex; mode=display">
+h_i^{(k)}\leftarrow \frac{1}{d_i+1}h_i^{(k-1)}+\sum^n_{j=1}\frac{a_{ij}}{\sqrt{(d_i+1)(d_j+1)}}h_j^{(k-1)}</script><p>矩阵形式：</p>
+<script type="math/tex; mode=display">
+S=D^{-\frac{1}{2}}AD^{-\frac{1}{2}}</script><p>其中$A=A+I$，则隐层表示用矩阵的形式表示为：</p>
+<script type="math/tex; mode=display">
+H^{(k)}\leftarrow SH^{(k-1)}</script><p>Local averaging：this step smoothes the hidden representations locally<br>along the edges of the graph and ultimately encourages<br>similar predictions among locally connected nodes  </p>
+<p>$\Theta^{(k)}$为第$K$层网络的权重矩阵：</p>
+<script type="math/tex; mode=display">
+H^{(k)}\leftarrow \text{ReLU}(H^{(k)}\Theta^{(k)})</script><p>$Y\in \R^{n\times C}$，$y_{ic}$表示第$i$个顶点属于类别$C$的概率</p>
+<script type="math/tex; mode=display">
+Y_{GCN}=\text{softmax}(SH^{(K-1)}\Theta^{(K)})</script><h4 id="简化图卷积网络"><a href="#简化图卷积网络" class="headerlink" title="简化图卷积网络"></a>简化图卷积网络</h4><blockquote>
+<p>在传统的多层感知机中，多层网络可以提高模型的表现力，是因为这样引入了特征之间的层级关系，例如第二层网络的特征是以第一层网络为基础构建的。而在图卷积网络中，这还有另外一层含义，在每一层中顶点的隐层表示都是以一跳的邻居进行平均，经过$K$层之后，一个顶点就能获得$K$跳邻居的特征信息。这类似于在卷积网路中网络的深度提升了特征的receptive field。</p>
+</blockquote>
+<p>保留local averaging，移除了非线性激活函数：</p>
+<script type="math/tex; mode=display">
+Y=\text{softmax}(S^KX\Theta^{(1)}\dots \Theta^{(K)})</script><p>其中$S^K$k可以预先进行计算，大大减少了模型的训练时间</p>
+<p>论文中证明了简化后的图卷积网络等价于谱空间的一个低通滤波器，它通过的低频信号对应于图中平滑后的特征</p>
+<h3 id="数据集-2"><a href="#数据集-2" class="headerlink" title="数据集"></a>数据集</h3><p>Cora、Citeseer、Pubmed、Reddit</p>
 
       
     </div>
@@ -658,7 +683,7 @@ c_{v\rightarrow u}=\frac{1}{\sqrt{|N_u||N_v|}}\sum_{i\in N_u\cap N_v}\frac{1}{|N
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库"><span class="nav-number">1.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ARROW-Approximating-Reachability-using-Random-walks-Over-Web-scale-Graphs-ICDE’2019"><span class="nav-number">1.1.</span> <span class="nav-text">ARROW: Approximating Reachability using Random walks Over Web-scale Graphs[ICDE’2019]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.1.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创新之处"><span class="nav-number">1.1.2.</span> <span class="nav-text">创新之处</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图神经网络"><span class="nav-number">2.</span> <span class="nav-text">图神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Semi-Supervised-Classification-with-Graph-Convolutional-Network-ICLR2017"><span class="nav-number">2.1.</span> <span class="nav-text">Semi-Supervised Classification with Graph Convolutional Network [ICLR2017]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">问题描述</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">2.1.2.</span> <span class="nav-text">做法及创新</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Graph-Collaborative-Filtering-SIGIR’19"><span class="nav-number">2.2.</span> <span class="nav-text">Neural Graph Collaborative Filtering[SIGIR’19]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-2"><span class="nav-number">2.2.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">做法及创新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-number">2.2.3.</span> <span class="nav-text">数据集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LightGCN-Simplifying-and-Powering-Graph-Convolution-Network-for-Recommendation-SIGIR’20"><span class="nav-number">2.3.</span> <span class="nav-text">LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation[SIGIR’20]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-3"><span class="nav-number">2.3.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-2"><span class="nav-number">2.3.2.</span> <span class="nav-text">做法及创新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集-1"><span class="nav-number">2.3.3.</span> <span class="nav-text">数据集</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库"><span class="nav-number">1.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ARROW-Approximating-Reachability-using-Random-walks-Over-Web-scale-Graphs-ICDE’2019"><span class="nav-number">1.1.</span> <span class="nav-text">ARROW: Approximating Reachability using Random walks Over Web-scale Graphs[ICDE’2019]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.1.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创新之处"><span class="nav-number">1.1.2.</span> <span class="nav-text">创新之处</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图神经网络"><span class="nav-number">2.</span> <span class="nav-text">图神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Semi-Supervised-Classification-with-Graph-Convolutional-Network-ICLR2017"><span class="nav-number">2.1.</span> <span class="nav-text">Semi-Supervised Classification with Graph Convolutional Network [ICLR2017]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">问题描述</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">2.1.2.</span> <span class="nav-text">做法及创新</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Graph-Collaborative-Filtering-SIGIR’19"><span class="nav-number">2.2.</span> <span class="nav-text">Neural Graph Collaborative Filtering[SIGIR’19]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-2"><span class="nav-number">2.2.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">做法及创新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-number">2.2.3.</span> <span class="nav-text">数据集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LightGCN-Simplifying-and-Powering-Graph-Convolution-Network-for-Recommendation-SIGIR’20"><span class="nav-number">2.3.</span> <span class="nav-text">LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation[SIGIR’20]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-3"><span class="nav-number">2.3.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-2"><span class="nav-number">2.3.2.</span> <span class="nav-text">做法及创新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集-1"><span class="nav-number">2.3.3.</span> <span class="nav-text">数据集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simplifying-Graph-Convolutional-Networks-PMLR’19"><span class="nav-number">2.4.</span> <span class="nav-text">Simplifying Graph Convolutional Networks[PMLR’19]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-4"><span class="nav-number">2.4.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-3"><span class="nav-number">2.4.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原始图卷积网络"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">原始图卷积网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简化图卷积网络"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">简化图卷积网络</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集-2"><span class="nav-number">2.4.3.</span> <span class="nav-text">数据集</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -702,7 +727,7 @@ c_{v\rightarrow u}=\frac{1}{\sqrt{|N_u||N_v|}}\sum_{i\in N_u\cap N_v}\frac{1}{|N
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共68.8k字</span>
+  <span class="post-count">小站全站共69.8k字</span>
 </div>
         
 
