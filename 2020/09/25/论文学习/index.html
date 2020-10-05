@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/09/29/0Z2M40.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2020/09/29/0evf4P.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/04/0JtcnS.png">
-<meta property="og:updated_time" content="2020-10-05T03:00:11.234Z">
+<meta property="og:updated_time" content="2020-10-05T03:10:35.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文学习">
 <meta name="twitter:description" content="对看过的论文做一个记录">
@@ -481,10 +481,10 @@ h_i^{(k)}\leftarrow \frac{1}{d_i+1}h_i^{(k-1)}+\sum^n_{j=1}\frac{a_{ij}}{\sqrt{(
 <script type="math/tex; mode=display">
 S=D^{-\frac{1}{2}}AD^{-\frac{1}{2}}</script><p>其中$A=A+I$，则隐层表示用矩阵的形式表示为：</p>
 <script type="math/tex; mode=display">
-H^{(k)}\leftarrow SH^{(k-1)}</script><p>Local averaging：this step smoothes the hidden representations locally<br>along the edges of the graph and ultimately encourages<br>similar predictions among locally connected nodes  </p>
+H^{(k)}\leftarrow SH^{(k-1)}</script><p>Local averaging：this step smoothes the hidden representations locally along the edges of the graph and ultimately encourages similar predictions among locally connected nodes  </p>
 <p>$\Theta^{(k)}$为第$K$层网络的权重矩阵：</p>
 <script type="math/tex; mode=display">
-H^{(k)}\leftarrow \text{ReLU}(H^{(k)}\Theta^{(k)})</script><p>$Y\in \R^{n\times C}$，$y_{ic}$表示第$i$个顶点属于类别$C$的概率</p>
+H^{(k)}\leftarrow \text{ReLU}(H^{(k)}\Theta^{(k)})</script><p>$Y\in R^{n\times C}$，$y_{ic}$表示第$i$个顶点属于类别$C$的概率</p>
 <script type="math/tex; mode=display">
 Y_{GCN}=\text{softmax}(SH^{(K-1)}\Theta^{(K)})</script><h4 id="简化图卷积网络"><a href="#简化图卷积网络" class="headerlink" title="简化图卷积网络"></a>简化图卷积网络</h4><blockquote>
 <p>在传统的多层感知机中，多层网络可以提高模型的表现力，是因为这样引入了特征之间的层级关系，例如第二层网络的特征是以第一层网络为基础构建的。而在图卷积网络中，这还有另外一层含义，在每一层中顶点的隐层表示都是以一跳的邻居进行平均，经过$K$层之后，一个顶点就能获得$K$跳邻居的特征信息。这类似于在卷积网路中网络的深度提升了特征的receptive field。</p>
