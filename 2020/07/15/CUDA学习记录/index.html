@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CUDA," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="原力小站" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="CUDA编程的学习笔记以及踩过的一些坑">
+<meta name="keywords" content="CUDA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CUDA学习笔记">
+<meta property="og:url" content="http://Bithub00.com/2020/07/15/CUDA学习记录/index.html">
+<meta property="og:site_name" content="原力小站">
+<meta property="og:description" content="CUDA编程的学习笔记以及踩过的一些坑">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/15/U0Mzd0.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/15/U01S8U.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/15/U01p2F.png">
+<meta property="og:updated_time" content="2020-10-08T07:21:34.283Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CUDA学习笔记">
+<meta name="twitter:description" content="CUDA编程的学习笔记以及踩过的一些坑">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/07/15/U0Mzd0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Bithub00.com/2020/07/15/CUDA学习记录/"/>
+
+
+
+
+
+  <title>CUDA学习笔记 | 原力小站</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43ca6a51990599ac3de948cb708d3909";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/BitHub00" 
+      class="github-corner" 
+      aria-label="View source on Github">
+      <svg width="80" height="80" viewBox="0 0 250 250" 
+      style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" 
+      aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+      </svg>
+    </a>
+      <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+      </style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">原力小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">扎导的原版正联出了吗？</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2020/07/15/CUDA学习记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.shuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="原力小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CUDA学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-15T21:04:08+08:00">
+                2020-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/07/15/CUDA学习记录/" class="leancloud_visitors" data-flag-title="CUDA学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,182
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>CUDA编程的学习笔记以及踩过的一些坑<br><a id="more"></a></p>
+<h1 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h1><h2 id="CUDA程序的执行流程："><a href="#CUDA程序的执行流程：" class="headerlink" title="CUDA程序的执行流程："></a>CUDA程序的执行流程：</h2><ol>
+<li>分配host内存，并进行数据初始化；</li>
+<li>分配device内存，并从host将数据拷贝到device上；</li>
+<li>调用CUDA的核函数在device上完成指定的运算；</li>
+<li>将device上的运算结果拷贝到host上；</li>
+<li>释放device和host上分配的内存。</li>
+</ol>
+<p>上面流程中最重要的一个过程是调用CUDA的核函数来执行并行计算，核函数用<strong>global</strong>符号声明，它在device上执行时实际上是启动很多线程，一个kernel所启动的所有线程称为一个网格（grid），同一个网格上的线程共享相同的全局内存空间，而网格又可以分为很多线程块（block），一个线程块里面包含很多线程。这构成了两层结构。</p>
+<p><img src="https://s1.ax1x.com/2020/07/15/U0Mzd0.png" alt=""></p>
+<h2 id="CUDA内存模型"><a href="#CUDA内存模型" class="headerlink" title="CUDA内存模型"></a>CUDA内存模型</h2><p>每个线程有自己的私有本地内存（Local Memory），而每个线程块（Block）有包含共享内存（Shared Memory）,可以被线程块中所有线程共享，其生命周期与线程块一致。此外，所有的线程都可以访问全局内存（Global Memory）。还可以访问一些只读内存块：常量内存（Constant Memory）和纹理内存（Texture Memory）</p>
+<h2 id="如何使用CUDA对程序进行优化"><a href="#如何使用CUDA对程序进行优化" class="headerlink" title="如何使用CUDA对程序进行优化"></a>如何使用CUDA对程序进行优化</h2><ol>
+<li>使用共享内存减少全局内存读取次数；从常量内存（Constant Memory）中读取数据相较于全局内存会更节省内存带宽，因为常量内存是缓存的，从相同的地址中连续读取数据不会带来额外的内存读取开销。</li>
+<li>流并行；通过多个流（stream）进行操作时，应该将所做的操作尽可能广地安排在各个流中，而不是尽可能地深，例如将内存拷贝和计算并行，其中的原理是：同一时刻cuda程序可以同时进行一个计算和数据传输。<br><img src="https://s1.ax1x.com/2020/07/15/U01S8U.png" alt="Stream1"><br><img src="https://s1.ax1x.com/2020/07/15/U01p2F.png" alt="Stream2"></li>
+<li>合并访问；线程块内相邻的线程访问相邻的数据。因为半束(16)线程的访问16字节的数据可以合为一个访问指令。</li>
+<li>使用零复制、锁页内存；零复制（zero copy）是一种特殊形式的内存映射，它允许你将host内存直接映射到device内存空间上。其实就是device可以通过直接内存访问（direct memory access，DMA）方式来访问host的锁页内存。 <blockquote>
+<p>现代操作系统都支持虚拟内存，操作系统实现虚拟内存的主要方法就是通过分页机制。将内存中暂时不使用的内容换出到外存（硬盘等大容量存储）上，从而腾出空间存放将要调入内存的信息。这样，系统好像为用户提供了一个比实际内存大得多的存储器，称为虚拟存储器。锁页（page-locked host memory）就是将内存页面标记为不可被操作系统换出的内存。所以device可以使用页面的物理地址直接访问内存（DMA），从而避免从外存到内存的复制操作。在GPU上分配的内存默认都是锁页内存，这是因为GPU不支持将内存交换到磁盘上。在CPU上分配的内存默认都是可分页。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="可能的挑战"><a href="#可能的挑战" class="headerlink" title="可能的挑战"></a>可能的挑战</h2><ul>
+<li>CUDA更多是面向过程，对具体算法改进，ICDE2019中用到了结构体，可能需要对原有数据结构做修改：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> destId;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> startTime;</span><br><span class="line"></span><br><span class="line">	Edge()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	Edge(<span class="keyword">int</span> isDestId, <span class="keyword">int</span> isStartTime)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> nodeId;</span><br><span class="line"></span><br><span class="line">	TrieTable *t;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">vector</span>&lt;Edge*&gt; presentEdges;</span><br><span class="line"></span><br><span class="line">	Node()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	Node(<span class="keyword">int</span> isNodeId)&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getIndexOfEdge</span><span class="params">(<span class="keyword">int</span> destId)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> destId, <span class="keyword">int</span> timestep, <span class="keyword">int</span> numLevels)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">removeEdge</span><span class="params">(<span class="keyword">int</span> destId, <span class="keyword">int</span> timestep, <span class="keyword">int</span> numLevels)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">trieHeightIncrease</span><span class="params">(<span class="keyword">int</span> timestep, <span class="keyword">int</span> numLevels)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">randomNeighbor</span><span class="params">(<span class="keyword">int</span> label, <span class="keyword">int</span> numBits, <span class="keyword">int</span> startTime, <span class="keyword">int</span> endTime)</span></span>&#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>来自NVIDIA社区的<a href="https://forums.developer.nvidia.com/t/integrate-cuda-to-an-existing-oop-application-re-design-everything/12153/2" target="_blank" rel="noopener">问答帖</a>：</p>
+<blockquote>
+<p>You don’t need to start from scratch, however for best performance you might need to restructure your data layout. Specifically, instead of a so-called “array of structures” (AoS) (or equivalently, array of classes) it is generally better to have a “structure of arrays” (SoA). For example, instead of<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">float</span> foo;</span><br><span class="line">   <span class="keyword">int</span> bar;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;Node&gt; nodes;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>you would want to store the member variables in separate arrays<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NodeVector</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">float</span>&gt; foo;</span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; bar;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="上次讨论留下的疑问"><a href="#上次讨论留下的疑问" class="headerlink" title="上次讨论留下的疑问"></a>上次讨论留下的疑问</h2><ol>
+<li><blockquote>
+<p>记录一下这个算法是不是有一些依赖关系，比如要计算2步A-&gt;B，B只有A执行完才能执行，但是A又没法很好的并行，导致A-&gt;B整体的开销都花在等待A结束上。</p>
+</blockquote>
+</li>
+</ol>
+<p>算法中的依赖方面，目前我看到的是，在对初始顶点与目标顶点进行随机漫步以查询之前，需要计算随机漫步长度这一参数，具体做法为在图中随机选取顶点进行10个回合的广度优先搜索，选取其中最长的一条路径再根据论文中给出的公式计算出参数值。这里可能存在一个先后次序A-&gt;B的问题，但广度优先搜索这一步跟随机漫步一样应该也是可以并行的，不会影响下一步的效率。</p>
+<ol>
+<li><blockquote>
+<p>注意一下随机sample的操作是不是很慢，这个操作要依赖随机数生成函数，你看看CUDA里是不是有办法batch的生成大量随机数，还是得依赖C++生成好随机数再传入CUDA的函数。</p>
+</blockquote>
+</li>
+</ol>
+<p>随机sample这一步还没有通过设定计时器去观察，而CUDA里有一个官方的用于生成随机数的库<a href="https://developer.nvidia.com/curand" target="_blank" rel="noopener">curand</a>，官方的说明为:</p>
+<blockquote>
+<p>Inline implementation allows use inside GPU functions/kernels, or in your host code</p>
+</blockquote>
+<p>应该是不需要依赖C++生成好随机数再传入CUDA的函数。</p>
+<h2 id="重构时的问题及解决"><a href="#重构时的问题及解决" class="headerlink" title="重构时的问题及解决"></a>重构时的问题及解决</h2><ol>
+<li><p>论文中涉及的数据结构较为复杂，在使用GPU进行并行计算时需要先将数据复制到GPU上，复制的步骤十分繁琐，容易出现内存访问出错的问题。</p>
+<blockquote>
+<p>CUDA6.0引入了统一内存的概念，大大简化了数据从CPU传到GPU这一步骤，只需要在host端分配好空间，写入数据，直接作为参数传入device端的核函数即可，CUDA会自动完成复制工作。</p>
+</blockquote>
+</li>
+<li><p>c++中的std在CUDA中不被支持，例如std::vector、std::sort等都无法使用。</p>
+<blockquote>
+<p>CUDA提供了Thrust库作为替代，提供了sort、host_vector、device_vector等，然而这些都是host端的实现，在device端无法调用。</p>
+</blockquote>
+</li>
+<li><p>Thrust作为host端的实现在device端无法调用，原数据结构中的类成员有vector<edge*>，在device端无法访问其中的数据。</edge*></p>
+<blockquote>
+<p>在后续CUDA版本中，thrust::sort可以在device端运行，只需加入参数thrust::sort(thrust::device, XX, XX)。vector在<strong>device</strong>函数中的访问仍不被支持，因此将原类成员vector<edge*>改成Edge **二维指针数组形式，vector读取完数据后，再复制到二维指针数组中，此时device端就可以访问其中的数据了。</edge*></p>
+</blockquote>
+</li>
+<li><p>调试时nvcc编译带上-g参数，使用cuda-gdb运行程序，可以在cu文件中设置断点，发生段错误后可以使用where命令来查明是哪一行导致的错误。</p>
+</li>
+<li><p>addKernel&lt;&lt;<60,1>&gt;&gt;(devA, devB, devC);这里的&lt;&lt;<60,501>&gt;&gt;的意思是，调用函数的时候，开出60个线程格，每个线程格包含501个线程。在global函数中通过代码int i = threadIdx.x + blockIdx.x*blockDim.x;得到当前线程是第几个线程。</60,501></60,1></p>
+</li>
+<li><p>Host调用完kernel函数需要进行线程同步,而在kernel或global函数只需要在必要的地方__syncthreads()即可:</p>
+</li>
+<li><p>这时dev_b会保存一个指向GPU内存的指针,但是CPU是无法访问GPU上面的数据,所以利用这个指针做任何获取数据或者赋值都是会出错的,理解这点对传递数据很重要 </p>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *dev_b = <span class="number">0</span></span><br><span class="line">cudaMalloc((<span class="keyword">void</span>**)&amp;dev_b, size * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>实用问答：</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/14790999/how-to-pass-a-c-class-with-array-of-pointers-to-cuda" target="_blank" rel="noopener">https://stackoverflow.com/questions/14790999/how-to-pass-a-c-class-with-array-of-pointers-to-cuda</a></li>
+<li><a href="https://stackoverflow.com/questions/9309195/copying-a-struct-containing-pointers-to-cuda-device" target="_blank" rel="noopener">https://stackoverflow.com/questions/9309195/copying-a-struct-containing-pointers-to-cuda-device</a></li>
+<li><a href="https://developer.nvidia.com/blog/unified-memory-in-cuda-6/" target="_blank" rel="noopener">统一内存</a></li>
+<li><a href="https://www.jianshu.com/p/7e1e0e2bde79" target="_blank" rel="noopener">教你一步步写一个cuda path tracer：cuda与类</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/55855479" target="_blank" rel="noopener">CUDA值得注意的特性(坑)</a></li>
+<li><a href="https://stackoverflow.com/questions/11874667/cuda-allocation-of-an-array-of-structs-inside-a-struct" target="_blank" rel="noopener">https://stackoverflow.com/questions/11874667/cuda-allocation-of-an-array-of-structs-inside-a-struct</a></li>
+<li><a href="https://forums.developer.nvidia.com/t/how-to-cudamalloc-two-dimensional-array/4042/9" target="_blank" rel="noopener">https://forums.developer.nvidia.com/t/how-to-cudamalloc-two-dimensional-array/4042/9</a></li>
+<li><a href="https://stackoverflow.com/questions/40682163/cuda-copy-inherited-class-object-to-device" target="_blank" rel="noopener">https://stackoverflow.com/questions/40682163/cuda-copy-inherited-class-object-to-device</a></li>
+<li><a href="https://stackoverflow.com/questions/16024087/copy-an-object-to-device" target="_blank" rel="noopener">https://stackoverflow.com/questions/16024087/copy-an-object-to-device</a></li>
+<li><a href="https://stackoverflow.com/questions/6929626/cuda-copy-to-array-within-array-of-objects" target="_blank" rel="noopener">https://stackoverflow.com/questions/6929626/cuda-copy-to-array-within-array-of-objects</a></li>
+<li><a href="https://stackoverflow.com/questions/5510715/thrust-inside-user-written-kernels" target="_blank" rel="noopener">https://stackoverflow.com/questions/5510715/thrust-inside-user-written-kernels</a></li>
+<li><a href="https://stackoverflow.com/questions/14284964/cuda-how-to-allocate-memory-for-data-member-of-a-class" target="_blank" rel="noopener">https://stackoverflow.com/questions/14284964/cuda-how-to-allocate-memory-for-data-member-of-a-class</a></li>
+<li><a href="https://forums.developer.nvidia.com/t/how-to-measure-total-time-for-cpu-and-gpu/28234/2" target="_blank" rel="noopener">https://forums.developer.nvidia.com/t/how-to-measure-total-time-for-cpu-and-gpu/28234/2</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CUDA/" rel="tag">#CUDA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/10/json报错/" rel="next" title="json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决">
+                <i class="fa fa-chevron-left"></i> json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/25/d2l/" rel="prev" title="d2l学习笔记">
+                d2l学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="Mr.shuan" />
+            
+              <p class="site-author-name" itemprop="name">Mr.shuan</p>
+              <p class="site-description motion-element" itemprop="description">May 4th be with you</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://joaquinchou.com/" title="喵语小站" target="_blank">喵语小站</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CUDA"><span class="nav-number">1.</span> <span class="nav-text">CUDA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CUDA程序的执行流程："><span class="nav-number">1.1.</span> <span class="nav-text">CUDA程序的执行流程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CUDA内存模型"><span class="nav-number">1.2.</span> <span class="nav-text">CUDA内存模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用CUDA对程序进行优化"><span class="nav-number">1.3.</span> <span class="nav-text">如何使用CUDA对程序进行优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可能的挑战"><span class="nav-number">1.4.</span> <span class="nav-text">可能的挑战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上次讨论留下的疑问"><span class="nav-number">1.5.</span> <span class="nav-text">上次讨论留下的疑问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重构时的问题及解决"><span class="nav-number">1.6.</span> <span class="nav-text">重构时的问题及解决</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.shuan</span>
+
+  
+</div>
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">原力小站已到访<span id="busuanzi_value_site_pv"></span>人次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">欢迎第<span id="busuanzi_value_site_uv"></span>位绝地武士
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <span class="post-meta-divider">|</span>
+  <span class="post-count">小站全站共72.9k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("yfqHuQnnOVtQFUYkBt8hCuPk-gzGzoHsz", "04fMIxrudywlX8NlYX71hCnM");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+
+</body>
+</html>
