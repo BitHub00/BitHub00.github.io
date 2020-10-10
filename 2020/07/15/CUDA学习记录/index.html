@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/07/15/U0Mzd0.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/07/15/U01S8U.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/07/15/U01p2F.png">
-<meta property="og:updated_time" content="2020-10-08T07:21:34.283Z">
+<meta property="og:updated_time" content="2020-10-10T01:22:12.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CUDA学习笔记">
 <meta name="twitter:description" content="CUDA编程的学习笔记以及踩过的一些坑">
@@ -355,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,182
+                  1,567
                 </span>
               
 
@@ -400,33 +400,6 @@
 </blockquote>
 </li>
 </ol>
-<h2 id="可能的挑战"><a href="#可能的挑战" class="headerlink" title="可能的挑战"></a>可能的挑战</h2><ul>
-<li>CUDA更多是面向过程，对具体算法改进，ICDE2019中用到了结构体，可能需要对原有数据结构做修改：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> destId;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> startTime;</span><br><span class="line"></span><br><span class="line">	Edge()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	Edge(<span class="keyword">int</span> isDestId, <span class="keyword">int</span> isStartTime)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> nodeId;</span><br><span class="line"></span><br><span class="line">	TrieTable *t;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">vector</span>&lt;Edge*&gt; presentEdges;</span><br><span class="line"></span><br><span class="line">	Node()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	Node(<span class="keyword">int</span> isNodeId)&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getIndexOfEdge</span><span class="params">(<span class="keyword">int</span> destId)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> destId, <span class="keyword">int</span> timestep, <span class="keyword">int</span> numLevels)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">removeEdge</span><span class="params">(<span class="keyword">int</span> destId, <span class="keyword">int</span> timestep, <span class="keyword">int</span> numLevels)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">trieHeightIncrease</span><span class="params">(<span class="keyword">int</span> timestep, <span class="keyword">int</span> numLevels)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">randomNeighbor</span><span class="params">(<span class="keyword">int</span> label, <span class="keyword">int</span> numBits, <span class="keyword">int</span> startTime, <span class="keyword">int</span> endTime)</span></span>&#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>来自NVIDIA社区的<a href="https://forums.developer.nvidia.com/t/integrate-cuda-to-an-existing-oop-application-re-design-everything/12153/2" target="_blank" rel="noopener">问答帖</a>：</p>
-<blockquote>
-<p>You don’t need to start from scratch, however for best performance you might need to restructure your data layout. Specifically, instead of a so-called “array of structures” (AoS) (or equivalently, array of classes) it is generally better to have a “structure of arrays” (SoA). For example, instead of<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">float</span> foo;</span><br><span class="line">   <span class="keyword">int</span> bar;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;Node&gt; nodes;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>you would want to store the member variables in separate arrays<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NodeVector</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">float</span>&gt; foo;</span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; bar;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="上次讨论留下的疑问"><a href="#上次讨论留下的疑问" class="headerlink" title="上次讨论留下的疑问"></a>上次讨论留下的疑问</h2><ol>
-<li><blockquote>
-<p>记录一下这个算法是不是有一些依赖关系，比如要计算2步A-&gt;B，B只有A执行完才能执行，但是A又没法很好的并行，导致A-&gt;B整体的开销都花在等待A结束上。</p>
-</blockquote>
-</li>
-</ol>
-<p>算法中的依赖方面，目前我看到的是，在对初始顶点与目标顶点进行随机漫步以查询之前，需要计算随机漫步长度这一参数，具体做法为在图中随机选取顶点进行10个回合的广度优先搜索，选取其中最长的一条路径再根据论文中给出的公式计算出参数值。这里可能存在一个先后次序A-&gt;B的问题，但广度优先搜索这一步跟随机漫步一样应该也是可以并行的，不会影响下一步的效率。</p>
-<ol>
-<li><blockquote>
-<p>注意一下随机sample的操作是不是很慢，这个操作要依赖随机数生成函数，你看看CUDA里是不是有办法batch的生成大量随机数，还是得依赖C++生成好随机数再传入CUDA的函数。</p>
-</blockquote>
-</li>
-</ol>
-<p>随机sample这一步还没有通过设定计时器去观察，而CUDA里有一个官方的用于生成随机数的库<a href="https://developer.nvidia.com/curand" target="_blank" rel="noopener">curand</a>，官方的说明为:</p>
-<blockquote>
-<p>Inline implementation allows use inside GPU functions/kernels, or in your host code</p>
-</blockquote>
-<p>应该是不需要依赖C++生成好随机数再传入CUDA的函数。</p>
 <h2 id="重构时的问题及解决"><a href="#重构时的问题及解决" class="headerlink" title="重构时的问题及解决"></a>重构时的问题及解决</h2><ol>
 <li><p>论文中涉及的数据结构较为复杂，在使用GPU进行并行计算时需要先将数据复制到GPU上，复制的步骤十分繁琐，容易出现内存访问出错的问题。</p>
 <blockquote>
@@ -662,7 +635,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CUDA"><span class="nav-number">1.</span> <span class="nav-text">CUDA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CUDA程序的执行流程："><span class="nav-number">1.1.</span> <span class="nav-text">CUDA程序的执行流程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CUDA内存模型"><span class="nav-number">1.2.</span> <span class="nav-text">CUDA内存模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用CUDA对程序进行优化"><span class="nav-number">1.3.</span> <span class="nav-text">如何使用CUDA对程序进行优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可能的挑战"><span class="nav-number">1.4.</span> <span class="nav-text">可能的挑战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上次讨论留下的疑问"><span class="nav-number">1.5.</span> <span class="nav-text">上次讨论留下的疑问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重构时的问题及解决"><span class="nav-number">1.6.</span> <span class="nav-text">重构时的问题及解决</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CUDA"><span class="nav-number">1.</span> <span class="nav-text">CUDA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CUDA程序的执行流程："><span class="nav-number">1.1.</span> <span class="nav-text">CUDA程序的执行流程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CUDA内存模型"><span class="nav-number">1.2.</span> <span class="nav-text">CUDA内存模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用CUDA对程序进行优化"><span class="nav-number">1.3.</span> <span class="nav-text">如何使用CUDA对程序进行优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重构时的问题及解决"><span class="nav-number">1.4.</span> <span class="nav-text">重构时的问题及解决</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -706,7 +679,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共72.9k字</span>
+  <span class="post-count">小站全站共72.3k字</span>
 </div>
         
 
