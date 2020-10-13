@@ -108,7 +108,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/13/0fpKeK.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/13/0fpWwT.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/13/0fpbOx.png">
-<meta property="og:updated_time" content="2020-10-13T00:30:55.766Z">
+<meta property="og:updated_time" content="2020-10-13T07:12:34.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文学习">
 <meta name="twitter:description" content="对看过的论文做一个记录">
@@ -360,7 +360,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,914
+                  3,040
                 </span>
               
 
@@ -556,7 +556,7 @@ h_v^k=\sigma(W·\text{MEAN}(\{h_v^{k-1}\}\cup\{h_u^{k-1},\forall u\in N(v) \})</
 
 <h4 id="Convolutional-Architecture"><a href="#Convolutional-Architecture" class="headerlink" title="Convolutional Architecture"></a>Convolutional Architecture</h4><p>最后一步就是应用卷积层提取特征，顶点和边的属性对应于传统图像CNN中的channel：</p>
 <p><img src="https://s1.ax1x.com/2020/10/13/0fpKeK.png" alt="0fpKeK.png" border="0"></p>
-<p>例子如下，演示每一层的卷积：</p>
+<p>假设顶点特征的数目为$a_v$，边的特征个数为$a_e$，$w$为选取的顶点个数，$k$为receptive field中的顶点个数，则对于输入的一系列图中的每一个，可以得到两个张量维度分别为$(w,k,a_v)、(w,k,k,a_e)$，可以变换为$(wk,a_v)、(wk^2,a_e)$，其中$a_v$与$a_e$可以看成是传统图像卷积中channel的个数，对它们做一维的卷积操作，第一个的receptive field的大小为$k$，第二个的receptive field的大小为$k^2$。</p>
 <p><img src="https://s1.ax1x.com/2020/10/13/0fpWwT.png" alt="0fpWwT.png" border="0"></p>
 <p>整体卷积结构：</p>
 <p><img src="https://s1.ax1x.com/2020/10/13/0fpbOx.png" alt="0fpbOx.png" border="0"></p>
@@ -794,7 +794,7 @@ h_v^k=\sigma(W·\text{MEAN}(\{h_v^{k-1}\}\cup\{h_u^{k-1},\forall u\in N(v) \})</
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共72.9k字</span>
+  <span class="post-count">小站全站共73.0k字</span>
 </div>
         
 
