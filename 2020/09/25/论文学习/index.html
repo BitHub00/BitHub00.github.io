@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/16/07O8PO.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/16/0H5cX6.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/16/0HbZlj.png">
-<meta property="og:updated_time" content="2020-10-16T07:24:54.937Z">
+<meta property="og:updated_time" content="2020-10-16T07:41:12.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文学习">
 <meta name="twitter:description" content="对看过的论文做一个记录">
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,602
+                  3,601
                 </span>
               
 
@@ -498,7 +498,7 @@ Y_{GCN}=\text{softmax}(SH^{(K-1)}\Theta^{(K)})</script><h4 id="简化图卷积�
 </blockquote>
 <p>保留local averaging，移除了非线性激活函数：</p>
 <script type="math/tex; mode=display">
-Y=\text{softmax}(S^KX\Theta^{(1)}\dots \Theta^{(K)})</script><p>其中$S^K$k可以预先进行计算，大大减少了模型的训练时间</p>
+Y=\text{softmax}(S^KX\Theta^{(1)}\dots \Theta^{(K)})</script><p>其中$S^K$可以预先进行计算，大大减少了模型的训练时间</p>
 <p>论文中证明了简化后的图卷积网络等价于谱空间的一个低通滤波器，它通过的低频信号对应于图中平滑后的特征</p>
 <h3 id="数据集-2"><a href="#数据集-2" class="headerlink" title="数据集"></a>数据集</h3><p>Cora、Citeseer、Pubmed、Reddit</p>
 <h2 id="Inductive-Representation-Learning-on-Large-Graphs"><a href="#Inductive-Representation-Learning-on-Large-Graphs" class="headerlink" title="Inductive Representation Learning on Large Graphs"></a>Inductive Representation Learning on Large Graphs</h2><h3 id="解决的问题-5"><a href="#解决的问题-5" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>对于学习图上顶点的embedding，现有的方法多为直推式学习，学习目标是直接生成当前顶点的embedding，不能泛化到未知顶点上</p>
@@ -569,11 +569,11 @@ h_v^k=\sigma(W·\text{MEAN}(\{h_v^{k-1}\}\cup\{h_u^{k-1},\forall u\in N(v) \})</
 <h3 id="做法及创新-6"><a href="#做法及创新-6" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="图卷积"><a href="#图卷积" class="headerlink" title="图卷积"></a>图卷积</h4><p><div align="center">
 <img src="https://s1.ax1x.com/2020/10/16/07O1IK.png" alt="1" border="0" width="70%">
 <img src="https://s1.ax1x.com/2020/10/16/07O8PO.png" alt="2" border="0" width="70%">
-</div><br>给定一个含$n$个顶点的图，其中顶点的特征构成的集合为$(\overrightarrow{h_1},\overrightarrow{h_2},\dots,\overrightarrow{h_n})$，$\overrightarrow{h_i}\in \R ^F$邻接矩阵为$A$。一个图卷积层根据已有的顶点特征和图的结构来计算一个新的特征集合$(\overrightarrow{h_1’},\overrightarrow{h_2’},\dots,\overrightarrow{h_n’})$，$\overrightarrow{h_i’}\in \R ^{F’}$</p>
-<p>每个图卷积层首先会进行特征转换，以特征矩阵$W$表示，$W\in \R ^{F’\times F}$它将特征向量线性转换为$\overrightarrow{g_i}=W\overrightarrow{h_i}$，再将新得到的特征向量以某种方式进行结合。为了利用邻域的信息，一种典型的做法如下：</p>
+</div><br>给定一个含$n$个顶点的图，其中顶点的特征构成的集合为$(\overrightarrow{h_1},\overrightarrow{h_2},\dots,\overrightarrow{h_n})$，$\overrightarrow{h_i}\in R^F$邻接矩阵为$A$。一个图卷积层根据已有的顶点特征和图的结构来计算一个新的特征集合$(\overrightarrow{h_1’},\overrightarrow{h_2’},\dots,\overrightarrow{h_n’})$，$\overrightarrow{h_i’}\in R^{F’}$</p>
+<p>每个图卷积层首先会进行特征转换，以特征矩阵$W$表示，$W\in R^{F’\times F}$它将特征向量线性转换为$\overrightarrow{g_i}=W\overrightarrow{h_i}$，再将新得到的特征向量以某种方式进行结合。为了利用邻域的信息，一种典型的做法如下：</p>
 <script type="math/tex; mode=display">
 \overrightarrow{h_i}'=\sigma\bigg(\sum_{j\in N_i}\alpha_{ij}\overrightarrow{g_j}\bigg)</script><p>其中$N_i$表示顶点$i$的邻域（典型的构造方式是选取直接相连的顶点，包括自身），$\alpha_{ij}$表示顶点$j$的特征对于顶点$i$的重要程度，也可以看成一种权重。</p>
-<p>现有的做法都是显式地定义$\alpha_{ij}$，本文的创新之处在于使用attention机制隐式地定义$\alpha_{ij}$。所使用的attention机制定义为$a:\R ^{F’}\times\R ^{F’} \rightarrow \R$，以一个权重向量$\overrightarrow{a}\in \R ^{2F’}$表示，对应于论文中的self-attention。</p>
+<p>现有的做法都是显式地定义$\alpha_{ij}$，本文的创新之处在于使用attention机制隐式地定义$\alpha_{ij}$。所使用的attention机制定义为$a:R^{F’}\times R^{F’} \rightarrow R$，以一个权重向量$\overrightarrow{a}\in R^{2F’}$表示，对应于论文中的self-attention。</p>
 <h4 id="算法流程-1"><a href="#算法流程-1" class="headerlink" title="算法流程"></a>算法流程</h4><h6 id="Self-attention"><a href="#Self-attention" class="headerlink" title="Self-attention"></a>Self-attention</h6><ol>
 <li><p>基于顶点的特征计算系数$e_{ij}$</p>
 <script type="math/tex; mode=display">
