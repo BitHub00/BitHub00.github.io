@@ -114,7 +114,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/16/0HbZlj.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BpCLz8.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BpEvLT.jpg">
-<meta property="og:updated_time" content="2020-10-20T11:01:02.337Z">
+<meta property="og:updated_time" content="2020-10-20T11:05:28.254Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文学习">
 <meta name="twitter:description" content="对看过的论文做一个记录">
@@ -614,6 +614,8 @@ $$
 ##### Multi-head attention
 
 为了稳定self-attention的学习过程，论文引入了multi-head attention，即由$K$个相互独立的self-attention得到各自的特征，再进行拼接：
+
+<img src="https://s1.ax1x.com/2020/10/16/0HbZlj.png" alt="0HbZlj.png" border="0" width="60%">
 $$
 \overrightarrow{h_i'}=\Vert_{k=1}^K\sigma\bigg(\sum_{j\in N_i}\alpha_{ij}^kW^k\overrightarrow{h_j}\bigg)
 $$
@@ -621,8 +623,6 @@ $$
 $$
 \overrightarrow{h_i'}=\sigma\bigg(\frac{1}{K}\sum_{k=1}^K\sum_{j\in N_i}\alpha_{ij}^kW^k\overrightarrow{h_j}\bigg)
 $$
-
-<img src="https://s1.ax1x.com/2020/10/16/0HbZlj.png" alt="0HbZlj.png" border="0" width="60%">
 
 ### 数据集
 Cora、Citeseer、Pubmed、PPI
