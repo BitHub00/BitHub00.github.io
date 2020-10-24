@@ -119,7 +119,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/22/BFGCkQ.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/22/BFaaAf.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/22/BkiNUU.png">
-<meta property="og:updated_time" content="2020-10-22T14:43:25.423Z">
+<meta property="og:updated_time" content="2020-10-24T15:02:01.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文学习">
 <meta name="twitter:description" content="对看过的论文做一个记录">
@@ -371,7 +371,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  6,578
+                  6,579
                 </span>
               
 
@@ -605,7 +605,7 @@ h_v^k=\sigma(W·\text{MEAN}(\{h_v^{k-1}\}\cup\{h_u^{k-1},\forall u\in N(v) \})</
 <img src="https://s1.ax1x.com/2020/10/16/07O1IK.png" alt="1" border="0" width="70%">
 <img src="https://s1.ax1x.com/2020/10/16/07O8PO.png" alt="2" border="0" width="70%">
 </div>
-给定一个含$n$个顶点的图，其中顶点的特征构成的集合为$(\overrightarrow{h_1},\overrightarrow{h_2},\dots,\overrightarrow{h_n})$，$\overrightarrow{h_i}\in R^F$邻接矩阵为$A$。一个图卷积层根据已有的顶点特征和图的结构来计算一个新的特征集合$(\overrightarrow{h_1'},\overrightarrow{h_2'},\dots,\overrightarrow{h_n'})$，$\overrightarrow{h_i'}\in R^{F'}$
+给定一个含$n$个顶点的图，其中顶点的特征构成的集合为$(\overrightarrow{h_1},\overrightarrow{h_2},\dots,\overrightarrow{h_n})$，$\overrightarrow{h_i}\in R^F$且邻接矩阵为$A$。一个图卷积层根据已有的顶点特征和图的结构来计算一个新的特征集合$(\overrightarrow{h_1'},\overrightarrow{h_2'},\dots,\overrightarrow{h_n'})$，$\overrightarrow{h_i'}\in R^{F'}$
 
 每个图卷积层首先会进行特征转换，以特征矩阵$W$表示，$W\in R^{F'\times F}$它将特征向量线性转换为$\overrightarrow{g_i}=W\overrightarrow{h_i}$，再将新得到的特征向量以某种方式进行结合。为了利用邻域的信息，一种典型的做法如下：
 $$
