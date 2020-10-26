@@ -121,7 +121,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/22/BkiNUU.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/26/BnaHGn.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/26/BnDu0f.png">
-<meta property="og:updated_time" content="2020-10-26T07:11:23.099Z">
+<meta property="og:updated_time" content="2020-10-26T07:18:26.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文学习">
 <meta name="twitter:description" content="对看过的论文做一个记录">
@@ -373,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  7,508
+                  7,504
                 </span>
               
 
@@ -618,9 +618,7 @@ $$
 
 现有的做法都是显式地定义$\alpha_{ij}$，本文的创新之处在于使用attention机制隐式地定义$\alpha_{ij}$。所使用的attention机制定义为$a:R^{F'}\times R^{F'} \rightarrow R$，以一个权重向量$\overrightarrow{a}\in R^{2F'}$表示，对应于论文中的self-attention。
 
-#### 算法流程
-
-##### Self-attention
+#### Self-attention
 
 1. 基于顶点的特征计算系数$e_{ij}$
 
@@ -642,7 +640,7 @@ $$
 \overrightarrow{h_i'}=\sigma\bigg(\sum_{j\in N_i}\alpha_{ij}W\overrightarrow{h_j}\bigg)
 $$
 
-#####  Multi-head attention
+####  Multi-head attention
 
 为了稳定self-attention的学习过程，论文引入了multi-head attention，即由$K$个相互独立的self-attention得到各自的特征，再进行拼接：
 
