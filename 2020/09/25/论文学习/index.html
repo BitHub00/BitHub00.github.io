@@ -73,6 +73,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="原力小站" type="application/atom+xml" />
 
@@ -123,7 +125,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/26/BnDu0f.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/29/BGDfOO.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/29/BGyXX6.png">
-<meta property="og:updated_time" content="2020-11-05T01:12:55.161Z">
+<meta property="og:updated_time" content="2020-11-05T01:39:25.417Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文学习">
 <meta name="twitter:description" content="对看过的论文做一个记录">
@@ -658,7 +660,7 @@ e_{ij}=\text{LeakyReLU}(p^TWh_i+q^TWh_j)</script><p>​    由softmax与LeakyReL
 <p>图$(a)$中的顶点位于核心区域，因此采用$4$层网络把几乎整个图的信息都进行聚合了，而不是它的邻域，这会导致过度平滑，而图$(b)$中顶点位于图边缘的一个树状结构中，采取同样的$4$层网络只囊括了一小部分顶点的信息，只有在第$5$层囊括了核心顶点之后才有效地囊括了更多顶点的信息。</p>
 <p>所以，对于处于核心区域的顶点，GCN中每多一层即每多一次卷积操作，节点的表达会更倾向全局，这导致核心区域的很多顶点的表示到最后没有区分性。对于这样的顶点应该减少GCN的层数来让顶点更倾向局部从而在表示上可以区分；而处于边缘的顶点，即使更新多次，聚合的信息也寥寥无几，对于这样的顶点应该增加GCN的层数，来学习到更充分的信息。因此，对于不同的顶点应该选取不同的层数，传统做法对于所有顶点都用一个值会带来偏差。</p>
 <h3 id="做法及创新-8"><a href="#做法及创新-8" class="headerlink" title="做法及创新"></a>做法及创新</h3><p>理论部分，论文主要讨论的问题是，在一个$k$层的GCN中，顶点$x$对顶点$y$的影响程度，即顶点$x$输入特征的改变，会对顶点$y$在最后一层得到的表示产生多大的变化，也可以说是顶点$y$对于顶点$x$有多敏感。假设输入的特征为$X\in R^{n\times f}$，输出的预测标签为$Z\in R^{n\times c}$，其中$n$为图中顶点数目，$c$为类别数目，$f$为特征数目，则这种影响程度可以表示为$I(x,y)=\sum_i\sum_j\frac{\partial Z_{yi}}{\partial X_{xj}}$。</p>
-<p>更特别地，论文证明了这个影响程度与从顶点$x$开始的$k$步随机漫步的分布有关，如果对$k$取极限$k\rightarrow \infin$，则随机漫步的分布会收敛到$P_{lim}(\rightarrow y)$。详细论证过程可见原文。这说明，结果与随机漫步的的起始顶点$x$没有关系，通过这种方法来得到$x$的邻域信息是不适用的。</p>
+<p>更特别地，论文证明了这个影响程度与从顶点$x$开始的$k$步随机漫步的分布有关，如果对$k$取极限$k\rightarrow \infty$，则随机漫步的分布会收敛到$P_{lim}(\rightarrow y)$。详细论证过程可见原文。这说明，结果与随机漫步的的起始顶点$x$没有关系，通过这种方法来得到$x$的邻域信息是不适用的。</p>
 <p>实践部分，论文提出JK-Net，通过Layer aggregation来让顶点最后的表示自适应地聚合不同层的信息，局部还是全部，让模型自己来学习：</p>
 <div align="center">
 <a href="https://imgchr.com/i/BpEvLT" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BpEvLT.jpg" alt="BpEvLT.jpg" border="0" width="50%"></a>
@@ -1010,7 +1012,7 @@ A_{\text{GAT}}(G)=[a_{ij}]_{n\times n}</script><p>其中$W\in R^{F’\times F}, 
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共79.1k字</span>
+  <span class="post-count">小站全站共78.6k字</span>
 </div>
         
 
