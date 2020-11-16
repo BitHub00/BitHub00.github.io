@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="用本文记录平时遇到的一些问题和解决方法，自己试过成功的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-16T02:57:17.389Z">
+<meta property="og:updated_time" content="2020-11-16T13:28:29.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用操作">
 <meta name="twitter:description" content="用本文记录平时遇到的一些问题和解决方法，自己试过成功的">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  419
+                  437
                 </span>
               
 
@@ -367,14 +367,11 @@
       
         <p>用本文记录平时遇到的一些问题和解决方法，自己试过成功的<br><a id="more"></a></p>
 <h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><ul>
-<li><p>修改Ubuntu的apt-get源为国内镜像源 <a href="https://blog.csdn.net/zgljl2012/article/details/79065174" target="_blank" rel="noopener">CSDN</a></p>
-</li>
-<li><p>Ubuntu16.04安装python3.5同时保留python2.7 <a href="https://askubuntu.com/questions/1142982/install-python-3-alongside-python-2-7-on-ubuntu-18-04" target="_blank" rel="noopener">askubuntu</a></p>
-</li>
-<li><p>修改Ubuntu的pip源为阿里源 <a href="https://blog.csdn.net/w5688414/article/details/104439181" target="_blank" rel="noopener">CSDN</a></p>
-</li>
-<li><p>win10安装ubuntu第一次开启时黑屏：netsh winsock reset<a href="https://zhuanlan.zhihu.com/p/93980116" target="_blank" rel="noopener">知乎</a></p>
-</li>
+<li>修改Ubuntu的apt-get源为国内镜像源 <a href="https://blog.csdn.net/zgljl2012/article/details/79065174" target="_blank" rel="noopener">CSDN</a></li>
+<li>Ubuntu16.04安装python3.5同时保留python2.7 <a href="https://askubuntu.com/questions/1142982/install-python-3-alongside-python-2-7-on-ubuntu-18-04" target="_blank" rel="noopener">askubuntu</a></li>
+<li>修改Ubuntu的pip源为阿里源 <a href="https://blog.csdn.net/w5688414/article/details/104439181" target="_blank" rel="noopener">CSDN</a></li>
+<li>win10安装ubuntu第一次开启时黑屏：netsh winsock reset<a href="https://zhuanlan.zhihu.com/p/93980116" target="_blank" rel="noopener">知乎</a></li>
+<li>动态查看GPU资源使用情况：watch -d -n 0.5 nvidia-smi</li>
 </ul>
 <h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="将conda环境加入jupyterlab"><a href="#将conda环境加入jupyterlab" class="headerlink" title="将conda环境加入jupyterlab"></a>将conda环境加入jupyterlab</h4><p>假设conda中现有一个虚拟环境star，现在想把它作为kernel加入到jupyterlab中，注意虚拟环境与kernel并不是同步的，即使激活star这个虚拟环境之后打开jupyterlab，使用的kernel仍然是默认的python环境，如果要使用star里面安装的各种版本的库，需要进行如下步骤：</p>
 <blockquote>
