@@ -102,10 +102,10 @@
   
   <entry>
     <title>常用操作</title>
-    <link href="http://Bithub00.com/2020/06/08/ubuntu%E6%93%8D%E4%BD%9C/"/>
-    <id>http://Bithub00.com/2020/06/08/ubuntu操作/</id>
+    <link href="http://Bithub00.com/2020/06/08/%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
+    <id>http://Bithub00.com/2020/06/08/实用技巧/</id>
     <published>2020-06-08T02:31:17.355Z</published>
-    <updated>2020-11-16T02:54:33.033Z</updated>
+    <updated>2020-11-16T02:57:17.389Z</updated>
     
     <content type="html"><![CDATA[<p>用本文记录平时遇到的一些问题和解决方法，自己试过成功的<br><a id="more"></a></p><h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><ul><li><p>修改Ubuntu的apt-get源为国内镜像源 <a href="https://blog.csdn.net/zgljl2012/article/details/79065174" target="_blank" rel="noopener">CSDN</a></p></li><li><p>Ubuntu16.04安装python3.5同时保留python2.7 <a href="https://askubuntu.com/questions/1142982/install-python-3-alongside-python-2-7-on-ubuntu-18-04" target="_blank" rel="noopener">askubuntu</a></p></li><li><p>修改Ubuntu的pip源为阿里源 <a href="https://blog.csdn.net/w5688414/article/details/104439181" target="_blank" rel="noopener">CSDN</a></p></li><li><p>win10安装ubuntu第一次开启时黑屏：netsh winsock reset<a href="https://zhuanlan.zhihu.com/p/93980116" target="_blank" rel="noopener">知乎</a></p></li></ul><h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="将conda环境加入jupyterlab"><a href="#将conda环境加入jupyterlab" class="headerlink" title="将conda环境加入jupyterlab"></a>将conda环境加入jupyterlab</h4><p>假设conda中现有一个虚拟环境star，现在想把它作为kernel加入到jupyterlab中，注意虚拟环境与kernel并不是同步的，即使激活star这个虚拟环境之后打开jupyterlab，使用的kernel仍然是默认的python环境，如果要使用star里面安装的各种版本的库，需要进行如下步骤：</p><blockquote><ol><li>conda activate star</li><li>conda install ipykernel #安装 ipykernel库</li><li>ipython kernel install —user —name=star # —user表示当前用户</li><li>jupyter-lab #启动jupyterlab</li></ol></blockquote><h4 id="远程使用jupyterlab"><a href="#远程使用jupyterlab" class="headerlink" title="远程使用jupyterlab"></a>远程使用jupyterlab</h4><p>有时如果需要利用服务器上的GPU资源来跑一些模型，就需要在服务器上运行jupyterlab，具体步骤如下：</p><blockquote><p>首先建立ssh连接，将usr、remote_server、port_num替换</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ssh -f usr@remote_server -N -L port_num:localhost:port_num</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></blockquote><p>&gt;</p><blockquote><p>如果需要，输入登录密码。之后再进行一次ssh连接登陆远程服务器</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ssh -X usr@remote_server</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></blockquote><p>&gt;</p><blockquote><p>运行jupyterlab，port_num与刚才选择的要保持一致，不与常见端口冲突即可，例如选择当天的日期1116等</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; jupyter-lab --no-browser --port=port_num</span><br><span class="line">&gt; </span><br><span class="line">&gt; To access the notebook, open this file <span class="keyword">in</span> a browser:</span><br><span class="line">&gt;         file:///xxxxxxxxxxxxxxxxxxxxx.html</span><br><span class="line">&gt;     Or copy and paste one of these URLs:</span><br><span class="line">&gt;         http://localhost:port_num/?token=jupyterlab_token</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></blockquote><p>&gt;</p><blockquote><p>复制cmd窗口最后一行的地址，在本地浏览器中打开，就可以使用服务器的资源来运行jupyterlab了。</p></blockquote>]]></content>
     
@@ -116,7 +116,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="http://Bithub00.com/tags/Linux/"/>
+      <category term="python" scheme="http://Bithub00.com/tags/python/"/>
+    
+      <category term="Ubuntu" scheme="http://Bithub00.com/tags/Ubuntu/"/>
     
   </entry>
   
