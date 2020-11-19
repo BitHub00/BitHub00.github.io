@@ -89,10 +89,14 @@
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="用本文记录平时遇到的一些问题和解决方法，自己试过成功的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-16T13:28:29.875Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/06/10/toiGm4.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8CvYlj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8Cvt6s.png">
+<meta property="og:updated_time" content="2020-11-19T07:52:49.795Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用操作">
 <meta name="twitter:description" content="用本文记录平时遇到的一些问题和解决方法，自己试过成功的">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/06/10/toiGm4.png">
 
 
 
@@ -340,7 +344,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  437
+                  793
                 </span>
               
 
@@ -401,6 +405,26 @@
 <blockquote>
 <p>复制cmd窗口最后一行的地址，在本地浏览器中打开，就可以使用服务器的资源来运行jupyterlab了。</p>
 </blockquote>
+<h4 id="json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><a href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决" class="headerlink" title="json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决"></a>json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</h4><p><strong>解决方法</strong><br>将判断条件由</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br></pre></td></tr></table></figure>
+<p>改为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> response.content:</span><br></pre></td></tr></table></figure></p>
+<p>  <img src="https://s1.ax1x.com/2020/06/10/toiGm4.png" alt=""></p>
+<h4 id="Pycharm-from-xx-import出错"><a href="#Pycharm-from-xx-import出错" class="headerlink" title="Pycharm from xx import出错"></a>Pycharm from xx import出错</h4><p><strong>错误描述</strong><br>使用Pycharm的时候，使用from引入自己模块报错：<br><img src="https://s2.ax1x.com/2020/03/10/8CvYlj.png" alt=""></p>
+<p><strong>原因</strong><br>pycharm不会将当前文件目录自动加入sourse_path，右键源代码目录make_directory as–&gt;sources root将当前工作的文件夹加入就行了</p>
+<p><strong>解决方案</strong><br><img src="https://s2.ax1x.com/2020/03/10/8Cvt6s.png" alt=""></p>
+<h4 id="Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案"><a href="#Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案" class="headerlink" title="Selenium TypeError  init() takes 2 positional arguments but 3 were given_解决方案"></a>Selenium TypeError  <strong>init</strong>() takes 2 positional arguments but 3 were given_解决方案</h4><p><strong>错误描述</strong><br>执行以下代码时会报错：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wait = WebDriverWait(browser, <span class="number">10</span>)</span><br><span class="line">input = wait.until</span><br><span class="line">(</span><br><span class="line">    EC.presence_of_element_located</span><br><span class="line">    (</span><br><span class="line">        By.ID, <span class="string">'search'</span> </span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>PyCharm会提示：TypeError: <strong>init</strong>() takes 2 positional arguments but 3 were given。</p>
+<p><strong>问题来源</strong><br>在<a href="https://github.com/SeleniumHQ/selenium/blob/80adb709873815b88bb57494a6908f8b86285766/py/selenium/webdriver/support/expected_conditions.py#L53" target="_blank" rel="noopener">expected conditions.py</a>中找到<a href="https://github.com/SeleniumHQ/selenium/blob/80adb709873815b88bb57494a6908f8b86285766/py/selenium/webdriver/support/expected_conditions.py#L53" target="_blank" rel="noopener">presence_of_element_located</a>类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">presence_of_element_located</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">""" An expectation for checking that an element is present on the DOM</span></span><br><span class="line"><span class="string">    of a page. This does not necessarily mean that the element is visible.</span></span><br><span class="line"><span class="string">    locator - used to find the element</span></span><br><span class="line"><span class="string">    returns the WebElement once it is located</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, locator)</span>:</span></span><br><span class="line">        self.locator = locator</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, driver)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> _find_element(driver, self.locator)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EC.presence_of_element_located</span><br><span class="line">    (</span><br><span class="line">        By.ID, <span class="string">'search'</span> </span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<p>这里如果不加小括号，相当于输入了三个参数:self、By.ID、’search’，而presence_of_element_located类的_init_方法取的是两个参数self、locator，其中locator调用的是一个tuple(元组)，所以添加小括号后将(By.ID, ‘search’)作为一个整体对应于一个参数</p>
+<p><strong>解决方案</strong><br>添加小括号</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EC.presence_of_element_located</span><br><span class="line">    (</span><br><span class="line">        (By.ID, <span class="string">'search'</span> )</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<p>参考资料</p>
+<ol>
+<li><a href="https://stackoverflow.com/questions/23661734/selenium-visibility-of-element-located-init-takes-exactly-2-arguments" target="_blank" rel="noopener">stackoverflow</a></li>
+</ol>
 
       
     </div>
@@ -433,8 +457,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/10/from import错误/" rel="next" title="Pycharm from xx import出错">
-                <i class="fa fa-chevron-left"></i> Pycharm from xx import出错
+              <a href="/2019/11/18/计量经济学/" rel="next" title="计量经济学课程笔记">
+                <i class="fa fa-chevron-left"></i> 计量经济学课程笔记
               </a>
             
           </div>
@@ -443,8 +467,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/06/10/json报错/" rel="prev" title="json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决">
-                json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/07/15/CUDA学习记录/" rel="prev" title="CUDA学习笔记">
+                CUDA学习笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -529,7 +553,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -596,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将conda环境加入jupyterlab"><span class="nav-number">2.1.</span> <span class="nav-text">将conda环境加入jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程使用jupyterlab"><span class="nav-number">2.2.</span> <span class="nav-text">远程使用jupyterlab</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将conda环境加入jupyterlab"><span class="nav-number">2.1.</span> <span class="nav-text">将conda环境加入jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程使用jupyterlab"><span class="nav-number">2.2.</span> <span class="nav-text">远程使用jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><span class="nav-number">2.3.</span> <span class="nav-text">json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pycharm-from-xx-import出错"><span class="nav-number">2.4.</span> <span class="nav-text">Pycharm from xx import出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案"><span class="nav-number">2.5.</span> <span class="nav-text">Selenium TypeError  init() takes 2 positional arguments but 3 were given_解决方案</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -640,7 +664,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共79.0k字</span>
+  <span class="post-count">小站全站共79.3k字</span>
 </div>
         
 
