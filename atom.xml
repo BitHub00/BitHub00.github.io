@@ -273,7 +273,7 @@
     <link href="http://Bithub00.com/2020/12/22/GCN%5BICLR17%5D/"/>
     <id>http://Bithub00.com/2020/12/22/GCN[ICLR17]/</id>
     <published>2020-12-22T02:57:04.922Z</published>
-    <updated>2020-12-22T03:19:29.809Z</updated>
+    <updated>2020-12-22T03:26:43.534Z</updated>
     
     <content type="html"><![CDATA[<p>GCN的原始论文，发表于2017年的ICLR会议</p><a id="more"></a><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>如何将神经网络应用在图结构数据上？</p><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>给定以下输入：  </p><ol><li>图中顶点的特征矩阵$H\in \mathbb{R}^{n\times F}$，其中$n$为顶点数量，$F$为特征数量  </li><li>图的结构信息，如邻接矩阵$A$  </li></ol><p>输出：  </p><ol><li>图中顶点新的的特征表示$H’\in \mathbb{R}^{n\times F’}$，即</li></ol><script type="math/tex; mode=display">H'=\text{GCN(H)}=g(AHW^T+b)</script><p>如果套用神经网络模型，每一层可以用一个非线性函数进行表示：</p><script type="math/tex; mode=display">H^{(l+1)}=f(H^{(l)},A)</script><p>其中$H^{(0)}=X,H^{(L)}=Z$，问题在于如何选取函数$f(.,.)$</p><h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><p>对于函数$f(.,.)$的选取，论文中提出了一种可能的函数形式：  </p><script type="math/tex; mode=display">f(H^{(l)},A)=\sigma(\hat{D}^{-\frac{1}{2}}\hat{A}\hat{D}^{-\frac{1}{2}}H^{(l)}W^{(l)}) \\</script><p>其中$\hat{A}=A+I$，因为与矩阵$A$相乘表示对于每个顶点，我们对除了自身外所有邻居顶点的特征向量进行求和，因此加上单位矩阵是为了引入自环。而正则化是避免与矩阵$A$相乘改变特征向量的规模。实际在论文中只使用两层网络就达到了很好的效果，表示为：</p><script type="math/tex; mode=display">Z_{\text{GCN}}=\text{softmax}\big(\hat{A'}\text{ReLU}\big(\hat{A'}XW_0\big)W_1\big)</script><p>其中$W_0、W_1$为这两层网络的参数，$\hat{A’}=\hat{D}^{-\frac{1}{2}}\hat{A}\hat{D}^{-\frac{1}{2}}$，$Z\in R\mathbb{R}{n\times c}$为预测的顶点标签，$c$为类别数目，毕竟论文解决的就是一个分类问题。</p><p>更一般地，使用邻域信息的图神经网络形式可以概括为：</p><script type="math/tex; mode=display">h_v^{(l)}=\sigma\bigg(W_l·\text{AGGREGATE}\bigg(\{h_u^{(l-1)},\forall u\in N(v)\} \bigg)\bigg)</script><p>其中$W_l$是第$l$层网络的权重矩阵，$\text{AGGREGATE}$是与特定模型相关的聚合函数，$h_v^{(l)}$是顶点$v$在第$l$层的隐层特征表示。论文中只是用了一个两层网络就达到了很好的效果。</p><p>将论文所提出的函数改写为上述形式，即为：</p><script type="math/tex; mode=display">h_v^{(l)}=\text{ReLU}\Big(W_l·\sum_{u\in N(v)}(deg(v)deg(u))^{-1/2}h_u^{(l-1)}\Big)</script><p>其中$deg(u)$为顶点$u$的度。</p><p><a href="https://papers.nips.cc/paper/2018/file/01eee509ee2f68dc6014898c309e86bf-Paper.pdf" target="_blank" rel="noopener">AS-GCN</a>中对这篇论文的模型形式描述如下：</p><script type="math/tex; mode=display">h_{v_i}^{(l)}=\sigma\Big(W_l·\sum_{j=1}^Na(v_i,u_j)·h_{u_j}^{(l-1)}\Big),i=1,\dots,N</script><p>这里$A=(a(v_i,u_j))\in \mathbb{R}^{N\times N}$对应前面一种写法的正则化邻接矩阵$\hat{A’}$，表面上看对于顶点$v_i$，需要考虑将图中剩下的所有顶点的上一时刻的隐层表示做加权和，来作为它当前时刻的隐层表示，因为$j$的取值范围为$[1,N]$，$N$就是图中顶点的数量。但实际上，大多数顶点因为与$v_i$并无边相连，所以邻接矩阵中对应的值为0，意味着在加权和中的权重为0，相当于加权和时只会考虑有边相连的顶点，这同样是考虑邻域，只不过跟上面那种写法不同。</p>]]></content>
     
@@ -284,7 +284,7 @@
     </summary>
     
     
-      <category term="数据库" scheme="http://Bithub00.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="图神经网络" scheme="http://Bithub00.com/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
