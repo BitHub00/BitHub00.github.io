@@ -128,7 +128,7 @@
 <meta property="og:image" content="https://s3.ax1x.com/2020/12/21/rBuFzt.png">
 <meta property="og:image" content="https://s3.ax1x.com/2020/12/21/rBK7g1.png">
 <meta property="og:image" content="https://s3.ax1x.com/2020/12/21/rBYtjH.png">
-<meta property="og:updated_time" content="2020-12-22T02:24:34.361Z">
+<meta property="og:updated_time" content="2020-12-22T02:40:55.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文学习">
 <meta name="twitter:description" content="对看过的论文做一个记录">
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  10,805
+                  10,803
                 </span>
               
 
@@ -742,7 +742,7 @@ s_h=W_3[s_l;s_g]</script><h4 id="Making-Recommendation"><a href="#Making-Recomme
 <h4 id="CKG-Embedding-Layer"><a href="#CKG-Embedding-Layer" class="headerlink" title="CKG Embedding Layer"></a>CKG Embedding Layer</h4><p>知识图谱的一般形式可以表示为三元组的集合$\{(h,r,t)\}$，表示头实体$h$与尾实体$t$之间有关系$r$，例如$\text{(Hugh Jackman,ActorOf,Logan)}$表示狼叔是电影罗根的演员，这是一种主动的关系，自然就有逆向的被动关系。而对于用户-物品交互信息来说，通常的表示形式为一个矩阵$R$，$R_{ui}$表示用户$u$与物品$i$的关系，有交互则值为1，否则为0。因此，为了统一两种表示形式，论文中将用户-物品交互信息同样改成三元组的集合$\text$，这样一来得到的统一后的新图称之为Collaborative Knowledge Graph(CKG)。</p>
 <p>第一个步骤是对CKG做embedding，得到图中顶点和边的向量表示形式。论文使用了知识图谱中常用的一个方法$\text{TransR}$，即对于一个三元组$(h,r,t)$，目标为：</p>
 <script type="math/tex; mode=display">
-e_h^r+e_r\approx e_t^r</script><p>其中$e_h,e_t\in R\mathbb{R}d、e_r\in R\mathbb{R}k$分别为$h、t、r$的embedding，而$e_h^r,e_t^r$为$e_h、e_t$在$r$所处空间中的投影，损失函数定义为：</p>
+e_h^r+e_r\approx e_t^r</script><p>其中$e_h,e_t\in \mathbb{R}d、e_r\in \mathbb{R}k$分别为$h、t、r$的embedding，而$e_h^r,e_t^r$为$e_h、e_t$在$r$所处空间中的投影，损失函数定义为：</p>
 <script type="math/tex; mode=display">
 g(h,r,t)=||W_re_h+e_r-W_re_t||^2_2</script><p>值越小说明该三元组在知识图谱中更可能存在，即头实体$h$与尾实体$t$之间更可能有关系$r$。经过这一步骤之后，CKG中所有的顶点及边我们都得到了它们的embedding。</p>
 <h4 id="Attentive-Embedding-Propagation-Layers"><a href="#Attentive-Embedding-Propagation-Layers" class="headerlink" title="Attentive Embedding Propagation Layers"></a>Attentive Embedding Propagation Layers</h4><p>第二个步骤直接用的GCN与GAT的想法，在一层embedding propagation layer中，利用图卷积网络在邻域中进行信息传播，利用注意力机制来衡量邻域中各邻居顶点的重要程度。再通过堆叠$l$层来聚合$l$阶邻居顶点的信息。</p>
