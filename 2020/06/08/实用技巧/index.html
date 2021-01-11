@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/06/10/toiGm4.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8CvYlj.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8Cvt6s.png">
-<meta property="og:updated_time" content="2020-11-19T07:52:49.795Z">
+<meta property="og:updated_time" content="2021-01-11T12:20:44.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用操作">
 <meta name="twitter:description" content="用本文记录平时遇到的一些问题和解决方法，自己试过成功的">
@@ -344,7 +344,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  793
+                  1,109
                 </span>
               
 
@@ -377,6 +377,16 @@
 <li>win10安装ubuntu第一次开启时黑屏：netsh winsock reset<a href="https://zhuanlan.zhihu.com/p/93980116" target="_blank" rel="noopener">知乎</a></li>
 <li>动态查看GPU资源使用情况：watch -d -n 0.5 nvidia-smi</li>
 </ul>
+<h4 id="Linux通过ssh传输文件"><a href="#Linux通过ssh传输文件" class="headerlink" title="Linux通过ssh传输文件"></a>Linux通过ssh传输文件</h4><p>当我们需要下载或上传远程服务器上的某个文件，而服务器没有配置ftp服务器等途径时，使用scp命令可以轻松达到目的。</p>
+<h5 id="下载远程服务器上的文件"><a href="#下载远程服务器上的文件" class="headerlink" title="下载远程服务器上的文件"></a>下载远程服务器上的文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P 8888 root@xx.xx.xx.xx:/root/usr/abc.tar.gz /home/usr/abc.tar.gz</span><br></pre></td></tr></table></figure>
+<p>-P为端口参数，8888表示更改SSH端口后的端口，如果没有更改可以不用添加这个参数。root@xx.xx.xx.xx表示以root用户登陆服务器xx.xx.xx.xx，:/root/usr/abc.tar.gz表示服务器上的文件，/home/usr/abc.tar.gz表示保存在本地的路径和文件名。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P 8888 -r root@xx.xx.xx.xx:/root/usr/ /home/usr/</span><br></pre></td></tr></table></figure>
+<p>-r参数表示递归复制，即用来复制该目录下面的文件和子目录。</p>
+<h5 id="上传本地文件到远程服务器"><a href="#上传本地文件到远程服务器" class="headerlink" title="上传本地文件到远程服务器"></a>上传本地文件到远程服务器</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P 8888 /home/usr/abc.tar.gz root@xx.xx.xx.xx:/root/usr/abc.tar.gz</span><br></pre></td></tr></table></figure>
+<p>同理，将本地的/home/usr/abc.tar.gz上传到服务器上的/root/usr/文件夹中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P 8888 -r /home/usr/ root@xx.xx.xx.xx:/root/usr/</span><br></pre></td></tr></table></figure>
+<p>类似地，上传整个目录。</p>
+<p>另一个参数-v可以用来显示进度 . 查看连接 , 认证 , 或是配置错误。</p>
 <h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="将conda环境加入jupyterlab"><a href="#将conda环境加入jupyterlab" class="headerlink" title="将conda环境加入jupyterlab"></a>将conda环境加入jupyterlab</h4><p>假设conda中现有一个虚拟环境star，现在想把它作为kernel加入到jupyterlab中，注意虚拟环境与kernel并不是同步的，即使激活star这个虚拟环境之后打开jupyterlab，使用的kernel仍然是默认的python环境，如果要使用star里面安装的各种版本的库，需要进行如下步骤：</p>
 <blockquote>
 <ol>
@@ -620,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将conda环境加入jupyterlab"><span class="nav-number">2.1.</span> <span class="nav-text">将conda环境加入jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程使用jupyterlab"><span class="nav-number">2.2.</span> <span class="nav-text">远程使用jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><span class="nav-number">2.3.</span> <span class="nav-text">json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pycharm-from-xx-import出错"><span class="nav-number">2.4.</span> <span class="nav-text">Pycharm from xx import出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案"><span class="nav-number">2.5.</span> <span class="nav-text">Selenium TypeError  init() takes 2 positional arguments but 3 were given_解决方案</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux通过ssh传输文件"><span class="nav-number">1.1.</span> <span class="nav-text">Linux通过ssh传输文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载远程服务器上的文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载远程服务器上的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上传本地文件到远程服务器"><span class="nav-number">1.1.2.</span> <span class="nav-text">上传本地文件到远程服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将conda环境加入jupyterlab"><span class="nav-number">2.1.</span> <span class="nav-text">将conda环境加入jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程使用jupyterlab"><span class="nav-number">2.2.</span> <span class="nav-text">远程使用jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><span class="nav-number">2.3.</span> <span class="nav-text">json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pycharm-from-xx-import出错"><span class="nav-number">2.4.</span> <span class="nav-text">Pycharm from xx import出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案"><span class="nav-number">2.5.</span> <span class="nav-text">Selenium TypeError  init() takes 2 positional arguments but 3 were given_解决方案</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -664,7 +674,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共95.7k字</span>
+  <span class="post-count">小站全站共96.0k字</span>
 </div>
         
 
