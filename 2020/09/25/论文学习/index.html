@@ -141,7 +141,7 @@
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/10/slFHhQ.jpg">
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/10/slFz7T.jpg">
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/10/slk1gA.jpg">
-<meta property="og:updated_time" content="2021-01-10T03:25:51.626Z">
+<meta property="og:updated_time" content="2021-01-11T04:48:29.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文学习">
 <meta name="twitter:description" content="对看过的论文做一个记录">
@@ -1034,7 +1034,7 @@ Ciao、Epinions
 \mu=\text{GCN}_{\mu}(X,A)=\tilde{A}\bar{X}W_1\\
 \log\sigma^2=\text{GCN}_{\sigma}(X,A)=\tilde{A}\bar{X}W_1</script><p>将两层网络的表达式合并可以得到编码器的表达式：</p>
 <script type="math/tex; mode=display">
-\text{GCN}(X,A)=\tilde{A}\text{ReLU}(\tilde{A}XW_0)W_1</script><p>同样地使用重参数技巧来得到低维向量表示$Z=\mu+\sigma*\epsilon$。</p>
+\text{GCN}(X,A)=\tilde{A}\text{ReLU}(\tilde{A}XW_0)W_1</script><p>同样地使用重参数技巧来得到低维向量表示$Z=\mu+\sigma*\epsilon$。  </p>
 <p>编码器重构出图的邻接矩阵，从而得到一个新的图。之所以使用点积的形式来得到邻接矩阵，原因在于我们希望学习到每个顶点的低维向量表示$z$的相似程度，来更好地重构邻接矩阵。而点积可以计算两个向量之间的cosine相似度，这种距离度量方式不受量纲的影响。因此，重构的邻接矩阵可以学习到各个顶点之间的相似程度。</p>
 <script type="math/tex; mode=display">
 \hat{A}=\sigma(zz^T)</script><p>损失函数用于衡量生草样本与真是样本之间的差异，但如果只用距离度量作为损失函数，为了让编码器的效果最佳，模型会将方差的值学为0，这样从正态分布中采样出来的就是定值，有利于减小生成样本和真实样本之间的差异。但这样一来，就退化成了普通的自编码器，因此在构建损失函数时，往往还会加入各独立正态分布与标准正态分布的KL散度，来使得各个正态分布逼近标准正态分布：</p>

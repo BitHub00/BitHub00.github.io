@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/10/slFHhQ.jpg">
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/10/slFz7T.jpg">
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/10/slk1gA.jpg">
-<meta property="og:updated_time" content="2021-01-10T03:26:07.089Z">
+<meta property="og:updated_time" content="2021-01-11T04:48:15.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Variational Graph Auto-Encoders[NIPS&#39;16]">
 <meta name="twitter:description" content="NIPS16一篇将变分自编码器迁移到图结构数据上的论文">
@@ -397,13 +397,13 @@
 <div align="center">
 <a href="https://imgchr.com/i/slPgED" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/10/slPgED.jpg" alt="slPgED.jpg" border="0" width="80%"></a>
 </div>
-采样时常用"重参数"技巧(reparameterization trick)，从分布$N(\mu,\sigma^2)$中采样一个$Z$相当于从$N(0,1)$中采样一个$\epsilon$使得$Z=\mu+\sigma*\epsilon$。
+采样时常用"重参数"技巧(reparameterization trick)，从分布$N(\mu,\sigma^2)$中采样一个$Z$相当于从$N(0,1)$中采样一个$\epsilon$使得$Z=\mu+\sigma*\epsilon$。  
 
 #### 图变分自编码器
 
 介绍完传统的变分自编码器，接下来就是介绍这篇论文的工作，如何将变分自编码器的思想迁移到图上。
 
-针对图这个数据结构，输入的数据变为图的邻接矩阵$A$与特征矩阵$X$：
+针对图这个数据结构，输入的数据变为图的邻接矩阵$A$与特征矩阵$X$：  
 邻接矩阵$A$：
 
 <div align="center">
