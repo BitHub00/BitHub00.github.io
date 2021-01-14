@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2021-01-11T04:48:15.109Z</updated>
+  <updated>2021-01-14T14:47:05.960Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Inductive Matrix Completion Based on Graph Neural Networks[ICLR&#39;20]</title>
+    <link href="http://Bithub00.com/2021/01/14/ICMC%5BICLR20%5D/"/>
+    <id>http://Bithub00.com/2021/01/14/ICMC[ICLR20]/</id>
+    <published>2021-01-14T12:56:15.050Z</published>
+    <updated>2021-01-14T14:47:05.960Z</updated>
+    
+    <content type="html"><![CDATA[<p>ICLR20一篇使用GNN来解决现有矩阵补全方法无法泛化问题的论文</p><a id="more"></a><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>如何让矩阵补全方法中一个数据集得到的embedding，能够迁移到另一个数据集上，同时不依赖额外的信息。</p><p>与另一篇论文<a href="http://www.bithub00.com/2021/01/09/GCMC[KDD18]/" target="_blank" rel="noopener">GCMC</a>应用的问题相同，具体地，这篇论文做的是推荐系统方向下的矩阵补全问题，给定一个评分矩阵，如何根据已有的评分记录来预测用户对其他物品的评分。传统的做法是将输入的评分矩阵分解成用户与物品的embedding，通过embedding重构评分矩阵，填补其中的缺失值，从而做出预测，如下图所示：</p><div align="center"><a href="https://imgchr.com/i/sd6O1S" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/14/sd6O1S.png" alt="sd6O1S.png" border="0" width="80%"></a></div><p>很多现有方法研究的都是如何得到更好的embedding，但它们都是直推式(transductive)而非启发式(inductive)的，意味着没法迁移，例如MovieLens数据集上得到的embedding就不能直接用于Douban数据集上，需要重新训练一个新的embedding。即使对于同一个数据集而言，如果加入新的评分记录，往往需要整个embedding重新训练。</p><h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><p>论文的做法是为每一个评分记录提取一个子图，并且训练一个图神经网络来将得到的子图映射为预测评分。要想为评分记录提取子图，首先要将评分矩阵转换为图，转换的方法与另一篇论文<a href="http://www.bithub00.com/2021/01/09/GCMC[KDD18]/" target="_blank" rel="noopener">GCMC</a>相同，博客中有具体介绍，这里就不重复说明了。论文中对子图的定义方式为，给定一个评分记录$(u,v)$，表示用户$u$给物品$v$评过分，那么这个评分记录提取的子图由该用户$u$、物品$v$以及它们各自的$h$跳邻域内的顶点构成。为了具体说明是怎么从一个评分记录提取出子图的，我从论文作者的视频中截取了这部分内容，如下图所示：</p><p>假设第一张图中深绿色的方格是缺失值，这里先填入了模型的预测评分，倒退着来说明预测评分是怎么通过子图得到的。我们首先找到这个用户评过分的其它物品，对应于第五个物品的四分与第八个物品的两分，如第二张图所示。下一步是找到为这个物品评过分的其他用户，对应于第三个用户的五分与第四个用户的五分。</p><div align="center"><a href="https://imgchr.com/i/sdfNf1" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/14/sdfNf1.png" alt="sdfNf1.png" border="0"></a></div><p>通过图二和图三找到的关系，就可以提取出这个评分记录的子图了，如下图所示：</p><div align="center"><a href="https://imgchr.com/i/sd4urT" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/14/sd4urT.png" alt="sd4urT.png" border="0" width="90%"></a></div><p>可以看到，这个提取出的子图能提供许多有用的信息，例如用户平均评分、物品平均评分、物品累计评价次数以及基于路径的结构信息。论文希望通过这种结构信息来找到一些特征，从而做出预测，例如，如果用户$u_0$喜欢一个物品$v_0$，那么对于另一个与他品味相同的用户$u_1$，我们可能发现他也喜欢$v_0$。品味相同可以表示为两个用户都喜欢另一个物品$v_1$，这个特征可以表示为这么一条路径$u_0\rightarrow_{like}v_1\rightarrow_{liked\ by}u_1\rightarrow_{like}v_0$，如果$u_0$与$v_0$之间存在多条这样的路径，那么我们就可以推测$u_0$喜欢$v_0$。类似这样的结构特征数不胜数。因此，与其人工来手动定义大量这样的启发式特征(heuristics)，不如直接将子图输入一个图神经网络，来自动学习更通用的、更有表达能力的特征。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ICLR20一篇使用GNN来解决现有矩阵补全方法无法泛化问题的论文&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="图神经网络" scheme="http://Bithub00.com/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="推荐系统" scheme="http://Bithub00.com/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>Variational Graph Auto-Encoders[NIPS&#39;16]</title>
@@ -407,26 +429,6 @@
     
     
       <category term="深度学习" scheme="http://Bithub00.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CUDA学习笔记</title>
-    <link href="http://Bithub00.com/2020/07/15/CUDA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
-    <id>http://Bithub00.com/2020/07/15/CUDA学习记录/</id>
-    <published>2020-07-15T13:04:08.623Z</published>
-    <updated>2020-10-10T01:22:12.231Z</updated>
-    
-    <content type="html"><![CDATA[<p>CUDA编程的学习笔记以及踩过的一些坑<br><a id="more"></a></p><h1 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h1><h2 id="CUDA程序的执行流程："><a href="#CUDA程序的执行流程：" class="headerlink" title="CUDA程序的执行流程："></a>CUDA程序的执行流程：</h2><ol><li>分配host内存，并进行数据初始化；</li><li>分配device内存，并从host将数据拷贝到device上；</li><li>调用CUDA的核函数在device上完成指定的运算；</li><li>将device上的运算结果拷贝到host上；</li><li>释放device和host上分配的内存。</li></ol><p>上面流程中最重要的一个过程是调用CUDA的核函数来执行并行计算，核函数用<strong>global</strong>符号声明，它在device上执行时实际上是启动很多线程，一个kernel所启动的所有线程称为一个网格（grid），同一个网格上的线程共享相同的全局内存空间，而网格又可以分为很多线程块（block），一个线程块里面包含很多线程。这构成了两层结构。</p><p><img src="https://s1.ax1x.com/2020/07/15/U0Mzd0.png" alt=""></p><h2 id="CUDA内存模型"><a href="#CUDA内存模型" class="headerlink" title="CUDA内存模型"></a>CUDA内存模型</h2><p>每个线程有自己的私有本地内存（Local Memory），而每个线程块（Block）有包含共享内存（Shared Memory）,可以被线程块中所有线程共享，其生命周期与线程块一致。此外，所有的线程都可以访问全局内存（Global Memory）。还可以访问一些只读内存块：常量内存（Constant Memory）和纹理内存（Texture Memory）</p><h2 id="如何使用CUDA对程序进行优化"><a href="#如何使用CUDA对程序进行优化" class="headerlink" title="如何使用CUDA对程序进行优化"></a>如何使用CUDA对程序进行优化</h2><ol><li>使用共享内存减少全局内存读取次数；从常量内存（Constant Memory）中读取数据相较于全局内存会更节省内存带宽，因为常量内存是缓存的，从相同的地址中连续读取数据不会带来额外的内存读取开销。</li><li>流并行；通过多个流（stream）进行操作时，应该将所做的操作尽可能广地安排在各个流中，而不是尽可能地深，例如将内存拷贝和计算并行，其中的原理是：同一时刻cuda程序可以同时进行一个计算和数据传输。<br><img src="https://s1.ax1x.com/2020/07/15/U01S8U.png" alt="Stream1"><br><img src="https://s1.ax1x.com/2020/07/15/U01p2F.png" alt="Stream2"></li><li>合并访问；线程块内相邻的线程访问相邻的数据。因为半束(16)线程的访问16字节的数据可以合为一个访问指令。</li><li>使用零复制、锁页内存；零复制（zero copy）是一种特殊形式的内存映射，它允许你将host内存直接映射到device内存空间上。其实就是device可以通过直接内存访问（direct memory access，DMA）方式来访问host的锁页内存。 <blockquote><p>现代操作系统都支持虚拟内存，操作系统实现虚拟内存的主要方法就是通过分页机制。将内存中暂时不使用的内容换出到外存（硬盘等大容量存储）上，从而腾出空间存放将要调入内存的信息。这样，系统好像为用户提供了一个比实际内存大得多的存储器，称为虚拟存储器。锁页（page-locked host memory）就是将内存页面标记为不可被操作系统换出的内存。所以device可以使用页面的物理地址直接访问内存（DMA），从而避免从外存到内存的复制操作。在GPU上分配的内存默认都是锁页内存，这是因为GPU不支持将内存交换到磁盘上。在CPU上分配的内存默认都是可分页。</p></blockquote></li></ol><h2 id="重构时的问题及解决"><a href="#重构时的问题及解决" class="headerlink" title="重构时的问题及解决"></a>重构时的问题及解决</h2><ol><li><p>论文中涉及的数据结构较为复杂，在使用GPU进行并行计算时需要先将数据复制到GPU上，复制的步骤十分繁琐，容易出现内存访问出错的问题。</p><blockquote><p>CUDA6.0引入了统一内存的概念，大大简化了数据从CPU传到GPU这一步骤，只需要在host端分配好空间，写入数据，直接作为参数传入device端的核函数即可，CUDA会自动完成复制工作。</p></blockquote></li><li><p>c++中的std在CUDA中不被支持，例如std::vector、std::sort等都无法使用。</p><blockquote><p>CUDA提供了Thrust库作为替代，提供了sort、host_vector、device_vector等，然而这些都是host端的实现，在device端无法调用。</p></blockquote></li><li><p>Thrust作为host端的实现在device端无法调用，原数据结构中的类成员有vector<edge*>，在device端无法访问其中的数据。</edge*></p><blockquote><p>在后续CUDA版本中，thrust::sort可以在device端运行，只需加入参数thrust::sort(thrust::device, XX, XX)。vector在<strong>device</strong>函数中的访问仍不被支持，因此将原类成员vector<edge*>改成Edge **二维指针数组形式，vector读取完数据后，再复制到二维指针数组中，此时device端就可以访问其中的数据了。</edge*></p></blockquote></li><li><p>调试时nvcc编译带上-g参数，使用cuda-gdb运行程序，可以在cu文件中设置断点，发生段错误后可以使用where命令来查明是哪一行导致的错误。</p></li><li><p>addKernel&lt;&lt;<60,1>&gt;&gt;(devA, devB, devC);这里的&lt;&lt;<60,501>&gt;&gt;的意思是，调用函数的时候，开出60个线程格，每个线程格包含501个线程。在global函数中通过代码int i = threadIdx.x + blockIdx.x*blockDim.x;得到当前线程是第几个线程。</60,501></60,1></p></li><li><p>Host调用完kernel函数需要进行线程同步,而在kernel或global函数只需要在必要的地方__syncthreads()即可:</p></li><li><p>这时dev_b会保存一个指向GPU内存的指针,但是CPU是无法访问GPU上面的数据,所以利用这个指针做任何获取数据或者赋值都是会出错的,理解这点对传递数据很重要 </p> <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *dev_b = <span class="number">0</span></span><br><span class="line">cudaMalloc((<span class="keyword">void</span>**)&amp;dev_b, size * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure></li></ol><p>实用问答：</p><ul><li><a href="https://stackoverflow.com/questions/14790999/how-to-pass-a-c-class-with-array-of-pointers-to-cuda" target="_blank" rel="noopener">https://stackoverflow.com/questions/14790999/how-to-pass-a-c-class-with-array-of-pointers-to-cuda</a></li><li><a href="https://stackoverflow.com/questions/9309195/copying-a-struct-containing-pointers-to-cuda-device" target="_blank" rel="noopener">https://stackoverflow.com/questions/9309195/copying-a-struct-containing-pointers-to-cuda-device</a></li><li><a href="https://developer.nvidia.com/blog/unified-memory-in-cuda-6/" target="_blank" rel="noopener">统一内存</a></li><li><a href="https://www.jianshu.com/p/7e1e0e2bde79" target="_blank" rel="noopener">教你一步步写一个cuda path tracer：cuda与类</a></li><li><a href="https://zhuanlan.zhihu.com/p/55855479" target="_blank" rel="noopener">CUDA值得注意的特性(坑)</a></li><li><a href="https://stackoverflow.com/questions/11874667/cuda-allocation-of-an-array-of-structs-inside-a-struct" target="_blank" rel="noopener">https://stackoverflow.com/questions/11874667/cuda-allocation-of-an-array-of-structs-inside-a-struct</a></li><li><a href="https://forums.developer.nvidia.com/t/how-to-cudamalloc-two-dimensional-array/4042/9" target="_blank" rel="noopener">https://forums.developer.nvidia.com/t/how-to-cudamalloc-two-dimensional-array/4042/9</a></li><li><a href="https://stackoverflow.com/questions/40682163/cuda-copy-inherited-class-object-to-device" target="_blank" rel="noopener">https://stackoverflow.com/questions/40682163/cuda-copy-inherited-class-object-to-device</a></li><li><a href="https://stackoverflow.com/questions/16024087/copy-an-object-to-device" target="_blank" rel="noopener">https://stackoverflow.com/questions/16024087/copy-an-object-to-device</a></li><li><a href="https://stackoverflow.com/questions/6929626/cuda-copy-to-array-within-array-of-objects" target="_blank" rel="noopener">https://stackoverflow.com/questions/6929626/cuda-copy-to-array-within-array-of-objects</a></li><li><a href="https://stackoverflow.com/questions/5510715/thrust-inside-user-written-kernels" target="_blank" rel="noopener">https://stackoverflow.com/questions/5510715/thrust-inside-user-written-kernels</a></li><li><a href="https://stackoverflow.com/questions/14284964/cuda-how-to-allocate-memory-for-data-member-of-a-class" target="_blank" rel="noopener">https://stackoverflow.com/questions/14284964/cuda-how-to-allocate-memory-for-data-member-of-a-class</a></li><li><a href="https://forums.developer.nvidia.com/t/how-to-measure-total-time-for-cpu-and-gpu/28234/2" target="_blank" rel="noopener">https://forums.developer.nvidia.com/t/how-to-measure-total-time-for-cpu-and-gpu/28234/2</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;CUDA编程的学习笔记以及踩过的一些坑&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="CUDA" scheme="http://Bithub00.com/tags/CUDA/"/>
     
   </entry>
   
