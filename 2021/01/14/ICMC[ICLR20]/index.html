@@ -92,7 +92,8 @@
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/14/sd6O1S.png">
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/14/sdfNf1.png">
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/14/sd4urT.png">
-<meta property="og:updated_time" content="2021-01-14T14:47:05.960Z">
+<meta property="og:image" content="https://s3.ax1x.com/2021/01/15/swYFij.png">
+<meta property="og:updated_time" content="2021-01-15T02:46:33.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Inductive Matrix Completion Based on Graph Neural Networks[ICLR&#39;20]">
 <meta name="twitter:description" content="ICLR20一篇使用GNN来解决现有矩阵补全方法无法泛化问题的论文">
@@ -344,7 +345,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  956
+                  2,109
                 </span>
               
 
@@ -378,7 +379,7 @@
 </div>
 
 <p>很多现有方法研究的都是如何得到更好的embedding，但它们都是直推式(transductive)而非启发式(inductive)的，意味着没法迁移，例如MovieLens数据集上得到的embedding就不能直接用于Douban数据集上，需要重新训练一个新的embedding。即使对于同一个数据集而言，如果加入新的评分记录，往往需要整个embedding重新训练。</p>
-<h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><p>论文的做法是为每一个评分记录提取一个子图，并且训练一个图神经网络来将得到的子图映射为预测评分。要想为评分记录提取子图，首先要将评分矩阵转换为图，转换的方法与另一篇论文<a href="http://www.bithub00.com/2021/01/09/GCMC[KDD18]/" target="_blank" rel="noopener">GCMC</a>相同，博客中有具体介绍，这里就不重复说明了。论文中对子图的定义方式为，给定一个评分记录$(u,v)$，表示用户$u$给物品$v$评过分，那么这个评分记录提取的子图由该用户$u$、物品$v$以及它们各自的$h$跳邻域内的顶点构成。为了具体说明是怎么从一个评分记录提取出子图的，我从论文作者的视频中截取了这部分内容，如下图所示：</p>
+<h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="Enclosing-Subgraph-Extraction"><a href="#Enclosing-Subgraph-Extraction" class="headerlink" title="Enclosing Subgraph Extraction"></a>Enclosing Subgraph Extraction</h4><p>论文的做法是为每一个评分记录提取一个子图，并且训练一个图神经网络来将得到的子图映射为预测评分。要想为评分记录提取子图，首先要将评分矩阵转换为图，转换的方法与另一篇论文<a href="http://www.bithub00.com/2021/01/09/GCMC[KDD18]/" target="_blank" rel="noopener">GCMC</a>相同，博客中有具体介绍，这里就不重复说明了。论文中对子图的定义方式为，给定一个评分记录$(u,v)$，表示用户$u$给物品$v$评过分，那么这个评分记录提取的子图由该用户$u$、物品$v$以及它们各自的$h$跳邻域内的顶点构成。为了具体说明是怎么从一个评分记录提取出子图的，我从论文作者的视频中截取了这部分内容，如下图所示：</p>
 <p>假设第一张图中深绿色的方格是缺失值，这里先填入了模型的预测评分，倒退着来说明预测评分是怎么通过子图得到的。我们首先找到这个用户评过分的其它物品，对应于第五个物品的四分与第八个物品的两分，如第二张图所示。下一步是找到为这个物品评过分的其他用户，对应于第三个用户的五分与第四个用户的五分。</p>
 <div align="center">
 <a href="https://imgchr.com/i/sdfNf1" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/14/sdfNf1.png" alt="sdfNf1.png" border="0"></a>
@@ -389,7 +390,31 @@
 <a href="https://imgchr.com/i/sd4urT" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/14/sd4urT.png" alt="sd4urT.png" border="0" width="90%"></a>
 </div>
 
-<p>可以看到，这个提取出的子图能提供许多有用的信息，例如用户平均评分、物品平均评分、物品累计评价次数以及基于路径的结构信息。论文希望通过这种结构信息来找到一些特征，从而做出预测，例如，如果用户$u_0$喜欢一个物品$v_0$，那么对于另一个与他品味相同的用户$u_1$，我们可能发现他也喜欢$v_0$。品味相同可以表示为两个用户都喜欢另一个物品$v_1$，这个特征可以表示为这么一条路径$u_0\rightarrow_{like}v_1\rightarrow_{liked\ by}u_1\rightarrow_{like}v_0$，如果$u_0$与$v_0$之间存在多条这样的路径，那么我们就可以推测$u_0$喜欢$v_0$。类似这样的结构特征数不胜数。因此，与其人工来手动定义大量这样的启发式特征(heuristics)，不如直接将子图输入一个图神经网络，来自动学习更通用的、更有表达能力的特征。</p>
+<p>可以看到，这个提取出的子图能提供许多有用的信息，例如用户平均评分、物品平均评分、物品累计评价次数以及基于路径的结构信息。论文希望通过这种结构信息来找到一些特征，从而做出预测，例如，如果用户$u_0$喜欢一个物品$v_0$，那么对于另一个与他品味相同的用户$u_1$，我们可能发现他也喜欢$v_0$。品味相同可以表示为两个用户都喜欢另一个物品$v_1$，这个特征可以表示为这么一条路径：$u_0\rightarrow_{like}v_1\rightarrow_{liked\ by}u_1\rightarrow_{like}v_0$，如果$u_0$与$v_0$之间存在多条这样的路径，那么我们就可以推测$u_0$喜欢$v_0$。类似这样的结构特征数不胜数。因此，与其人工来手动定义大量这样的启发式特征(heuristics)，不如直接将子图输入一个图神经网络，来自动学习更通用的、更有表达能力的特征。</p>
+<h4 id="Node-Labeling"><a href="#Node-Labeling" class="headerlink" title="Node Labeling"></a>Node Labeling</h4><p>这一步给顶点打标签是为了让子图中的顶点有着不同的角色，例如区分哪个是需要预测的目标用户与目标物品，区分用户顶点与物品顶点。而论文中打标签的方式十分简单：</p>
+<ul>
+<li>目标用户与目标物品分别标记为0和1</li>
+<li>对于$h$跳邻域内的顶点，如果是用户顶点标记为$2h$，物品顶点则标记为$2h+1$</li>
+</ul>
+<p>标记之后，我们就能知道哪个是需要预测的目标用户与目标物品、哪些是用户顶点，因为用户顶点的标签均为偶数，以及邻域内顶点距离目标顶点距离的远近。这些标签将转换为one-hot编码的形式作为图神经网络输入的初始特征$x_0$。</p>
+<p>这一节的最后论文作者还说到了这种标记方式与<a href="http://www.bithub00.com/2021/01/09/GCMC[KDD18]/" target="_blank" rel="noopener">GCMC</a>做法的不同之处。GCMC中同样是将标签转换为one-hot编码的形式作为GNN的初始特征，不同的是它用顶点在整个bipartite graph中的全局id作为它的标签，这等价于将GNN第一层信息传递网络的参数，转换为与每个顶点的全局id相关联的embedding函数，可以理解为一个embedding查找表，输入一个全局id，输出它对应的embedding。这显然是直推式的，对于不在查找表中的id，就无法得到它的embedding。这种情况对应于在小数据集上训练网络得到embedding，然后换到大数据集上，因为大数据集的顶点数量肯定要多于小数据集，这就会使得顶点的全局id范围变大，超出了训练出来的这个embedding查找表的范围。</p>
+<h4 id="Graph-Neural-Network"><a href="#Graph-Neural-Network" class="headerlink" title="Graph Neural Network"></a>Graph Neural Network</h4><p>这一步的目的就是训练一个GNN来将提取出的子图映射成预测评分。论文所使用的GNN分为两个部分：信息传递层与池化层。前者的作用是得到子图中各顶点的特征向量，后者是根据得到的特征向量形成子图的一个特征表示。</p>
+<p>信息传递部分使用的是<a href="https://arxiv.org/pdf/1703.06103v4.pdf" target="_blank" rel="noopener">R-GCN</a>：</p>
+<script type="math/tex; mode=display">
+x_i^{l+1}=W_0^lx_i^l+\sum_{r\in R}\sum_{j\in N_r(i)}\frac{1}{|N_r(i)|}W_r^lx_j^l</script><p>其中$x_i^l$表示第$i$个顶点在第$l$层的特征向量，$N_r(i)$表示评分水平$r$下顶点$i$的邻域，顶点$i$以不同的边权重$r$所连接的顶点$j$用不同的参数矩阵$W_r^l$来进行处理。通过堆叠$L$层网络可以得到顶点$i$的$L$个特征向量，通过拼接的方式得到它最终的特征表示$h_i$：</p>
+<script type="math/tex; mode=display">
+h_i=\text{concat}(x_i^1,x_i^2,\dots,x_i^L)</script><p>池化部分只选取子图中目标用户与目标顶点的特征向量进行拼接，来得到该子图的特征表示，这么做的原因是这两个顶点携带了最多的信息。</p>
+<script type="math/tex; mode=display">
+g=\text{concat}(h_u,h_v)</script><p>在得到子图的特征表示后，最后一步是通过一个MLP将它转换为一个预测评分$\hat{r}$：</p>
+<script type="math/tex; mode=display">
+\hat{r}=w^T\sigma(Wg)</script><h4 id="Adjacent-Rating-Regularization"><a href="#Adjacent-Rating-Regularization" class="headerlink" title="Adjacent Rating Regularization"></a>Adjacent Rating Regularization</h4><p>论文对于信息传递部分使用的R-GCN还提出了一点改进，在原始的R-GCN中，不同的评分水平是独立看待的，彼此之间没有关联，例如对于1、4、5这三个评分，显然地4和5都表示了用户的喜爱而1表示了用户的厌恶，同时4和5的相似程度要大于4和1，但这种次序关系及大小关系在原始的R-GCN中都被丢掉了。因此本论文添加了一个约束来引入这部分丢失的信息，具体做法也很简单，就是使得相邻的评分水平使用的参数矩阵更加相似：</p>
+<script type="math/tex; mode=display">
+L_{ARR}=\sum_{i=1,2,\dots,|R|-1}||W_{r_i+1}-W_{r_i}||_F^2</script><p>这里假设评分$r_1,r_2,\dots,r_{|R|}$表示了用户喜爱程度的递增，通过这个约束就保留了评分的次序信息，同时可以使得出现次数较少的评分水平可以从相邻的评分水平中迁移信息，来弥补数据不足带来的问题。</p>
+<h4 id="Graph-level-GNN-vs-Node-level-GNN"><a href="#Graph-level-GNN-vs-Node-level-GNN" class="headerlink" title="Graph-level GNN vs Node-level GNN"></a>Graph-level GNN vs Node-level GNN</h4><p>这一节还是在于GCMC作比较。在GCMC中，采用的是顶点层面的图神经网络，它应用于图中的顶点来得到顶点的embedding，再通过embedding得到预测评分，如下右图所示。这么做的缺陷是它独立地学习两个顶点所关联的子树，而忽略了这两棵子树之间可能存在的联系。</p>
+<p><div align="center">
+<a href="https://imgchr.com/i/swYFij" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/15/swYFij.png" alt="swYFij.png" border="0" width="50%"></a>
+</div></p>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>Flixster、Douban、YahooMusic、ML-100K、ML-1M</p>
 
       
     </div>
@@ -581,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">2.</span> <span class="nav-text">做法及创新</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Enclosing-Subgraph-Extraction"><span class="nav-number">2.1.</span> <span class="nav-text">Enclosing Subgraph Extraction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Node-Labeling"><span class="nav-number">2.2.</span> <span class="nav-text">Node Labeling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Graph-Neural-Network"><span class="nav-number">2.3.</span> <span class="nav-text">Graph Neural Network</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Adjacent-Rating-Regularization"><span class="nav-number">2.4.</span> <span class="nav-text">Adjacent Rating Regularization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Graph-level-GNN-vs-Node-level-GNN"><span class="nav-number">2.5.</span> <span class="nav-text">Graph-level GNN vs Node-level GNN</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-number">3.</span> <span class="nav-text">数据集</span></a></li></ol></div>
             
 
           </div>
@@ -625,7 +650,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共97.9k字</span>
+  <span class="post-count">小站全站共101.1k字</span>
 </div>
         
 
