@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2021-01-17T13:49:23.817Z</updated>
+  <updated>2021-01-17T13:55:44.502Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -21,19 +21,14 @@
     <link href="http://Bithub00.com/2021/01/17/c++%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
     <id>http://Bithub00.com/2021/01/17/c++常用操作/</id>
     <published>2021-01-17T13:48:25.048Z</published>
-    <updated>2021-01-17T13:49:23.817Z</updated>
+    <updated>2021-01-17T13:55:44.502Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><ul><li>从字符串中删除字串</li></ul><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeSubstrs</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="keyword">const</span> <span class="built_in">string</span>&amp; e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = e.length();</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">string</span>::size_type i = s.find(e); i != <span class="built_in">string</span>::npos; i = s.find(e))</span><br><span class="line">            s.erase(i, n);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><ul><li>从字符串中删除子串<a id="more"></a><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeSubstrs</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="keyword">const</span> <span class="built_in">string</span>&amp; e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = e.length();</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">string</span>::size_type i = s.find(e); i != <span class="built_in">string</span>::npos; i = s.find(e))</span><br><span class="line">            s.erase(i, n);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h2 id=&quot;C&quot;&gt;&lt;a href=&quot;#C&quot; class=&quot;headerlink&quot; title=&quot;C++&quot;&gt;&lt;/a&gt;C++&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;从字符串中删除字串&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;t
-      
+      &lt;h2 id=&quot;C&quot;&gt;&lt;a href=&quot;#C&quot; class=&quot;headerlink&quot; title=&quot;C++&quot;&gt;&lt;/a&gt;C++&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;从字符串中删除子串
     
     </summary>
     
