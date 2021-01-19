@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="原力小站" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="title:Leetcode做题记录 tags:[C++,Leetcode]Leetcode做题记录，奥力给！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原力小站">
+<meta property="og:url" content="http://Bithub00.com/2021/01/19/Leetcode做题记录/index.html">
+<meta property="og:site_name" content="原力小站">
+<meta property="og:description" content="title:Leetcode做题记录 tags:[C++,Leetcode]Leetcode做题记录，奥力给！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-01-19T13:23:54.257Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="原力小站">
+<meta name="twitter:description" content="title:Leetcode做题记录 tags:[C++,Leetcode]Leetcode做题记录，奥力给！">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Bithub00.com/2021/01/19/Leetcode做题记录/"/>
+
+
+
+
+
+  <title> | 原力小站</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43ca6a51990599ac3de948cb708d3909";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/BitHub00" 
+      class="github-corner" 
+      aria-label="View source on Github">
+      <svg width="80" height="80" viewBox="0 0 250 250" 
+      style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" 
+      aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+      </svg>
+    </a>
+      <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+      </style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">原力小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">扎导的原版正联出了吗？</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2021/01/19/Leetcode做题记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.shuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="原力小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-19T21:21:50+08:00">
+                2021-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,092
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>title:Leetcode做题记录</p>
+<h2 id="tags-C-Leetcode"><a href="#tags-C-Leetcode" class="headerlink" title="tags:[C++,Leetcode]"></a>tags:[C++,Leetcode]</h2><p>Leetcode做题记录，奥力给！</p>
+<a id="more"></a>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>number</th>
+<th>question</th>
+<th>level</th>
+<th>c++</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://leetcode-cn.com/problems/two-sum/" target="_blank" rel="noopener">两数之和</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://leetcode-cn.com/problems/reverse-integer/" target="_blank" rel="noopener">整数反转</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://leetcode-cn.com/problems/palindrome-number/" target="_blank" rel="noopener">回文数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%9B%9E%E6%96%87%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://leetcode-cn.com/problems/roman-to-integer/" target="_blank" rel="noopener">罗马数字转整数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://leetcode-cn.com/problems/longest-common-prefix/" target="_blank" rel="noopener">最长公共前缀</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="noopener">删除排序数组中的重复项</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="https://leetcode-cn.com/problems/remove-element/" target="_blank" rel="noopener">移除元素</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="https://leetcode-cn.com/problems/implement-strstr/" target="_blank" rel="noopener">实现strStr()</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%AE%9E%E7%8E%B0%20strStr(" target="_blank" rel="noopener">c++</a>.cpp)</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="https://leetcode-cn.com/problems/search-insert-position/" target="_blank" rel="noopener">搜索插入位置</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="https://leetcode-cn.com/problems/count-and-say/" target="_blank" rel="noopener">外观数列</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%A4%96%E8%A7%82%E6%95%B0%E5%88%97.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">最大子序和</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="https://leetcode-cn.com/problems/length-of-last-word/" target="_blank" rel="noopener">最后一个单词的长度</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%E7%9A%84%E9%95%BF%E5%BA%A6.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="https://leetcode-cn.com/problems/plus-one/" target="_blank" rel="noopener">加一</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%8A%A0%E4%B8%80.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="https://leetcode-cn.com/problems/intersection-of-two-arrays/" target="_blank" rel="noopener">两个数组的交集</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="https://leetcode-cn.com/problems/add-binary/" target="_blank" rel="noopener">二进制求和</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B1%82%E5%92%8C.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="https://leetcode-cn.com/problems/sqrtx/" target="_blank" rel="noopener">x的平方根</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/x%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="https://leetcode-cn.com/problems/climbing-stairs/" target="_blank" rel="noopener">爬楼梯</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%88%AC%E6%A5%BC%E6%A2%AF.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/" target="_blank" rel="noopener">买卖股票的最佳时机II</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/" target="_blank" rel="noopener">删除排序链表中的重复元素</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td><a href="https://leetcode-cn.com/problems/merge-sorted-array/" target="_blank" rel="noopener">合并两个有序数组</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td><a href="https://leetcode-cn.com/problems/same-tree/" target="_blank" rel="noopener">相同的树</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%9B%B8%E5%90%8C%E7%9A%84%E6%A0%91.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>22</td>
+<td><a href="https://leetcode-cn.com/problems/symmetric-tree/" target="_blank" rel="noopener">对称二叉树</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>23</td>
+<td><a href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/" target="_blank" rel="noopener">二叉树的最大深度</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>24</td>
+<td><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/" target="_blank" rel="noopener">二叉树的层次遍历 II</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86II.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>25</td>
+<td><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/" target="_blank" rel="noopener">二叉树的层序遍历</a></td>
+<td>Medium</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>26</td>
+<td><a href="https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/" target="_blank" rel="noopener">二叉树的锯齿形层次遍历</a></td>
+<td>Medium</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%94%AF%E9%BD%BF%E5%BD%A2%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>27</td>
+<td><a href="https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/" target="_blank" rel="noopener">将有序数组转换为二叉搜索树</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>28</td>
+<td><a href="https://leetcode-cn.com/problems/balanced-binary-tree/" target="_blank" rel="noopener">平衡二叉树</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>29</td>
+<td><a href="https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/" target="_blank" rel="noopener">二叉树的最小深度</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>30</td>
+<td><a href="https://leetcode-cn.com/problems/path-sum/" target="_blank" rel="noopener">路径总和</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>31</td>
+<td><a href="https://leetcode-cn.com/problems/pascals-triangle/" target="_blank" rel="noopener">杨辉三角</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>32</td>
+<td><a href="https://leetcode-cn.com/problems/pascals-triangle-ii/" target="_blank" rel="noopener">杨辉三角II</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92II.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>33</td>
+<td><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="noopener">买卖股票的最佳时机</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>34</td>
+<td><a href="//https://leetcode-cn.com/problems/valid-palindrome/">验证回文串</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E9%AA%8C%E8%AF%81%E5%9B%9E%E6%96%87%E4%B8%B2.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>35</td>
+<td><a href="https://leetcode-cn.com/problems/single-number/" target="_blank" rel="noopener">只出现一次的数字</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>36</td>
+<td><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">环形链表</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>37</td>
+<td><a href="https://leetcode-cn.com/problems/min-stack/" target="_blank" rel="noopener">最小栈</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9C%80%E5%B0%8F%E6%A0%88.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>38</td>
+<td><a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener">相交链表</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>39</td>
+<td><a href="https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank" rel="noopener">两数之和II_输入有序数组</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8CII_%E8%BE%93%E5%85%A5%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>40</td>
+<td><a href="https://leetcode-cn.com/problems/largest-perimeter-triangle/" target="_blank" rel="noopener">三角形的最大周长</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E6%9C%80%E5%A4%A7%E5%91%A8%E9%95%BF.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>41</td>
+<td><a href="https://leetcode-cn.com/problems/excel-sheet-column-title/" target="_blank" rel="noopener">Excel表列名称</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/Excel%E8%A1%A8%E5%88%97%E5%90%8D%E7%A7%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>42</td>
+<td><a href="https://leetcode-cn.com/problems/majority-element/" target="_blank" rel="noopener">多数元素</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>43</td>
+<td><a href="https://leetcode-cn.com/problems/excel-sheet-column-number/" target="_blank" rel="noopener">Excel表列序号</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/Excel%E8%A1%A8%E5%88%97%E5%BA%8F%E5%8F%B7.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>44</td>
+<td><a href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/" target="_blank" rel="noopener">阶乘后的零</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E9%98%B6%E4%B9%98%E5%90%8E%E7%9A%84%E9%9B%B6.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>45</td>
+<td><a href="https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/" target="_blank" rel="noopener">在排序数组中查找元素的第一个和最后一个位置</a></td>
+<td>Medium</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>46</td>
+<td><a href="https://leetcode-cn.com/problems/reverse-bits/" target="_blank" rel="noopener">颠倒二进制位</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E9%A2%A0%E5%80%92%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%8D.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>47</td>
+<td><a href="https://leetcode-cn.com/problems/number-of-1-bits/" target="_blank" rel="noopener">位1的个数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BD%8D1%E7%9A%84%E4%B8%AA%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>48</td>
+<td><a href="https://leetcode-cn.com/problems/count-primes/" target="_blank" rel="noopener">计数质数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>49</td>
+<td><a href="https://leetcode-cn.com/problems/house-robber/" target="_blank" rel="noopener">打家劫舍</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>50</td>
+<td><a href="https://leetcode-cn.com/problems/happy-number/" target="_blank" rel="noopener">快乐数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%BF%AB%E4%B9%90%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>51</td>
+<td><a href="https://leetcode-cn.com/problems/isomorphic-strings/" target="_blank" rel="noopener">同构字符串</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%90%8C%E6%9E%84%E5%AD%97%E7%AC%A6%E4%B8%B2.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>52</td>
+<td><a href="https://leetcode-cn.com/problems/reverse-linked-list/" target="_blank" rel="noopener">反转链表</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>53</td>
+<td><a href="https://leetcode-cn.com/problems/contains-duplicate/" target="_blank" rel="noopener">存在重复元素</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>54</td>
+<td><a href="https://leetcode-cn.com/problems/contains-duplicate-ii/" target="_blank" rel="noopener">存在重复元素II</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0_II.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>55</td>
+<td><a href="https://leetcode-cn.com/problems/implement-stack-using-queues/" target="_blank" rel="noopener">用队列实现栈</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>56</td>
+<td><a href="https://leetcode-cn.com/problems/invert-binary-tree/" target="_blank" rel="noopener">翻转二叉树</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>57</td>
+<td><a href="https://leetcode-cn.com/problems/summary-ranges/" target="_blank" rel="noopener">汇总区间</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>58</td>
+<td><a href="https://leetcode-cn.com/problems/unique-paths/" target="_blank" rel="noopener">不同路径</a></td>
+<td>Medium</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>59</td>
+<td><a href="https://leetcode-cn.com/problems/power-of-two/" target="_blank" rel="noopener">2的幂</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/2%E7%9A%84%E5%B9%82.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>60</td>
+<td><a href="https://leetcode-cn.com/problems/lemonade-change/" target="_blank" rel="noopener">柠檬水找零</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9F%A0%E6%AA%AC%E6%B0%B4%E6%89%BE%E9%9B%B6.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>61</td>
+<td><a href="https://leetcode-cn.com/problems/implement-queue-using-stacks/" target="_blank" rel="noopener">用栈实现队列</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>62</td>
+<td><a href="https://leetcode-cn.com/problems/palindrome-linked-list/" target="_blank" rel="noopener">回文链表</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>63</td>
+<td><a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank" rel="noopener">二叉搜索树的最近公共祖先</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>64</td>
+<td><a href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/" target="_blank" rel="noopener">删除链表中的节点</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>65</td>
+<td><a href="https://leetcode-cn.com/problems/valid-anagram/" target="_blank" rel="noopener">有效的字母异位词</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>66</td>
+<td><a href="https://leetcode-cn.com/problems/binary-tree-paths/" target="_blank" rel="noopener">二叉树的所有路径</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>67</td>
+<td><a href="https://leetcode-cn.com/problems/add-digits/" target="_blank" rel="noopener">各位相加</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>68</td>
+<td><a href="https://leetcode-cn.com/problems/ugly-number/" target="_blank" rel="noopener">丑数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%91%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>69</td>
+<td><a href="https://leetcode-cn.com/problems/ugly-number-ii/" target="_blank" rel="noopener">丑数II</a></td>
+<td>Medium</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%91%E6%95%B0II.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>70</td>
+<td><a href="https://leetcode-cn.com/problems/word-pattern/" target="_blank" rel="noopener">单词规律</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%8D%95%E8%AF%8D%E8%A7%84%E5%BE%8B.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>71</td>
+<td><a href="https://leetcode-cn.com/problems/missing-number/" target="_blank" rel="noopener">丢失的数字</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%A2%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>72</td>
+<td><a href="https://leetcode-cn.com/problems/first-bad-version/" target="_blank" rel="noopener">第一个错误的版本</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E7%89%88%E6%9C%AC.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>73</td>
+<td><a href="https://leetcode-cn.com/problems/move-zeroes/" target="_blank" rel="noopener">移动零</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%A7%BB%E5%8A%A8%E9%9B%B6.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>74</td>
+<td><a href="https://leetcode-cn.com/problems/min-cost-climbing-stairs/" target="_blank" rel="noopener">使用最小花费爬楼梯</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BD%BF%E7%94%A8%E6%9C%80%E5%B0%8F%E8%8A%B1%E8%B4%B9%E7%88%AC%E6%A5%BC%E6%A2%AF.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>75</td>
+<td><a href="https://leetcode-cn.com/problems/nim-game/" target="_blank" rel="noopener">Nim游戏</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/Nim%E6%B8%B8%E6%88%8F.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>76</td>
+<td><a href="https://leetcode-cn.com/problems/range-sum-query-immutable/" target="_blank" rel="noopener">区域和检索 - 数组不可变</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2_%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>77</td>
+<td><a href="https://leetcode-cn.com/problems/power-of-three/" target="_blank" rel="noopener">3的幂</a></td>
+<td>Easy</td>
+<td><a href="http://github.com/BitHub00/Leetcode/blob/main/3%E7%9A%84%E5%B9%82.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>75</td>
+<td><a href="https://leetcode-cn.com/problems/power-of-four/" target="_blank" rel="noopener">4的幂</a></td>
+<td>Easy</td>
+<td><a href="http://github.com/BitHub00/Leetcode/blob/main/4%E7%9A%84%E5%B9%82.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>76</td>
+<td><a href="https://leetcode-cn.com/problems/reverse-string/" target="_blank" rel="noopener">反转字符串</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>77</td>
+<td><a href="https://leetcode-cn.com/problems/reverse-vowels-of-a-string/" target="_blank" rel="noopener">反转字符串中的元音字母</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%85%83%E9%9F%B3%E5%AD%97%E6%AF%8D.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>78</td>
+<td><a href="https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/" target="_blank" rel="noopener">两个数组的交集II</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86II.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>79</td>
+<td><a href="https://leetcode-cn.com/problems/valid-perfect-square/" target="_blank" rel="noopener">有效的完全平方数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9C%89%E6%95%88%E7%9A%84%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>80</td>
+<td><a href="https://leetcode-cn.com/problems/sum-of-two-integers/" target="_blank" rel="noopener">两整数之和</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%A4%E6%95%B4%E6%95%B0%E4%B9%8B%E5%92%8C.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>81</td>
+<td><a href="https://leetcode-cn.com/problems/guess-number-higher-or-lower/" target="_blank" rel="noopener">猜数字大小</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%8C%9C%E6%95%B0%E5%AD%97%E5%A4%A7%E5%B0%8F.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>82</td>
+<td><a href="https://leetcode-cn.com/problems/ransom-note/" target="_blank" rel="noopener">赎金信</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E8%B5%8E%E9%87%91%E4%BF%A1.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>83</td>
+<td><a href="https://leetcode-cn.com/problems/first-unique-character-in-a-string/" target="_blank" rel="noopener">字符串中的第一个唯一字符</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%94%AF%E4%B8%80%E5%AD%97%E7%AC%A6.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>84</td>
+<td><a href="https://leetcode-cn.com/problems/find-the-difference/" target="_blank" rel="noopener">找不同</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%89%BE%E4%B8%8D%E5%90%8C.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>85</td>
+<td><a href="https://leetcode-cn.com/problems/is-subsequence/" target="_blank" rel="noopener">判断子序列</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%88%A4%E6%96%AD%E5%AD%90%E5%BA%8F%E5%88%97.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>86</td>
+<td><a href="https://leetcode-cn.com/problems/can-place-flowers/" target="_blank" rel="noopener">种花问题</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%A7%8D%E8%8A%B1%E9%97%AE%E9%A2%98.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>87</td>
+<td><a href="https://leetcode-cn.com/problems/binary-watch/" target="_blank" rel="noopener">二进制手表</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%89%8B%E8%A1%A8.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>88</td>
+<td><a href="https://leetcode-cn.com/problems/sum-of-left-leaves/" target="_blank" rel="noopener">左叶子之和</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%B7%A6%E5%8F%B6%E5%AD%90%E4%B9%8B%E5%92%8C.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>89</td>
+<td><a href="https://leetcode-cn.com/problems/convert-a-number-to-hexadecimal/" target="_blank" rel="noopener">数字转换为十六进制数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%95%B0%E5%AD%97%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>90</td>
+<td><a href="https://leetcode-cn.com/problems/longest-palindrome/" target="_blank" rel="noopener">最长回文串</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E4%B8%B2.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>91</td>
+<td><a href="https://leetcode-cn.com/problems/fizz-buzz/" target="_blank" rel="noopener">Fizz Buzz</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/FizzBuzz.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>92</td>
+<td><a href="https://leetcode-cn.com/problems/third-maximum-number/" target="_blank" rel="noopener">第三大的数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%AC%AC%E4%B8%89%E5%A4%A7%E7%9A%84%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>93</td>
+<td><a href="https://leetcode-cn.com/problems/add-strings/" target="_blank" rel="noopener">字符串相加</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%8A%A0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>94</td>
+<td><a href="https://leetcode-cn.com/problems/number-of-segments-in-a-string/" target="_blank" rel="noopener">字符串中的单词数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>95</td>
+<td><a href="https://leetcode-cn.com/problems/arranging-coins/" target="_blank" rel="noopener">排列硬币</a></td>
+<td>Easy</td>
+<td><a href="https://leetcode-cn.com/problems/arranging-coins/" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>96</td>
+<td><a href="https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/" target="_blank" rel="noopener">找到所有数组中消失的数字</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%89%BE%E5%88%B0%E6%89%80%E6%9C%89%E6%95%B0%E7%BB%84%E4%B8%AD%E6%B6%88%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>97</td>
+<td><a href="https://leetcode-cn.com/problems/minimum-moves-to-equal-array-elements/" target="_blank" rel="noopener">最小操作次数使数组元素相等</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0%E4%BD%BF%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>98</td>
+<td><a href="https://leetcode-cn.com/problems/assign-cookies/" target="_blank" rel="noopener">分发饼干</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>99</td>
+<td><a href="https://leetcode-cn.com/problems/repeated-substring-pattern/" target="_blank" rel="noopener">重复的子字符串</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>100</td>
+<td><a href="https://leetcode-cn.com/problems/hamming-distance/" target="_blank" rel="noopener">汉明距离</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>101</td>
+<td><a href="https://leetcode-cn.com/problems/island-perimeter/" target="_blank" rel="noopener">岛屿的周长</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>102</td>
+<td><a href="https://leetcode-cn.com/problems/number-complement/" target="_blank" rel="noopener">数字的补数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%95%B0%E5%AD%97%E7%9A%84%E8%A1%A5%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>103</td>
+<td><a href="https://leetcode-cn.com/problems/license-key-formatting/" target="_blank" rel="noopener">密钥格式化</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%AF%86%E9%92%A5%E6%A0%BC%E5%BC%8F%E5%8C%96.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>104</td>
+<td><a href="https://leetcode-cn.com/problems/max-consecutive-ones/" target="_blank" rel="noopener">最大连续1的个数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9C%80%E5%A4%A7%E8%BF%9E%E7%BB%AD1%E7%9A%84%E4%B8%AA%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>105</td>
+<td><a href="https://leetcode-cn.com/problems/construct-the-rectangle/" target="_blank" rel="noopener">构造矩形</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9E%84%E9%80%A0%E7%9F%A9%E5%BD%A2.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>106</td>
+<td><a href="https://leetcode-cn.com/problems/next-greater-element-i/" target="_blank" rel="noopener">下一个更大元素I</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0I.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>107</td>
+<td><a href="https://leetcode-cn.com/problems/keyboard-row/" target="_blank" rel="noopener">键盘行</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E9%94%AE%E7%9B%98%E8%A1%8C.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>108</td>
+<td><a href="https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/" target="_blank" rel="noopener">二叉搜索树中的众数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E4%BC%97%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>109</td>
+<td><a href="https://leetcode-cn.com/problems/base-7/" target="_blank" rel="noopener">七进制数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%83%E8%BF%9B%E5%88%B6%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>110</td>
+<td><a href="https://leetcode-cn.com/problems/relative-ranks/" target="_blank" rel="noopener">相对名次</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%9B%B8%E5%AF%B9%E5%90%8D%E6%AC%A1.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>111</td>
+<td><a href="https://leetcode-cn.com/problems/smallest-string-with-swaps/" target="_blank" rel="noopener">交换字符串中的元素</a></td>
+<td>Medium</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%A4%E6%8D%A2%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>112</td>
+<td><a href="https://leetcode-cn.com/problems/perfect-number/" target="_blank" rel="noopener">完美数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%AE%8C%E7%BE%8E%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>113</td>
+<td><a href="https://leetcode-cn.com/problems/fibonacci-number/" target="_blank" rel="noopener">斐波那契数</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>114</td>
+<td><a href="https://leetcode-cn.com/problems/detect-capital/" target="_blank" rel="noopener">检测大写字母</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%A3%80%E6%B5%8B%E5%A4%A7%E5%86%99%E5%AD%97%E6%AF%8D.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>115</td>
+<td><a href="https://leetcode-cn.com/problems/longest-uncommon-subsequence-i/" target="_blank" rel="noopener">最长特殊序列I</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%BA%8F%E5%88%97I.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>116</td>
+<td><a href="https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/" target="_blank" rel="noopener">二叉搜索树的最小绝对差</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E7%BB%9D%E5%AF%B9%E5%B7%AE.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>117</td>
+<td><a href="https://leetcode-cn.com/problems/minimum-distance-between-bst-nodes/" target="_blank" rel="noopener">二叉搜索树节点最小距离</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%8A%82%E7%82%B9%E6%9C%80%E5%B0%8F%E8%B7%9D%E7%A6%BB.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>118</td>
+<td><a href="https://leetcode-cn.com/problems/reverse-string-ii/" target="_blank" rel="noopener">反转字符串II</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2II.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>119</td>
+<td><a href="https://leetcode-cn.com/problems/diameter-of-binary-tree/" target="_blank" rel="noopener">二叉树的直径</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>120</td>
+<td><a href="https://leetcode-cn.com/problems/student-attendance-record-i/" target="_blank" rel="noopener">学生出勤记录I</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%AD%A6%E7%94%9F%E5%87%BA%E5%8B%A4%E8%AE%B0%E5%BD%95I.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>121</td>
+<td><a href="https://leetcode-cn.com/problems/redundant-connection/" target="_blank" rel="noopener">冗余连接</a></td>
+<td>Medium</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>122</td>
+<td><a href="https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/" target="_blank" rel="noopener">反转字符串中的单词III</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8DIII.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>123</td>
+<td><a href="https://leetcode-cn.com/problems/maximum-depth-of-n-ary-tree/" target="_blank" rel="noopener">N叉树的最大深度</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/N%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>124</td>
+<td><a href="https://leetcode-cn.com/problems/binary-prefix-divisible-by-5/" target="_blank" rel="noopener">可被 5 整除的二进制前缀</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%8F%AF%E8%A2%AB5%E6%95%B4%E9%99%A4%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%89%8D%E7%BC%80.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>125</td>
+<td><a href="https://leetcode-cn.com/problems/array-partition-i/" target="_blank" rel="noopener">数组拆分I</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%95%B0%E7%BB%84%E6%8B%86%E5%88%86I.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>126</td>
+<td><a href="https://leetcode-cn.com/problems/binary-tree-tilt/" target="_blank" rel="noopener">二叉树的坡度</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9D%A1%E5%BA%A6.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>127</td>
+<td><a href="https://leetcode-cn.com/problems/reshape-the-matrix/" target="_blank" rel="noopener">重塑矩阵</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E9%87%8D%E5%A1%91%E7%9F%A9%E9%98%B5.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>128</td>
+<td><a href="https://leetcode-cn.com/problems/subtree-of-another-tree/" target="_blank" rel="noopener">另一个树的子树</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%A0%91%E7%9A%84%E5%AD%90%E6%A0%91.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>129</td>
+<td><a href="https://leetcode-cn.com/problems/most-stones-removed-with-same-row-or-column/" target="_blank" rel="noopener">移除最多的同行或同列石头</a></td>
+<td>Medium</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%A7%BB%E9%99%A4%E6%9C%80%E5%A4%9A%E7%9A%84%E5%90%8C%E8%A1%8C%E6%88%96%E5%90%8C%E5%88%97%E7%9F%B3%E5%A4%B4.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>130</td>
+<td><a href="https://leetcode-cn.com/problems/distribute-candies/" target="_blank" rel="noopener">分糖果</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%88%86%E7%B3%96%E6%9E%9C.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>131</td>
+<td><a href="https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/" target="_blank" rel="noopener">N叉树的前序遍历</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/N%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>132</td>
+<td><a href="https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/" target="_blank" rel="noopener">N叉树的后序遍历</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/N%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>133</td>
+<td><a href="https://leetcode-cn.com/problems/check-if-it-is-a-straight-line/" target="_blank" rel="noopener">缀点成线</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E7%BC%80%E7%82%B9%E6%88%90%E7%BA%BF.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>134</td>
+<td><a href="https://leetcode-cn.com/problems/longest-harmonious-subsequence/" target="_blank" rel="noopener">最长和谐子序列</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9C%80%E9%95%BF%E5%92%8C%E8%B0%90%E5%AD%90%E5%BA%8F%E5%88%97.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>135</td>
+<td><a href="https://leetcode-cn.com/problems/range-addition-ii/" target="_blank" rel="noopener">范围求和II</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E8%8C%83%E5%9B%B4%E6%B1%82%E5%92%8CII.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>136</td>
+<td><a href="https://leetcode-cn.com/problems/minimum-index-sum-of-two-lists/" target="_blank" rel="noopener">两个列表的最小索引总和</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%A4%E4%B8%AA%E5%88%97%E8%A1%A8%E7%9A%84%E6%9C%80%E5%B0%8F%E7%B4%A2%E5%BC%95%E6%80%BB%E5%92%8C.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>137</td>
+<td><a href="https://leetcode-cn.com/problems/construct-string-from-binary-tree/" target="_blank" rel="noopener">根据二叉树创建字符串</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%A0%B9%E6%8D%AE%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%9B%E5%BB%BA%E5%AD%97%E7%AC%A6%E4%B8%B2.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>138</td>
+<td><a href="https://leetcode-cn.com/problems/merge-two-binary-trees/" target="_blank" rel="noopener">合并二叉树</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>139</td>
+<td><a href="https://leetcode-cn.com/problems/maximum-product-of-three-numbers/" target="_blank" rel="noopener">三个数的最大乘积</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%89%E4%B8%AA%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E4%B9%98%E7%A7%AF.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>140</td>
+<td><a href="https://leetcode-cn.com/problems/average-of-levels-in-binary-tree/" target="_blank" rel="noopener">二叉树的层平均值</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%B9%B3%E5%9D%87%E5%80%BC.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>141</td>
+<td><a href="https://leetcode-cn.com/problems/accounts-merge/" target="_blank" rel="noopener"> 账户合并</a></td>
+<td>Medium</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E8%B4%A6%E6%88%B7%E5%90%88%E5%B9%B6.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>142</td>
+<td><a href="https://leetcode-cn.com/problems/maximum-average-subarray-i/" target="_blank" rel="noopener">子数组最大平均数 I</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%AD%90%E6%95%B0%E7%BB%84%E6%9C%80%E5%A4%A7%E5%B9%B3%E5%9D%87%E6%95%B0I.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>143</td>
+<td><a href="https://leetcode-cn.com/problems/set-mismatch/" target="_blank" rel="noopener">错误的集合</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E9%94%99%E8%AF%AF%E7%9A%84%E9%9B%86%E5%90%88.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>144</td>
+<td><a href="https://leetcode-cn.com/problems/two-sum-iv-input-is-a-bst/" target="_blank" rel="noopener">两数之和 IV - 输入 BST</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8CIV-%E8%BE%93%E5%85%A5BST.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>145</td>
+<td><a href="https://leetcode-cn.com/problems/robot-return-to-origin/" target="_blank" rel="noopener">机器人能否返回原点</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%83%BD%E5%90%A6%E8%BF%94%E5%9B%9E%E5%8E%9F%E7%82%B9.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>146</td>
+<td><a href="https://leetcode-cn.com/problems/image-smoother/" target="_blank" rel="noopener">图片平滑器</a></td>
+<td>Easy</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E5%9B%BE%E7%89%87%E5%B9%B3%E6%BB%91%E5%99%A8.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+<tr>
+<td>147</td>
+<td><a href="https://leetcode-cn.com/problems/min-cost-to-connect-all-points/" target="_blank" rel="noopener">连接所有点的最小费用</a></td>
+<td>Medium</td>
+<td><a href="https://github.com/BitHub00/Leetcode/blob/main/%E8%BF%9E%E6%8E%A5%E6%89%80%E6%9C%89%E7%82%B9%E7%9A%84%E6%9C%80%E5%B0%8F%E8%B4%B9%E7%94%A8.cpp" target="_blank" rel="noopener">c++</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/17/c++常用操作/" rel="next" title="C++常用操作">
+                <i class="fa fa-chevron-left"></i> C++常用操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="Mr.shuan" />
+            
+              <p class="site-author-name" itemprop="name">Mr.shuan</p>
+              <p class="site-description motion-element" itemprop="description">May 4th be with you</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://joaquinchou.com/" title="喵语小站" target="_blank">喵语小站</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-C-Leetcode"><span class="nav-number">1.</span> <span class="nav-text">tags:[C++,Leetcode]</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.shuan</span>
+
+  
+</div>
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">原力小站已到访<span id="busuanzi_value_site_pv"></span>人次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">欢迎第<span id="busuanzi_value_site_uv"></span>位绝地武士
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <span class="post-meta-divider">|</span>
+  <span class="post-count">小站全站共102.3k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+
+</body>
+</html>
