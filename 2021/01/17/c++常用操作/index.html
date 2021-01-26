@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="C++ 从字符串中删除子串12345void removeSubstrs(string&amp;amp; s, const string&amp;amp; e)&amp;#123;        int n = e.length();        for(string::size_type i = s.find(e); i != string::npos; i = s.find(e))            s.er">
+<meta name="description" content="C++ 从字符串中删除子串 12345void removeSubstrs(string&amp;amp; s, const string&amp;amp; e)&amp;#123;        int n = e.length();        for(string::size_type i = s.find(e); i != string::npos; i = s.find(e))            s.e">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++常用操作">
 <meta property="og:url" content="http://Bithub00.com/2021/01/17/c++常用操作/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="C++ 从字符串中删除子串12345void removeSubstrs(string&amp;amp; s, const string&amp;amp; e)&amp;#123;        int n = e.length();        for(string::size_type i = s.find(e); i != string::npos; i = s.find(e))            s.er">
+<meta property="og:description" content="C++ 从字符串中删除子串 12345void removeSubstrs(string&amp;amp; s, const string&amp;amp; e)&amp;#123;        int n = e.length();        for(string::size_type i = s.find(e); i != string::npos; i = s.find(e))            s.e">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-19T02:34:43.293Z">
+<meta property="og:updated_time" content="2021-01-26T12:31:51.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++常用操作">
-<meta name="twitter:description" content="C++ 从字符串中删除子串12345void removeSubstrs(string&amp;amp; s, const string&amp;amp; e)&amp;#123;        int n = e.length();        for(string::size_type i = s.find(e); i != string::npos; i = s.find(e))            s.er">
+<meta name="twitter:description" content="C++ 从字符串中删除子串 12345void removeSubstrs(string&amp;amp; s, const string&amp;amp; e)&amp;#123;        int n = e.length();        for(string::size_type i = s.find(e); i != string::npos; i = s.find(e))            s.e">
 
 
 
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  44
+                  110
                 </span>
               
 
@@ -367,9 +367,17 @@
       
         <a id="more"></a>
 <h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><ul>
-<li>从字符串中删除子串<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeSubstrs</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="keyword">const</span> <span class="built_in">string</span>&amp; e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = e.length();</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">string</span>::size_type i = s.find(e); i != <span class="built_in">string</span>::npos; i = s.find(e))</span><br><span class="line">            s.erase(i, n);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<li><p>从字符串中删除子串</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeSubstrs</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="keyword">const</span> <span class="built_in">string</span>&amp; e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = e.length();</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">string</span>::size_type i = s.find(e); i != <span class="built_in">string</span>::npos; i = s.find(e))</span><br><span class="line">            s.erase(i, n);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用STL库实现小顶堆</p>
 </li>
 </ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">priority_queue &lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt; &gt; pq;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>自定义排序</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x, y, len;</span><br><span class="line">    Edge(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> len) : x(x), y(y), len(len)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;Edge&gt; edges;</span><br><span class="line">sort(edges.begin(), edges.end(), [](Edge a, Edge b) -&gt; <span class="keyword">int</span> &#123;<span class="keyword">return</span> a.len &lt; b.len;&#125;);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -496,7 +504,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -607,7 +615,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共102.3k字</span>
+  <span class="post-count">小站全站共103.2k字</span>
 </div>
         
 
