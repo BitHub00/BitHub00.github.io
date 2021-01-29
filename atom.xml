@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2021-01-28T06:00:01.352Z</updated>
+  <updated>2021-01-29T13:34:36.000Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GCC--Graph Contrastive Coding for Graph Neural Network Pre-Training[KDD&#39;20]</title>
+    <link href="http://Bithub00.com/2021/01/28/GCC%5BKDD20%5D/"/>
+    <id>http://Bithub00.com/2021/01/28/GCC[KDD20]/</id>
+    <published>2021-01-28T13:30:43.112Z</published>
+    <updated>2021-01-29T13:34:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>KDD20一篇将对比学习（contrastive learning）应用于图表示学习任务从而进行迁移的论文</p><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>如何将自监督学习的思想应用与图表示学习，通过预训练图神经网络从而仅需要微调就可以应用于新的数据集。</p><p>图表示学习目前受到了广泛关注，但目前绝大多数的图表示学习方法都是针对特定领域的图进行学习和建模，训练出的图神经网络难以迁移。</p><h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="对比学习"><a href="#对比学习" class="headerlink" title="对比学习"></a>对比学习</h4><p>对比学习是自监督学习思想的一种典型框架，一个典型的例子如下图所示：</p><div align="center">  <a href="https://imgchr.com/i/yiECBF" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/29/yiECBF.png" alt="yiECBF.png" border="0" width="80%"></a></div><p>对比学习的思想是：尽管我们已经见过钞票很多次，能够轻易地分辨出一张钞票，我们也很少能画出一张完美无缺的钞票。<strong>表示学习算法不需要关注到样本的每一个细节，只要学到的特征能够将用来区分其它样本即可</strong>。不需要模型能够生成一匹栩栩如生的马之后它才能去分辨一张图片里的动物是不是马，这就是对比学习和生成对抗网络的一个区别。</p><p>既然是表示学习，核心就是通过一个函数把样本$x$转换成特征表示$f(x)$，而对比学习作为一种表示学习方法，它的思想是满足下面这个式子：</p><script type="math/tex; mode=display">s(f(x),f(x^+))\gg s(f(x),f(x^-))</script><p>使得类似样本之间的相似度要远大于非类似样本之间的相似度，这样才能够进行区分。</p><h4 id="图表示学习"><a href="#图表示学习" class="headerlink" title="图表示学习"></a>图表示学习</h4><p>具体到论文的图表示学习任务中，论文的一个重要假设是，具有典型性的图结构在不同的网络之间是普遍存在而且可以迁移的（Representative graph structural patterns are universal and transferable across networks）。受对比学习在计算机视觉和自然语言处理领域的成功应用，论文想把对比学习（contrastive learning）的思想放在图表示学习中。通过预训练一个图神经网络，它能够很好地区分这些典型性的图结构，这样它的表现就不会仅仅局限于某个特定的数据集。</p><div align="center"><a href="https://imgchr.com/i/y9x4KI" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/28/y9x4KI.png" alt="y9x4KI.png" border="0" width="80%"></a></div><p>论文首先将现有工作对顶点相似度的衡量分为了三类：</p><ol><li><p>邻域相似度</p><p>核心思想：越近的两个顶点之间相似度越高，包括有Jaccard、RWR、SimRank以及LINE、DeepWalk、node2vec。</p></li><li><p>结构相似度</p><p>核心思想：有相似的局部结构的两个顶点之间相似度更高。不同于邻域相似度，结构相似度不需要两个顶点之间有路径相连。常用的局部结构包括vertex degree、structural diversity、structural hole、k-core、motif等。</p></li><li><p>属性相似度</p><p>当数据集中顶点有许多标签信息时，可以将标签作为顶点的特征来衡量它们之间的相似度。</p></li></ol><p>在对比学习中，给定一个查询表示$q$以及一个包含$K+1$个键表示${k_0,\dots,k_K}$的字典，我们希望找到一个能与$q$匹配的键$k_+$。所以，论文优化的损失函数来自于InfoNCE：</p><script type="math/tex; mode=display">L=-\log \frac{\exp(q^Tk_+\tau)}{\sum_{i=0}^K\exp(q^Tk_i/\tau)}</script><p>其中$f_q、f_k$是两个图神经网络，分别将样本$x^q$和$x^k$转换为低维表示$q$与$k$。</p><h4 id="正负样本获取"><a href="#正负样本获取" class="headerlink" title="正负样本获取"></a>正负样本获取</h4><p>因为查询和键可以是任意形式，具体到本论文里，定义每一个样本都是一个从特定顶点的$r$阶邻居网络中采样的子图，这里的子图定义和其它论文一致：$S_v=\{u:d(u,v)&lt;r \}$，距离顶点$v$最短路径距离小于$r$的顶点构成的集合。既然是最短路径，给定$r$那么这个集合也基本确定了，这种情况下得到的子图数量有限，在计算机视觉领域，当输入用于训练的图片数量有限时，往往会使用反转、旋转等方式对图片进行变换，以扩充训练图片的数量，这里论文也想采取类似的做法，对得到的子图$x$进行变换，来得到对比学习中的类似$x^+$与非类似样本$x^-$，具体做法如下：</p><ol><li><strong>带重启动的随机漫步</strong>。首先从子图的中心顶点$v$开始随机漫步，每一步时都有一定概率重新回到中心顶点，而漫步到任一邻居顶点的概率与当前顶点的出度有关。</li><li><strong>子图推演</strong>。随机漫步可以得到一系列顶点，它们构成的集合记为$\tilde{S_v}$，所形成的子图记作$\tilde{G_v}$，它就可以看作子图$S_v$的一个变换。</li><li><strong>匿名化</strong>。重新定义$\tilde{G_v}$中的顶点的标签，将$\{1,2,\dots,|\tilde{S_v} |\}$的顺序随机打乱作为重新定义后的标签。</li></ol><div align="center">    <a href="https://imgchr.com/i/yiFHv8" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/29/yiFHv8.png" alt="yiFHv8.png" border="0" width="70%"></a></div><p>论文对于每个子图都进行两次上述变换，而变换后的子图显然会与原子图相似，这样就有了一组相似的子图$(x^q,x^{k_+})$。要得到不相似的子图也很容易，不是同一个子图变换得到的子图就定义为不相似：$(x^q,x^k),k\not =k_+$。在上图的例子中，$x^q$和$x^{k_0}$是从红色的中心顶点采样得到的子图，我们认为它是一对正样本，而$x^{k_1}$和$x^{k_2}$作为从蓝色的中心顶点采样得到的子图，则被作为负样本。在变换时之所以要做最后一步，是为了防止图神经网络在判断两个子图是否相似时，仅仅是通过判断对应顶点的标签是不是一样，这样显然没有学到任何有用的结构信息。这里有一个小结论：</p><blockquote><p>绝大多数图神经网络对于输入图中顶点的顺序的随机扰动有稳定性</p></blockquote><p>现在有了正样本和负样本，下一步就是训练一个图神经网络对它们加以区分了，论文选取的是GIN。这就是自监督学习的思想，对比学习就是这种思想的一种典型框架。因为现有的图神经网络框架都需要额外的顶点特征作为输入，论文提出了一种位置embedding来作为其中特征：$I-D^{-1/2}AD^{-1/2}=U\Lambda U^T$，矩阵$U$中排序靠前的特征向量作为embedding。其它特征还包括顶点度的one-hot编码和中心顶点的指示向量。</p><h4 id="模型学习"><a href="#模型学习" class="headerlink" title="模型学习"></a>模型学习</h4><p>在模型学习时采用了何凯明组的MoCo框架的思想：</p><div align="center">  <a href="https://imgchr.com/i/yimVaD" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/29/yimVaD.png" alt="yimVaD.png" border="0" width="80%"></a></div><p>在对比学习中，我们需要维护一个大小为$K$的字典和编码器，要计算上面定义的损失函数，理想的情况是把所有负样本加入字典中进行计算，这会导致$K$很大字典难以维护。在MoCo的方法中，为了增大字典大小$K$，需要维护一个负样本的队列，队列中包含此前训练过的batch的样本作为负样本。在更新参数时，只有$q$的编码器图神经网络$f_q$中的参数通过反向传播进行更新，而$k$的编码器$f_k$中的值通过一种动量法进行更新：$\theta_k\leftarrow m\theta_k+(1-m)\theta_q$。</p><h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>Academia、DBLP(SNAP)、DBLP(NetRep)、IMDB、Facebook、LiveJournal</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;KDD20一篇将对比学习（contrastive learning）应用于图表示学习任务从而进行迁移的论文&lt;/p&gt;
+&lt;h3 id=&quot;解决的问题&quot;&gt;&lt;a href=&quot;#解决的问题&quot; class=&quot;headerlink&quot; title=&quot;解决的问题&quot;&gt;&lt;/a&gt;解决的问题&lt;/h3&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="图神经网络" scheme="http://Bithub00.com/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>Link Prediction Based on Graph Neural Networks[NIPS&#39;18]</title>
@@ -63,9 +87,9 @@
     <link href="http://Bithub00.com/2021/01/17/c++%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
     <id>http://Bithub00.com/2021/01/17/c++常用操作/</id>
     <published>2021-01-17T13:48:25.048Z</published>
-    <updated>2021-01-26T12:31:51.623Z</updated>
+    <updated>2021-01-29T04:06:26.297Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a><h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><ul><li><p>从字符串中删除子串</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeSubstrs</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="keyword">const</span> <span class="built_in">string</span>&amp; e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = e.length();</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">string</span>::size_type i = s.find(e); i != <span class="built_in">string</span>::npos; i = s.find(e))</span><br><span class="line">            s.erase(i, n);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li><li><p>使用STL库实现小顶堆</p></li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">priority_queue &lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt; &gt; pq;</span><br></pre></td></tr></table></figure><ul><li>自定义排序</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x, y, len;</span><br><span class="line">    Edge(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> len) : x(x), y(y), len(len)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;Edge&gt; edges;</span><br><span class="line">sort(edges.begin(), edges.end(), [](Edge a, Edge b) -&gt; <span class="keyword">int</span> &#123;<span class="keyword">return</span> a.len &lt; b.len;&#125;);</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><ul><li><p>从字符串中删除子串</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeSubstrs</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="keyword">const</span> <span class="built_in">string</span>&amp; e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = e.length();</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">string</span>::size_type i = s.find(e); i != <span class="built_in">string</span>::npos; i = s.find(e))</span><br><span class="line">            s.erase(i, n);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li><li><p>使用STL库实现小顶堆</p></li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">priority_queue &lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt; &gt; pq;</span><br></pre></td></tr></table></figure><ul><li>自定义排序</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x, y, len;</span><br><span class="line">    Edge(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> len) : x(x), y(y), len(len)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;Edge&gt; edges;</span><br><span class="line">sort(edges.begin(), edges.end(), [](Edge a, Edge b) -&gt; <span class="keyword">int</span> &#123;<span class="keyword">return</span> a.len &lt; b.len;&#125;);</span><br></pre></td></tr></table></figure><ul><li>初始化二维vector</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> row = <span class="number">3</span>, col = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; matrix(row, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(col, <span class="number">0</span>));</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -417,26 +441,6 @@
     
     
       <category term="图神经网络" scheme="http://Bithub00.com/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Accelerating Exact Inner Product Retrieval by CPU-GPU Systems[SIGIR&#39;19]</title>
-    <link href="http://Bithub00.com/2020/12/22/GPUIR%5BSIGIR19%5D/"/>
-    <id>http://Bithub00.com/2020/12/22/GPUIR[SIGIR19]/</id>
-    <published>2020-12-22T02:55:32.621Z</published>
-    <updated>2020-12-22T03:19:39.414Z</updated>
-    
-    <content type="html"><![CDATA[<p>SIGIR19年有关GPU加速的一篇论文</p><a id="more"></a><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>FEXIPRO[SIGMOD’17]中的对IPR问题的求解较慢，可以使用GPU进行并行加速。</p><h4 id="IPR问题"><a href="#IPR问题" class="headerlink" title="IPR问题"></a>IPR问题</h4><p>给定一个用户矩阵$Q\in \mathbb{R}^{d\times m}$以及一个物品矩阵$P\in \mathbb{R}^{d\times n}$，对于$Q$中的每一个用户$q$，返回内积$q^TP$中的前k个$q^Tp$对应的物品列表$p$</p><h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="行文逻辑"><a href="#行文逻辑" class="headerlink" title="行文逻辑"></a>行文逻辑</h4><p>作者首先画出四个数据集上，SeqScan与FEXIPRO中两个步骤（内积计算与Top-k物品获取）的运行时间占比，发现内积计算占了总开销的90%以上，促使他提出方法加速这一步骤。接下来介绍GPU加速CPU程序的流程，提出了第一个改进方法，即分batch将矩阵送入GPU并行地计算内积。下一步同样地画出它各个步骤的运行时间占比，发现现在top-k物品的获取以及将内积结果从GPU内存复制到CPU内存这两个步骤变成了时间开销的大头。于是顺着分析结果提出了两个改进方法针对性地减小这两个步骤的时间开销。</p><h4 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h4><p>前后提出了三个改进方法：GPU-IP、GPU-IPR、GPU-IPRO，分别为：<br>GPU-IP：1<br>GPU-IPR：1+2<br>GPU-IRPO：1+2+3</p><ol><li><p>并行计算$Q^TP$，并且提出了一种新的矩阵分割方法以充分利用GPU内存，从而加速内积的计算  </p><blockquote><p>给定GPU内存为$M$，各自选取用户矩阵与物品矩阵的子集$Q_s\in Q,P_s\in P$使得$Size(Q_s^TP_s)\le M$，论文的做法是取$Q_s=Q$，通过$Size(Q^TP_s)=M$来选取$P_s$的大小</p></blockquote></li><li><p>为每一个用户指定最佳的内积数量$g_s$为1024，从这1024个计算结果中返回top-k，减少了待排序的数据规模</p><blockquote><p>内积数量会严重影响下一步的Bitonic排序的性能。选取的依据是它应该满足每一个线程组的共享内存大小因为它会在GPU缓存层级关系中带来最小的缓存访问延迟(The size of $g_s$ should fit in the shared<br>memory of each threads group as it incurs minimum cache access latency in GPU cache hierarchy.)</p></blockquote></li><li><p>提出了一种剪枝方法来提前结束计算进程，减少了许多内积计算<br>假设用户$u$与其第$k$大的物品的内积为$S_k$，且$||q||\cdot||p||\le S_k$，则有  $q^Tp \le ||q||\cdot||p||\le S_k$，因为目的是得到top-k物品，满足上述不等式的物品已经被排除在top-k之外，不需要送入下一次迭代进行内积计算</p><blockquote><p>使用这种剪枝方法后，在四个数据集的前10次迭代中，分别减少了98.88%、76.61%、88.69%以及1.57%的用户数量。</p></blockquote></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;SIGIR19年有关GPU加速的一篇论文&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="数据库" scheme="http://Bithub00.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
