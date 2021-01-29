@@ -81,22 +81,22 @@
 
 
 
-<meta name="description" content="KDD20一篇将对比学习（contrastive learning）应用于图表示学习任务从而进行迁移的论文 解决的问题如何将自监督学习的思想应用与图表示学习，通过预训练图神经网络从而仅需要微调就可以应用于新的数据集。 图表示学习目前受到了广泛关注，但目前绝大多数的图表示学习方法都是针对特定领域的图进行学习和建模，训练出的图神经网络难以迁移。 做法及创新对比学习对比学习是自监督学习思想的一种典型框架">
+<meta name="description" content="KDD20一篇将对比学习（contrastive learning）应用于图表示学习任务从而进行迁移的论文">
 <meta name="keywords" content="图神经网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCC--Graph Contrastive Coding for Graph Neural Network Pre-Training[KDD&#39;20]">
 <meta property="og:url" content="http://Bithub00.com/2021/01/28/GCC[KDD20]/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="KDD20一篇将对比学习（contrastive learning）应用于图表示学习任务从而进行迁移的论文 解决的问题如何将自监督学习的思想应用与图表示学习，通过预训练图神经网络从而仅需要微调就可以应用于新的数据集。 图表示学习目前受到了广泛关注，但目前绝大多数的图表示学习方法都是针对特定领域的图进行学习和建模，训练出的图神经网络难以迁移。 做法及创新对比学习对比学习是自监督学习思想的一种典型框架">
+<meta property="og:description" content="KDD20一篇将对比学习（contrastive learning）应用于图表示学习任务从而进行迁移的论文">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/29/yiECBF.png">
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/28/y9x4KI.png">
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/29/yiFHv8.png">
 <meta property="og:image" content="https://s3.ax1x.com/2021/01/29/yimVaD.png">
-<meta property="og:updated_time" content="2021-01-29T13:34:36.000Z">
+<meta property="og:updated_time" content="2021-01-29T15:11:31.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCC--Graph Contrastive Coding for Graph Neural Network Pre-Training[KDD&#39;20]">
-<meta name="twitter:description" content="KDD20一篇将对比学习（contrastive learning）应用于图表示学习任务从而进行迁移的论文 解决的问题如何将自监督学习的思想应用与图表示学习，通过预训练图神经网络从而仅需要微调就可以应用于新的数据集。 图表示学习目前受到了广泛关注，但目前绝大多数的图表示学习方法都是针对特定领域的图进行学习和建模，训练出的图神经网络难以迁移。 做法及创新对比学习对比学习是自监督学习思想的一种典型框架">
+<meta name="twitter:description" content="KDD20一篇将对比学习（contrastive learning）应用于图表示学习任务从而进行迁移的论文">
 <meta name="twitter:image" content="https://s3.ax1x.com/2021/01/29/yiECBF.png">
 
 
@@ -371,6 +371,7 @@
 
       
         <p>KDD20一篇将对比学习（contrastive learning）应用于图表示学习任务从而进行迁移的论文</p>
+<a id="more"></a>
 <h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>如何将自监督学习的思想应用与图表示学习，通过预训练图神经网络从而仅需要微调就可以应用于新的数据集。</p>
 <p>图表示学习目前受到了广泛关注，但目前绝大多数的图表示学习方法都是针对特定领域的图进行学习和建模，训练出的图神经网络难以迁移。</p>
 <h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="对比学习"><a href="#对比学习" class="headerlink" title="对比学习"></a>对比学习</h4><p>对比学习是自监督学习思想的一种典型框架，一个典型的例子如下图所示：</p>
