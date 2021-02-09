@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="C++ 从字符串中删除子串 12345void removeSubstrs(string&amp;amp; s, const string&amp;amp; e)&amp;#123;        int n = e.length();        for(string::size_type i = s.find(e); i != string::npos; i = s.find(e))            s.e">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-29T04:06:26.297Z">
+<meta property="og:updated_time" content="2021-01-31T03:27:22.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++常用操作">
 <meta name="twitter:description" content="C++ 从字符串中删除子串 12345void removeSubstrs(string&amp;amp; s, const string&amp;amp; e)&amp;#123;        int n = e.length();        for(string::size_type i = s.find(e); i != string::npos; i = s.find(e))            s.e">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  132
+                  158
                 </span>
               
 
@@ -382,6 +382,10 @@
 <li>初始化二维vector</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> row = <span class="number">3</span>, col = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; matrix(row, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(col, <span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>高效求二进制中1的个数</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(n != <span class="number">0</span>)&#123;</span><br><span class="line">  n &amp;= n<span class="number">-1</span>;</span><br><span class="line">  count++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -508,7 +512,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -619,7 +623,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共111.4k字</span>
+  <span class="post-count">小站全站共114.6k字</span>
 </div>
         
 
