@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/06/10/toiGm4.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8CvYlj.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8Cvt6s.png">
-<meta property="og:updated_time" content="2021-01-11T12:20:44.794Z">
+<meta property="og:updated_time" content="2021-02-23T10:00:00.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用操作">
 <meta name="twitter:description" content="用本文记录平时遇到的一些问题和解决方法，自己试过成功的">
@@ -344,7 +344,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,109
+                  1,304
                 </span>
               
 
@@ -387,6 +387,24 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P 8888 -r /home/usr/ root@xx.xx.xx.xx:/root/usr/</span><br></pre></td></tr></table></figure>
 <p>类似地，上传整个目录。</p>
 <p>另一个参数-v可以用来显示进度 . 查看连接 , 认证 , 或是配置错误。</p>
+<h4 id="使用CMakeLists-txt文件"><a href="#使用CMakeLists-txt文件" class="headerlink" title="使用CMakeLists.txt文件"></a>使用CMakeLists.txt文件</h4><p>CMakeLists.txt需要通过cmake命令来执行，步骤为：</p>
+<ul>
+<li>cmake XXX</li>
+<li>make</li>
+</ul>
+<p>其中XXX为CMakeLists.txt所在目录。如果提示当前cmake命令版本太低需要升级，可以通过下面的方法来临时安装一个新版本，不需要卸载旧版本，避免不必要的麻烦：</p>
+<ol>
+<li><p>从<a href="https://cmake.org/files/LatestRelease/" target="_blank" rel="noopener">官网</a>下载sh文件执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://cmake.org/files/LatestRelease/cmake-3.19.4-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行sh文件，安装过程中选项都输入y</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh cmake-3.19.4-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检查是否为新版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./cmake-3.19.4-Linux-x86_64/bin</span><br><span class="line">./cmake --version</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>显示新版本说明安装正确，对于需要新版本才能执行的CMakeLists.txt，可以调用这个目录下的cmake来执行</p>
 <h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="将conda环境加入jupyterlab"><a href="#将conda环境加入jupyterlab" class="headerlink" title="将conda环境加入jupyterlab"></a>将conda环境加入jupyterlab</h4><p>假设conda中现有一个虚拟环境star，现在想把它作为kernel加入到jupyterlab中，注意虚拟环境与kernel并不是同步的，即使激活star这个虚拟环境之后打开jupyterlab，使用的kernel仍然是默认的python环境，如果要使用star里面安装的各种版本的库，需要进行如下步骤：</p>
 <blockquote>
 <ol>
@@ -630,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux通过ssh传输文件"><span class="nav-number">1.1.</span> <span class="nav-text">Linux通过ssh传输文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载远程服务器上的文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载远程服务器上的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上传本地文件到远程服务器"><span class="nav-number">1.1.2.</span> <span class="nav-text">上传本地文件到远程服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将conda环境加入jupyterlab"><span class="nav-number">2.1.</span> <span class="nav-text">将conda环境加入jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程使用jupyterlab"><span class="nav-number">2.2.</span> <span class="nav-text">远程使用jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><span class="nav-number">2.3.</span> <span class="nav-text">json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pycharm-from-xx-import出错"><span class="nav-number">2.4.</span> <span class="nav-text">Pycharm from xx import出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案"><span class="nav-number">2.5.</span> <span class="nav-text">Selenium TypeError  init() takes 2 positional arguments but 3 were given_解决方案</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux通过ssh传输文件"><span class="nav-number">1.1.</span> <span class="nav-text">Linux通过ssh传输文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载远程服务器上的文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载远程服务器上的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上传本地文件到远程服务器"><span class="nav-number">1.1.2.</span> <span class="nav-text">上传本地文件到远程服务器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用CMakeLists-txt文件"><span class="nav-number">1.2.</span> <span class="nav-text">使用CMakeLists.txt文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将conda环境加入jupyterlab"><span class="nav-number">2.1.</span> <span class="nav-text">将conda环境加入jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程使用jupyterlab"><span class="nav-number">2.2.</span> <span class="nav-text">远程使用jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><span class="nav-number">2.3.</span> <span class="nav-text">json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pycharm-from-xx-import出错"><span class="nav-number">2.4.</span> <span class="nav-text">Pycharm from xx import出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案"><span class="nav-number">2.5.</span> <span class="nav-text">Selenium TypeError  init() takes 2 positional arguments but 3 were given_解决方案</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -674,7 +692,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共114.6k字</span>
+  <span class="post-count">小站全站共114.8k字</span>
 </div>
         
 
