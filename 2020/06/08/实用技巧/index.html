@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/06/10/toiGm4.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8CvYlj.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8Cvt6s.png">
-<meta property="og:updated_time" content="2021-02-23T10:00:00.366Z">
+<meta property="og:updated_time" content="2021-02-23T11:17:00.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用操作">
 <meta name="twitter:description" content="用本文记录平时遇到的一些问题和解决方法，自己试过成功的">
@@ -344,7 +344,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,304
+                  1,379
                 </span>
               
 
@@ -405,6 +405,9 @@
 </li>
 </ol>
 <p>显示新版本说明安装正确，对于需要新版本才能执行的CMakeLists.txt，可以调用这个目录下的cmake来执行</p>
+<h4 id="编译时提示找不到头文件"><a href="#编译时提示找不到头文件" class="headerlink" title="编译时提示找不到头文件"></a>编译时提示找不到头文件</h4><p>如果编译时提示找不到自己安装的库的头文件，可以通过-I来指定头文件的位置，需要注意层级关系，例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdgpu/vector.cuh&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>而vector.cuh位于/stdgpu/src/stdgpu，则命令为-I stdgpu/src/</p>
 <h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="将conda环境加入jupyterlab"><a href="#将conda环境加入jupyterlab" class="headerlink" title="将conda环境加入jupyterlab"></a>将conda环境加入jupyterlab</h4><p>假设conda中现有一个虚拟环境star，现在想把它作为kernel加入到jupyterlab中，注意虚拟环境与kernel并不是同步的，即使激活star这个虚拟环境之后打开jupyterlab，使用的kernel仍然是默认的python环境，如果要使用star里面安装的各种版本的库，需要进行如下步骤：</p>
 <blockquote>
 <ol>
@@ -648,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux通过ssh传输文件"><span class="nav-number">1.1.</span> <span class="nav-text">Linux通过ssh传输文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载远程服务器上的文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载远程服务器上的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上传本地文件到远程服务器"><span class="nav-number">1.1.2.</span> <span class="nav-text">上传本地文件到远程服务器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用CMakeLists-txt文件"><span class="nav-number">1.2.</span> <span class="nav-text">使用CMakeLists.txt文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将conda环境加入jupyterlab"><span class="nav-number">2.1.</span> <span class="nav-text">将conda环境加入jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程使用jupyterlab"><span class="nav-number">2.2.</span> <span class="nav-text">远程使用jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><span class="nav-number">2.3.</span> <span class="nav-text">json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pycharm-from-xx-import出错"><span class="nav-number">2.4.</span> <span class="nav-text">Pycharm from xx import出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案"><span class="nav-number">2.5.</span> <span class="nav-text">Selenium TypeError  init() takes 2 positional arguments but 3 were given_解决方案</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux通过ssh传输文件"><span class="nav-number">1.1.</span> <span class="nav-text">Linux通过ssh传输文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载远程服务器上的文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载远程服务器上的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上传本地文件到远程服务器"><span class="nav-number">1.1.2.</span> <span class="nav-text">上传本地文件到远程服务器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用CMakeLists-txt文件"><span class="nav-number">1.2.</span> <span class="nav-text">使用CMakeLists.txt文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译时提示找不到头文件"><span class="nav-number">1.3.</span> <span class="nav-text">编译时提示找不到头文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将conda环境加入jupyterlab"><span class="nav-number">2.1.</span> <span class="nav-text">将conda环境加入jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程使用jupyterlab"><span class="nav-number">2.2.</span> <span class="nav-text">远程使用jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><span class="nav-number">2.3.</span> <span class="nav-text">json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pycharm-from-xx-import出错"><span class="nav-number">2.4.</span> <span class="nav-text">Pycharm from xx import出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案"><span class="nav-number">2.5.</span> <span class="nav-text">Selenium TypeError  init() takes 2 positional arguments but 3 were given_解决方案</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -692,7 +695,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共114.8k字</span>
+  <span class="post-count">小站全站共114.9k字</span>
 </div>
         
 
