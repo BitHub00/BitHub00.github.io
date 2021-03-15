@@ -913,7 +913,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  254
+                  335
                 </span>
               
 
@@ -965,6 +965,14 @@
 <li>分割字符串</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//完全分割</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">split</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; record, <span class="keyword">const</span> <span class="keyword">char</span> delim = <span class="string">'.'</span>)</span> </span>&#123;</span><br><span class="line">        record.clear();</span><br><span class="line">        <span class="function"><span class="built_in">istringstream</span> <span class="title">is</span><span class="params">(s)</span></span>;</span><br><span class="line">        <span class="built_in">string</span> temp;</span><br><span class="line">        <span class="keyword">while</span> (getline(is, temp, delim)) &#123;</span><br><span class="line">            record.push_back(move(temp));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//只分割一次</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">split</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; record, <span class="keyword">const</span> <span class="keyword">char</span> delim = <span class="string">'.'</span>)</span> </span>&#123;</span><br><span class="line">  			<span class="comment">//s="www.bithub00.com"➡"bithub00.com"、"com"</span></span><br><span class="line">        record.clear();</span><br><span class="line">        <span class="keyword">int</span> index = s.find(<span class="string">'.'</span>);</span><br><span class="line">  			<span class="keyword">while</span>(index &gt; <span class="number">0</span>)&#123;</span><br><span class="line">  					<span class="built_in">string</span> t = s.substr(index+<span class="number">1</span>);</span><br><span class="line">          	record.push_back(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从句子中读取单词</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> A = <span class="string">"Data Mining"</span>;</span><br><span class="line"><span class="function"><span class="built_in">istringstream</span> <span class="title">in</span><span class="params">(A)</span></span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; v;</span><br><span class="line"><span class="built_in">string</span> t;</span><br><span class="line"><span class="keyword">while</span>(in &gt;&gt; t)&#123;</span><br><span class="line">	v.push_back(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>求文件行数</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">length</span><span class="params">(<span class="keyword">char</span> *File)</span> </span>&#123;</span><br><span class="line">	<span class="function">ifstream <span class="title">myfile</span><span class="params">(File)</span></span>;</span><br><span class="line">	<span class="built_in">string</span> line;</span><br><span class="line">	<span class="keyword">int</span> lineNum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (getline(myfile, line))</span><br><span class="line">		lineNum++;</span><br><span class="line">	myfile.clear();</span><br><span class="line">	myfile.seekg(<span class="number">0</span>, ios::beg); <span class="comment">//回到文件第一行</span></span><br><span class="line">	<span class="keyword">return</span> lineNum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1864,7 +1872,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共115.0k字</span>
+  <span class="post-count">小站全站共115.1k字</span>
 </div>
         
 
