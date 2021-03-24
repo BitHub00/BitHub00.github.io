@@ -913,7 +913,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  335
+                  370
                 </span>
               
 
@@ -939,42 +939,14 @@
 
       
         
-          
-            <a id="more"></a>
-<h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><ul>
-<li><p>从字符串中删除子串</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeSubstrs</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="keyword">const</span> <span class="built_in">string</span>&amp; e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = e.length();</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">string</span>::size_type i = s.find(e); i != <span class="built_in">string</span>::npos; i = s.find(e))</span><br><span class="line">            s.erase(i, n);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用STL库实现小顶堆</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">priority_queue &lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt; &gt; pq;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>自定义排序</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x, y, len;</span><br><span class="line">    Edge(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> len) : x(x), y(y), len(len)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;Edge&gt; edges;</span><br><span class="line">sort(edges.begin(), edges.end(), [](Edge a, Edge b) -&gt; <span class="keyword">int</span> &#123;<span class="keyword">return</span> a.len &lt; b.len;&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>初始化二维vector</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> row = <span class="number">3</span>, col = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; matrix(row, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(col, <span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-<ul>
-<li>高效求二进制中1的个数</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(n != <span class="number">0</span>)&#123;</span><br><span class="line">  n &amp;= n<span class="number">-1</span>;</span><br><span class="line">  count++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>分割字符串</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//完全分割</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">split</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; record, <span class="keyword">const</span> <span class="keyword">char</span> delim = <span class="string">'.'</span>)</span> </span>&#123;</span><br><span class="line">        record.clear();</span><br><span class="line">        <span class="function"><span class="built_in">istringstream</span> <span class="title">is</span><span class="params">(s)</span></span>;</span><br><span class="line">        <span class="built_in">string</span> temp;</span><br><span class="line">        <span class="keyword">while</span> (getline(is, temp, delim)) &#123;</span><br><span class="line">            record.push_back(move(temp));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//只分割一次</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">split</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; record, <span class="keyword">const</span> <span class="keyword">char</span> delim = <span class="string">'.'</span>)</span> </span>&#123;</span><br><span class="line">  			<span class="comment">//s="www.bithub00.com"➡"bithub00.com"、"com"</span></span><br><span class="line">        record.clear();</span><br><span class="line">        <span class="keyword">int</span> index = s.find(<span class="string">'.'</span>);</span><br><span class="line">  			<span class="keyword">while</span>(index &gt; <span class="number">0</span>)&#123;</span><br><span class="line">  					<span class="built_in">string</span> t = s.substr(index+<span class="number">1</span>);</span><br><span class="line">          	record.push_back(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>从句子中读取单词</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> A = <span class="string">"Data Mining"</span>;</span><br><span class="line"><span class="function"><span class="built_in">istringstream</span> <span class="title">in</span><span class="params">(A)</span></span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; v;</span><br><span class="line"><span class="built_in">string</span> t;</span><br><span class="line"><span class="keyword">while</span>(in &gt;&gt; t)&#123;</span><br><span class="line">	v.push_back(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>求文件行数</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">length</span><span class="params">(<span class="keyword">char</span> *File)</span> </span>&#123;</span><br><span class="line">	<span class="function">ifstream <span class="title">myfile</span><span class="params">(File)</span></span>;</span><br><span class="line">	<span class="built_in">string</span> line;</span><br><span class="line">	<span class="keyword">int</span> lineNum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (getline(myfile, line))</span><br><span class="line">		lineNum++;</span><br><span class="line">	myfile.clear();</span><br><span class="line">	myfile.seekg(<span class="number">0</span>, ios::beg); <span class="comment">//回到文件第一行</span></span><br><span class="line">	<span class="keyword">return</span> lineNum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          <p>记录备查</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/01/17/c++常用操作/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

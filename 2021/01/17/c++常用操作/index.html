@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="C++ 从字符串中删除子串 12345void removeSubstrs(string&amp;amp; s, const string&amp;amp; e)&amp;#123;        int n = e.length();        for(string::size_type i = s.find(e); i != string::npos; i = s.find(e))            s.e">
+<meta name="description" content="记录备查">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++常用操作">
 <meta property="og:url" content="http://Bithub00.com/2021/01/17/c++常用操作/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="C++ 从字符串中删除子串 12345void removeSubstrs(string&amp;amp; s, const string&amp;amp; e)&amp;#123;        int n = e.length();        for(string::size_type i = s.find(e); i != string::npos; i = s.find(e))            s.e">
+<meta property="og:description" content="记录备查">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-03-14T02:09:49.933Z">
+<meta property="og:updated_time" content="2021-03-24T03:16:46.258Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++常用操作">
-<meta name="twitter:description" content="C++ 从字符串中删除子串 12345void removeSubstrs(string&amp;amp; s, const string&amp;amp; e)&amp;#123;        int n = e.length();        for(string::size_type i = s.find(e); i != string::npos; i = s.find(e))            s.e">
+<meta name="twitter:description" content="记录备查">
 
 
 
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  335
+                  370
                 </span>
               
 
@@ -365,7 +365,8 @@
       
 
       
-        <a id="more"></a>
+        <p>记录备查</p>
+<a id="more"></a>
 <h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><ul>
 <li><p>从字符串中删除子串</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeSubstrs</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="keyword">const</span> <span class="built_in">string</span>&amp; e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = e.length();</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">string</span>::size_type i = s.find(e); i != <span class="built_in">string</span>::npos; i = s.find(e))</span><br><span class="line">            s.erase(i, n);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -383,9 +384,9 @@
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> row = <span class="number">3</span>, col = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; matrix(row, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(col, <span class="number">0</span>));</span><br></pre></td></tr></table></figure>
 <ul>
-<li>高效求二进制中1的个数</li>
+<li>位运算</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(n != <span class="number">0</span>)&#123;</span><br><span class="line">  n &amp;= n<span class="number">-1</span>;</span><br><span class="line">  count++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//求二进制中1的个数</span></span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(n != <span class="number">0</span>)&#123;</span><br><span class="line">  n &amp;= n<span class="number">-1</span>;</span><br><span class="line">  count++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//除2</span></span><br><span class="line">x &gt;&gt;= <span class="number">1</span>;</span><br><span class="line"><span class="comment">//乘2</span></span><br><span class="line">x &lt;&lt;= <span class="number">1</span>;</span><br><span class="line"><span class="comment">//大写转小写</span></span><br><span class="line">ch |= <span class="string">' '</span>;</span><br><span class="line"><span class="comment">//小写转大写</span></span><br><span class="line">ch &amp;= <span class="string">'_'</span>;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>分割字符串</li>
 </ul>
