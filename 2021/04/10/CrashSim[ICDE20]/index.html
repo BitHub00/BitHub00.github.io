@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="图神经网络,推荐系统," />
+  <meta name="keywords" content="高效计算," />
 
 
 
@@ -81,23 +81,57 @@
 
 
 
-<meta name="description" content="ICLR20一篇使用GNN来解决现有矩阵补全方法无法泛化问题的论文">
-<meta name="keywords" content="图神经网络,推荐系统">
+<meta name="description" content="ICDE20一篇高效计算SimRank相似的论文">
+<meta name="keywords" content="高效计算">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Inductive Matrix Completion Based on Graph Neural Networks[ICLR&#39;20]">
-<meta property="og:url" content="http://Bithub00.com/2021/01/14/ICMC[ICLR20]/index.html">
+<meta property="og:title" content="CrashSim An Efficient Algorithm for Computing SimRank over Static and Temporal Graphs[ICDE&#39;20]">
+<meta property="og:url" content="http://Bithub00.com/2021/04/10/CrashSim[ICDE20]/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="ICLR20一篇使用GNN来解决现有矩阵补全方法无法泛化问题的论文">
+<meta property="og:description" content="ICDE20一篇高效计算SimRank相似的论文">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s3.ax1x.com/2021/01/14/sd6O1S.png">
-<meta property="og:image" content="https://s3.ax1x.com/2021/01/14/sdfNf1.png">
-<meta property="og:image" content="https://s3.ax1x.com/2021/01/14/sd4urT.png">
-<meta property="og:image" content="https://s3.ax1x.com/2021/01/15/swYFij.png">
-<meta property="og:updated_time" content="2021-01-15T02:46:33.394Z">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSebj.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSnVs.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSuan.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSVKg.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSZrQ.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSlGV.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSK5q.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSQP0.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSYqJ.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdS12T.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdS3xU.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSGMF.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSJr4.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSwPx.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSNZ9.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSaI1.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSUaR.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdS0G6.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSBRK.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdS6qH.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdS5z8.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdS7LQ.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSsMD.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSgZd.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdS2dA.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSRII.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSTsg.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdShJP.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSfit.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSoQS.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdS4Rf.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSbZj.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSqds.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSLon.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSjJ0.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSXiq.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdSxzT.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdpSQU.png">
+<meta property="og:updated_time" content="2021-04-10T09:11:49.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Inductive Matrix Completion Based on Graph Neural Networks[ICLR&#39;20]">
-<meta name="twitter:description" content="ICLR20一篇使用GNN来解决现有矩阵补全方法无法泛化问题的论文">
-<meta name="twitter:image" content="https://s3.ax1x.com/2021/01/14/sd6O1S.png">
+<meta name="twitter:title" content="CrashSim An Efficient Algorithm for Computing SimRank over Static and Temporal Graphs[ICDE&#39;20]">
+<meta name="twitter:description" content="ICDE20一篇高效计算SimRank相似的论文">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/04/10/cdSebj.png">
 
 
 
@@ -127,13 +161,13 @@
 
 
 
-  <link rel="canonical" href="http://Bithub00.com/2021/01/14/ICMC[ICLR20]/"/>
+  <link rel="canonical" href="http://Bithub00.com/2021/04/10/CrashSim[ICDE20]/"/>
 
 
 
 
 
-  <title>Inductive Matrix Completion Based on Graph Neural Networks[ICLR'20] | 原力小站</title>
+  <title>CrashSim An Efficient Algorithm for Computing SimRank over Static and Temporal Graphs[ICDE'20] | 原力小站</title>
   
 
 
@@ -284,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2021/01/14/ICMC[ICLR20]/">
+    <link itemprop="mainEntityOfPage" href="http://Bithub00.com/2021/04/10/CrashSim[ICDE20]/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.shuan">
@@ -301,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Inductive Matrix Completion Based on Graph Neural Networks[ICLR'20]</h1>
+          <h1 class="post-title" itemprop="name headline">CrashSim An Efficient Algorithm for Computing SimRank over Static and Temporal Graphs[ICDE'20]</h1>
         
 
         <div class="post-meta">
@@ -313,8 +347,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-14T20:56:15+08:00">
-                2021-01-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-10T17:05:01+08:00">
+                2021-04-10
               </time>
             
 
@@ -331,7 +365,7 @@
 
           
           
-             <span id="/2021/01/14/ICMC[ICLR20]/" class="leancloud_visitors" data-flag-title="Inductive Matrix Completion Based on Graph Neural Networks[ICLR'20]">
+             <span id="/2021/04/10/CrashSim[ICDE20]/" class="leancloud_visitors" data-flag-title="CrashSim An Efficient Algorithm for Computing SimRank over Static and Temporal Graphs[ICDE'20]">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -356,7 +390,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,109
+                  2,801
                 </span>
               
 
@@ -381,51 +415,11 @@
       
 
       
-        <p>ICLR20一篇使用GNN来解决现有矩阵补全方法无法泛化问题的论文</p>
+        <p>ICDE20一篇高效计算SimRank相似的论文</p>
 <a id="more"></a>
-<h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>如何让矩阵补全方法中一个数据集得到的embedding，能够迁移到另一个数据集上，同时不依赖额外的信息。</p>
-<p>与另一篇论文<a href="http://www.bithub00.com/2021/01/09/GCMC[KDD18]/" target="_blank" rel="noopener">GCMC</a>应用的问题相同，具体地，这篇论文做的是推荐系统方向下的矩阵补全问题，给定一个评分矩阵，如何根据已有的评分记录来预测用户对其他物品的评分。传统的做法是将输入的评分矩阵分解成用户与物品的embedding，通过embedding重构评分矩阵，填补其中的缺失值，从而做出预测，如下图所示：</p>
-<div align="center">
-<a href="https://imgchr.com/i/sd6O1S" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/14/sd6O1S.png" alt="sd6O1S.png" border="0" width="80%"></a>
-</div>
-
-<p>很多现有方法研究的都是如何得到更好的embedding，但它们都是直推式(transductive)而非启发式(inductive)的，意味着没法迁移，例如MovieLens数据集上得到的embedding就不能直接用于Douban数据集上，需要重新训练一个新的embedding。即使对于同一个数据集而言，如果加入新的评分记录，往往需要整个embedding重新训练。</p>
-<h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="Enclosing-Subgraph-Extraction"><a href="#Enclosing-Subgraph-Extraction" class="headerlink" title="Enclosing Subgraph Extraction"></a>Enclosing Subgraph Extraction</h4><p>论文的做法是为每一个评分记录提取一个子图，并且训练一个图神经网络来将得到的子图映射为预测评分。要想为评分记录提取子图，首先要将评分矩阵转换为图，转换的方法与另一篇论文<a href="http://www.bithub00.com/2021/01/09/GCMC[KDD18]/" target="_blank" rel="noopener">GCMC</a>相同，博客中有具体介绍，这里就不重复说明了。论文中对子图的定义方式为，给定一个评分记录$(u,v)$，表示用户$u$给物品$v$评过分，那么这个评分记录提取的子图由该用户$u$、物品$v$以及它们各自的$h$跳邻域内的顶点构成。为了具体说明是怎么从一个评分记录提取出子图的，我从论文作者的视频中截取了这部分内容，如下图所示：</p>
-<p>假设第一张图中深绿色的方格是缺失值，这里先填入了模型的预测评分，倒退着来说明预测评分是怎么通过子图得到的。我们首先找到这个用户评过分的其它物品，对应于第五个物品的四分与第八个物品的两分，如第二张图所示。下一步是找到为这个物品评过分的其他用户，对应于第三个用户的五分与第四个用户的五分。</p>
-<div align="center">
-<a href="https://imgchr.com/i/sdfNf1" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/14/sdfNf1.png" alt="sdfNf1.png" border="0"></a>
-</div>
-
-<p>通过图二和图三找到的关系，就可以提取出这个评分记录的子图了，如下图所示：</p>
-<div align="center">
-<a href="https://imgchr.com/i/sd4urT" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/14/sd4urT.png" alt="sd4urT.png" border="0" width="90%"></a>
-</div>
-
-<p>可以看到，这个提取出的子图能提供许多有用的信息，例如用户平均评分、物品平均评分、物品累计评价次数以及基于路径的结构信息。论文希望通过这种结构信息来找到一些特征，从而做出预测，例如，如果用户$u_0$喜欢一个物品$v_0$，那么对于另一个与他品味相同的用户$u_1$，我们可能发现他也喜欢$v_0$。品味相同可以表示为两个用户都喜欢另一个物品$v_1$，这个特征可以表示为这么一条路径：$u_0\rightarrow_{like}v_1\rightarrow_{liked\ by}u_1\rightarrow_{like}v_0$，如果$u_0$与$v_0$之间存在多条这样的路径，那么我们就可以推测$u_0$喜欢$v_0$。类似这样的结构特征数不胜数。因此，与其人工来手动定义大量这样的启发式特征(heuristics)，不如直接将子图输入一个图神经网络，来自动学习更通用的、更有表达能力的特征。</p>
-<h4 id="Node-Labeling"><a href="#Node-Labeling" class="headerlink" title="Node Labeling"></a>Node Labeling</h4><p>这一步给顶点打标签是为了让子图中的顶点有着不同的角色，例如区分哪个是需要预测的目标用户与目标物品，区分用户顶点与物品顶点。而论文中打标签的方式十分简单：</p>
-<ul>
-<li>目标用户与目标物品分别标记为0和1</li>
-<li>对于$h$跳邻域内的顶点，如果是用户顶点标记为$2h$，物品顶点则标记为$2h+1$</li>
-</ul>
-<p>标记之后，我们就能知道哪个是需要预测的目标用户与目标物品、哪些是用户顶点，因为用户顶点的标签均为偶数，以及邻域内顶点距离目标顶点距离的远近。这些标签将转换为one-hot编码的形式作为图神经网络输入的初始特征$x_0$。</p>
-<p>这一节的最后论文作者还说到了这种标记方式与<a href="http://www.bithub00.com/2021/01/09/GCMC[KDD18]/" target="_blank" rel="noopener">GCMC</a>做法的不同之处。GCMC中同样是将标签转换为one-hot编码的形式作为GNN的初始特征，不同的是它用顶点在整个bipartite graph中的全局id作为它的标签，这等价于将GNN第一层信息传递网络的参数，转换为与每个顶点的全局id相关联的embedding函数，可以理解为一个embedding查找表，输入一个全局id，输出它对应的embedding。这显然是直推式的，对于不在查找表中的id，就无法得到它的embedding。这种情况对应于在小数据集上训练网络得到embedding，然后换到大数据集上，因为大数据集的顶点数量肯定要多于小数据集，这就会使得顶点的全局id范围变大，超出了训练出来的这个embedding查找表的范围。</p>
-<h4 id="Graph-Neural-Network"><a href="#Graph-Neural-Network" class="headerlink" title="Graph Neural Network"></a>Graph Neural Network</h4><p>这一步的目的就是训练一个GNN来将提取出的子图映射成预测评分。论文所使用的GNN分为两个部分：信息传递层与池化层。前者的作用是得到子图中各顶点的特征向量，后者是根据得到的特征向量形成子图的一个特征表示。</p>
-<p>信息传递部分使用的是<a href="https://arxiv.org/pdf/1703.06103v4.pdf" target="_blank" rel="noopener">R-GCN</a>：</p>
-<script type="math/tex; mode=display">
-x_i^{l+1}=W_0^lx_i^l+\sum_{r\in R}\sum_{j\in N_r(i)}\frac{1}{|N_r(i)|}W_r^lx_j^l</script><p>其中$x_i^l$表示第$i$个顶点在第$l$层的特征向量，$N_r(i)$表示评分水平$r$下顶点$i$的邻域，顶点$i$以不同的边权重$r$所连接的顶点$j$用不同的参数矩阵$W_r^l$来进行处理。通过堆叠$L$层网络可以得到顶点$i$的$L$个特征向量，通过拼接的方式得到它最终的特征表示$h_i$：</p>
-<script type="math/tex; mode=display">
-h_i=\text{concat}(x_i^1,x_i^2,\dots,x_i^L)</script><p>池化部分只选取子图中目标用户与目标顶点的特征向量进行拼接，来得到该子图的特征表示，这么做的原因是这两个顶点携带了最多的信息。</p>
-<script type="math/tex; mode=display">
-g=\text{concat}(h_u,h_v)</script><p>在得到子图的特征表示后，最后一步是通过一个MLP将它转换为一个预测评分$\hat{r}$：</p>
-<script type="math/tex; mode=display">
-\hat{r}=w^T\sigma(Wg)</script><h4 id="Adjacent-Rating-Regularization"><a href="#Adjacent-Rating-Regularization" class="headerlink" title="Adjacent Rating Regularization"></a>Adjacent Rating Regularization</h4><p>论文对于信息传递部分使用的R-GCN还提出了一点改进，在原始的R-GCN中，不同的评分水平是独立看待的，彼此之间没有关联，例如对于1、4、5这三个评分，显然地4和5都表示了用户的喜爱而1表示了用户的厌恶，同时4和5的相似程度要大于4和1，但这种次序关系及大小关系在原始的R-GCN中都被丢掉了。因此本论文添加了一个约束来引入这部分丢失的信息，具体做法也很简单，就是使得相邻的评分水平使用的参数矩阵更加相似：</p>
-<script type="math/tex; mode=display">
-L_{ARR}=\sum_{i=1,2,\dots,|R|-1}||W_{r_i+1}-W_{r_i}||_F^2</script><p>这里假设评分$r_1,r_2,\dots,r_{|R|}$表示了用户喜爱程度的递增，通过这个约束就保留了评分的次序信息，同时可以使得出现次数较少的评分水平可以从相邻的评分水平中迁移信息，来弥补数据不足带来的问题。</p>
-<h4 id="Graph-level-GNN-vs-Node-level-GNN"><a href="#Graph-level-GNN-vs-Node-level-GNN" class="headerlink" title="Graph-level GNN vs Node-level GNN"></a>Graph-level GNN vs Node-level GNN</h4><p>这一节还是在于GCMC作比较。在GCMC中，采用的是顶点层面的图神经网络，它应用于图中的顶点来得到顶点的embedding，再通过embedding得到预测评分，如下右图所示。这么做的缺陷是它独立地学习两个顶点所关联的子树，而忽略了这两棵子树之间可能存在的联系。</p>
-<p><div align="center">
-<a href="https://imgchr.com/i/swYFij" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/15/swYFij.png" alt="swYFij.png" border="0" width="50%"></a>
-</div></p>
-<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>Flixster、Douban、YahooMusic、ML-100K、ML-1M</p>
+<pre><code>这里我直接把组会分享的PPT和讲稿放上来了。
+</code></pre><h3 id="讲稿"><a href="#讲稿" class="headerlink" title="讲稿"></a>讲稿</h3><p>​    大家好，今天我要讲的是ICDE2020年的一篇论文，“一种在静态和时序图上高效计算SimRank相似度的算法”。第一眼看到这个题目会想，首先什么是SimRank相似度，然后为什么它的计算是低效的，以及论文怎么进行高效计算。按照这个逻辑，首先介绍一下SimRank相似度，它是应用于图上的一种相似度计算方法，基本思想是，关联到相同顶点的两个顶点，相互之间具有相似性。以下面这个图片为例，两位教授相似度高因为他们来自同一所大学，而两位学生的相似度要相对低一些，在于他们并不直接来自于同一位教授。SimRank相似度原始的计算方式如下，它是一个迭代的过程。要计算顶点u和v的相似度，我们需要找到它们各自邻域中所有的顶点x和y，进行求和。前面的系数是为了避免热门顶点的影响而做的惩罚。因为是迭代计算，当图中顶点数量较多的时候计算就会变得低效。而VLDB17年的一篇论文证明了可以通过随机漫步近似计算SimRank相似度，这就为高效计算带来了新的思路。从随机漫步的角度来看，顶点u和v之间的SimRank相似度，可以看作从这两个顶点出发的随机漫步序列相交的概率。这个随机漫步的定义如下，以\sqrt{c}的概率漫步到下一个邻居，1-\sqrt{c}的概率终止于当前顶点。随机漫步可以看成是一种采样的方法，在图上的应用比较广泛，包括用来生成顶点的embedding如node2vec，或者在一个大图中构建子图捕获局部信息如GraphSAGE。既然是一个采样的方法，那么采样多少来保证获取到必要的信息就是一个关键的参数。同样地，在通过随机漫步近似计算SimRank相似度时，单次漫步的长度以及漫步的次数怎么选取，才能保证近似值与实际值之间的误差小于某个界限。论文的一个主要贡献就是给出了这两个参数的选取以及证明了它们的有效性。我对证明过程的每一步作了注解放在了ppt里，这里就不详细展开。主要是通过几何分布以及正态分布的3σ原则来证明。回到刚刚的式子，有了两个序列W(u)和W(v)，这时只剩下最后一步也就是怎么计算这里的概率。最直观的办法是通过蒙特卡洛模拟，给定一对查询顶点u和v，我们总共做n次随机漫步，用其中相遇的次数所占的比例作为概率的一个近似，然而这需要进行大量的尝试，直观但效率低。论文的改进做法是，与其去判断从u和v出发的随机漫步是否会相交，不如直接判断顶点v能否到达顶点u随机漫步的范围内。因为在静态图上固定了随机漫步的长度后，一个顶点能够漫步到的范围就是固定的，因此只需要在迭代之前计算一遍即可，不需要迭代时一次次地去计算。以左边的图为例，取漫步的长度$l_{max}=4$，在这个图中顶点A能够漫步到的范围就能用右边这颗树表示。因为随机漫步就是由概率决定是停止还是继续，所以只要将右边这棵树上的边用概率表示就可以进行近似计算。论文中给出的一个表示是下面这个式子，含义是这棵树每层之间边的一个关系。在实际编程实现时用的是一个二维矩阵$U\in \mathbb{R}^{l_{maax}\times |\Omega|}$来表示这棵树，为什么这样的一个关系能够保证近似计算的有效性的证明我也放在了这里，同样不展开来讲了。单看表达式比较抽象，我就继续以刚才的例子说明这个计算过程，取参数c=0.25，初始时因为只能停留在起点A处，所以设这个概率值为1，U(0,A)表示以0步漫步到顶点A的概率。而一步能够漫步到的范围包括B、C两个顶点，以B为例，它的入度邻居数目为2，对应着上面的公式计算出它的概率值。所以漫步到顶点B的概率由先到顶点A的概率决定，这也符合随机漫步的定义。接下来以此类推。对于顶点A能够到达的顶点，它们在矩阵里对应位置的值都不为0。得到这么一个U矩阵后，迭代时不断地产生顶点v的随机漫步序列W(v)，根据这里的式子来近似计算SimRank相似度，直观上的理解是W(v)这个序列多大程度上走进了顶点u的这个漫步范围。还是刚才的例子，假设我们想得到顶点A和C之间的SimRank相似度，而某次迭代时顶点C产生的一条序列为W(C)=(C,D,B,A)，我们查阅刚刚得到的U矩阵中对应元素的值，进行累加，多次迭代后就得到了近似计算结果。回顾一下整个算法的流程，输入是单个顶点u和一系列顶点v，我们希望知道u和这些v之间的SimRank相似度大小。首先设定两个参数的取值，接下来在迭代前先预先计算顶点u的U矩阵，矩阵中的元素表示它漫步到某个顶点的概率。迭代过程中从顶点v产生一条随机漫步序列，通过U矩阵计算这条序列与u相遇的概率，多次取平均作为结果。到这里论文就完成了静态图部分的工作，接下来就是怎么将提出的方法继续用在时序图上。一个时序图通常由一系列快照图组成，每个快照图捕获了某个时间段内顶点之间的状态，图中就是一个包含三个快照图的时序图。联系现实可以拿微博举例子，假设我是顶点H，第一周关注了用户F，第二周取关了他，第三周用户G又新关注用户F。实际中因为用户的兴趣更新频率很快，所以时序图更能表达这种动态变化的兴趣。在时序图的情景下，最常见的两种SimRank查询分别为趋势查询和阈值查询。趋势查询的含义是，在给定的时间区间内，对于顶点u，我们希望找到一系列顶点v，它们与u的SimRank相似度在这个区间内是递增或递减的。而阈值查询是指在给定的时间区间内，它们与u的SimRank相似度大于某个阈值。因为时序图的每个快照图都可以看成静态图，最直观的想法就是把刚才的方法在每个快照图上算一遍，但这样只是照搬静态图的做法，没有用上时序图的特点，所以论文的后半部分针对时序图的特点提出了两个减少计算量的策略，分别是delta剪枝和差异剪枝，它们的思想也很直观，希望只对时序图中产生变化的顶点重新进行计算。回到刚才的例子图，会发现这三张快照图变的只是蓝框部分，红框部分一直维持不变。所以红框内的部分没必要每次都进行计算。具体到delta剪枝，一条新增或删除的边x-&gt;y影响的区域定义为下面两个部分，第一部分的意思是，如果顶点u能去的范围因为新增的边变大了，对应的这棵树也会改变。而第二部分的意思是，对于顶点y能到达的最远顶点$y_{lmax}$，反过来看顶点x刚好在它漫步范围之外，所以它在前后两个快照图里是不受影响的，涉及它的SimRank计算就可以省去。根据这个观察，delta剪枝的做法就是满足该前提的条件下，避免重计算未受影响区域的顶点。论证在下面主要从时间复杂度来说明，这里就省去了。而差异剪枝的想法要简单一些，因为近似计算依靠的就是随机漫步，如果前后两张快照图里漫步的范围没变，那计算结果也不会发生改变。所以差异剪枝的做法就是只要顶点u和v漫步范围不变，它们之间就不需要进行重计算。论证同样是通过复杂度说明。这两个策略具体放在流程里体现为图里的红框和蓝框，主要是判断是否达到对应的条件，然后删去不需要重计算的顶点来减少计算量。最后是实验部分，数据集和baseline的描述如下，结果主要是准确率和效率两方面，纵轴的ME表示近似值与真实值的最大误差，五个数据集上论文的方法都是又快又准，在时序图实验上也是一样。总结来说，论文的贡献是给出了一种高效计算SimRank相似度的方法并且证明了它的有效性，并且针对时序图的情景提出了两个优化策略。因为论文涉及比较多的证明和细节，看完可能不太明白这么计算的意义。图在许多领域应用广泛，而SimRank相似度既然是一种相似度，那它就可以应用在推荐系统、社交网络等一系列任务上，同时这些场景下往往有大量的用户，高效计算就有了实际的应用背景。不过这里也是我对论文有疑问的一个地方，因为实验用到的数据集都很小，最多的顶点也才三万多个，时序图也是以天为单位，而在现实生活中可能用户兴趣可能几个小时就发生改变了，例如微博热搜。而且即使在这么一个数据集上，论文的方法也要耗费75分钟的时间进行计算，感觉并不是很高效。</p>
+<h3 id="PPT"><a href="#PPT" class="headerlink" title="PPT"></a>PPT</h3><p><a href="https://imgtu.com/i/cdSebj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSebj.png" alt="cdSebj.png"></a><br><a href="https://imgtu.com/i/cdSnVs" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSnVs.png" alt="cdSnVs.png"></a><br><a href="https://imgtu.com/i/cdSuan" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSuan.png" alt="cdSuan.png"></a><br><a href="https://imgtu.com/i/cdSVKg" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSVKg.png" alt="cdSVKg.png"></a><br><a href="https://imgtu.com/i/cdSZrQ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSZrQ.png" alt="cdSZrQ.png"></a><br><a href="https://imgtu.com/i/cdSlGV" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSlGV.png" alt="cdSlGV.png"></a><br><a href="https://imgtu.com/i/cdSK5q" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSK5q.png" alt="cdSK5q.png"></a><br><a href="https://imgtu.com/i/cdSQP0" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSQP0.png" alt="cdSQP0.png"></a><br><a href="https://imgtu.com/i/cdSYqJ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSYqJ.png" alt="cdSYqJ.png"></a><br><a href="https://imgtu.com/i/cdS12T" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdS12T.png" alt="cdS12T.png"></a><br><a href="https://imgtu.com/i/cdS3xU" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdS3xU.png" alt="cdS3xU.png"></a><br><a href="https://imgtu.com/i/cdSGMF" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSGMF.png" alt="cdSGMF.png"></a><br><a href="https://imgtu.com/i/cdSJr4" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSJr4.png" alt="cdSJr4.png"></a><br><a href="https://imgtu.com/i/cdSwPx" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSwPx.png" alt="cdSwPx.png"></a><br><a href="https://imgtu.com/i/cdSNZ9" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSNZ9.png" alt="cdSNZ9.png"></a><br><a href="https://imgtu.com/i/cdSaI1" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSaI1.png" alt="cdSaI1.png"></a><br><a href="https://imgtu.com/i/cdSUaR" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSUaR.png" alt="cdSUaR.png"></a><br><a href="https://imgtu.com/i/cdS0G6" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdS0G6.png" alt="cdS0G6.png"></a><br><a href="https://imgtu.com/i/cdSBRK" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSBRK.png" alt="cdSBRK.png"></a><br><a href="https://imgtu.com/i/cdS6qH" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdS6qH.png" alt="cdS6qH.png"></a><br><a href="https://imgtu.com/i/cdS5z8" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdS5z8.png" alt="cdS5z8.png"></a><br><a href="https://imgtu.com/i/cdS7LQ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdS7LQ.png" alt="cdS7LQ.png"></a><br><a href="https://imgtu.com/i/cdSsMD" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSsMD.png" alt="cdSsMD.png"></a><br><a href="https://imgtu.com/i/cdSgZd" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSgZd.png" alt="cdSgZd.png"></a><br><a href="https://imgtu.com/i/cdS2dA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdS2dA.png" alt="cdS2dA.png"></a><br><a href="https://imgtu.com/i/cdSRII" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSRII.png" alt="cdSRII.png"></a><br><a href="https://imgtu.com/i/cdSTsg" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSTsg.png" alt="cdSTsg.png"></a><br><a href="https://imgtu.com/i/cdShJP" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdShJP.png" alt="cdShJP.png"></a><br><a href="https://imgtu.com/i/cdSfit" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSfit.png" alt="cdSfit.png"></a><br><a href="https://imgtu.com/i/cdSoQS" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSoQS.png" alt="cdSoQS.png"></a><br><a href="https://imgtu.com/i/cdS4Rf" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdS4Rf.png" alt="cdS4Rf.png"></a><br><a href="https://imgtu.com/i/cdSbZj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSbZj.png" alt="cdSbZj.png"></a><br><a href="https://imgtu.com/i/cdSqds" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSqds.png" alt="cdSqds.png"></a><br><a href="https://imgtu.com/i/cdSLon" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSLon.png" alt="cdSLon.png"></a><br><a href="https://imgtu.com/i/cdSjJ0" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSjJ0.png" alt="cdSjJ0.png"></a><br><a href="https://imgtu.com/i/cdSXiq" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSXiq.png" alt="cdSXiq.png"></a><br><a href="https://imgtu.com/i/cdSxzT" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdSxzT.png" alt="cdSxzT.png"></a><br><a href="https://imgtu.com/i/cdpSQU" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cdpSQU.png" alt="cdpSQU.png"></a></p>
 
       
     </div>
@@ -443,9 +437,7 @@ L_{ARR}=\sum_{i=1,2,\dots,|R|-1}||W_{r_i+1}-W_{r_i}||_F^2</script><p>这里假�
       
         <div class="post-tags">
           
-            <a href="/tags/图神经网络/" rel="tag">#图神经网络</a>
-          
-            <a href="/tags/推荐系统/" rel="tag">#推荐系统</a>
+            <a href="/tags/高效计算/" rel="tag">#高效计算</a>
           
         </div>
       
@@ -458,8 +450,8 @@ L_{ARR}=\sum_{i=1,2,\dots,|R|-1}||W_{r_i+1}-W_{r_i}||_F^2</script><p>这里假�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/01/09/VGAE[NIPS16]/" rel="next" title="Variational Graph Auto-Encoders[NIPS'16]">
-                <i class="fa fa-chevron-left"></i> Variational Graph Auto-Encoders[NIPS'16]
+              <a href="/2021/01/31/GIN[ICLR19]/" rel="next" title="How Powerful are Graph Neural Networks?[ICLR'19]">
+                <i class="fa fa-chevron-left"></i> How Powerful are Graph Neural Networks?[ICLR'19]
               </a>
             
           </div>
@@ -467,10 +459,6 @@ L_{ARR}=\sum_{i=1,2,\dots,|R|-1}||W_{r_i+1}-W_{r_i}||_F^2</script><p>这里假�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/01/17/c++常用操作/" rel="prev" title="C++常用操作">
-                C++常用操作 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -621,7 +609,7 @@ L_{ARR}=\sum_{i=1,2,\dots,|R|-1}||W_{r_i+1}-W_{r_i}||_F^2</script><p>这里假�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Enclosing-Subgraph-Extraction"><span class="nav-number">2.1.</span> <span class="nav-text">Enclosing Subgraph Extraction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Node-Labeling"><span class="nav-number">2.2.</span> <span class="nav-text">Node Labeling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Graph-Neural-Network"><span class="nav-number">2.3.</span> <span class="nav-text">Graph Neural Network</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Adjacent-Rating-Regularization"><span class="nav-number">2.4.</span> <span class="nav-text">Adjacent Rating Regularization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Graph-level-GNN-vs-Node-level-GNN"><span class="nav-number">2.5.</span> <span class="nav-text">Graph-level GNN vs Node-level GNN</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-number">3.</span> <span class="nav-text">数据集</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#讲稿"><span class="nav-number">1.</span> <span class="nav-text">讲稿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PPT"><span class="nav-number">2.</span> <span class="nav-text">PPT</span></a></li></ol></div>
             
 
           </div>
