@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/06/10/toiGm4.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8CvYlj.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8Cvt6s.png">
-<meta property="og:updated_time" content="2021-04-15T03:05:38.631Z">
+<meta property="og:updated_time" content="2021-04-21T06:48:50.426Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用操作">
 <meta name="twitter:description" content="用本文记录平时遇到的一些问题和解决方法，自己试过成功的">
@@ -355,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,858
+                  2,313
                 </span>
               
 
@@ -439,6 +439,26 @@
 <p><strong>解决方法</strong></p>
 <p>所有用到这些库的源文件中都包含如下头文件</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="使用nvprof工具"><a href="#使用nvprof工具" class="headerlink" title="使用nvprof工具"></a>使用nvprof工具</h4><p>nvprof是用来测试与优化CUDA程序性能的工具。它能从命令行收集、查看和分析数据。</p>
+<p>使用时如果遇到错误提示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The user does not have permission to profile on the target device</span><br></pre></td></tr></table></figure>
+<p>如果加上sudo权限仍然报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo: nvprof: <span class="built_in">command</span> not found</span><br></pre></td></tr></table></figure>
+<p>可以采取的一个解决办法是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo visudo</span><br><span class="line"><span class="comment">#注释掉以下语句并保存，在前面分别添加#号后Ctrl+X并输入Y回车保存退出</span></span><br><span class="line">Defaults env_reset</span><br><span class="line">Defaults mail_badpass</span><br><span class="line">Defaults secure_path=<span class="string">"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"</span></span><br></pre></td></tr></table></figure>
+<p>除了在命令行查看分析结果，还可以利用nvidia visual profiler对nvprof生成的分析报告进行可视化。通过-o参数生成nvvp文件进行进一步的分析：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvprof -o test_profile ./<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p>如果遇到报错可以试试加上下面的参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvprof --unified-memory-profiling off -o test_profile ./<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p>将生成的test_profile从服务器上下载到本地win10环境下。为了使用nvidia visual profiler，首先需要下载CUDA Toolkit：<a href="https://developer.nvidia.com/nvidia-visual-profiler，我可行的版本是CUDA10.2。" target="_blank" rel="noopener">https://developer.nvidia.com/nvidia-visual-profiler，我可行的版本是CUDA10.2。</a></p>
+<p>在cmd命令行窗口输入nvvp测试安装是否成功，如果遇到下面的jdk报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a java runtime environment or java development kit must be available <span class="keyword">in</span> order to run nvvp</span><br></pre></td></tr></table></figure>
+<p>原因是环境里缺少jdk，我可行的版本是jdk8：<a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html。" target="_blank" rel="noopener">https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html。</a></p>
+<p>安装完jdk后，将默认安装目录C:\Program Files\Java\jdk1.8\bin添加到系统环境变量中。</p>
+<p>还需要设置CUDA库路径，否则nvvp打开后导入时会报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unable to locate CUDA libraries</span><br></pre></td></tr></table></figure>
+<p>方法是将该路径C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\extras\CUPTI\lib64添加到系统环境变量中。</p>
+<p>这时重新打开nvvp把刚才的test_profile拖进来就有分析结果了。</p>
 <h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="将conda环境加入jupyterlab"><a href="#将conda环境加入jupyterlab" class="headerlink" title="将conda环境加入jupyterlab"></a>将conda环境加入jupyterlab</h4><p>假设conda中现有一个虚拟环境star，现在想把它作为kernel加入到jupyterlab中，注意虚拟环境与kernel并不是同步的，即使激活star这个虚拟环境之后打开jupyterlab，使用的kernel仍然是默认的python环境，如果要使用star里面安装的各种版本的库，需要进行如下步骤：</p>
 <blockquote>
 <ol>
@@ -682,7 +702,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux通过ssh传输文件"><span class="nav-number">1.1.</span> <span class="nav-text">Linux通过ssh传输文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载远程服务器上的文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载远程服务器上的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上传本地文件到远程服务器"><span class="nav-number">1.1.2.</span> <span class="nav-text">上传本地文件到远程服务器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用CMakeLists-txt文件"><span class="nav-number">1.2.</span> <span class="nav-text">使用CMakeLists.txt文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译时提示找不到头文件"><span class="nav-number">1.3.</span> <span class="nav-text">编译时提示找不到头文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装和使用boost库官网"><span class="nav-number">1.4.</span> <span class="nav-text">安装和使用boost库官网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-11支持"><span class="nav-number">1.5.</span> <span class="nav-text">c++11支持</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将conda环境加入jupyterlab"><span class="nav-number">2.1.</span> <span class="nav-text">将conda环境加入jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程使用jupyterlab"><span class="nav-number">2.2.</span> <span class="nav-text">远程使用jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><span class="nav-number">2.3.</span> <span class="nav-text">json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pycharm-from-xx-import出错"><span class="nav-number">2.4.</span> <span class="nav-text">Pycharm from xx import出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案"><span class="nav-number">2.5.</span> <span class="nav-text">Selenium TypeError  init() takes 2 positional arguments but 3 were given_解决方案</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux通过ssh传输文件"><span class="nav-number">1.1.</span> <span class="nav-text">Linux通过ssh传输文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载远程服务器上的文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载远程服务器上的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上传本地文件到远程服务器"><span class="nav-number">1.1.2.</span> <span class="nav-text">上传本地文件到远程服务器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用CMakeLists-txt文件"><span class="nav-number">1.2.</span> <span class="nav-text">使用CMakeLists.txt文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译时提示找不到头文件"><span class="nav-number">1.3.</span> <span class="nav-text">编译时提示找不到头文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装和使用boost库官网"><span class="nav-number">1.4.</span> <span class="nav-text">安装和使用boost库官网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-11支持"><span class="nav-number">1.5.</span> <span class="nav-text">c++11支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用nvprof工具"><span class="nav-number">1.6.</span> <span class="nav-text">使用nvprof工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将conda环境加入jupyterlab"><span class="nav-number">2.1.</span> <span class="nav-text">将conda环境加入jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程使用jupyterlab"><span class="nav-number">2.2.</span> <span class="nav-text">远程使用jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><span class="nav-number">2.3.</span> <span class="nav-text">json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pycharm-from-xx-import出错"><span class="nav-number">2.4.</span> <span class="nav-text">Pycharm from xx import出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案"><span class="nav-number">2.5.</span> <span class="nav-text">Selenium TypeError  init() takes 2 positional arguments but 3 were given_解决方案</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -726,7 +746,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共117.1k字</span>
+  <span class="post-count">小站全站共117.6k字</span>
 </div>
         
 
