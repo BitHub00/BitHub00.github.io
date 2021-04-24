@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Bithub00.com/"/>
-  <updated>2021-04-10T09:20:01.407Z</updated>
+  <updated>2021-04-24T02:44:20.911Z</updated>
   <id>http://Bithub00.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Personalized PageRank to a Target Node, Revisited[KDD&#39;20]</title>
+    <link href="http://Bithub00.com/2021/04/24/RBS%5BKDD20%5D/"/>
+    <id>http://Bithub00.com/2021/04/24/RBS[KDD20]/</id>
+    <published>2021-04-24T02:42:01.068Z</published>
+    <updated>2021-04-24T02:44:20.911Z</updated>
+    
+    <content type="html"><![CDATA[<p>KDD20一篇近似计算单目标PPR相似度的论文</p><a id="more"></a><pre><code>这里我直接把组会分享的PPT和讲稿放上来了。</code></pre><h3 id="讲稿"><a href="#讲稿" class="headerlink" title="讲稿"></a>讲稿</h3><p>今天我要讲的是KDD20年的一篇论文，解决的是针对目标顶点的个性化PageRank查询。个性化PageRank简称PPR，它来自于Google创始人于1998年提出的PageRank。PageRank用于度量web网络中各网页的重要性，它的核心思想有两点：被很多网页所链接的网页重要性较高；被重要的网页所链接的网页重要性较高。如果将web网络转化为图结构G(V,E)，网页看作顶点，网页间的链接看作边，则PageRank的计算方式为下面的式子，\pi是PPR向量有n维，每一维对应一个顶点的PageRank分数，是一个迭代的计算过程。</p><p>它可以用于衡量各顶点的全局重要性，举个例子说明这个式子的含义，有A、B、C、D四个网页，假设一个上网的人在网页A，那他会以1/3的概率跳到B、C和D，访问一个网页的概率由链接到它的所有网页的概率来决定，例如A由B、C两个网页链接，就有第一个式子。各个网页间的转移可以用一个概率转移矩阵表示，初始时上网的人在每个网页停留的概率是相等的，右乘上转移矩阵后就得到了下一时刻对每个网页的访问概率。然后不断迭代直到收敛。实际上，如果存在一个网页只链接到自己，例如图里的C，那就会像一个陷阱一样，导致概率分布值全部转移到网页C上来，所以PageRank另一部分就是以一定的概率跳转到一个随机的网页，来避免这种问题。</p><p>而PPR是PageRank的一种特殊形式，它用于衡量图上顶点关于某一顶点的相对重要性，两者之间的关系为下面的式子。一个是相对重要性一个是全局重要性。这篇论文重点关注是单目标PPR的计算问题，即给定图上某一顶点t作为目标顶点，计算图上所有顶点关于t的PPR值，它希望找到使得目标顶点t重要性较高的一系列顶点。有别于我们传统上理解的单源PPR的计算问题，后者是希望找到相对源顶点较为重要的一系列顶点。</p><p>论文做的是一个近似求解，满足一定的误差要求来提升计算的效率。近似的方法是从PPR的另一个定义方式出发，即从源顶点出发的随机游走停止在目标顶点的概率。进一步地分解，就是以0步、1步到无穷步停止的概率进行求和，近似的做法就是进行一个截断，上限不需要是无穷，截断后满足误差小于给定极限即可。单目标PPR的计算问题相关研究较少，目前时间复杂度上最优的方法是Backward Search，为O(\frac{\overline{d}}{\delta})，</p><p>这篇论文的贡献就是在它的基础上引入随机性，使得复杂度降为O(\frac{1}{\delta})。这里先介绍Backward Search的做法，然后指出论文具体在哪几个步骤做了改动。Backward Search的做法是，给定一个目标顶点t，算法对图上的每个顶点u都维护两个变量residue和reserve，我这里简称为r值和\pi值，每次选取当前r值最大的顶点v，更新自己的\pi值，再将r值以一定比例push给所有的入度邻居并置零。最后每个顶点的\pi值就作为PPR值的近似计算结果。因为在push操作时需要遍历所有的入度邻居，所以复杂度上会带有一个\overline{d}，表示图中所有顶点的平均出度。</p><p>所以论文在push这一步做了改动，提出了自己的方法RBS。它不会push给所有的入度邻居，而是只push增长值超过阈值的部分。之所以这么做，是因为Backward Search里的增长值与入度邻居u的出度成反比，对于出度较大的这部分入邻居，这次push操作对它的\pi值改变不大，即使进行了本次push，它\pi值的变化幅度也小于误差要求，所以放弃对它的push操作以节省时间。</p><p>在RBS算法里，push操作有三种情况，当出度满足要求时才确定进行push操作，如果不满足条件，产生一个0、1之间的随机数，如果出度满足小于放宽后的要求，则push一个固定值，否则不进行本次push。这样，对于每个需要push操作的入度邻居，只确定地更新了一部分并且采样了一部分进行更新以保证结果的无偏。</p><p>在实际实现时不能遍历每个入度邻居u来判断它是否满足要求，这样同样会带来\overline{d}的复杂度，因为push操作的条件是逐渐递减的，只需要预先对所有的入度邻居按照出度进行排序，逐个扫描到临界条件后就可以放弃查看剩下的所有邻居，因为都不会满足条件。最后是实验部分，选用的几个图数据集描述如下，有无向图也有有向图，有小图也有大图，评测指标一个是最大计算误差，另外两个是推荐常用指标。</p><p>实验结果上，因为是基于Backward Search提出的，baseline只选了这一个。图中的横轴都是查询时间，纵轴分别是各个评测指标，结果上来说就是花费同等的时间，新的方法可以达到更好的结果，达到相同的结果新的方法只需要更少的时间。</p><p>论文所研究的单目标PPR计算虽然相对冷门，但实际应用可以结合许多问题，第一个相当于是该问题下的一个特例，对顶点的重要性有更高的要求，其次在图神经网络上也有利用PPR矩阵进行改进的工作，例如ICLR19年的这个方法。</p><p>最后想重点说一下的是与SimRank相似度的关系，因为前一篇讨论班论文我讲的就是ICDE20年一篇如何高效计算SimRank相似度的论文，里面提到SimRank相似度可以看成两条分别从源顶点和目标顶点出发的随机游走，以相同的步数相遇于同一个顶点的概率，因为定义上有相似之处，可以结合PPR来计算顶点u或v到这一系列顶点w的概率。</p><p>总结来说，这篇论文的贡献是在BackWard Search的基础上引进随机化来降低时间复杂度并且保证了理论上的近似精度，并且给出了数学证明说明做法的有效性。</p><h3 id="PPT"><a href="#PPT" class="headerlink" title="PPT"></a>PPT</h3><p><a href="https://imgtu.com/i/cjNkPH" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNkPH.png" alt="cjNkPH.png"></a><br><a href="https://imgtu.com/i/cjNERA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNERA.png" alt="cjNERA.png"></a><br><a href="https://imgtu.com/i/cjNiIe" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNiIe.png" alt="cjNiIe.png"></a><br><a href="https://imgtu.com/i/cjNVxI" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNVxI.png" alt="cjNVxI.png"></a><br><a href="https://imgtu.com/i/cjNAGd" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNAGd.png" alt="cjNAGd.png"></a><br><a href="https://imgtu.com/i/cjNeMt" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNeMt.png" alt="cjNeMt.png"></a><br><a href="https://imgtu.com/i/cjNmsP" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNmsP.png" alt="cjNmsP.png"></a><br><a href="https://imgtu.com/i/cjNnqf" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNnqf.png" alt="cjNnqf.png"></a><br><a href="https://imgtu.com/i/cjNKZ8" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNKZ8.png" alt="cjNKZ8.png"></a><br><a href="https://imgtu.com/i/cjNMdS" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNMdS.png" alt="cjNMdS.png"></a><br><a href="https://imgtu.com/i/cjNQIg" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNQIg.png" alt="cjNQIg.png"></a><br><a href="https://imgtu.com/i/cjN3Gj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjN3Gj.png" alt="cjN3Gj.png"></a><br><a href="https://imgtu.com/i/cjN1iQ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjN1iQ.png" alt="cjN1iQ.png"></a><br><a href="https://imgtu.com/i/cjNGzn" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNGzn.png" alt="cjNGzn.png"></a><br><a href="https://imgtu.com/i/cjN8Rs" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjN8Rs.png" alt="cjN8Rs.png"></a><br><a href="https://imgtu.com/i/cjNNLV" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNNLV.png" alt="cjNNLV.png"></a><br><a href="https://imgtu.com/i/cjNYMq" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNYMq.png" alt="cjNYMq.png"></a><br><a href="https://imgtu.com/i/cjNts0" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNts0.png" alt="cjNts0.png"></a><br><a href="https://imgtu.com/i/cjNaZT" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNaZT.png" alt="cjNaZT.png"></a><br><a href="https://imgtu.com/i/cjNwoF" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNwoF.png" alt="cjNwoF.png"></a><br><a href="https://imgtu.com/i/cjNddU" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNddU.png" alt="cjNddU.png"></a><br><a href="https://imgtu.com/i/cjNszR" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNszR.png" alt="cjNszR.png"></a><br><a href="https://imgtu.com/i/cjNBi4" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNBi4.png" alt="cjNBi4.png"></a><br><a href="https://imgtu.com/i/cjNDJJ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNDJJ.png" alt="cjNDJJ.png"></a><br><a href="https://imgtu.com/i/cjNrW9" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/24/cjNrW9.png" alt="cjNrW9.png"></a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;KDD20一篇近似计算单目标PPR相似度的论文&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="近似计算" scheme="http://Bithub00.com/tags/%E8%BF%91%E4%BC%BC%E8%AE%A1%E7%AE%97/"/>
+    
+  </entry>
   
   <entry>
     <title>CrashSim An Efficient Algorithm for Computing SimRank over Static and Temporal Graphs[ICDE&#39;20]</title>
@@ -400,28 +420,6 @@
     <summary type="html">
     
       &lt;p&gt;SIGIR20一篇简化GCN架构的论文&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="图神经网络" scheme="http://Bithub00.com/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="推荐系统" scheme="http://Bithub00.com/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Neural Graph Collaborative Filtering[SIGIR&#39;19]</title>
-    <link href="http://Bithub00.com/2020/12/22/NGCF%5BSIGIR19%5D/"/>
-    <id>http://Bithub00.com/2020/12/22/NGCF[SIGIR19]/</id>
-    <published>2020-12-22T02:59:24.118Z</published>
-    <updated>2020-12-22T03:19:20.380Z</updated>
-    
-    <content type="html"><![CDATA[<p>SIGIR19年将神经网络与协同过滤结合的一篇论文</p><a id="more"></a><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>在现有的推荐模型中，用户和物品的embedding只考虑了它们自身的特征，没有考虑用户-物品的交互信息</p><h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><script type="math/tex; mode=display">\hat{y}_{NGCF}(u,i)={e^*_u}^Te^*_i \\e^*_u = e_u^{(0)}||\dotsb||e_u^{(L)} \\e^*_i = e_i^{(0)}||\dotsb||e_i^{(L)} \\e_u^{(l)}=LeakyReLU(m^{(l)}_{u\leftarrow u}+\sum_{i\in N_u}m^{(l)}_{u\leftarrow i}) \\\begin{cases}m^{(l)}_{u\leftarrow i}=p_{ui}(W_1^{(l)}e_i^{(l-1)}+W_2^{(l)}(e_i^{(l-1)}\odot e_u^{(l-1)})) \\\\m^{(l)}_{u\leftarrow u}=W_1^{(l)}e_u^{(l-1)}\end{cases} \\m_{u\leftarrow i}=\frac{1}{\sqrt{|N_u||N_i|}}(W_1e_i+W_2(e_i\odot e_u))</script><ol><li>通过堆叠$l$层embedding传播层，一个用户（物品）可以获得它的$l$跳邻居所传播的信息，如下图所示，通过这种方法来建模用户-物品交互信息中的高阶connectivity，下图展示的是一个三阶的例子:</li></ol><div align="center"><img src="https://s1.ax1x.com/2020/09/29/0ZY5mF.jpg" width="400" height="200" alt="0ZY5mF.jpg" border="0"><img src="https://s1.ax1x.com/2020/09/29/0ePimF.png" width="68%" alt="0ePimF.png" border="0"><img src="https://s1.ax1x.com/2020/09/29/0Z2M40.jpg" width="400" height="200" alt="0Z2M40.jpg" border="0"></div><ol><li><p>传统GCN推荐方法中，message embedding只考虑物品embedding$e_i$，论文中将用户embedding与物品embedding的交互也纳入考虑，解释为“This makes the message dependent on the affinity between $e_i$ and $e_u$, e.g., passing more messages from the similar items.”</p></li><li><p>两个层面上的dropout：message &amp; node dropout。前者表示在第$l$层传播层中，只有部分信息会对最后的表示有贡献；后者表示在第$l$层传播层中，随机地丢弃一些顶点。</p></li></ol><h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>Gowalla、Yelp2018、Amazon-book</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;SIGIR19年将神经网络与协同过滤结合的一篇论文&lt;/p&gt;
     
     </summary>
     
