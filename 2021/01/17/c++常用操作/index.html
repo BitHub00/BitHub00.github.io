@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="记录备查">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-03-24T03:16:46.258Z">
+<meta property="og:updated_time" content="2021-05-13T13:35:21.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++常用操作">
 <meta name="twitter:description" content="记录备查">
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  370
+                  407
                 </span>
               
 
@@ -379,11 +379,11 @@
         <p>记录备查</p>
 <a id="more"></a>
 <h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><ul>
-<li><p>从字符串中删除子串</p>
+<li>从字符串中删除子串</li>
+</ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeSubstrs</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="keyword">const</span> <span class="built_in">string</span>&amp; e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = e.length();</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">string</span>::size_type i = s.find(e); i != <span class="built_in">string</span>::npos; i = s.find(e))</span><br><span class="line">            s.erase(i, n);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用STL库实现小顶堆</p>
-</li>
+<ul>
+<li>使用STL库实现小顶堆</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">priority_queue &lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt; &gt; pq;</span><br></pre></td></tr></table></figure>
 <ul>
@@ -410,6 +410,10 @@
 <li>求文件行数</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">length</span><span class="params">(<span class="keyword">char</span> *File)</span> </span>&#123;</span><br><span class="line">	<span class="function">ifstream <span class="title">myfile</span><span class="params">(File)</span></span>;</span><br><span class="line">	<span class="built_in">string</span> line;</span><br><span class="line">	<span class="keyword">int</span> lineNum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (getline(myfile, line))</span><br><span class="line">		lineNum++;</span><br><span class="line">	myfile.clear();</span><br><span class="line">	myfile.seekg(<span class="number">0</span>, ios::beg); <span class="comment">//回到文件第一行</span></span><br><span class="line">	<span class="keyword">return</span> lineNum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>循环查找子串出现的所有位置</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">string</span> str;</span><br><span class="line"><span class="built_in">string</span> substr;</span><br><span class="line"><span class="keyword">while</span>(pos != <span class="built_in">string</span>::npos) &#123;</span><br><span class="line">  pos = str.find(substr, pos);</span><br><span class="line">  pos++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -647,7 +651,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共119.5k字</span>
+  <span class="post-count">小站全站共119.6k字</span>
 </div>
         
 
