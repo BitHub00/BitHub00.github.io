@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="记录备查">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-05-13T13:35:21.287Z">
+<meta property="og:updated_time" content="2021-05-14T02:46:14.099Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++常用操作">
 <meta name="twitter:description" content="记录备查">
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  407
+                  479
                 </span>
               
 
@@ -414,6 +414,10 @@
 <li>循环查找子串出现的所有位置</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">string</span> str;</span><br><span class="line"><span class="built_in">string</span> substr;</span><br><span class="line"><span class="keyword">while</span>(pos != <span class="built_in">string</span>::npos) &#123;</span><br><span class="line">  pos = str.find(substr, pos);</span><br><span class="line">  pos++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>二分区间查找</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> left = <span class="number">0</span>, right = arr.size()<span class="number">-1</span>;</span><br><span class="line"><span class="keyword">while</span>(left &lt;= right) &#123;</span><br><span class="line">  <span class="keyword">int</span> mid = left + (right-left)/<span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span>(arr[mid] &gt; value) right = mid<span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(arr[mid] &lt; value) left = mid+<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    right = mid;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//此时arr[right]就是arr中小于等于value的最大数</span></span><br><span class="line"><span class="keyword">return</span> arr[right];</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -540,7 +544,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -651,7 +655,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共119.6k字</span>
+  <span class="post-count">小站全站共120.1k字</span>
 </div>
         
 
