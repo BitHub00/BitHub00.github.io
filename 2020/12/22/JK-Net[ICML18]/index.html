@@ -91,7 +91,19 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BpCLz8.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BpEvLT.jpg">
-<meta property="og:updated_time" content="2020-12-22T03:13:51.003Z">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/29/2EFaFI.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/29/2EFdYt.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/29/2EFDl8.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/29/2EFwfP.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/29/2EFNTA.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/29/2EFBSf.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/29/2EFr6S.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/29/2EFRkn.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/29/2EFcwj.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/29/2EFff0.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/29/2EFLkR.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/29/2EFoXF.png">
+<meta property="og:updated_time" content="2021-05-29T14:19:26.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Representation Learning on Graphs with Jumping Knowledge Networks[ICML&#39;18]">
 <meta name="twitter:description" content="ICML18一篇解决GCN层数加深性能反而变差的论文">
@@ -354,7 +366,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,172
+                  2,277
                 </span>
               
 
@@ -414,6 +426,11 @@
 </li>
 </ol>
 <h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>Citeseer、Cora、Reddit、PPI</p>
+<p>在模式识别上对这篇论文进行了简短的一个分享，这里直接把讲稿和PPT放上来。</p>
+<h3 id="PPT"><a href="#PPT" class="headerlink" title="PPT"></a>PPT</h3><p><a href="https://imgtu.com/i/2EFaFI" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/05/29/2EFaFI.png" alt="2EFaFI.png"></a><br><a href="https://imgtu.com/i/2EFdYt" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/05/29/2EFdYt.png" alt="2EFdYt.png"></a><br><a href="https://imgtu.com/i/2EFDl8" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/05/29/2EFDl8.png" alt="2EFDl8.png"></a><br><a href="https://imgtu.com/i/2EFwfP" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/05/29/2EFwfP.png" alt="2EFwfP.png"></a><br><a href="https://imgtu.com/i/2EFNTA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/05/29/2EFNTA.png" alt="2EFNTA.png"></a><br><a href="https://imgtu.com/i/2EFBSf" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/05/29/2EFBSf.png" alt="2EFBSf.png"></a><br><a href="https://imgtu.com/i/2EFr6S" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/05/29/2EFr6S.png" alt="2EFr6S.png"></a><br><a href="https://imgtu.com/i/2EFRkn" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/05/29/2EFRkn.png" alt="2EFRkn.png"></a><br><a href="https://imgtu.com/i/2EFcwj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/05/29/2EFcwj.png" alt="2EFcwj.png"></a><br><a href="https://imgtu.com/i/2EFff0" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/05/29/2EFff0.png" alt="2EFff0.png"></a><br><a href="https://imgtu.com/i/2EFLkR" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/05/29/2EFLkR.png" alt="2EFLkR.png"></a><br><a href="https://imgtu.com/i/2EFoXF" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/05/29/2EFoXF.png" alt="2EFoXF.png"></a></p>
+<h3 id="讲稿"><a href="#讲稿" class="headerlink" title="讲稿"></a>讲稿</h3><p>大家好，今天我要介绍的是ICML会议18年的一篇论文，通过跳跃知识网络进行图上的表示学习，论文的亮点在于引入ResNet的思想解决图神经网络层数无法加深的问题。图神经网络简称GNN，它受卷积神经网络CNN启发，主要应用于图这种非欧几里得结构数据。它根据”相邻的顶点具有相似性“这一假设，通过聚合邻域顶点的信息来进行图上顶点的表示学习。不同于图像这种排列整齐的欧几里得结构数据，在图上不同顶点的邻居顶点数目是不同的，这就为图上的问题带来了挑战。</p>
+<p>给定一张由顶点和边组成的图作为输入，图神经网络通常分为如下两个步骤：邻域聚合和状态更新。邻域聚合对应式子的后半部分，而状态更新对应于式子的前半部分。在每一层的网络，首先对邻域内的顶点的表示进行聚合，再将得到的聚合结果和上一层得到的表示组合在一起，共同作为当前层顶点的表示。这里的聚合和组合有多种定义方式，因为时间原因不在这里进行介绍。虽然图神经网络的出现给图上问题的解决方法带来了新的思路，但它也面临着挑战。不同于CNN，GNN在层数加深时会出现性能下降的问题，典型的网络如图卷积网络GCN、图注意力网络GAT等都是在2~4层时取得最好的性能表现。本文的一个贡献就是从理论上分析了性能下降的原因。导致这个现象的一个主要原因是所谓的”过平滑“现象，即随着网络层数的加深，图中顶点经过网络学习得到的特征表示会趋向于相等的现象。这就会导致顶点间不再具有区分度，进而导致下游任务效果变差。例如图中的例子，从左到右表示层数的加深，可以看到，六层网络时不同的顶点几乎都混在了一起，比浅层网络时的效果要差很多。论文从随机游走的角度说明了原因，一个K层的GNN相当于从源顶点出发到目标顶点的一个K步的随机游走，当K趋向于无穷即层数不断加深时, 顶点的极限分布与初始的顶点表示无关，只与图的结构相关。也就是说，本来聚合邻域的信息是为了得到中心顶点的特征表示，当随着层数加深聚合的信息越多，反而得到的表示与中心顶点无关，这就导致每个顶点都会得到相等的特征表示。</p>
+<p>因为ResNet等深层神经网络模型在计算机视觉领域的成功，本文受此启发引入ResNet中的残差模块，在GNN的框架中引入额外的连接。左边对应于论文提出的架构图，从架构图可以看到，不同于传统GNN每一层的表示只与上一层有关，现在每一层的表示都会额外地连接到最后一层，使得在最后一层得到最终的顶点表示时可以聚合不同层的信息，来避免前面说到的过平滑问题。聚合有三种方式：Concat、Max-pooling和LSTM-attention，每种方式有各自适合的场景，例如第三种方式通过双向LSTM来得到各层表示的重要程度，进而自适应地聚合各层的信息，得到更好的特征表示。因为时间关系不再展开介绍。实验部分，论文选取的baseline都是经典的GNN模型，包括图卷积网络GCN和图注意力网络GAT，可以看到在几个benchmark数据集上都取得了最好的结果，也使用了更深的网络层数。我今天的分享到此结束，谢谢大家。</p>
 
       
     </div>
@@ -540,7 +557,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -607,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">2.</span> <span class="nav-text">做法及创新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-number">3.</span> <span class="nav-text">数据集</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">2.</span> <span class="nav-text">做法及创新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-number">3.</span> <span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PPT"><span class="nav-number">4.</span> <span class="nav-text">PPT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讲稿"><span class="nav-number">5.</span> <span class="nav-text">讲稿</span></a></li></ol></div>
             
 
           </div>
@@ -651,7 +668,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共120.1k字</span>
+  <span class="post-count">小站全站共124.8k字</span>
 </div>
         
 

@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://Bithub00.com/2021/05/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%81%E6%98%8E/</loc>
-    <lastmod>2021-05-18</lastmod>
+    <loc>http://Bithub00.com/2020/12/22/JK-Net%5BICML18%5D/</loc>
+    <lastmod>2021-05-29</lastmod>
+  </url>  <url>
+    <loc>http://Bithub00.com/2020/12/22/GraphRec%5BWWW19%5D/</loc>
+    <lastmod>2021-05-29</lastmod>
+  </url>  <url>
+    <loc>http://Bithub00.com/2021/05/18/SPAGAN%5BIJCAI'19%5D/</loc>
+    <lastmod>2021-05-29</lastmod>
+  </url>  <url>
+    <loc>http://Bithub00.com/2019/08/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2021-05-29</lastmod>
   </url>  <url>
     <loc>http://Bithub00.com/2021/01/17/c++%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2021-05-14</lastmod>
+    <lastmod>2021-05-28</lastmod>
+  </url>  <url>
+    <loc>http://Bithub00.com/2020/09/25/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2021-05-19</lastmod>
+  </url>  <url>
+    <loc>http://Bithub00.com/2021/05/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%81%E6%98%8E/</loc>
+    <lastmod>2021-05-18</lastmod>
   </url>  <url>
     <loc>http://Bithub00.com/2020/06/08/%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/</loc>
     <lastmod>2021-05-12</lastmod>
@@ -18,9 +33,6 @@
   </url>  <url>
     <loc>http://Bithub00.com/2021/04/10/CrashSim%5BICDE20%5D/</loc>
     <lastmod>2021-04-10</lastmod>
-  </url>  <url>
-    <loc>http://Bithub00.com/2020/09/25/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2021-02-09</lastmod>
   </url>  <url>
     <loc>http://Bithub00.com/2021/01/31/GIN%5BICLR19%5D/</loc>
     <lastmod>2021-02-09</lastmod>
@@ -37,9 +49,6 @@
     <loc>http://Bithub00.com/2021/01/14/ICMC%5BICLR20%5D/</loc>
     <lastmod>2021-01-15</lastmod>
   </url>  <url>
-    <loc>http://Bithub00.com/2019/08/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2021-01-12</lastmod>
-  </url>  <url>
     <loc>http://Bithub00.com/2021/01/09/VGAE%5BNIPS16%5D/</loc>
     <lastmod>2021-01-11</lastmod>
   </url>  <url>
@@ -50,9 +59,6 @@
     <lastmod>2020-12-22</lastmod>
   </url>  <url>
     <loc>http://Bithub00.com/2020/12/22/LightGCN%5BSIGIR20%5D/</loc>
-    <lastmod>2020-12-22</lastmod>
-  </url>  <url>
-    <loc>http://Bithub00.com/2020/12/22/GraphRec%5BWWW19%5D/</loc>
     <lastmod>2020-12-22</lastmod>
   </url>  <url>
     <loc>http://Bithub00.com/2020/12/22/PPNP%5BICLR19%5D/</loc>
@@ -83,9 +89,6 @@
     <lastmod>2020-12-22</lastmod>
   </url>  <url>
     <loc>http://Bithub00.com/2020/12/22/GAT%5BICLR18%5D/</loc>
-    <lastmod>2020-12-22</lastmod>
-  </url>  <url>
-    <loc>http://Bithub00.com/2020/12/22/JK-Net%5BICML18%5D/</loc>
     <lastmod>2020-12-22</lastmod>
   </url>  <url>
     <loc>http://Bithub00.com/2020/12/22/SRGCN%5BAAAI19%5D/</loc>
