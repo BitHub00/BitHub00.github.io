@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/06/10/toiGm4.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8CvYlj.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8Cvt6s.png">
-<meta property="og:updated_time" content="2021-05-12T02:34:36.997Z">
+<meta property="og:updated_time" content="2021-06-24T07:45:10.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用操作">
 <meta name="twitter:description" content="用本文记录平时遇到的一些问题和解决方法，自己试过成功的">
@@ -355,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,452
+                  2,603
                 </span>
               
 
@@ -463,34 +463,27 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unable to locate CUDA libraries</span><br></pre></td></tr></table></figure>
 <p>方法是将该路径C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\extras\CUPTI\lib64添加到系统环境变量中。</p>
 <p>这时重新打开nvvp把刚才的test_profile拖进来就有分析结果了。</p>
-<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="将conda环境加入jupyterlab"><a href="#将conda环境加入jupyterlab" class="headerlink" title="将conda环境加入jupyterlab"></a>将conda环境加入jupyterlab</h4><p>假设conda中现有一个虚拟环境star，现在想把它作为kernel加入到jupyterlab中，注意虚拟环境与kernel并不是同步的，即使激活star这个虚拟环境之后打开jupyterlab，使用的kernel仍然是默认的python环境，如果要使用star里面安装的各种版本的库，需要进行如下步骤：</p>
-<blockquote>
+<h4 id="Visual-Code-Remote-SSH远程开发"><a href="#Visual-Code-Remote-SSH远程开发" class="headerlink" title="Visual Code Remote SSH远程开发"></a>Visual Code Remote SSH远程开发</h4><p>在Visual Code种Ctrl + Shift + X打开插件界面，安装Remote - SSH插件，接下来通过ssh key的方式免密登录：</p>
 <ol>
-<li>conda activate star</li>
+<li>打开cmd窗口，输入命令<code>ssh-keygen -t rsa -b 4096</code>，一路回车，默认密钥生成在<code>C:\Users\XXX\.ssh</code>目录下。</li>
+<li>打开目录下的id_rsa.pub文件，将其中的内容复制到远程主机的<code>~/.ssh/authorized_keys</code>文件中，没有该目录则<code>mkdir ~/.ssh</code>手动生成，没有该文件则<code>touch ~/.ssh/authorized_keys</code>手动生成。</li>
+<li>在Visual Code配置远程主机的用户名和ip，以后就可以免密登陆了。</li>
+</ol>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="将conda环境加入jupyterlab"><a href="#将conda环境加入jupyterlab" class="headerlink" title="将conda环境加入jupyterlab"></a>将conda环境加入jupyterlab</h4><p>假设conda中现有一个虚拟环境star，现在想把它作为kernel加入到jupyterlab中，注意虚拟环境与kernel并不是同步的，即使激活star这个虚拟环境之后打开jupyterlab，使用的kernel仍然是默认的python环境，如果要使用star里面安装的各种版本的库，需要进行如下步骤：</p>
+<ol>
+<li>conda activate start</li>
 <li>conda install ipykernel #安装 ipykernel库</li>
 <li>ipython kernel install —user —name=star # —user表示当前用户</li>
 <li>jupyter-lab #启动jupyterlab</li>
 </ol>
-</blockquote>
 <h4 id="远程使用jupyterlab"><a href="#远程使用jupyterlab" class="headerlink" title="远程使用jupyterlab"></a>远程使用jupyterlab</h4><p>有时如果需要利用服务器上的GPU资源来跑一些模型，就需要在服务器上运行jupyterlab，具体步骤如下：</p>
-<blockquote>
 <p>首先建立ssh连接，将usr、remote_server、port_num替换</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ssh -f usr@remote_server -N -L port_num:localhost:port_num</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -f usr@remote_server -N -L port_num:localhost:port_num</span><br></pre></td></tr></table></figure>
 <p>如果需要，输入登录密码。之后再进行一次ssh连接登陆远程服务器</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ssh -X usr@remote_server</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -X usr@remote_server</span><br></pre></td></tr></table></figure>
 <p>运行jupyterlab，port_num与刚才选择的要保持一致，不与常见端口冲突即可，例如选择当天的日期1116等</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; jupyter-lab --no-browser --port=port_num</span><br><span class="line">&gt; </span><br><span class="line">&gt; 	To access the notebook, open this file <span class="keyword">in</span> a browser:</span><br><span class="line">&gt;         file:///xxxxxxxxxxxxxxxxxxxxx.html</span><br><span class="line">&gt;     Or copy and paste one of these URLs:</span><br><span class="line">&gt;         http://localhost:port_num/?token=jupyterlab_token</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jupyter-lab --no-browser --port=port_num</span><br><span class="line"></span><br><span class="line">  To access the notebook, open this file <span class="keyword">in</span> a browser:</span><br><span class="line">      file:///xxxxxxxxxxxxxxxxxxxxx.html</span><br><span class="line">  Or copy and paste one of these URLs:</span><br><span class="line">         http://localhost:port_num/?token=jupyterlab_token</span><br></pre></td></tr></table></figure>
 <p>复制cmd窗口最后一行的地址，在本地浏览器中打开，就可以使用服务器的资源来运行jupyterlab了。</p>
-</blockquote>
 <h4 id="json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><a href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决" class="headerlink" title="json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决"></a>json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</h4><p><strong>解决方法</strong><br>将判断条件由</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br></pre></td></tr></table></figure>
 <p>改为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> response.content:</span><br></pre></td></tr></table></figure></p>
@@ -706,7 +699,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux通过ssh传输文件"><span class="nav-number">1.1.</span> <span class="nav-text">Linux通过ssh传输文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载远程服务器上的文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载远程服务器上的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上传本地文件到远程服务器"><span class="nav-number">1.1.2.</span> <span class="nav-text">上传本地文件到远程服务器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用CMakeLists-txt文件"><span class="nav-number">1.2.</span> <span class="nav-text">使用CMakeLists.txt文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译时提示找不到头文件"><span class="nav-number">1.3.</span> <span class="nav-text">编译时提示找不到头文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装和使用boost库"><span class="nav-number">1.4.</span> <span class="nav-text">安装和使用boost库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux安装和使用GSL库"><span class="nav-number">1.5.</span> <span class="nav-text">Linux安装和使用GSL库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-11支持"><span class="nav-number">1.6.</span> <span class="nav-text">c++11支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用nvprof工具"><span class="nav-number">1.7.</span> <span class="nav-text">使用nvprof工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将conda环境加入jupyterlab"><span class="nav-number">2.1.</span> <span class="nav-text">将conda环境加入jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程使用jupyterlab"><span class="nav-number">2.2.</span> <span class="nav-text">远程使用jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><span class="nav-number">2.3.</span> <span class="nav-text">json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pycharm-from-xx-import出错"><span class="nav-number">2.4.</span> <span class="nav-text">Pycharm from xx import出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案"><span class="nav-number">2.5.</span> <span class="nav-text">Selenium TypeError  init() takes 2 positional arguments but 3 were given_解决方案</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux通过ssh传输文件"><span class="nav-number">1.1.</span> <span class="nav-text">Linux通过ssh传输文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载远程服务器上的文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载远程服务器上的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上传本地文件到远程服务器"><span class="nav-number">1.1.2.</span> <span class="nav-text">上传本地文件到远程服务器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用CMakeLists-txt文件"><span class="nav-number">1.2.</span> <span class="nav-text">使用CMakeLists.txt文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译时提示找不到头文件"><span class="nav-number">1.3.</span> <span class="nav-text">编译时提示找不到头文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装和使用boost库"><span class="nav-number">1.4.</span> <span class="nav-text">安装和使用boost库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux安装和使用GSL库"><span class="nav-number">1.5.</span> <span class="nav-text">Linux安装和使用GSL库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-11支持"><span class="nav-number">1.6.</span> <span class="nav-text">c++11支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用nvprof工具"><span class="nav-number">1.7.</span> <span class="nav-text">使用nvprof工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Visual-Code-Remote-SSH远程开发"><span class="nav-number">1.8.</span> <span class="nav-text">Visual Code Remote SSH远程开发</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将conda环境加入jupyterlab"><span class="nav-number">2.1.</span> <span class="nav-text">将conda环境加入jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程使用jupyterlab"><span class="nav-number">2.2.</span> <span class="nav-text">远程使用jupyterlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><span class="nav-number">2.3.</span> <span class="nav-text">json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pycharm-from-xx-import出错"><span class="nav-number">2.4.</span> <span class="nav-text">Pycharm from xx import出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selenium-TypeError-init-takes-2-positional-arguments-but-3-were-given-解决方案"><span class="nav-number">2.5.</span> <span class="nav-text">Selenium TypeError  init() takes 2 positional arguments but 3 were given_解决方案</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -750,7 +743,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共124.8k字</span>
+  <span class="post-count">小站全站共125.0k字</span>
 </div>
         
 
