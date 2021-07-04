@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/06/10/toiGm4.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8CvYlj.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8Cvt6s.png">
-<meta property="og:updated_time" content="2021-06-24T07:45:10.867Z">
+<meta property="og:updated_time" content="2021-07-04T02:22:45.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用操作">
 <meta name="twitter:description" content="用本文记录平时遇到的一些问题和解决方法，自己试过成功的">
@@ -355,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,603
+                  2,655
                 </span>
               
 
@@ -468,6 +468,11 @@
 <li>打开cmd窗口，输入命令<code>ssh-keygen -t rsa -b 4096</code>，一路回车，默认密钥生成在<code>C:\Users\XXX\.ssh</code>目录下。</li>
 <li>打开目录下的id_rsa.pub文件，将其中的内容复制到远程主机的<code>~/.ssh/authorized_keys</code>文件中，没有该目录则<code>mkdir ~/.ssh</code>手动生成，没有该文件则<code>touch ~/.ssh/authorized_keys</code>手动生成。</li>
 <li>在Visual Code配置远程主机的用户名和ip，以后就可以免密登陆了。</li>
+<li>进一步安装c++扩展插件来使用go to definition等方便的功能：<ul>
+<li>下载最新的离线安装包<a href="https://github.com/microsoft/vscode-cpptools/releases" target="_blank" rel="noopener">https://github.com/microsoft/vscode-cpptools/releases</a></li>
+<li>在Visual Code中Extension窗口右上角···-Install from VSIX</li>
+</ul>
+</li>
 </ol>
 <h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="将conda环境加入jupyterlab"><a href="#将conda环境加入jupyterlab" class="headerlink" title="将conda环境加入jupyterlab"></a>将conda环境加入jupyterlab</h4><p>假设conda中现有一个虚拟环境star，现在想把它作为kernel加入到jupyterlab中，注意虚拟环境与kernel并不是同步的，即使激活star这个虚拟环境之后打开jupyterlab，使用的kernel仍然是默认的python环境，如果要使用star里面安装的各种版本的库，需要进行如下步骤：</p>
 <ol>
