@@ -68,10 +68,12 @@
 
 
 
-  <meta name="keywords" content="近似计算," />
+  <meta name="keywords" content="高效计算," />
 
 
 
+
+  
 
 
   <link rel="alternate" href="/atom.xml" title="原力小站" type="application/atom+xml" />
@@ -82,9 +84,9 @@
 
 
 <meta name="description" content="本学期最后一次组会我做了这两三年近似计算Personalized PageRank（PPR）的小综述，包含理论及图神经网络上的应用。">
-<meta name="keywords" content="近似计算">
+<meta name="keywords" content="高效计算">
 <meta property="og:type" content="article">
-<meta property="og:title" content="近似计算Personalized PageRank小综述">
+<meta property="og:title" content="高效计算Personalized PageRank小综述">
 <meta property="og:url" content="http://Bithub00.com/2021/07/04/PPR小综述/index.html">
 <meta property="og:site_name" content="原力小站">
 <meta property="og:description" content="本学期最后一次组会我做了这两三年近似计算Personalized PageRank（PPR）的小综述，包含理论及图神经网络上的应用。">
@@ -150,9 +152,9 @@
 <meta property="og:image" content="https://z3.ax1x.com/2021/07/04/RfLCWD.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/07/04/RfLpFK.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/07/04/RfL9JO.png">
-<meta property="og:updated_time" content="2021-07-04T15:07:02.695Z">
+<meta property="og:updated_time" content="2021-07-05T02:18:14.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="近似计算Personalized PageRank小综述">
+<meta name="twitter:title" content="高效计算Personalized PageRank小综述">
 <meta name="twitter:description" content="本学期最后一次组会我做了这两三年近似计算Personalized PageRank（PPR）的小综述，包含理论及图神经网络上的应用。">
 <meta name="twitter:image" content="https://z3.ax1x.com/2021/07/04/RfWGee.png">
 
@@ -190,7 +192,7 @@
 
 
 
-  <title>近似计算Personalized PageRank小综述 | 原力小站</title>
+  <title>高效计算Personalized PageRank小综述 | 原力小站</title>
   
 
 
@@ -358,7 +360,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">近似计算Personalized PageRank小综述</h1>
+          <h1 class="post-title" itemprop="name headline">高效计算Personalized PageRank小综述</h1>
         
 
         <div class="post-meta">
@@ -388,7 +390,7 @@
 
           
           
-             <span id="/2021/07/04/PPR小综述/" class="leancloud_visitors" data-flag-title="近似计算Personalized PageRank小综述">
+             <span id="/2021/07/04/PPR小综述/" class="leancloud_visitors" data-flag-title="高效计算Personalized PageRank小综述">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -413,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,793
+                  3,805
                 </span>
               
 
@@ -452,6 +454,9 @@
 <p>导致这种过平滑现象的原因ICML18年的一篇论文从随机游走的角度给出了解释。一个K层的GNN相当于从源顶点出发到目标顶点的一个K步的随机游走，当K趋向于无穷即层数不断加深时, 顶点的极限分布与初始的顶点表示无关，只与图的结构相关。也就是说，随着层数加深聚合的信息越多，反而得到的表示与中心顶点无关。所以ICLR19年这篇论文引入PPR就是引入其中的重启概率$\alpha$，每一步时会以一定的概率重新回到初始顶点，这样来保证层数加深后与中心顶点间依然有联系。而且与GCN的表达式比较，这篇论文的表达式与层数l无关。最后是KDD20年的PPRGo，从表达式来看做法几乎和上一篇是一样的，不同之处在于这里用到的PPR矩阵是一个近似值，而且对每一行取了topk来控制信息传递时的规模。</p>
 <h3 id="PPT"><a href="#PPT" class="headerlink" title="PPT"></a>PPT</h3><p><a href="https://imgtu.com/i/RfWGee" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWGee.png" alt="RfWGee.png"></a><br><a href="https://imgtu.com/i/RfW1sO" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfW1sO.png" alt="RfW1sO.png"></a><br><a href="https://imgtu.com/i/RfW3LD" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfW3LD.png" alt="RfW3LD.png"></a><br><a href="https://imgtu.com/i/RfW0Qf" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfW0Qf.png" alt="RfW0Qf.png"></a><br><a href="https://imgtu.com/i/RfWlQK" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWlQK.png" alt="RfWlQK.png"></a><br><a href="https://imgtu.com/i/RfWNFA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWNFA.png" alt="RfWNFA.png"></a><br><a href="https://imgtu.com/i/RfWaWt" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWaWt.png" alt="RfWaWt.png"></a><br><a href="https://imgtu.com/i/RfWYod" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWYod.png" alt="RfWYod.png"></a><br><a href="https://imgtu.com/i/RfWUJI" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWUJI.png" alt="RfWUJI.png"></a><br><a href="https://imgtu.com/i/RfWwSP" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWwSP.png" alt="RfWwSP.png"></a><br><a href="https://imgtu.com/i/RfWBy8" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWBy8.png" alt="RfWBy8.png"></a><br><a href="https://imgtu.com/i/RfWDOS" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWDOS.png" alt="RfWDOS.png"></a><br><a href="https://imgtu.com/i/RfWseg" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWseg.png" alt="RfWseg.png"></a><br><a href="https://imgtu.com/i/RfWywQ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWywQ.png" alt="RfWywQ.png"></a><br><a href="https://imgtu.com/i/RfWgFs" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWgFs.png" alt="RfWgFs.png"></a><br><a href="https://imgtu.com/i/RfW6oj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfW6oj.png" alt="RfW6oj.png"></a><br><a href="https://imgtu.com/i/RfW2Yn" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfW2Yn.png" alt="RfW2Yn.png"></a><br><a href="https://imgtu.com/i/RfWhlV" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWhlV.png" alt="RfWhlV.png"></a><br><a href="https://imgtu.com/i/RfWRWq" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWRWq.png" alt="RfWRWq.png"></a><br><a href="https://imgtu.com/i/RfW4yT" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfW4yT.png" alt="RfW4yT.png"></a><br><a href="https://imgtu.com/i/RfWfS0" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWfS0.png" alt="RfWfS0.png"></a><br><a href="https://imgtu.com/i/RfW5OU" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfW5OU.png" alt="RfW5OU.png"></a><br><a href="https://imgtu.com/i/RfWomF" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWomF.png" alt="RfWomF.png"></a><br><a href="https://imgtu.com/i/RfWTw4" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWTw4.png" alt="RfWTw4.png"></a><br><a href="https://imgtu.com/i/RfW7TJ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfW7TJ.png" alt="RfW7TJ.png"></a><br><a href="https://imgtu.com/i/RfWbk9" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWbk9.png" alt="RfWbk9.png"></a><br><a href="https://imgtu.com/i/RfWqYR" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWqYR.png" alt="RfWqYR.png"></a><br><a href="https://imgtu.com/i/RfWLf1" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWLf1.png" alt="RfWLf1.png"></a><br><a href="https://imgtu.com/i/RfWXSx" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWXSx.png" alt="RfWXSx.png"></a><br><a href="https://imgtu.com/i/RfWjl6" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWjl6.png" alt="RfWjl6.png"></a><br><a href="https://imgtu.com/i/RffSmD" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RffSmD.png" alt="RffSmD.png"></a><br><a href="https://imgtu.com/i/RfWv6K" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWv6K.png" alt="RfWv6K.png"></a><br><a href="https://imgtu.com/i/RfWxOO" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfWxOO.png" alt="RfWxOO.png"></a><br><a href="https://imgtu.com/i/Rffp0e" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/Rffp0e.png" alt="Rffp0e.png"></a><br><a href="https://imgtu.com/i/Rff9TH" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/Rff9TH.png" alt="Rff9TH.png"></a><br><a href="https://imgtu.com/i/RffPkd" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RffPkd.png" alt="RffPkd.png"></a><br><a href="https://imgtu.com/i/RffitA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RffitA.png" alt="RffitA.png"></a><br><a href="https://imgtu.com/i/RffFfI" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RffFfI.png" alt="RffFfI.png"></a><br><a href="https://imgtu.com/i/RffApt" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RffApt.png" alt="RffApt.png"></a><br><a href="https://imgtu.com/i/RffE1P" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RffE1P.png" alt="RffE1P.png"></a><br><a href="https://imgtu.com/i/RffV6f" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RffV6f.png" alt="RffV6f.png"></a><br><a href="https://imgtu.com/i/RffZX8" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RffZX8.png" alt="RffZX8.png"></a><br><a href="https://imgtu.com/i/RffmnS" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RffmnS.png" alt="RffmnS.png"></a><br><a href="https://imgtu.com/i/Rffu7Q" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/Rffu7Q.png" alt="Rffu7Q.png"></a><br><a href="https://imgtu.com/i/Rffn0g" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/Rffn0g.png" alt="Rffn0g.png"></a><br><a href="https://imgtu.com/i/RffMkj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RffMkj.png" alt="RffMkj.png"></a><br><a href="https://imgtu.com/i/RffQts" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RffQts.png" alt="RffQts.png"></a></p>
 <p><a href="https://imgtu.com/i/RfqIoV" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfqIoV.png" alt="RfqIoV.png"></a><br><a href="https://imgtu.com/i/Rfq7JU" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/Rfq7JU.png" alt="Rfq7JU.png"></a><br><a href="https://imgtu.com/i/RfqTiT" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfqTiT.png" alt="RfqTiT.png"></a><br><a href="https://imgtu.com/i/Rfqbz4" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/Rfqbz4.png" alt="Rfqbz4.png"></a><br><a href="https://imgtu.com/i/RfqHWF" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfqHWF.png" alt="RfqHWF.png"></a><br><a href="https://imgtu.com/i/RfqLQJ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfqLQJ.png" alt="RfqLQJ.png"></a><br><a href="https://imgtu.com/i/RfqOy9" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfqOy9.png" alt="RfqOy9.png"></a><br><a href="https://imgtu.com/i/RfqXLR" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfqXLR.png" alt="RfqXLR.png"></a><br><a href="https://imgtu.com/i/Rfqve1" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/Rfqve1.png" alt="Rfqve1.png"></a><br><a href="https://imgtu.com/i/Rfqxdx" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/Rfqxdx.png" alt="Rfqxdx.png"></a><br><a href="https://imgtu.com/i/Rfqzo6" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/Rfqzo6.png" alt="Rfqzo6.png"></a><br><a href="https://imgtu.com/i/RfLCWD" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfLCWD.png" alt="RfLCWD.png"></a><br><a href="https://imgtu.com/i/RfLpFK" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfLpFK.png" alt="RfLpFK.png"></a><br><a href="https://imgtu.com/i/RfL9JO" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/07/04/RfL9JO.png" alt="RfL9JO.png"></a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://wyydsb.xin/other/ppr.html" target="_blank" rel="noopener">大图中如何快速计算PPR</a></li>
+</ul>
 
       
     </div>
@@ -469,7 +474,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/近似计算/" rel="tag">#近似计算</a>
+            <a href="/tags/高效计算/" rel="tag">#高效计算</a>
           
         </div>
       
@@ -641,7 +646,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#讲稿"><span class="nav-number">1.</span> <span class="nav-text">讲稿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PPT"><span class="nav-number">2.</span> <span class="nav-text">PPT</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#讲稿"><span class="nav-number">1.</span> <span class="nav-text">讲稿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PPT"><span class="nav-number">2.</span> <span class="nav-text">PPT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
