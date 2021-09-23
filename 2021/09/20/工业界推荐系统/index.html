@@ -91,7 +91,13 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/17/4KtfW8.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/17/4KB1ts.png">
-<meta property="og:updated_time" content="2021-09-20T15:28:26.347Z">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4ahAk6.jpg">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4ahMnA.jpg">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4ahhH1.jpg">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4a4d2D.jpg">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4a5Uwn.jpg">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4aIt1O.jpg">
+<meta property="og:updated_time" content="2021-09-23T02:08:17.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工业界推荐系统小综述">
 <meta name="twitter:description" content="借这篇博客记录看工业界推荐系统论文的心得。">
@@ -388,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  962
+                  1,366
                 </span>
               
 
@@ -445,6 +451,28 @@ p(y=1|x)=\sigma(w^T_{wide}[x,\phi(x)]+w^T_{deep}a^{l_f}+b)</script><p><strong>�
 <p>Deep部分的输入，要么是Age，#App Installs这些数值类特征，要么是已经降维并稠密化的Embeddings向量。所以Deep部分不存在严重的特征稀疏问题，自然可以使用精度更好，更适用于深度学习训练的AdaGrad去训练。</p>
 </li>
 </ol>
+<h2 id="Factorization-Machines"><a href="#Factorization-Machines" class="headerlink" title="Factorization Machines"></a>Factorization Machines</h2><p>本节内容主要参考<a href="https://zhuanlan.zhihu.com/p/145436595" target="_blank" rel="noopener">刘启林的推荐系统</a></p>
+<h3 id="解决的问题-1"><a href="#解决的问题-1" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>因子分解机在线性回归模型中加入了特征的交互，来建模特征的相关性</p>
+<h3 id="做法及创新-1"><a href="#做法及创新-1" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h4><p>线性回归模型假设特征之间相互独立：</p>
+<script type="math/tex; mode=display">
+y=w_0+\sum_{i=1}^nw_ix_i</script><p>而现实场景中，特征之间是有相关性的，例如&lt;程序员&gt;与&lt;计算机类书籍&gt;，因此需要在线性回归模型中加入特征组合项。最简单的组合方式是两两组合，变为二阶多项式回归模型，多出$\frac{n(n-1)}{2}$项：</p>
+<script type="math/tex; mode=display">
+y=w_0+\sum_{i=1}^nw_ix_i+\sum_{i=1}^n\sum_{j\ge i}^nw_{ij}x_ix_j</script><p>这样做的局限是对于样本中没出现过交互的特征组合，就无法对相应的参数进行估计，而且时间复杂度上升到了$O(n^2)$。</p>
+<p>上式中的二项式参数$w_{ij}$可以组成一个对称矩阵$W$，根据Cholesky分解可以分解成：</p>
+<blockquote>
+<p>Cholesky分解：将一个对称正定矩阵化为一个下三角矩阵与其共轭转置矩阵的积</p>
+</blockquote>
+<script type="math/tex; mode=display">
+W=VV^T</script><p>这时V的第j列就是第j维特征的隐向量，二次项参数转化为$w_{ij}=<v_i,v_j>=\sum_{f=1}^kv_{i,f}v_{j,f}$，此时隐向量的特征维度$k$一般远小于原始特征维度$n$。FM的假设是，特征两两相关。</v_i,v_j></p>
+<h4 id="计算化简"><a href="#计算化简" class="headerlink" title="计算化简"></a>计算化简</h4><p>FM的计算复杂度可以化简为线性复杂度：</p>
+<p><a href="https://imgtu.com/i/4ahAk6" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4ahAk6.jpg" alt="4ahAk6.jpg"></a></p>
+<p><a href="https://imgtu.com/i/4ahMnA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4ahMnA.jpg" alt="4ahMnA.jpg"></a></p>
+<p><a href="https://imgtu.com/i/4ahhH1" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4ahhH1.jpg" alt="4ahhH1.jpg"></a></p>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>FM模型可用于回归（Regression）、二分类（Binary classification）、排名（Ranking）任务，其对应的损失函数如下：</p>
+<p><a href="https://imgtu.com/i/4a4d2D" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4a4d2D.jpg" alt="4a4d2D.jpg"></a></p>
+<p><a href="https://imgtu.com/i/4a5Uwn" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4a5Uwn.jpg" alt="4a5Uwn.jpg"></a></p>
+<p>以随机梯度下降训练为例：</p>
+<p><a href="https://imgtu.com/i/4aIt1O" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4aIt1O.jpg" alt="4aIt1O.jpg"></a></p>
 
       
     </div>
@@ -634,7 +662,7 @@ p(y=1|x)=\sigma(w^T_{wide}[x,\phi(x)]+w^T_{deep}a^{l_f}+b)</script><p><strong>�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16"><span class="nav-number">1.</span> <span class="nav-text">Wide &amp; Deep Learning for Recommender Systems[DLRS’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memorization"><span class="nav-number">1.1.1.</span> <span class="nav-text">Memorization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generalization"><span class="nav-number">1.1.2.</span> <span class="nav-text">Generalization</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">1.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节"><span class="nav-number">1.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16"><span class="nav-number">1.</span> <span class="nav-text">Wide &amp; Deep Learning for Recommender Systems[DLRS’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memorization"><span class="nav-number">1.1.1.</span> <span class="nav-text">Memorization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generalization"><span class="nav-number">1.1.2.</span> <span class="nav-text">Generalization</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">1.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节"><span class="nav-number">1.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factorization-Machines"><span class="nav-number">2.</span> <span class="nav-text">Factorization Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-1"><span class="nav-number">2.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-1"><span class="nav-number">2.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想"><span class="nav-number">2.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算化简"><span class="nav-number">2.2.2.</span> <span class="nav-text">计算化简</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数"><span class="nav-number">2.2.3.</span> <span class="nav-text">损失函数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -678,7 +706,7 @@ p(y=1|x)=\sigma(w^T_{wide}[x,\phi(x)]+w^T_{deep}a^{l_f}+b)</script><p><strong>�
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共130.2k字</span>
+  <span class="post-count">小站全站共130.6k字</span>
 </div>
         
 
