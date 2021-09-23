@@ -97,7 +97,20 @@
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4a4d2D.jpg">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4a5Uwn.jpg">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4aIt1O.jpg">
-<meta property="og:updated_time" content="2021-09-23T02:08:17.864Z">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4aovQS.jpg">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4aT2wj.jpg">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4aTRTs.jpg">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4aTIpV.jpg">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4wrxln.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4wsVp9.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4wsmOx.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4wsGpd.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4wscXq.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/4wyp3d.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/40FPt1.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/40AJoj.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/23/40Eihn.png">
+<meta property="og:updated_time" content="2021-09-23T13:28:23.543Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工业界推荐系统小综述">
 <meta name="twitter:description" content="借这篇博客记录看工业界推荐系统论文的心得。">
@@ -394,7 +407,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,366
+                  2,903
                 </span>
               
 
@@ -421,7 +434,7 @@
       
         <p>借这篇博客记录看工业界推荐系统论文的心得。</p>
 <a id="more"></a>
-<h2 id="Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16"><a href="#Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16" class="headerlink" title="Wide &amp; Deep Learning for Recommender Systems[DLRS’16]"></a>Wide &amp; Deep Learning for Recommender Systems[DLRS’16]</h2><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>解决推荐时Memorization和Generalization无法兼顾的问题</p>
+<h2 id="Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16"><a href="#Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16" class="headerlink" title="Wide &amp; Deep Learning for Recommender Systems[DLRS’16]"></a>Wide &amp; Deep Learning for Recommender Systems[DLRS’16]</h2><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>解决推荐时Memorization和Generalization无法兼顾的问题。</p>
 <h4 id="Memorization"><a href="#Memorization" class="headerlink" title="Memorization"></a>Memorization</h4><p>面对拥有大规模离散sparse特征的CTR预估问题时，可以通过将特征之间进行叉乘来捕捉特征之间的相关性，典型代表如LR模型，使用原始sparse特征和叉乘特征作为输入。但缺点是特征的叉乘需要人工进行设计，而且对于训练数据中未曾出现过的特征对，模型中对应项的权重也会为0.</p>
 <h4 id="Generalization"><a href="#Generalization" class="headerlink" title="Generalization"></a>Generalization</h4><p>Generalization为sparse特征学习低维的dense embeddings来捕获相关性，它相较于Memorization涉及更少的人工设计以及更好的泛化能力，即使训练数据中未曾出现的特征对，对应的权重也会因为各自的dense embeddings而非零。但缺点也是会带来过度泛化，当user-item矩阵非常稀疏时，例如小众爱好的user和冷门商品，这时大部分user-item应该是没有关联的，但dense embedding还是能得到非零预测，导致推荐不怎么相关的商品，这时Memorization更好，因为它可以记忆这些特殊的特征组合。</p>
 <p>Memorization根据历史行为数据，产生的推荐通常和用户已有行为的物品直接相关的物品。而Generalization会学习新的特征组合，提高推荐物品的多样性。 论文作者结合两者的优点，提出了一个新的学习算法——Wide &amp; Deep Learning，其中Wide &amp; Deep分别对应Memorization &amp; Generalization。</p>
@@ -452,7 +465,8 @@ p(y=1|x)=\sigma(w^T_{wide}[x,\phi(x)]+w^T_{deep}a^{l_f}+b)</script><p><strong>�
 </li>
 </ol>
 <h2 id="Factorization-Machines"><a href="#Factorization-Machines" class="headerlink" title="Factorization Machines"></a>Factorization Machines</h2><p>本节内容主要参考<a href="https://zhuanlan.zhihu.com/p/145436595" target="_blank" rel="noopener">刘启林的推荐系统</a></p>
-<h3 id="解决的问题-1"><a href="#解决的问题-1" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>因子分解机在线性回归模型中加入了特征的交互，来建模特征的相关性</p>
+<h3 id="解决的问题-1"><a href="#解决的问题-1" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>因子分解机在线性回归模型中加入了特征的交互，来建模特征的相关性，并且解决数据的稀疏性以及特征空间维度过高的问题。</p>
+<p>对于常见的categorical特征，经过one-hot编码以后，样本的数据就会变得很稀疏。举例来说，假设淘宝或者京东上的item为100万，如果对item这个维度进行one-hot编码，光这一个维度数据的稀疏度就是百万分之一。将item进行one-hot编码以后，样本空间有一个categorical变为了百万维的数值特征，特征空间也会一下子暴增一百万。</p>
 <h3 id="做法及创新-1"><a href="#做法及创新-1" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h4><p>线性回归模型假设特征之间相互独立：</p>
 <script type="math/tex; mode=display">
 y=w_0+\sum_{i=1}^nw_ix_i</script><p>而现实场景中，特征之间是有相关性的，例如&lt;程序员&gt;与&lt;计算机类书籍&gt;，因此需要在线性回归模型中加入特征组合项。最简单的组合方式是两两组合，变为二阶多项式回归模型，多出$\frac{n(n-1)}{2}$项：</p>
@@ -473,6 +487,67 @@ W=VV^T</script><p>这时V的第j列就是第j维特征的隐向量，二次项�
 <p><a href="https://imgtu.com/i/4a5Uwn" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4a5Uwn.jpg" alt="4a5Uwn.jpg"></a></p>
 <p>以随机梯度下降训练为例：</p>
 <p><a href="https://imgtu.com/i/4aIt1O" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4aIt1O.jpg" alt="4aIt1O.jpg"></a></p>
+<p><a href="https://imgtu.com/i/4aovQS" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4aovQS.jpg" alt="4aovQS.jpg"></a></p>
+<h4 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h4><p>FM模型对特征两两自动组合，不需要人工参与，类别特征One-Hot化，以一个电影数据集为例：</p>
+<p><a href="https://imgtu.com/i/4aT2wj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4aT2wj.jpg" alt="4aT2wj.jpg"></a></p>
+<p><a href="https://imgtu.com/i/4aTRTs" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4aTRTs.jpg" alt="4aTRTs.jpg"></a></p>
+<p><a href="https://imgtu.com/i/4aTIpV" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4aTIpV.jpg" alt="4aTIpV.jpg"></a></p>
+<h2 id="Field-aware-Factorization-Machines-for-CTR-Prediction-RecSys’16"><a href="#Field-aware-Factorization-Machines-for-CTR-Prediction-RecSys’16" class="headerlink" title="Field-aware Factorization Machines for CTR Prediction[RecSys’16]"></a>Field-aware Factorization Machines for CTR Prediction[RecSys’16]</h2><p>本节主要参考<a href="https://tech.meituan.com/2016/03/03/deep-understanding-of-ffm-principles-and-practices.html" target="_blank" rel="noopener">深入FFM原理与实践</a>、<a href="https://www.jianshu.com/p/781cde3d5f3d" target="_blank" rel="noopener">FFM模型理论和实践</a></p>
+<h3 id="解决的问题-2"><a href="#解决的问题-2" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>FM在遇到one-hot类型的特征时遇到的数据稀疏性问题。</p>
+<h3 id="做法及创新-2"><a href="#做法及创新-2" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="核心思想-1"><a href="#核心思想-1" class="headerlink" title="核心思想"></a>核心思想</h4><p>FFM模型中引入了域（field）的概念，同一个categorical特征经过One-Hot编码生成的数值特征都可以放到同一个域，包括用户国籍，广告类型，日期等等，以一条CTR点击数据为例，说明FFM与FM的区别：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Clicked</th>
+<th style="text-align:center">Publisher(P)</th>
+<th style="text-align:center">Advertiser(A)</th>
+<th style="text-align:center">Gender(G)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Yes</td>
+<td style="text-align:center">ESPN</td>
+<td style="text-align:center">Nike</td>
+<td style="text-align:center">Male</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>对于FM，只会考虑二次交叉项：</p>
+<script type="math/tex; mode=display">
+\phi_{FM}=V_{ESPN}\cdot V_{Nike}+V_{ESPN}\cdot V_{Male}+V_{Nike}\cdot V_{Male}</script><p>因为Nike与Male显然属于不同的field，所以（ESPN，Nike）和（ESPN，Male）的隐含含义也可能是不同的，而FM只用一个隐向量$V_{ESPN}$来统一表示ESPN与Nike和Maled的交互作用，不够准确。而在FFM中，域之间的交互作用是不同的，每个特征有k个隐向量个数，k为其余特征field的个数：</p>
+<script type="math/tex; mode=display">
+\phi_{FFM}=V_{ESPN,A}\cdot V_{Nike,P}+V_{ESPN,G}\cdot V_{Male,P}+V_{Nike,G}\cdot V_{Male,A}</script><p>所以FFM的数学表达式为：</p>
+<script type="math/tex; mode=display">
+\phi_{FFM}(w,x)=\sum_{i=1}^n\sum_{j\ge i}^nw_{i,f_j}\cdot w_{j,f_i}x_ix_j</script><p>FFM的参数个数为kfn，FM可以看作FFM的特例，是把所有特征都归属到一个field时的FFM模型。值得注意的是，由于隐向量与field相关，所以FFM中的二次项不能够化简，它的时间复杂度为$O(kn^2)$。</p>
+<h4 id="实践细节-1"><a href="#实践细节-1" class="headerlink" title="实践细节"></a>实践细节</h4><ol>
+<li>样本归一化。FFM默认是进行样本数据的归一化，否则容易造成数据inf溢出，进而引起梯度计算的nan错误。因此，样本层面的数据是推荐进行归一化的。</li>
+<li>特征归一化。CTR/CVR模型采用了多种类型的源特征，包括数值型和categorical类型等。但是，categorical类编码后的特征取值只有0或1，较大的数值型特征会造成样本归一化后categorical类生成特征的值非常小，没有区分性。例如，一条用户-商品记录，用户为“男”性，商品的销量是5000个（假设其它特征的值为零），那么归一化后特征“sex=male”（性别为男）的值略小于0.0002，而“volume”（销量）的值近似为1。特征“sex=male”在这个样本中的作用几乎可以忽略不计，这是相当不合理的。因此，将源数值型特征的值归一化到[0,1]是非常必要的。</li>
+<li>省略零值特征。零值特征对模型完全没有贡献。包含零值特征的一次项和组合项均为零，对于训练模型参数或者目标值预估是没有作用的。因此，可以省去零值特征，提高FFM模型训练和预测的速度，这也是稀疏样本采用FFM的显著优势。</li>
+</ol>
+<h2 id="DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-IJCAI’17"><a href="#DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-IJCAI’17" class="headerlink" title="DeepFM: A Factorization-Machine based Neural Network for CTR Prediction[IJCAI’17]"></a>DeepFM: A Factorization-Machine based Neural Network for CTR Prediction[IJCAI’17]</h2><p>本节主要参考<a href="https://static001.geekbang.org/con/33/pdf/1511951900/file/%E6%9C%80%E7%BB%88%E7%89%88-%E5%BC%A0%E4%BF%8A%E6%9E%97-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%8E%A8%E8%8D%90%E7%9A%84%E6%8A%80%E6%9C%AF%E8%BF%9B%E5%B1%95%E5%8F%8A%E5%BE%AE%E5%8D%9A%E7%9A%84%E5%BA%94%E7%94%A8.pdf" target="_blank" rel="noopener">深度学习在推荐的技术进展及微博的应用</a>、<a href="https://www.jianshu.com/p/6f1c2643d31b" target="_blank" rel="noopener">DeepFM模型理论与实践</a></p>
+<h3 id="解决的问题-3"><a href="#解决的问题-3" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>对于一个基于CTR预估的推荐系统，最重要的是学习到用户点击行为背后隐含的特征组合。举例来说，在主流的app市场上，我们发现，用户喜欢在用餐时间下载送餐app， 说明二阶交叉特征“app类别-时间戳” 可以作为CTR预估的重要特征。另一个发现， 男青年喜欢射击游戏和RPG游戏，因此，三阶交叉特征“app类别-用户性别-用户年龄”也可以作为CTR预估的一个特征。但是这种交叉特征往往需要专家知识，类似“尿布-啤酒”这种经典的例子。</p>
+<p>前面提到的FM虽然理论上来讲可以对高阶特征组合进行建模，但实际上因为计算复杂度的原因一般都只用到了二阶特征组合。而多层神经网络能够学习复杂的交叉特征。</p>
+<h3 id="做法及创新-3"><a href="#做法及创新-3" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="DNN与高维特征"><a href="#DNN与高维特征" class="headerlink" title="DNN与高维特征"></a>DNN与高维特征</h4><p>虽然DNN能够学习复杂的特征组合，但直接应用于CTR预告等问题上时会在离散型特征上遇到阻碍，对于离散型特征典型的做法是进行one-hot编码，这会导致输入的数据维度非常高：</p>
+<p><a href="https://imgtu.com/i/4wrxln" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4wrxln.png" alt="4wrxln.png"></a></p>
+<p><a href="https://imgtu.com/i/4wsVp9" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4wsVp9.png" alt="4wsVp9.png"></a></p>
+<p>类似于FFM中将特征按域来进行分类，可以将输入的one-hot数据按照域形成对应的dense vector，来避免数据稀疏性的问题：</p>
+<p><a href="https://imgtu.com/i/4wsmOx" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4wsmOx.png" alt="4wsmOx.png"></a></p>
+<p><a href="https://imgtu.com/i/4wsGpd" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4wsGpd.png" alt="4wsGpd.png"></a></p>
+<p><a href="https://imgtu.com/i/4wscXq" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4wscXq.png" alt="4wscXq.png"></a></p>
+<p><a href="https://imgtu.com/i/4wyp3d" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4wyp3d.png" alt="4wyp3d.png"></a></p>
+<p>也就是希望能将DNN与FM进行一个融合，而融合的形式总的来说分为串行与并行，本节介绍的DeepFM以及前面介绍过的Wide&amp;Deep都为典型的并行结构。</p>
+<p><a href="https://imgtu.com/i/40FPt1" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/40FPt1.png" alt="40FPt1.png"></a></p>
+<h4 id="核心思想-2"><a href="#核心思想-2" class="headerlink" title="核心思想"></a>核心思想</h4><p><a href="https://imgtu.com/i/40AJoj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/40AJoj.png" alt="40AJoj.png"></a></p>
+<p>首先来看DeepFM的结构，FM与DNN分别负责提取低阶与高阶特征，这两部分<strong>共享输入</strong>：</p>
+<p><a href="https://imgtu.com/i/40Eihn" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/40Eihn.png" alt="40Eihn.png"></a></p>
+<p>FM部分与标准的FM并无不同，而DNN部分，在进入第一层隐藏层之前，首先通过一个嵌入层来将输入的高维特征压缩到低维稠密向量。这一部分的两个特点为：</p>
+<ol>
+<li>尽管不同域的特征维度不同，在经过压缩后的维度均为k。</li>
+<li>FM部分的隐向量V现在作为DNN的嵌入层权重。这样一来就不需要通过FM对隐向量V进行预训练之后对DNN的嵌入层进行初始化，而是在训练DNN时对V一起进行学习，做到端到端。</li>
+</ol>
 
       
     </div>
@@ -662,7 +737,7 @@ W=VV^T</script><p>这时V的第j列就是第j维特征的隐向量，二次项�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16"><span class="nav-number">1.</span> <span class="nav-text">Wide &amp; Deep Learning for Recommender Systems[DLRS’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memorization"><span class="nav-number">1.1.1.</span> <span class="nav-text">Memorization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generalization"><span class="nav-number">1.1.2.</span> <span class="nav-text">Generalization</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">1.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节"><span class="nav-number">1.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factorization-Machines"><span class="nav-number">2.</span> <span class="nav-text">Factorization Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-1"><span class="nav-number">2.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-1"><span class="nav-number">2.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想"><span class="nav-number">2.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算化简"><span class="nav-number">2.2.2.</span> <span class="nav-text">计算化简</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数"><span class="nav-number">2.2.3.</span> <span class="nav-text">损失函数</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16"><span class="nav-number">1.</span> <span class="nav-text">Wide &amp; Deep Learning for Recommender Systems[DLRS’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memorization"><span class="nav-number">1.1.1.</span> <span class="nav-text">Memorization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generalization"><span class="nav-number">1.1.2.</span> <span class="nav-text">Generalization</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">1.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节"><span class="nav-number">1.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factorization-Machines"><span class="nav-number">2.</span> <span class="nav-text">Factorization Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-1"><span class="nav-number">2.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-1"><span class="nav-number">2.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想"><span class="nav-number">2.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算化简"><span class="nav-number">2.2.2.</span> <span class="nav-text">计算化简</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数"><span class="nav-number">2.2.3.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征工程"><span class="nav-number">2.2.4.</span> <span class="nav-text">特征工程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Field-aware-Factorization-Machines-for-CTR-Prediction-RecSys’16"><span class="nav-number">3.</span> <span class="nav-text">Field-aware Factorization Machines for CTR Prediction[RecSys’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-2"><span class="nav-number">3.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-2"><span class="nav-number">3.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-IJCAI’17"><span class="nav-number">4.</span> <span class="nav-text">DeepFM: A Factorization-Machine based Neural Network for CTR Prediction[IJCAI’17]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-3"><span class="nav-number">4.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-3"><span class="nav-number">4.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNN与高维特征"><span class="nav-number">4.2.1.</span> <span class="nav-text">DNN与高维特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-2"><span class="nav-number">4.2.2.</span> <span class="nav-text">核心思想</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -706,7 +781,7 @@ W=VV^T</script><p>这时V的第j列就是第j维特征的隐向量，二次项�
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共130.6k字</span>
+  <span class="post-count">小站全站共132.2k字</span>
 </div>
         
 
