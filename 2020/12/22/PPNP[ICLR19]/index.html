@@ -90,7 +90,7 @@
 <meta property="og:description" content="ICLR19将PageRank与GNN结合以解决GCN层数无法加深的一篇论文">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s3.ax1x.com/2020/12/20/ravXN9.png">
-<meta property="og:updated_time" content="2020-12-22T03:21:34.349Z">
+<meta property="og:updated_time" content="2021-09-24T15:23:38.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Predict then Propagate Graph Neural Networks meet Personalized PageRank[ICLR&#39;19]">
 <meta name="twitter:description" content="ICLR19将PageRank与GNN结合以解决GCN层数无法加深的一篇论文">
@@ -387,7 +387,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,120
+                  1,087
                 </span>
               
 
@@ -416,36 +416,40 @@
 <a id="more"></a>
 <h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>GCN层数增加后性能反而变差，如何加深GCN的层数。</p>
 <p>根据GCN的定义，每一层网络用来捕获一跳邻居的信息，例如一个三层的GCN网络捕获的就是一个顶点三跳邻居以内的信息，而现在如果只能用浅层模型，表示只能捕获有限跳内的邻域信息，而有时候要多几跳才能捕获到有用的信息，例如<a href="#Representation Learning on Graphs with Jumping Knowledge Networks[ICML&#39;18]">JK-Net</a>中的例子。</p>
-<h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><p>这一篇论文的工作其实是接着JK-Net继续往下，在那篇论文中，作者分析了GCN中信息传递这个过程与随机漫步之间的关系，论证了当层数加深之后，GCN会收敛到这个随机漫步的极限分布，而这个极限分布只与图的全局属性有关，没有把随机漫步的起始顶点，或者说是GCN中从邻域中传递和聚合信息的根顶点考虑在内，这么一来，层数加深之后每个顶点聚合出来的样子都差不多，无法区分从而导致性能变差，另一个看待的角度是，因为原始GCN是对所有聚合的信息做平均操作，层数加深之后各个顶点的邻域都变得跟整张图差不多，既然每个顶点的邻域都变得差不多，做的又是平均操作，每个顶点聚合出来的样子就会都差不多。</p>
-<p>论文提出的解决办法是引入PageRank的思想，这也是从JK-Net中的结论观察出来的。JK-Net中所说的GCN会收敛到的极限分布的计算方法如下：</p>
+<h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><p>这一篇论文的工作其实是接着JK-Net继续往下，在那篇论文中，作者分析了GCN中信息传递这个过程与随机漫步之间的关系，说明一个K层GCN等价于从源顶点x出发到邻域顶点y的一个K步的随机游走，如果取$k\rightarrow\infin$，节点的极限分布与初始的顶点表示无关，只与图的拓扑结构有关，所以会导致层数加深后性能反而变差，因为不同顶点的表示会趋同，无法区分。另一个看待的角度是，因为原始GCN是对所有聚合的信息做平均操作，层数加深之后各个顶点的邻域都变得跟整张图差不多，既然每个顶点的邻域都变得差不多，做的又是平均操作，每个顶点聚合出来的样子就会都差不多。</p>
+<p>论文做法是将预测与传递分离成两个独立的过程，信息传递时采用Personalized PageRank的方式将初始顶点纳入考虑。</p>
+<p>PageRank的定义式：</p>
 <script type="math/tex; mode=display">
-\pi_{lim}=\hat{A}\pi_{lim}</script><p>而PageRank的计算方法如下：</p>
+\pi_{pr}=AD^{-1}\pi_{pr}</script><p>Personalized PageRank的定义式：</p>
 <script type="math/tex; mode=display">
-\pi_{pr}=A_{rw}\pi_{pr}</script><p>其中$A_{rw}=AD^{-1}$，两个计算方法明显地相似，区别在于，PageRank中邻接矩阵$A$没有考虑根顶点自身，而极限分布的计算里$\hat{A}$是引入了自环的。而Personalized PageRank通过引入自环而考虑了根顶点自身，论文的想法就是将随机漫步的极限分布用Personalized PageRank来代替，它的计算方法为：</p>
+\pi_{ppr}=(1-\alpha)D^{-1}A\pi_{ppr}+\alpha I_n \\
+\pi_{ppr}=\alpha(I_n-(1-\alpha)D^{-1}A)^{-1}I_n</script><p>$\alpha I_n$是因为加入随即转移概率，避免自环和无外链的顶点的影响，$I_n$是因为前半部分是矩阵需要进行转换。</p>
+<p>PPNP对PPR的应用：</p>
 <script type="math/tex; mode=display">
-\pi_{ppr}(i_x)=(1-\alpha)\hat{A}\pi_{ppr}(i_x)+\alpha i_x \\
-\rightarrow \pi_{ppr}(i_x)=\alpha\Big(I_n-(1-\alpha)\hat{A}\Big)^{-1}i_x</script><p>其中$i_x$是一个one_hot指示向量，用来从根顶点重新启动。</p>
+\pi_{ppr}(i_x)=(1-\alpha)\hat{A'}\pi_{ppr}(i_x)+\alpha i_x \\
+\pi_{ppr}(i_x)=\alpha(I_n-(1-\alpha)\hat{A'})^{-1}i_x</script><p>其中$A’=A+I_n$，$\hat{A’}=D’^{-1/2}A’D’^{-1/2}$，这么做的目的是，信息传递时，节点不能丢失自身特征，因此我们通过添加一个自环把节点自身特征加回来，来保证节点同时聚合邻域节点特征和自身特征；传递后，度大的节点的聚合特征值比较大，度小的节点的聚合特征值比较小。特征而项的取值范围不一致会带来影响，因此我们通过归一化消除这个问题。。</p>
 <blockquote>
 <p>Personalized PageRank算法的目标是要计算所有节点相对于用户u的相关度。从用户u对应的节点开始游走，每到一个节点都以α的概率停止游走并从u重新开始，或者以1-α的概率继续游走，从当前节点指向的节点中按照均匀分布随机选择一个节点往下游走。这样经过很多轮游走之后，每个顶点被访问到的概率也会收敛趋于稳定，这个时候我们就可以用概率来进行排名了。</p>
 </blockquote>
 <p>相较于原始的GCN模型，现在根顶点$x$对顶点$y$的影响程度$I(x,y)$，变得与$\pi_{ppr}(i_x)$中的第$y$个元素相关，这个影响程度对于每个根顶点都有不同的取值：</p>
 <script type="math/tex; mode=display">
 \require{cancel}
-I(x,y)\propto \prod_{ppr}^{(yx)},\prod_{ppr}^{(yx)}=\alpha\Big(I_n-(1-\alpha)\hat{A}\Big)^{-1}\cancel{I_{n}}</script><h4 id="PPNP"><a href="#PPNP" class="headerlink" title="PPNP"></a>PPNP</h4><p>经过上面的铺垫与介绍，论文提出的模型PPNP可以表示为：</p>
+I(x,y)\propto \prod_{ppr}^{(yx)},~\prod_{ppr}^{(yx)}=\alpha\Big(I_n-(1-\alpha)\hat{A}\Big)^{-1}\cancel{I_{n}}</script><h4 id="PPNP"><a href="#PPNP" class="headerlink" title="PPNP"></a>PPNP</h4><p>经过上面的铺垫与介绍，论文提出的模型PPNP可以表示为：</p>
 <script type="math/tex; mode=display">
-Z_{PPNP}=\text{softmax}\Big(\alpha\Big(I_n-(1-\alpha)\hat{A}\Big)^{-1}H\Big),H_{i,:}=f_{\theta}(X_i,:)</script><p>其中$X$为特征矩阵，$f_{\theta}$是一个参数为$\theta$的神经网络，用来产生预测类别$H\in \mathbb{R}^{n\times c}$。</p>
-<div align="center">
+Z_{PPNP}=\text{softmax}(\alpha(I_n-(1-\alpha)\hat{A'})^{-1}H),~~H=f_{\theta}(X)</script><p><div align="center">
 <a href="https://imgchr.com/i/ravXN9" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/12/20/ravXN9.png" alt="ravXN9.png" border="0" width="90%"></a>
-</div>
-
-<p>由公式和图中都可以看到，PPNP其实是由两部分组成，左边的神经网络与右边的信息传递网络，神经网络部分就类似于在<a href="#Semi-Supervised Classification with Graph Convolutional Network [ICLR&#39;17]">GCN</a>中介绍的，输入顶点特征与图的结构信息（邻接矩阵），输出顶点新的特征表示。信息传递网络部分，在PPNP中通过它来得到预测标签，而原始GCN的做法是$Z_{GCN}=\text{softmax}(\hat{A}HW)$，其中$W$是每层网络的参数。</p>
-<h4 id="APPNP"><a href="#APPNP" class="headerlink" title="APPNP"></a>APPNP</h4><p>从前面的构造方式可以看到，矩阵$\prod_{ppr}$将会有$\mathbb{R}^{n\times n}$大小，会带来时间和空间上的复杂度。因此论文提出了一种近似的计算方法APPNP，计算方式如下：</p>
+</div></p>
+<h4 id="APPNP"><a href="#APPNP" class="headerlink" title="APPNP"></a>APPNP</h4><p>从前面的构造方式可以看到，矩阵$\prod_{ppr}$将会有$\mathbb{R}^{n\times n}$大小，会带来时间和空间上的复杂度。PPNP中涉及矩阵的求逆运算，因此论文提出了一种近似的计算方法APPNP，计算方式如下：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 Z^{(0)}&=H=f_{\theta}(X) \\
 Z^{(k+1)}&=(1-\alpha)\hat{A}Z^{(k)}+\alpha H \\
 Z^{(K)}&=\text{softmax}\Big((1-\alpha)\hat{A}Z^{(K-1)}+\alpha H\Big)
-\end{aligned}</script><p>其中$K$为信息传递的跳数或者说是随机漫步的步数，$k\in[0,K-2]$，这样一来就不用构造一个$\mathbb{R}^{n\times n}$的矩阵了。（不知道为什么…）  </p>
+\end{aligned}</script><p>其中$K$为信息传递的跳数或者说是随机漫步的步数，$k\in[0,K-2]$，这样一来就不用构造一个$\mathbb{R}^{n\times n}$的矩阵了。</p>
+<h4 id="PPRGO-KDD’20"><a href="#PPRGO-KDD’20" class="headerlink" title="PPRGO[KDD’20]"></a>PPRGO[KDD’20]</h4><p>APPNP需要在每次梯度更新时进行计算，而$\pi(i)=\Pi_{i,:}^{ppr}$等价于顶点$i$的PPR向量，其中$\Pi^{ppr}=\alpha(I_n-(1-\alpha)D^{-1}A)^{-1}$。所以PPRGO采用了近似计算PPR的方法来改进PPNP。用$\Pi^{(\epsilon)}$来代替$\Pi^{ppr}$：</p>
+<script type="math/tex; mode=display">
+Z=\text{softmax}(\Pi^{(\epsilon)}H) \\
+z_i=\text{softmax}(\sum_{j\in N^k(i)}\pi^{(\epsilon)}(i)_jH_j)</script><p>$\pi^{(\epsilon)}(i)$由Backward Search得到，并且对近似矩阵取了一个Top-k操作。</p>
 <h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>Citeseer、Cora-ML、Pubmed、MS Academic  </p>
 
       
@@ -640,7 +644,7 @@ Z^{(K)}&=\text{softmax}\Big((1-\alpha)\hat{A}Z^{(K-1)}+\alpha H\Big)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PPNP"><span class="nav-number">2.1.</span> <span class="nav-text">PPNP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APPNP"><span class="nav-number">2.2.</span> <span class="nav-text">APPNP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-number">3.</span> <span class="nav-text">数据集</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PPNP"><span class="nav-number">2.1.</span> <span class="nav-text">PPNP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APPNP"><span class="nav-number">2.2.</span> <span class="nav-text">APPNP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PPRGO-KDD’20"><span class="nav-number">2.3.</span> <span class="nav-text">PPRGO[KDD’20]</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-number">3.</span> <span class="nav-text">数据集</span></a></li></ol></div>
             
 
           </div>
