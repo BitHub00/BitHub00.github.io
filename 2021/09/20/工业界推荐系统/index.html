@@ -126,7 +126,9 @@
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/24/4BzKQe.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/24/4DSqNq.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/24/4D9nzT.png">
-<meta property="og:updated_time" content="2021-09-24T14:39:17.407Z">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/25/4rJKYR.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/25/4rtbWR.png">
+<meta property="og:updated_time" content="2021-09-25T04:14:30.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工业界推荐系统小综述">
 <meta name="twitter:description" content="借这篇博客记录看工业界推荐系统论文的心得。">
@@ -423,7 +425,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5,617
+                  6,685
                 </span>
               
 
@@ -618,48 +620,99 @@ W=VV^T</script><p>这时V的第j列就是第j维特征的隐向量，二次项�
 <p>在处理测试集时，Youtube采用的是图(b)的方式。图(a)是held-out方式，利用上下文信息预估中间的一个视频；图(b)是predicting next watch的方式，则是利用上文信息，预估下一次浏览的视频。我们发现图(b)的方式在线上A/B test中表现更佳。而且只留最后一次观看行为做测试集主要是为了避免引入future information，产生与事实不符的数据穿越。</p>
 <p>输出方面，因为Youtube将推荐问题建模成一个“超大规模多分类”问题。即在时刻t，用户U（上下文信息C）会观看视频i的概率（每个具体的视频视为一个类别，i即为一个类别），所以输出应该是一个在所有candidate video上的概率分布，自然是一个多分类问题。</p>
 <p>同时，输出分为线上和离线训练两个部分。离线训练阶段输出层为softmax层，输出3.1中公式表达的概率。对于在线服务来说，有严格的性能要求，Youtube没有重新跑一遍模型，而是通过保存用户的embedding和视频的embedding，通过最近邻搜索的方法得到top N（approx topN，使用hash的方法来得到近似的topN）的结果。</p>
-<h4 id="精排模型"><a href="#精排模型" class="headerlink" title="精排模型"></a>精排模型</h4><p><div align="center">
+<h4 id="精排模型"><a href="#精排模型" class="headerlink" title="精排模型"></a>精排模型</h4><div align="center">
 <a href="https://imgtu.com/i/4D9nzT" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4D9nzT.png" alt="4D9nzT.png" border="0" width="75%/"></a>
-</div><br>排序过程是对生成的候选集做进一步细粒度的排序，模型架构与粗排模型基本一致，区别在于特征工程部分，图中从左至右的特征依次是：</p>
-<ol>
-<li><strong>impression video ID embedding</strong>: 当前要计算的video的embedding</li>
-<li><strong>watched video IDs average embedding</strong>: 用户观看过的最后N个视频embedding的average pooling</li>
-<li><strong>language embedding</strong>: 用户语言的embedding和当前视频语言的embedding</li>
-<li><strong>time since last watch</strong>: 自上次观看同channel视频的时间</li>
-<li><strong>previous impressions</strong>: 该视频已经被曝光给该用户的次数</li>
+</div>
+排序过程是对生成的候选集做进一步细粒度的排序，模型架构与粗排模型基本一致，区别在于特征工程部分，图中从左至右的特征依次是：
+
+1. **impression video ID embedding**: 当前要计算的video的embedding
+2. **watched video IDs average embedding**: 用户观看过的最后N个视频embedding的average pooling
+3. **language embedding**: 用户语言的embedding和当前视频语言的embedding
+4. **time since last watch**: 自上次观看同channel视频的时间
+5. **previous impressions**: 该视频已经被曝光给该用户的次数
+
+后面两个特征很好地引入了对用户行为的观察，第4个特征是用户上次观看同频道时间距现在的时间间隔,从用户的角度想一想，假如我们刚看过“DOTA经典回顾”这个channel的视频，我们很大概率是会继续看这个channel的视频的，那么该特征就很好的捕捉到了这一用户行为。第5个特征previous impressions则一定程度上引入了exploration的思想，避免同一个视频持续对同一用户进行无效曝光。尽量增加用户没看过的新视频的曝光可能性。
+
+在**特征处理**部分分为离散与连续变量：
+
+**离散变量**
+
+* 在进行video embedding的时候，只保留用户最常点击的N个视频的embedding，剩余的长尾视频的embedding直接用0向量代替。把大量长尾的video截断掉，主要还是为了节省online serving中宝贵的内存资源。当然从模型角度讲，低频video的embedding的准确性不佳是另一个“截断掉也不那么可惜”的理由。
+* 对于相同域的特征可以共享embedding，比如用户点击过的视频ID，用户观看过的视频ID，用户收藏过的视频ID等等，这些公用一套embedding可以使其更充分的学习，同时减少模型的大小，加速模型的训练。
+
+**连续变量**
+
+* 主要是归一化处理，同时还把归一化后的的根号和平方作为网络输入，以期能使网络能够更容易得到特征的次线性（sub-linear）和（super-linear）超线性函数。（引入了特征的非线性）。
+
+在精排模型的**训练**阶段，模型采用了用户的期望观看时间作为优化目标，所以如果简单使用LR就无法引入正样本的观看时间信息。因此采用weighted LR，将观看时间$T_i$作为正样本的权重，对于负样本，权重是单位权重(可以认为是1)。在线上serving中使用$e^{w^Tx+b}$做预测可以直接得到expected watch time的近似。这里引出一个问题：
+
+1. 在模型serving过程中又为何没有采用sigmoid函数预测正样本的probability，而是使用$e^{w^Tx+b}$这一指数形式预测用户观看时长？
+
+   > 回到LR的定义：
+   > $$
+   > y=\frac{1}{1+e^{-w^Tx}}
+   > $$
+   > 对于二分类问题：
+   > $$
+   > P(y=1|x)=\sigma(x) \\
+   > P(y=0|x)=1-\sigma(x)
+   > $$
+   > 一件事情的几率（odds）是指该事件发生的概率与该事件不发生的概率的比值，如果事件发生的概率是p，那么该事件的odds是$\frac{p}{1-p}$，对于LR而言：
+   > $$
+   > \frac{\frac{1}{1+e^{-w^Tx}}}{1-\frac{1}{1+e^{-w^Tx}}}=e^{w^Tx}
+   > $$
+   > 所以$e^{w^Tx+b}$求的就是LR形式下的odds。
+   >
+   > Weighted LR中的单个样本的weight，并不是让这个样本发生的概率变成了weight倍，而是让这个样本，对预估的影响(也就是loss)提升了weight倍。因为观看时长的几率=$\frac{\sum T_i}{N-k}$，其中k为正样本的个数，非wieght的odds可以直接看成N+/N-，因为wieghted的lr中，N+变成了weight倍，N-没变，还是1倍，所以直接可得后来的odds是之前odds的weight倍。
+   >
+   > 也就是说样本i的odds变成了下面的式子，由于在视频推荐场景中，用户打开一个视频的概率p往往是一个很小的值，且YouTube采用了用户观看时长$T_i$作为权重，$w_i=T_i$，所以有：
+   > $$
+   > odds(i)=\frac{w_ip}{1-w_ip}\approx w_ip=T_ip
+   > $$
+   > 这就是用户观看某视频的期望时长的计算式。
+
+
+所以模型serving部分使用的是这个形式，经历了$e^{w^Tx+b}\rightarrow odds\rightarrow 用户期望观看时长$的过程。
+
+## Deep & Cross Network for Ad Click Predictions[ADKDD'17]
+
+本节主要参考[玩转企业级Deep&Cross Network模型你只差一步](https://zhuanlan.zhihu.com/p/43364598)、[揭秘 Deep & Cross : 如何自动构造高阶交叉特征](https://zhuanlan.zhihu.com/p/55234968)
+
+### 解决的问题
+
+这篇论文是Google对 Wide & Deep工作的一个后续研究，文中提出 Deep & Cross Network，将Wide部分替换为由特殊网络结构实现的Cross，**自动构造有限高阶的交叉特征**，并学习对应权重，从而在一定程度上告别人工特征叉乘，说一定程度是因为文中出于模型复杂度的考虑，仍是仅对sparse特征对应的embedding作自动叉乘，但这仍是一个有益的创新。
+
+Wide & Deep 的结构能同时实现Memorization与Generalization，但是在Wide部分，仍然需要人工地设计特征叉乘。面对高维稀疏的特征空间、大量的可组合方式，基于人工先验知识虽然可以缓解一部分压力，但仍需要不小的人力和尝试成本，并且很有可能遗漏一些重要的交叉特征。FM可以自动组合特征，但也仅限于二阶叉乘。能否告别人工组合特征，并且自动学习高阶的特征组合呢？Deep & Cross 即是对此的一个尝试。
+
+### 做法及创新
+
+#### 核心思想
+
+DCN的结构如下图所示，由嵌入和堆叠层、交叉网络、深度网络以及组合输出网络四部分构成：
+
+<div align="center">
+<a href="https://imgtu.com/i/4rJKYR" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/25/4rJKYR.png" alt="4rJKYR.png" border="0" width="75%/"></a>
+</div>
+
+<p><strong>嵌入和堆叠层</strong></p>
+<p>这部分和前面介绍的模型做法大同小异，就是对于one-hot编码的离散型特征，通过嵌入来将输入的高维特征压缩到低维稠密向量，最后将嵌入向量与归一化的连续型特征进行堆叠，形成模型的输入。</p>
+<p><strong>交叉网络</strong></p>
+<p>交叉网络的每一层形式为：</p>
+<script type="math/tex; mode=display">
+x_{l+1}=x_0x^T_lw_l+b_l+x_l=f(x_l,w_l,b_l)+x_l</script><ol>
+<li>每层的神经元个数都相同，都等于输入$x_0$的维度$d$，也即每层的输入输出维度都是相等的。</li>
+<li>受残差网络（Residual Network）结构启发，每层的函数f拟合的是$x_{l+1}-x_l$的残差，残差网络有很多优点，其中一点是处理梯度消失的问题，使网络可以“更深”。</li>
 </ol>
-<p>后面两个特征很好地引入了对用户行为的观察，第4个特征是用户上次观看同频道时间距现在的时间间隔,从用户的角度想一想，假如我们刚看过“DOTA经典回顾”这个channel的视频，我们很大概率是会继续看这个channel的视频的，那么该特征就很好的捕捉到了这一用户行为。第5个特征previous impressions则一定程度上引入了exploration的思想，避免同一个视频持续对同一用户进行无效曝光。尽量增加用户没看过的新视频的曝光可能性。</p>
-<p>在<strong>特征处理</strong>部分分为离散与连续变量：</p>
-<p><strong>离散变量</strong></p>
+<p>那么交叉网络为什么能够自动构造有限高阶的交叉特征呢？以一个二层的交叉网络为例，其中$x_0=[x_{0,1};x_{0,2}]$，另各层的$b_i=0$：</p>
+<p><a href="https://imgtu.com/i/4rtbWR" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/25/4rtbWR.png" alt="4rtbWR.png" border="0"></a></p>
+<p>最后得到$y_{cross}=x_2^T*w_{cross}$，可以看到$x_1$包含了原始特征 $x_{0,1}$、$x_{0,2}$从一阶到二阶的所有可能叉乘组合，而 $x_2$包含了其从一阶到三阶的所有可能叉乘组合。从这个例子可以看出DCN的特点：</p>
 <ul>
-<li>在进行video embedding的时候，只保留用户最常点击的N个视频的embedding，剩余的长尾视频的embedding直接用0向量代替。把大量长尾的video截断掉，主要还是为了节省online serving中宝贵的内存资源。当然从模型角度讲，低频video的embedding的准确性不佳是另一个“截断掉也不那么可惜”的理由。</li>
-<li>对于相同域的特征可以共享embedding，比如用户点击过的视频ID，用户观看过的视频ID，用户收藏过的视频ID等等，这些公用一套embedding可以使其更充分的学习，同时减少模型的大小，加速模型的训练。</li>
+<li><strong>有限高阶</strong>：叉乘<strong>阶数由网络深度决定</strong>，深度$L_c$对应最高阶$L_c+1$的叉乘</li>
+<li><strong>自动叉乘</strong>：Cross输出包含了原始特征从一阶（即本身）到$L_c+1$阶的<strong>所有叉乘组合，</strong>而模型参数量仅仅随输入维度成<strong>线性增长</strong>：$2<em>d</em>L_c$</li>
+<li><strong>参数共享</strong>：不同叉乘项对应的权重不同，但并非每个叉乘组合对应独立的权重（指数数量级）， 通过参数共享，Cross有效<strong>降低了参数量</strong>。此外，参数共享还使得模型有更强的<strong>泛化性</strong>和<strong>鲁棒性</strong>。例如，如果独立训练权重，当训练集中$x_i\not =0 \land x_j\not =0$这个叉乘特征没有出现 ，对应权重肯定是零，而参数共享则不会，类似地，数据集中的一些噪声可以由大部分正常样本来纠正权重参数的学习</li>
 </ul>
-<p><strong>连续变量</strong></p>
-<ul>
-<li>主要是归一化处理，同时还把归一化后的的根号和平方作为网络输入，以期能使网络能够更容易得到特征的次线性（sub-linear）和（super-linear）超线性函数。（引入了特征的非线性）。</li>
-</ul>
-<p>在精排模型的<strong>训练</strong>阶段，模型采用了用户的期望观看时间作为优化目标，所以如果简单使用LR就无法引入正样本的观看时间信息。因此采用weighted LR，将观看时间$T_i$作为正样本的权重，对于负样本，权重是单位权重(可以认为是1)。在线上serving中使用$e^{w^Tx+b}$做预测可以直接得到expected watch time的近似。这里引出一个问题：</p>
-<ol>
-<li><p>在模型serving过程中又为何没有采用sigmoid函数预测正样本的probability，而是使用$e^{w^Tx+b}$这一指数形式预测用户观看时长？</p>
-<blockquote>
-<p>回到LR的定义：</p>
-<script type="math/tex; mode=display">
-y=\frac{1}{1+e^{-w^Tx}}</script><p>对于二分类问题：</p>
-<script type="math/tex; mode=display">
-P(y=1|x)=\sigma(x) \\
-P(y=0|x)=1-\sigma(x)</script><p>一件事情的几率（odds）是指该事件发生的概率与该事件不发生的概率的比值，如果事件发生的概率是p，那么该事件的odds是$\frac{p}{1-p}$，对于LR而言：</p>
-<script type="math/tex; mode=display">
-\frac{\frac{1}{1+e^{-w^Tx}}}{1-\frac{1}{1+e^{-w^Tx}}}=e^{w^Tx}</script><p>所以$e^{w^Tx+b}$求的就是LR形式下的odds。</p>
-<p>Weighted LR中的单个样本的weight，并不是让这个样本发生的概率变成了weight倍，而是让这个样本，对预估的影响(也就是loss)提升了weight倍。因为观看时长的几率=$\frac{\sum T_i}{N-k}$，其中k为正样本的个数，非wieght的odds可以直接看成N+/N-，因为wieghted的lr中，N+变成了weight倍，N-没变，还是1倍，所以直接可得后来的odds是之前odds的weight倍。</p>
-<p>也就是说样本i的odds变成了下面的式子，由于在视频推荐场景中，用户打开一个视频的概率p往往是一个很小的值，且YouTube采用了用户观看时长$T_i$作为权重，$w_i=T_i$，所以有：</p>
-<script type="math/tex; mode=display">
-odds(i)=\frac{w_ip}{1-w_ip}\approx w_ip=T_ip</script><p>这就是用户观看某视频的期望时长的计算式。</p>
-</blockquote>
-</li>
-</ol>
-<p>所以模型serving部分使用的是这个形式，经历了$e^{w^Tx+b}\rightarrow odds\rightarrow 用户期望观看时长$的过程。</p>
-<h2 id="Deep-amp-Cross-Network-for-Ad-Click-Predictions-ADKDD’17"><a href="#Deep-amp-Cross-Network-for-Ad-Click-Predictions-ADKDD’17" class="headerlink" title="Deep &amp; Cross Network for Ad Click Predictions[ADKDD’17]"></a>Deep &amp; Cross Network for Ad Click Predictions[ADKDD’17]</h2>
+<p>训练部分，模型的Deep 部分如上图右侧部分所示，DCN拼接Cross和Deep的输出，采用logistic loss作为损失函数，进行联合训练，这些细节与Wide &amp; Deep几乎是一致的，在这里不再展开论述。另外，文中也在目标函数中加入L2正则防止过拟合。</p>
+
       
     </div>
     
@@ -848,7 +901,7 @@ odds(i)=\frac{w_ip}{1-w_ip}\approx w_ip=T_ip</script><p>这就是用户观看某
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistics-Regression"><span class="nav-number">1.</span> <span class="nav-text">Logistics Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">1.1.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想"><span class="nav-number">1.1.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征工程"><span class="nav-number">1.1.3.</span> <span class="nav-text">特征工程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16"><span class="nav-number">2.</span> <span class="nav-text">Wide &amp; Deep Learning for Recommender Systems[DLRS’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">2.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memorization"><span class="nav-number">2.1.1.</span> <span class="nav-text">Memorization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generalization"><span class="nav-number">2.1.2.</span> <span class="nav-text">Generalization</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-1"><span class="nav-number">2.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络结构"><span class="nav-number">2.2.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节"><span class="nav-number">2.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factorization-Machines"><span class="nav-number">3.</span> <span class="nav-text">Factorization Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-1"><span class="nav-number">3.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-2"><span class="nav-number">3.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算化简"><span class="nav-number">3.2.2.</span> <span class="nav-text">计算化简</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征工程-1"><span class="nav-number">3.2.4.</span> <span class="nav-text">特征工程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Field-aware-Factorization-Machines-for-CTR-Prediction-RecSys’16"><span class="nav-number">4.</span> <span class="nav-text">Field-aware Factorization Machines for CTR Prediction[RecSys’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-2"><span class="nav-number">4.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-3"><span class="nav-number">4.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-2"><span class="nav-number">4.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-IJCAI’17"><span class="nav-number">5.</span> <span class="nav-text">DeepFM: A Factorization-Machine based Neural Network for CTR Prediction[IJCAI’17]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-3"><span class="nav-number">5.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-4"><span class="nav-number">5.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNN与高维特征"><span class="nav-number">5.2.1.</span> <span class="nav-text">DNN与高维特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-3"><span class="nav-number">5.2.2.</span> <span class="nav-text">核心思想</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-Neural-Networks-for-YouTube-Recommendations-RecSys’16"><span class="nav-number">6.</span> <span class="nav-text">Deep Neural Networks for YouTube Recommendations[RecSys’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-4"><span class="nav-number">6.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#做法及创新-5"><span class="nav-number">6.1.1.</span> <span class="nav-text">做法及创新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#粗排模型"><span class="nav-number">6.1.2.</span> <span class="nav-text">粗排模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#精排模型"><span class="nav-number">6.1.3.</span> <span class="nav-text">精排模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-amp-Cross-Network-for-Ad-Click-Predictions-ADKDD’17"><span class="nav-number">7.</span> <span class="nav-text">Deep &amp; Cross Network for Ad Click Predictions[ADKDD’17]</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistics-Regression"><span class="nav-number">1.</span> <span class="nav-text">Logistics Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">1.1.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想"><span class="nav-number">1.1.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征工程"><span class="nav-number">1.1.3.</span> <span class="nav-text">特征工程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16"><span class="nav-number">2.</span> <span class="nav-text">Wide &amp; Deep Learning for Recommender Systems[DLRS’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">2.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memorization"><span class="nav-number">2.1.1.</span> <span class="nav-text">Memorization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generalization"><span class="nav-number">2.1.2.</span> <span class="nav-text">Generalization</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-1"><span class="nav-number">2.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络结构"><span class="nav-number">2.2.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节"><span class="nav-number">2.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factorization-Machines"><span class="nav-number">3.</span> <span class="nav-text">Factorization Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-1"><span class="nav-number">3.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-2"><span class="nav-number">3.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算化简"><span class="nav-number">3.2.2.</span> <span class="nav-text">计算化简</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征工程-1"><span class="nav-number">3.2.4.</span> <span class="nav-text">特征工程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Field-aware-Factorization-Machines-for-CTR-Prediction-RecSys’16"><span class="nav-number">4.</span> <span class="nav-text">Field-aware Factorization Machines for CTR Prediction[RecSys’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-2"><span class="nav-number">4.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-3"><span class="nav-number">4.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-2"><span class="nav-number">4.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-IJCAI’17"><span class="nav-number">5.</span> <span class="nav-text">DeepFM: A Factorization-Machine based Neural Network for CTR Prediction[IJCAI’17]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-3"><span class="nav-number">5.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-4"><span class="nav-number">5.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNN与高维特征"><span class="nav-number">5.2.1.</span> <span class="nav-text">DNN与高维特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-3"><span class="nav-number">5.2.2.</span> <span class="nav-text">核心思想</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-Neural-Networks-for-YouTube-Recommendations-RecSys’16"><span class="nav-number">6.</span> <span class="nav-text">Deep Neural Networks for YouTube Recommendations[RecSys’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-4"><span class="nav-number">6.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#做法及创新-5"><span class="nav-number">6.1.1.</span> <span class="nav-text">做法及创新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#粗排模型"><span class="nav-number">6.1.2.</span> <span class="nav-text">粗排模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#精排模型"><span class="nav-number">6.1.3.</span> <span class="nav-text">精排模型</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -892,7 +945,7 @@ odds(i)=\frac{w_ip}{1-w_ip}\approx w_ip=T_ip</script><p>这就是用户观看某
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共135.0k字</span>
+  <span class="post-count">小站全站共136.0k字</span>
 </div>
         
 
