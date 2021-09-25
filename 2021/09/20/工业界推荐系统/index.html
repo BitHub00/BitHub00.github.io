@@ -126,9 +126,12 @@
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/24/4BzKQe.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/24/4DSqNq.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/24/4D9nzT.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/25/4skSbT.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/25/4rJKYR.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/25/4rtbWR.png">
-<meta property="og:updated_time" content="2021-09-25T04:14:30.201Z">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/25/4skFPJ.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/25/4sk3RA.png">
+<meta property="og:updated_time" content="2021-09-25T08:24:39.411Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工业界推荐系统小综述">
 <meta name="twitter:description" content="借这篇博客记录看工业界推荐系统论文的心得。">
@@ -425,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  6,685
+                  7,522
                 </span>
               
 
@@ -521,7 +524,7 @@ y=w_0+\sum_{i=1}^nw_ix_i+\sum_{i=1}^n\sum_{j\ge i}^nw_{ij}x_ix_j</script><p>这�
 <p>Cholesky分解：将一个对称正定矩阵化为一个下三角矩阵与其共轭转置矩阵的积</p>
 </blockquote>
 <script type="math/tex; mode=display">
-W=VV^T</script><p>这时V的第j列就是第j维特征的隐向量，二次项参数转化为$w_{ij}=<v_i,v_j>=\sum_{f=1}^kv_{i,f}v_{j,f}$，此时隐向量的特征维度$k$一般远小于原始特征维度$n$。FM的假设是，特征两两相关。</v_i,v_j></p>
+W=VV^T</script><p>二次项参数转化为$w_{ij}=<v_i,v_j>=\sum_{f=1}^kv_{i,f}v_{j,f}$，此时隐向量的特征维度$k$一般远小于原始特征维度$n$。$v_i\in \mathbb{R}^k$是特征i的嵌入向量。FM的假设是，特征两两相关。</v_i,v_j></p>
 <h4 id="计算化简"><a href="#计算化简" class="headerlink" title="计算化简"></a>计算化简</h4><p>FM的计算复杂度可以化简为线性复杂度：</p>
 <p><a href="https://imgtu.com/i/4ahAk6" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4ahAk6.jpg" alt="4ahAk6.jpg"></a></p>
 <p><a href="https://imgtu.com/i/4ahMnA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4ahMnA.jpg" alt="4ahMnA.jpg"></a></p>
@@ -690,6 +693,8 @@ Wide & Deep 的结构能同时实现Memorization与Generalization，但是在Wid
 
 DCN的结构如下图所示，由嵌入和堆叠层、交叉网络、深度网络以及组合输出网络四部分构成：
 
+<a href="https://imgtu.com/i/4skSbT" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/25/4skSbT.png" alt="4skSbT.png" border="0"></a>
+
 <div align="center">
 <a href="https://imgtu.com/i/4rJKYR" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/25/4rJKYR.png" alt="4rJKYR.png" border="0" width="75%/"></a>
 </div>
@@ -712,6 +717,40 @@ x_{l+1}=x_0x^T_lw_l+b_l+x_l=f(x_l,w_l,b_l)+x_l</script><ol>
 <li><strong>参数共享</strong>：不同叉乘项对应的权重不同，但并非每个叉乘组合对应独立的权重（指数数量级）， 通过参数共享，Cross有效<strong>降低了参数量</strong>。此外，参数共享还使得模型有更强的<strong>泛化性</strong>和<strong>鲁棒性</strong>。例如，如果独立训练权重，当训练集中$x_i\not =0 \land x_j\not =0$这个叉乘特征没有出现 ，对应权重肯定是零，而参数共享则不会，类似地，数据集中的一些噪声可以由大部分正常样本来纠正权重参数的学习</li>
 </ul>
 <p>训练部分，模型的Deep 部分如上图右侧部分所示，DCN拼接Cross和Deep的输出，采用logistic loss作为损失函数，进行联合训练，这些细节与Wide &amp; Deep几乎是一致的，在这里不再展开论述。另外，文中也在目标函数中加入L2正则防止过拟合。</p>
+<h2 id="Attentional-Factorization-Machines-IJCAI’17"><a href="#Attentional-Factorization-Machines-IJCAI’17" class="headerlink" title="Attentional Factorization Machines[IJCAI’17]"></a>Attentional Factorization Machines[IJCAI’17]</h2><p>本节主要参考<a href="https://zhuanlan.zhihu.com/p/395140453" target="_blank" rel="noopener">推荐算法精排模型AFM</a></p>
+<h3 id="解决的问题-5"><a href="#解决的问题-5" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>FM在做特征交互时，对所有交叉项赋予相同的权重，这可能是不够准确的，不相关的特征的交叉项可能还会引来噪声，论文通过attention机制学习各特征交叉项的重要程度进行加权求和。</p>
+<h3 id="做法及创新-6"><a href="#做法及创新-6" class="headerlink" title="做法及创新"></a>做法及创新</h3><p>前面介绍DeepFM时说到它是典型的一种DNN与FM融合的并行结构，而本节的AFM就是典型的一种串行结构：</p>
+<p><a href="https://imgtu.com/i/4skFPJ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/25/4skFPJ.png" alt="4skFPJ.png" border="0"></a></p>
+<h4 id="核心思想-4"><a href="#核心思想-4" class="headerlink" title="核心思想"></a>核心思想</h4><p>AFM的目的也是像FFM一样区分同一特征与不同特征组合时的相互作用，只是不再划分为field而是通过一个注意力网络学习得到权重，总体参数量增加不明显。</p>
+<p>回顾FM的预测公式：</p>
+<script type="math/tex; mode=display">
+\hat{y}(x):=w_{0}+\sum_{i=1}^{n} w_{i} x_{i}+\sum_{i=1}^{n} \sum_{j=i+1}^{n}<v_{i}, v_{j}>x_{i} x_{j}</script><p>其中需要学习的参数为：</p>
+<script type="math/tex; mode=display">
+w_{0} \in \mathbb{R}, \quad w \in \mathbb{R}^{n}, \quad V \in \mathbb{R}^{n \times k}</script><p>它们的含义为：</p>
+<ul>
+<li>$w_0$表示全局的偏差；</li>
+<li>$w_i$表示第i个特征的强度；</li>
+<li>$w_{ij}$表示第i个特征和第j个特征之间的交互，在实际参数学习中不是直接学习交互特征的权重参数$w_{ij}$的，而是通过<strong>学习因式分解参数</strong>来学习交互特征的参数。</li>
+</ul>
+<p><a href="https://imgtu.com/i/4sk3RA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/25/4sk3RA.png" alt="4sk3RA.png" border="0"></a></p>
+<p>输入层和embedding层与FM模型是一样的，其中对于输入特征都采取了稀疏表示，即将所有的非零特征都嵌入到dense特征。嵌入后的表示为$v_ix_i$，而FM中二次项的系数分解为两个特征i和j的嵌入向量的叉乘，$w_{ij}=v_i^Tv_j$，这里$v_i$就是特征i的嵌入向量。</p>
+<p><strong>Pair-wise交互层</strong></p>
+<p>这一层的目的是在神经网络中表达FM的计算逻辑：</p>
+<script type="math/tex; mode=display">
+\hat{y}=\mathbf{p}^{T} \sum_{(i, j) \in \mathcal{R}_{x}}\left(\mathbf{v}_{i} \odot \mathbf{v}_{j}\right) x_{i} x_{j}+b</script><p>向量p置为全1以及b设为0就回退到传统的FM模型。</p>
+<p><strong>Attention-based池化层</strong></p>
+<script type="math/tex; mode=display">
+f_{\text {Att }}\left(f_{P I}(\mathcal{E})\right)=\sum_{(i, j) \in \mathcal{R}_{x}} a_{i j}\left(\mathbf{v}_{i} \odot \mathbf{v}_{j}\right) x_{i} x_{j}</script><p>跟传统attention一样，$a_{ij}$就是表示特征i和j的交互在进行预测时的重要程度，可以直接通过最小化loss函数去学习$a_{ij}$，虽然看起来是可行的，但是这又会碰到之前的问题：当某个交互特征没有出现在样本中时，就没法学习某个交互特征的attention分数了。为了解决这个泛化能力方面的问题，我们使用MLP网络去参数化这个attention分数，该MLP网络称之为attention network。attention network的输入是嵌入后的两个特征的交互向量：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+a_{i j}^{\prime} &=\mathbf{h}^{T} ReL U\left(\mathbf{W}\left(\mathbf{v}_{i} \odot \mathbf{v}_{j}\right) x_{i} x_{j}+\mathbf{b}\right) \\
+a_{i j} &=\frac{\exp \left(a_{i j}^{\prime}\right)}{\sum_{(i, j) \in \mathcal{R}_{x}} \exp \left(a_{i j}^{\prime}\right)}
+\end{aligned}</script><p>Attention-based 池化层的输出是一个k维的向量，它在embedding空间中通过区分出各特征交互的重要性，来压缩所有的特征交互，然后将这些映射到最终的预测结果上面。</p>
+<p>AFM模型在防止过拟合上的做法：</p>
+<ul>
+<li>dropout方式是通过防止神经元之间的共现性从而防止过拟合。由于AFM模型中会学习所有的特征之间的二阶交互特征，因此更加容易导致模型学习特征之间的共现性从而更容易导致过拟合，因此在pair-wise交互层使用了dropout方法来避免共现性。</li>
+<li>对于AFM模型中的attention network，它是一个单层的MLP网络，这里使用L2正则化来防止过拟合，对于attention network，不选择dropout防止过拟合。</li>
+</ul>
 
       
     </div>
@@ -901,7 +940,7 @@ x_{l+1}=x_0x^T_lw_l+b_l+x_l=f(x_l,w_l,b_l)+x_l</script><ol>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistics-Regression"><span class="nav-number">1.</span> <span class="nav-text">Logistics Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">1.1.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想"><span class="nav-number">1.1.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征工程"><span class="nav-number">1.1.3.</span> <span class="nav-text">特征工程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16"><span class="nav-number">2.</span> <span class="nav-text">Wide &amp; Deep Learning for Recommender Systems[DLRS’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">2.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memorization"><span class="nav-number">2.1.1.</span> <span class="nav-text">Memorization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generalization"><span class="nav-number">2.1.2.</span> <span class="nav-text">Generalization</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-1"><span class="nav-number">2.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络结构"><span class="nav-number">2.2.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节"><span class="nav-number">2.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factorization-Machines"><span class="nav-number">3.</span> <span class="nav-text">Factorization Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-1"><span class="nav-number">3.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-2"><span class="nav-number">3.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算化简"><span class="nav-number">3.2.2.</span> <span class="nav-text">计算化简</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征工程-1"><span class="nav-number">3.2.4.</span> <span class="nav-text">特征工程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Field-aware-Factorization-Machines-for-CTR-Prediction-RecSys’16"><span class="nav-number">4.</span> <span class="nav-text">Field-aware Factorization Machines for CTR Prediction[RecSys’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-2"><span class="nav-number">4.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-3"><span class="nav-number">4.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-2"><span class="nav-number">4.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-IJCAI’17"><span class="nav-number">5.</span> <span class="nav-text">DeepFM: A Factorization-Machine based Neural Network for CTR Prediction[IJCAI’17]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-3"><span class="nav-number">5.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-4"><span class="nav-number">5.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNN与高维特征"><span class="nav-number">5.2.1.</span> <span class="nav-text">DNN与高维特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-3"><span class="nav-number">5.2.2.</span> <span class="nav-text">核心思想</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-Neural-Networks-for-YouTube-Recommendations-RecSys’16"><span class="nav-number">6.</span> <span class="nav-text">Deep Neural Networks for YouTube Recommendations[RecSys’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-4"><span class="nav-number">6.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#做法及创新-5"><span class="nav-number">6.1.1.</span> <span class="nav-text">做法及创新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#粗排模型"><span class="nav-number">6.1.2.</span> <span class="nav-text">粗排模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#精排模型"><span class="nav-number">6.1.3.</span> <span class="nav-text">精排模型</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistics-Regression"><span class="nav-number">1.</span> <span class="nav-text">Logistics Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新"><span class="nav-number">1.1.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想"><span class="nav-number">1.1.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征工程"><span class="nav-number">1.1.3.</span> <span class="nav-text">特征工程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16"><span class="nav-number">2.</span> <span class="nav-text">Wide &amp; Deep Learning for Recommender Systems[DLRS’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题"><span class="nav-number">2.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memorization"><span class="nav-number">2.1.1.</span> <span class="nav-text">Memorization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generalization"><span class="nav-number">2.1.2.</span> <span class="nav-text">Generalization</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-1"><span class="nav-number">2.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络结构"><span class="nav-number">2.2.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节"><span class="nav-number">2.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factorization-Machines"><span class="nav-number">3.</span> <span class="nav-text">Factorization Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-1"><span class="nav-number">3.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-2"><span class="nav-number">3.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算化简"><span class="nav-number">3.2.2.</span> <span class="nav-text">计算化简</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征工程-1"><span class="nav-number">3.2.4.</span> <span class="nav-text">特征工程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Field-aware-Factorization-Machines-for-CTR-Prediction-RecSys’16"><span class="nav-number">4.</span> <span class="nav-text">Field-aware Factorization Machines for CTR Prediction[RecSys’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-2"><span class="nav-number">4.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-3"><span class="nav-number">4.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-2"><span class="nav-number">4.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践细节-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">实践细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-IJCAI’17"><span class="nav-number">5.</span> <span class="nav-text">DeepFM: A Factorization-Machine based Neural Network for CTR Prediction[IJCAI’17]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-3"><span class="nav-number">5.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-4"><span class="nav-number">5.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNN与高维特征"><span class="nav-number">5.2.1.</span> <span class="nav-text">DNN与高维特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-3"><span class="nav-number">5.2.2.</span> <span class="nav-text">核心思想</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-Neural-Networks-for-YouTube-Recommendations-RecSys’16"><span class="nav-number">6.</span> <span class="nav-text">Deep Neural Networks for YouTube Recommendations[RecSys’16]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-4"><span class="nav-number">6.1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#做法及创新-5"><span class="nav-number">6.1.1.</span> <span class="nav-text">做法及创新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#粗排模型"><span class="nav-number">6.1.2.</span> <span class="nav-text">粗排模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#精排模型"><span class="nav-number">6.1.3.</span> <span class="nav-text">精排模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attentional-Factorization-Machines-IJCAI’17"><span class="nav-number">7.</span> <span class="nav-text">Attentional Factorization Machines[IJCAI’17]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的问题-5"><span class="nav-number">7.1.</span> <span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法及创新-6"><span class="nav-number">7.2.</span> <span class="nav-text">做法及创新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-4"><span class="nav-number">7.2.1.</span> <span class="nav-text">核心思想</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -945,7 +984,7 @@ x_{l+1}=x_0x^T_lw_l+b_l+x_l=f(x_l,w_l,b_l)+x_l</script><ol>
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共136.0k字</span>
+  <span class="post-count">小站全站共136.9k字</span>
 </div>
         
 
