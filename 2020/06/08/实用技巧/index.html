@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/06/10/toiGm4.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8CvYlj.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/10/8Cvt6s.png">
-<meta property="og:updated_time" content="2021-09-29T09:03:41.670Z">
+<meta property="og:updated_time" content="2021-10-27T02:30:06.436Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实用技巧">
 <meta name="twitter:description" content="用本文记录平时遇到的一些问题和解决方法，自己试过成功的">
@@ -516,7 +516,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unable to locate CUDA libraries</span><br></pre></td></tr></table></figure>
 <p>方法是将该路径C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\extras\CUPTI\lib64添加到系统环境变量中。</p>
 <p>这时重新打开nvvp把刚才的test_profile拖进来就有分析结果了。</p>
-<h4 id="Visual-Code-Remote-SSH远程开发"><a href="#Visual-Code-Remote-SSH远程开发" class="headerlink" title="Visual Code Remote SSH远程开发"></a>Visual Code Remote SSH远程开发</h4><p>在Visual Code种Ctrl + Shift + X打开插件界面，安装Remote - SSH插件，接下来通过ssh key的方式免密登录：</p>
+<h4 id="Visual-Code-Remote-SSH远程开发"><a href="#Visual-Code-Remote-SSH远程开发" class="headerlink" title="Visual Code Remote SSH远程开发"></a>Visual Code Remote SSH远程开发</h4><p>在Visual Code中Ctrl + Shift + X打开插件界面，安装Remote - SSH插件，接下来通过ssh key的方式免密登录：</p>
 <ol>
 <li>打开cmd窗口，输入命令<code>ssh-keygen -t rsa -b 4096</code>，一路回车，默认密钥生成在<code>C:\Users\XXX\.ssh</code>目录下。</li>
 <li>打开目录下的id_rsa.pub文件，将其中的内容复制到远程主机的<code>~/.ssh/authorized_keys</code>文件中，没有该目录则<code>mkdir ~/.ssh</code>手动生成，没有该文件则<code>touch ~/.ssh/authorized_keys</code>手动生成。</li>
