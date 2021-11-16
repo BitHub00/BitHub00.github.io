@@ -4588,7 +4588,7 @@ b_i=\frac{1}{|U_i|}\sum_{u \in U_i}(r_{u,i}-b_u-\mu)</script></li>
   </entry>
   <entry>
     <title>工业界推荐系统小综述</title>
-    <url>/2021/09/20/%E5%B7%A5%E4%B8%9A%E7%95%8C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/</url>
+    <url>/2021/11/16/%E5%B7%A5%E4%B8%9A%E7%95%8C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<p>借这篇博客记录看工业界推荐系统论文的心得。</p>
 <a id="more"></a>
 <h2 id="Logistics-Regression"><a href="#Logistics-Regression" class="headerlink" title="Logistics Regression"></a>Logistics Regression</h2><p>本节主要参考<a href="https://zhuanlan.zhihu.com/p/151036015" target="_blank" rel="noopener">刘启林的推荐系统</a></p>
@@ -4887,7 +4887,7 @@ a_{i j} &=\frac{\exp \left(a_{i j}^{\prime}\right)}{\sum_{(i, j) \in \mathcal{R}
 <li>dropout方式是通过防止神经元之间的共现性从而防止过拟合。由于AFM模型中会学习所有的特征之间的二阶交互特征，因此更加容易导致模型学习特征之间的共现性从而更容易导致过拟合，因此在pair-wise交互层使用了dropout方法来避免共现性。</li>
 <li>对于AFM模型中的attention network，它是一个单层的MLP网络，这里使用L2正则化来防止过拟合，对于attention network，不选择dropout防止过拟合。</li>
 </ul>
-]]></content>
+<h2 id="Practical-Lessons-from-Predicting-Clicks-on-Ads-at-Facebook-ADKDD’14"><a href="#Practical-Lessons-from-Predicting-Clicks-on-Ads-at-Facebook-ADKDD’14" class="headerlink" title="Practical Lessons from Predicting Clicks on Ads at Facebook[ADKDD’14]"></a>Practical Lessons from Predicting Clicks on Ads at Facebook[ADKDD’14]</h2><h3 id="解决的问题-6"><a href="#解决的问题-6" class="headerlink" title="解决的问题"></a>解决的问题</h3>]]></content>
       <tags>
         <tag>推荐系统</tag>
       </tags>
@@ -6808,6 +6808,118 @@ h_i=\sigma\{\sum_{c=2}^C\beta_cl_i^c\}</script><p>这样一来就通过路径得
 <h1 id="知识图谱"><a href="#知识图谱" class="headerlink" title="知识图谱"></a>知识图谱</h1>]]></content>
       <tags>
         <tag>推荐系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>增量学习笔记</title>
+    <url>/2021/11/16/%E5%A2%9E%E9%87%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>借这篇博客记录增量学习的笔记。<br><a id="more"></a></p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><a href="https://imgtu.com/i/Ie0eFs" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/04/Ie0eFs.png" alt="Ie0eFs.png"></a></p>
+<p>增量学习研究的是在一个连续的信息流中持续进行学习的问题，它的目标是将吸收新知识的同时要保留甚至整合、优化旧知识。之所以要研究增量学习，是因为在机器学习领域，模型训练有一个普遍缺陷，称为「灾难性遗忘」，即一个模型在新任务上训练时，在旧任务上的表现会显著下降。</p>
+<p>造成灾难性遗忘的一个主要原因是<strong>「传统模型假设数据分布是固定或平稳的，训练样本是独立同分布的」</strong>，所以模型可以一遍又一遍地看到所有任务相同的数据，但当数据变为连续的数据流时，训练数据的分布就是非平稳的，模型从非平稳的数据分布中持续不断地获取知识时，新知识会干扰旧知识，从而导致模型性能的快速下降，甚至完全覆盖或遗忘以前学习到的旧知识。</p>
+<h2 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h2><p>增量学习的方法大体上可以分为如下三个类别：</p>
+<h3 id="回放"><a href="#回放" class="headerlink" title="回放"></a>回放</h3><p>回放类方法的思想是<strong>「温故而知新」</strong>，也就是在训练新任务时，模型会保留一部分具有代表性的旧数据来避免对旧任务的遗忘。因此这类方法的核心是<strong>「保留旧任务的哪部分数据，以及如何利用旧数据与新数据一起训练模型」</strong>。</p>
+<h4 id="iCaRL-CVPR’17"><a href="#iCaRL-CVPR’17" class="headerlink" title="iCaRL[CVPR’17]"></a><a href="https://arxiv.org/abs/1611.07725v2" target="_blank" rel="noopener">iCaRL</a>[CVPR’17]</h4><p>iCaRL是回放类方法的代表，它为每个旧任务保留了一部分有代表性的数据（iCaRL假设越接近类别特征均值的样本越具有代表性）。给定一个包含不同类别的数据流$X^1,X^2,\dots$其中$X^y=\{x_1^y,\dots\}$中的样本都属于同一个类别。iCaRL学习的是一个分类器和一种特征表示的映射方法。iCaRL对一个新输入的待分类样本的流程如下：</p>
+<div align="center">
+<a href="https://imgtu.com/i/Ie03mF" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/04/Ie03mF.png" border="0" width="65%/"></a>
+</div>
+
+<p>关键在于第二行的样本集$P$和第三行的特征映射方法$\phi$。样本集$P$中包含$t$个类别各自的代表性样本，将一个类别中的所有样本都经过$\phi$得到它们的特征表示，然后取平均作为这个类别的特征表示，随后将新输入的样本也经过$\phi$得到它的特征表示，将这个特征表示与所有类别的特征表示进行比较，将最相近的作为新样本的分类标签。</p>
+<div align="center">
+<a href="https://imgtu.com/i/Ie0o7Q" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/04/Ie0o7Q.png" border="0" width="50%/"></a>
+</div>
+
+<p>其中$X^s,…,X^t $表示新增加每一类对应的样本集；$K$表示存储的大小，即所有样本集的样本总数；$θ$表示当前的模型参数；$P$为当前的样本集。算法2代表的样本集的构建步骤如下：</p>
+<ol>
+<li>将新得到新类样本和之前存储的旧类样本集共同加到卷积神经网络中训练，来更新当前的模型参数$θ$</li>
+<li>$K$是固定值，增加新类别后，样本集中每个类别应该保留的图片数应该进行调整，对旧任务$1,…,s-1$每个类别的图片数减少到$m$</li>
+<li>对新任务构建新的样本集$P_y$，其中$y = s,…,t$，每个类别分别选择$m$张，最后将其加入到总的样本集$P$中</li>
+</ol>
+<p>第一步中的卷积神经网络仅是用做表征学习的，而不是做最后的分类任务。</p>
+<div align="center">
+<a href="https://imgtu.com/i/IeB9AJ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/04/IeB9AJ.png" alt="IeB9AJ.png" border="0" width="50%/"></a>
+</div>
+
+<p>算法3代表的特征学习步骤如下：</p>
+<ol>
+<li>首先将新任务的数据集$X_s,…,X_t$和$P$一起进行数据增广，构建最终的训练集$D$</li>
+<li>然后将增广后的数据集$D$中旧任务的部分通过神经网络，提取它们的特征向量并存储</li>
+<li>网络在$D$中新任务的部分上训练，loss函数前半部分为新任务的分类损失，后半部分为旧任务的蒸馏损失。</li>
+</ol>
+<p>通过算法3得到一个用于特征表示的映射的网络，通过算法2构建了旧任务的样本集，最后的步骤就是通过算法1对新样本进行分类。</p>
+<h4 id="GEM-NIPS’17"><a href="#GEM-NIPS’17" class="headerlink" title="GEM[NIPS’17]"></a><a href="https://arxiv.org/abs/1706.08840v5" target="_blank" rel="noopener">GEM</a>[NIPS’17]</h4><p>iCaRL可能会对保留的旧任务的样本产生过拟合，GEM通过一个约束优化问题改善了这种情况。GEM以不等式约束的方式修正新任务的梯度更新方向，从而希望模型在不增大旧任务的损失的同时尽量最小化新任务的损失值，只更新新任务的参数而不干扰旧任务的参数。</p>
+<h3 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h3><p>正则化类方法的思想是<strong>「通过给新任务的损失函数施加约束的方法来保护旧知识不被新知识覆盖」</strong>，这类方法在学习新任务时不需要旧任务的数据。</p>
+<h4 id="LWF-ECCV’16"><a href="#LWF-ECCV’16" class="headerlink" title="LWF[ECCV’16]"></a><a href="https://arxiv.org/abs/1606.09282" target="_blank" rel="noopener">LWF</a>[ECCV’16]</h4><p>LWF是正则化类方法的典型代表。下面以一张不同增量学习方法之间的对比来说明LWF：</p>
+<div align="center">
+<a href="https://imgtu.com/i/IeBaNj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/04/IeBaNj.png" alt="IeBaNj.png" border="0" width="85%/"></a>
+</div>
+
+<p>图(a)是一个CNN网络，它的参数分别以$θ_s$和$θ_o$来表示。$θ_s$表示网络的卷积层 + 全连接层，它与特定的任务无关，是网络的共享参数。而最后一层是与类别相关的输出层，其参数单独用$θ_o$表示。若加入一个有新类别的分类任务，就将新任务新增的参数先随机初始化，表示为$θ_n$。</p>
+<p>目前基于已有的$θ_s$来学习$θ_n$主要有以下三种方法：</p>
+<ul>
+<li><strong>微调（Fine-tuning）</strong>：$θ_s$和$θ_o$都可以进行更新，在新任务上一般采用一个较小的学习率对在旧任务上训练的网络进行调整，有时$\theta_s$会被固定防止过拟合等。微调的方法会因为没有旧任务样本的指导而在旧任务上表现变差。</li>
+<li><strong>特征提取（Feature Extraction）</strong>：$θ_s$和$θ_o$都不变，从网络中的一个或多个中间层的输出被用来训练新任务的参数$θ_n$。特征提取通常在新任务上表现不佳，因为共享参数不能表示一些新任务独有的特征表示。</li>
+<li><strong>联合训练（Joint Training）</strong>：所有的参数可以都进行学习优化，通常这个方法产生的结果是最优的，所以一般视为增量学习方法的性能上界（upper bound）。</li>
+</ul>
+<p>而LWF可以看作知识蒸馏与微调的结合。它只使用新任务的训练样本和标签，通过学习$\theta_n$来使得网络在新旧任务上都有好的表现。微调是使用一个已经训练完成的网络参数来对新的网络进行初始化，并在一个低的学习率下，更新参数，在新任务数据中重新找到一个局部最优解。而知识蒸馏则可以训练一个小的网络在源数据集上或者大量无标签的数据集上达到一个复杂网络的性能。</p>
+<div align="center">
+<a href="https://imgtu.com/i/IeB2E4" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/04/IeB2E4.png" alt="IeB2E4.png" border="0" width="65%/"></a>
+</div>
+
+<p>LWF的步骤如下：</p>
+<ol>
+<li>将新样本通过由旧样本训练好的网络并记录网络的输出$y_o$，新类别中的样本被添加到输出层，权重随机初始化为$\theta_n$，这里新加入的参数量等于新的类别数乘上其中的样本数。</li>
+<li>首先固定$\theta_s$和$\theta_o$来更新$\theta_n$直到收敛，然后再一起更新所有参数直到收敛。避免新任务的训练过分调整旧模型的参数而导致新模型在旧任务上性能的下降。</li>
+</ol>
+<p>LWF中的损失函数同样由新任务的分类损失以及旧任务的知识蒸馏损失组成，分类损失是多分类任务常见的logistic损失，而旧任务的知识蒸馏损失是一个交叉熵的形式，它使得新网络在新任务上的预测和旧网络在新任务上的预测相近：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{n e w}\left(\mathbf{y}_{n}, \hat{\mathbf{y}}_{n}\right)=-\mathbf{y}_{n} \cdot \log \hat{\mathbf{y}}_{n}</script><script type="math/tex; mode=display">
+\begin{aligned}
+\mathcal{L}_{\text {old }}\left(\mathbf{y}_{o}, \hat{\mathbf{y}}_{o}\right) &=-H\left(\mathbf{y}_{o}^{\prime}, \hat{\mathbf{y}}_{o}^{\prime}\right) \\
+&=-\sum_{i=1}^{l} y_{o}^{\prime(i)} \log \hat{y}_{o}^{\prime(i)}
+\end{aligned}</script><script type="math/tex; mode=display">
+y_{o}^{(i)}=\frac{\left(y_{o}^{(i)}\right)^{1 / T}}{\sum_{j}\left(y_{o}^{(j)}\right)^{1 / T}}, \quad \hat{y}_{o}^{\prime(i)}=\frac{\left(\hat{y}_{o}^{(i)}\right)^{1 / T}}{\sum_{j}\left(\hat{y}_{o}^{(j)}\right)^{1 / T}}</script><blockquote>
+<p>我们知道对于一个复杂网络来说往往能够得到很好的分类效果，错误的概率比正确的概率会小很多很多，但是对于一个小网络来说它是无法学成这个效果的。我们为了去帮助小网络进行学习，就在小网络的softmax加一个T参数，加上这个T参数以后错误分类再经过softmax以后输出会变大,同样的正确分类会变小。这就人为的加大了训练的难度，一旦将T重新设置为1，分类结果会非常的接近于大网络的分类效果。</p>
+</blockquote>
+<p>LWF的缺点是，它很依赖新旧任务之间的相关性，而当数据分布的相关性很弱时，并不能保证不丢失先前任务的重要信息。而且将新样本通过由旧样本训练好的网络并记录网络的输出会带来额外的开销。</p>
+<h4 id="EBLL-ICCV’17"><a href="#EBLL-ICCV’17" class="headerlink" title="EBLL[ICCV’17]"></a><a href="https://openaccess.thecvf.com/content_ICCV_2017/papers/Rannen_Encoder_Based_Lifelong_ICCV_2017_paper.pdf" target="_blank" rel="noopener">EBLL</a>[ICCV’17]</h4><p>EBLL在LWF的基础上保留旧任务中重要的特征从而保留其中的重要信息，来达到避免遗忘的目的。LWF中使用知识蒸馏的思路不代表没有信息的丢失，因此，提出通过auto-encoder，来学习一个新的子特征空间，包含旧任务中中最重要的特征表示。</p>
+<h4 id="MAS-ECCV’18"><a href="#MAS-ECCV’18" class="headerlink" title="MAS[ECCV’18]"></a><a href="https://arxiv.org/abs/1711.09601" target="_blank" rel="noopener">MAS</a>[ECCV’18]</h4><p>MAS的核心思路是对每个任务，在训练完该任务之后，计算网络中每个参数$\theta_{ij}$对于该任务的重要性$\Omega_{ij}$并沿用到训练后续的任务中去。</p>
+<p>每当进来一个新任务对其进行训练时，对于$\Omega_{ij}$大的参数$\theta_{ij}$，在梯度下降时尽量减少它的改变幅度，因为该参数对过去的某个任务很重要，需要保留它的值来避免遗忘。对于$\Omega_{ij}$比较小的参数$\theta_{ij}$，我们可以以较大的幅度对其进行梯度更新，以得到在该新任务上较好的性能或者准确率。在具体训练过程中，重要性$\Omega_{ij}$以正则项的形式添加到损失函数中。</p>
+<p>关键在于如何计算每个参数$\theta_{ij}$对于该任务的重要性$\Omega_{ij}$。对于一个网络模型来说，它收敛以后我们可以将它的前向传递过程视为对一个真实函数$F$的近似，在此每个参数对于一个任务的重要性相当于该函数对于该参数的敏感程度。比如当一个$\theta$进行很小的改变后，却引起了网络输出很大的变化，就可以认为该参数是重要的，或者当前函数对该参数敏感。对于每个数据点$x_k$，有：</p>
+<script type="math/tex; mode=display">
+F\left(x_{k} ; \theta+\delta\right)-F\left(x_{k} ; \theta\right) \approx \sum_{i, j} g_{i j}\left(x_{k}\right) \delta_{i j}</script><script type="math/tex; mode=display">
+g_{i j}\left(x_{k}\right)=\frac{\partial\left(F\left(x_{k} ; \theta\right)\right)}{\partial \theta_{i j}}</script><p>这就是函数在该数据点上对每个参数的偏导数。随后对于每个数据点，MAS求得它们的偏导的均值作为最后的重要性$\Omega_{ij}$，其中$N$是当前任务中的样本总数：</p>
+<script type="math/tex; mode=display">
+\Omega_{i j}=\frac{1}{N} \sum_{k=1}^{N}\left\|g_{i j}\left(x_{k}\right)\right\|</script><p>当函数$F$的输出是多维度的时候，这时候对于每个维度都需要进行一次计算，才能得到最终的$\Omega_{ij}$。这里MAS用L2范数的平方作为代替，相当于把输出的所有维度合为一个标量，最终只需要进行一次计算即可：</p>
+<script type="math/tex; mode=display">
+\Omega_{i j}=\frac{1}{N} \sum_{k=1}^{N} g_{i j}\left(x_{k}\right)=2 * \frac{1}{N} \sum_{k=1}^{N} y_{i}^{k} * y_{j}^{k}</script><p>MAS的损失函数为如下的形式，每当新进来一个任务时，在其任务的原损失函数上添加一个正则项来限制各个参数的更新幅度。其中$\theta_{ij}^*$是由前n-1个任务训练得到的模型，同时也是用于训练第n个任务的初始模型的参数。每当训练完一个任务之后， $\Omega_{ij}$都会进行更新，先计算对最新的任务（刚训练完成的任务）的重要性，然后累加到之前的重要性上。</p>
+<script type="math/tex; mode=display">
+L(\theta)=L_{n}(\theta)+\lambda \sum_{i, j} \Omega_{i j}\left(\theta_{i j}-\theta_{i j}^{*}\right)^{2}</script><p>该方法的优点包括：</p>
+<ol>
+<li><p><strong>Constant Memory</strong>：模型占用的内存不随着任务的数量进行增加。</p>
+</li>
+<li><p><strong>Problem Agnostic：</strong>MAS方法是场景无关的，因为在具体代码中，该模型只对网络的backbone部分计算重要性，对于每个新的任务来说，模型会新建一个head（比如在分类中就是最后一个全连接层）进行训练。</p>
+</li>
+<li><p><strong>On Pretrained：</strong>给定一个预训练好的模型，可以在其top上再进行改动，然后添加新任务。</p>
+</li>
+<li><p><strong>Unlabelled Data：</strong>能够从无标签数据中学习，这个属性使得该方法能用应用在没有训练数据的场景下。</p>
+</li>
+</ol>
+<h3 id="参数分离"><a href="#参数分离" class="headerlink" title="参数分离"></a>参数分离</h3><p>参数分离类方法的思想是<strong>「训练不同任务时使用模型的不同参数」</strong>，来达到避免遗忘的目的。通常的做法是模型的大小保持不变，不随任务数量的增加而变大，而在训练新任务时对旧任务的参数进行mask。</p>
+<h4 id="PackNet-CVPR’18"><a href="#PackNet-CVPR’18" class="headerlink" title="PackNet[CVPR’18]"></a><a href="https://openaccess.thecvf.com/content_cvpr_2018/papers/Mallya_PackNet_Adding_Multiple_CVPR_2018_paper.pdf" target="_blank" rel="noopener">PackNet</a>[CVPR’18]</h4><p>PackNet是参数分离方法的典型代表，也是这篇survey中表现最好的方法。它最基本的想法就是在固定网络大小不变的情况下，通过剪枝使一些参数成为 free parameters，以便能使它们被用来训练新的任务。</p>
+<p><a href="https://imgtu.com/i/IeBTKK" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/04/IeBTKK.png" alt="IeBTKK.png"></a></p>
+<p>以一个 5×5 的 filter 为例说明PackNet的训练过程。(a) 在任务 I 上进行初始训练，学习得到一个完整的filter；(b) 裁剪掉 60% (15/25) 再重新训练，得到了一个对应于任务 I 的稀疏的 filter，其中白圆圈代表0值权重，对应于任务 I 的权重将被固定，并且不会在后续过程中被裁剪；© 被剪枝的权重可以用于学习任务 II；(d) 再减枝33%(5/15)并且重新训练，橘色的圆圈即代表对应于任务 II 的权重，随即也被固定，并且之后不会被剪枝。这个过程将会随着学习完所有任务或者使用完所有filter 而终止。在推断时，根据所选的任务使用对应的mask。</p>
+<p>例图已经说明了PackNet的步骤：</p>
+<ol>
+<li><p>我们从为初始任务学习的一个标准网络开始，称作 Task I。filter 的初始权重在 (a) 中用灰色表示。然后，我们裁剪掉一部分网络权重（即：将其置为0）。由于网络连接的突然变化，裁剪网络会导致性能下降。当裁剪率很高时，这一点尤其明显。为了在裁剪后恢复准确率，我们需要对网络进行重新训练，所需的 迭代次数要比初始训练时所需的少。经过一轮裁剪和重新训练后，我们获得了一个具有稀疏 filter 的网络，并且对 Task I 的性能影响降到了最低。Task I的surviving parameters（未被裁剪的参数，即 (b) 中灰色的参数）此后保持不变。</p>
+</li>
+<li><p>下一步，我们为新任务 Task II 训练网络，使裁剪后的权重从0恢复，获得 (c) 所示的橙色权重。注意，Task II的 filters 同时使用了灰色和橙色权重——即，重复使用了属于先前任务的权重。我们再次裁剪网络，释放掉一些仅用于 Task II 的参数，并重新训练 Task II 以从裁剪中恢复。 最终的 filters 如 (d) 所示。此后，Task I 和 Task II 的权重保持固定，然后将可被裁剪的参数用于学习又一个新任务，从而得到如 (e) 所示的绿色权重。重复此过程，直到完成了所有任务或没有更多可用的 free parameters 为止。</p>
+</li>
+</ol>
+<p>值得注意的是，PackNet每次裁剪的比例是固定的，而不是自适应的；在每一轮裁剪中，从每个卷积层和全连接层中删除固定百分比的可被裁剪的权重。同一层中的权重按其绝对大小排序，并选择最低的50％或75％予以裁剪。</p>
+]]></content>
+      <tags>
+        <tag>增量学习</tag>
       </tags>
   </entry>
 </search>
