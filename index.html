@@ -331,7 +331,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/11/17/图增量学习笔记/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2021/11/17/图增量学习笔记/" itemprop="url">图增量学习笔记</a></h1>
         
 
         <div class="post-meta">
@@ -361,7 +361,7 @@
 
           
           
-             <span id="/2021/11/17/图增量学习笔记/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2021/11/17/图增量学习笔记/" class="leancloud_visitors" data-flag-title="图增量学习笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -386,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,348
+                  1,358
                 </span>
               
 
@@ -412,53 +412,14 @@
 
       
         
-          
-            <h2 id="图增量学习"><a href="#图增量学习" class="headerlink" title="图增量学习"></a>图增量学习</h2><p>现有的图上的增量学习没有提出新的思路，基本是将现有的增量学习方法移植到图上，可以沿用之前的分类。图上的「灾难性遗忘」现象有着相同的本质，以子图分类任务为例，下图展示了一个传统的网络模型在先后学习三个任务时在各个任务上的表现，可以看到，网络只在当前任务上能够取得好的表现，对于旧任务都会有显著的性能下降。</p>
-<div align="center">
-<a href="https://imgtu.com/i/ImVuee" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/04/ImVuee.png" alt="ImVuee.png" border="0"></a>
-</div>
-
-
-<h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><h3 id="回放"><a href="#回放" class="headerlink" title="回放"></a>回放</h3><h4 id="ER-GNN-AAAI’21"><a href="#ER-GNN-AAAI’21" class="headerlink" title="ER_GNN[AAAI’21]"></a>ER_GNN[AAAI’21]</h4><p>ER_GNN是一个典型的回放类增量学习方法，它在学习新任务时仍然能够使用旧任务的数据。类似于同类其他方法，ER_GNN的核心就是如何选取旧任务有代表性的数据。论文中用的是Experience Buffer（经验库）来指代存储旧任务数据的数据结构。给定训练集$D_i^{tr}$和经验库$B$，目标就是在其上训练一个分类器，来达到在新旧任务上都取得好的性能。分类任务的一个常用的损失函数是交叉熵函数：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathcal{L}_{\mathcal{T}_{i}}\left(f_{\boldsymbol{\theta}}, \mathcal{D}\right)=-&\left(\sum _ { ( \boldsymbol { x } _ { i } , y _ { i } ) \in \mathcal { D } } \left(y_{i} \log f_{\boldsymbol{\theta}}\left(x_{i}\right)\right.\right.\\
-&\left.\left.+\left(1-y_{i}\right) \log \left(1-f_{\boldsymbol{\theta}}\left(x_{i}\right)\right)\right)\right)
-\end{aligned}</script><p>对于来自新任务训练集和旧任务经验库的信息，需要一个参数$\beta$进行平衡，得到下面的目标式：</p>
-<script type="math/tex; mode=display">
-\beta=|B| /\left(\left|\mathcal{D}_{i}^{\mathrm{tr}}\right|+|B|\right)</script><script type="math/tex; mode=display">
-\begin{aligned}
-\mathcal{L}_{\mathcal{T}_{i}}^{\prime}\left(f_{\theta}, \mathcal{D}_{i}^{\mathrm{tr}}, B\right)=& \beta \mathcal{L}_{\mathcal{T}_{i}}\left(f_{\theta}, \mathcal{D}_{i}^{\mathrm{tr}}\right) \\
-&+(1-\beta) \mathcal{L}_{\mathcal{T}_{i}}\left(f_{\theta}, B\right)
-\end{aligned}</script><p>上面介绍的还是一些通用的方法，在其他领域的增量学习方法上也适用，论文的核心还是提出在图上如何对经验库$B$进行选取，给出了三种策略：</p>
-<p><strong>Mean of Feature</strong></p>
-<p>这个策略跟iCaRL基本一致，也就是选取每个类别中最靠近类别均值的样本作为代表性样本</p>
-<p><strong>Coverage Maximizaiton</strong></p>
-<p>这个策略的思想是，虽然有代表性的顶点只占少数，但我们可以在特征空间中将它们最大化。具体的做法是，将每个类别中的顶点进行排序，排序的依据是与其他类别距离小于$d$的顶点的数量：</p>
-<script type="math/tex; mode=display">
-\mathcal{N}\left(v_{i}\right)=\left\{v_{j} \mid \operatorname{dist}\left(v_{i}-v_{j}\right)<d, \mathcal{Y}\left(v_{i}\right) \neq \mathcal{Y}\left(v_{j}\right)\right\},</script><p>排序越靠前，也就意味着该顶点与其他类别的顶点越重叠，它所携带的信息就越没有区分性，因此为了保存旧任务的信息，应该选取排序靠后的，也就是$\mathcal{N}\left(v_{i}\right)$最小的顶点作为代表性顶点。</p>
-<p><strong>Influence Maximization</strong></p>
-<p>这个策略跟正则化类方法有点类似，就是通过损失函数来反应各个顶点的重要性。一个最直观的做法是，每次从训练集中去除一个顶点进行重新训练，两次结果的差异就能翻译去除顶点的重要性，但这几乎是不现实的，因为要对每个顶点进行重训练。所以论文借鉴了影响函数（influence function）中的理论，即使不重新训练也能得到想要的结果。</p>
-<h4 id="TWP-AAAI’21"><a href="#TWP-AAAI’21" class="headerlink" title="TWP[AAAI’21]"></a>TWP[AAAI’21]</h4><p>TWP对于已经学习过的旧任务数据无法再访问，它通过计算网络中每个参数在不同任务以及拓扑结构上的重要性，固定对于旧任务重要的参数，将重要性低的参数用作新任务的学习，从而达到避免对旧任务知识的遗忘。</p>
-<p>同样地，衡量一个参数对于一个任务的重要性类似于MAS的做法，通过损失函数在该参数上的梯度来决定：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}\left(X_{k}^{t r} ; W+\Delta W\right)-\mathcal{L}\left(X_{k}^{t r} ; W\right) \approx \sum_{m} f_{m}\left(X_{k}^{t r}\right) \Delta \boldsymbol{w}_{m}</script><script type="math/tex; mode=display">
-f_{m}\left(X_{k}^{t r}\right)=\frac{\partial \mathcal{L}}{\partial \boldsymbol{w}_{m}}</script><p>论文的一个创新之处在于定义了参数在图拓扑结构上的重要性。以GAT网络为例，TWP将中心顶点与邻域顶点之间的attention系数视为拓扑结构上的重要性，则类似地可以通过求attention系数在某个参数上的梯度来得到：</p>
-<script type="math/tex; mode=display">
-e_{i j}^{(l)}=a\left(\boldsymbol{H}_{i, j}^{(l-1)} ; W^{(l)}\right)</script><script type="math/tex; mode=display">
-\begin{aligned}
-a\left(\boldsymbol{H}_{i, j}^{(l-1)} ; W^{(l)}+\Delta\right.&\left.W^{(l)}\right)-a\left(\boldsymbol{H}_{i, j}^{(l-1)} ; W^{(l)}\right) \\
-& \approx \sum_{m} g_{m}\left(\boldsymbol{H}_{i, j}^{(l-1)}\right) \Delta \boldsymbol{w}_{m}
-\end{aligned}</script><p>值得注意的是，特定任务的损失函数都是给定的，所以对于参数的梯度是一个值，而每一层的attention系数没有所谓的损失函数，因此会得到一个多维向量$e_i^{(l)}=[e_{i1}^{(l)},\dots,e_{i|N_i|}^{(l)}]$。论文将拓扑结构上的损失函数定义为：</p>
-<script type="math/tex; mode=display">
-g_{m}\left(\boldsymbol{H}^{(l-1)}\right)=\frac{\partial\left(\mid\left[e_{1}^{(l)}, \ldots, e_{\left|\mathcal{D}_{k}^{t r}\right|}^{(l)}\right]_{2}^{2}\right)}{\partial \boldsymbol{w}_{m}}</script><p>最后通过超参数$\lambda$来平衡这两部分损失函数的比例。</p>
-<p>上面介绍的主要是对于单个任务要怎么学习，那对于增量学习的场景下，新旧任务之间如何继续保持网络的性能，论文也是通过定义一个损失函数来对旧任务上重要的参数进行惩罚，使得它们在学习新任务时尽量不变动：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}_{k+1}^{\prime}(W)=\mathcal{L}_{k+1}^{\text {new }}(W)+\sum_{n=1}^{k} I_{n} \otimes\left(W-W_{n}^{*}\right)^{2}</script><p>其中$I_n$表示网络参数在旧任务上的重要性，$W_n^*$表示网络在任务$\Gamma_n$的最优参数。上面的损失函数能够让低重要性的网络参数重新学习来适应新任务，而重要性高的参数保持固定。最后，为了避免因为固定太多的参数而导致网络在新任务上重新调整学习的余地很小，论文另外加了一个L1正则项来保证网络的学习能力：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}_{k+1}(W)=\mathcal{L}_{k+1}^{\prime}(W)+\beta\uparrow\left\|I_{k+1}\right\|_{1}\downarrow</script><p>当前任务为$\Gamma_{k+1}$，加入正则项后能避免在该任务上网络参数的重要性都很高，这样一来也就不存在不重要的参数用来学习新任务。</p>
-
-          
+          <p>借这篇博客记录图增量学习的笔记。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/11/17/图增量学习笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -786,7 +747,7 @@ Q^{+}=\arg \max _{\mathbf{q}^{1}, \mathbf{q}^{2}, \cdots, \mathbf{q}^{K} \in Q} 
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/11/17/图学习笔记/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2021/11/17/图学习笔记/" itemprop="url">图增量学习笔记</a></h1>
         
 
         <div class="post-meta">
@@ -816,7 +777,7 @@ Q^{+}=\arg \max _{\mathbf{q}^{1}, \mathbf{q}^{2}, \cdots, \mathbf{q}^{K} \in Q} 
 
           
           
-             <span id="/2021/11/17/图学习笔记/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2021/11/17/图学习笔记/" class="leancloud_visitors" data-flag-title="图增量学习笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -841,7 +802,7 @@ Q^{+}=\arg \max _{\mathbf{q}^{1}, \mathbf{q}^{2}, \cdots, \mathbf{q}^{K} \in Q} 
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  966
+                  3,579
                 </span>
               
 
@@ -867,52 +828,14 @@ Q^{+}=\arg \max _{\mathbf{q}^{1}, \mathbf{q}^{2}, \cdots, \mathbf{q}^{K} \in Q} 
 
       
         
-          
-            <p>[TOC]</p>
-<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><h2 id="Temporal-Graph-Learning"><a href="#Temporal-Graph-Learning" class="headerlink" title="Temporal Graph Learning"></a>Temporal Graph Learning</h2><p>动态图学习相关论文，对每篇读过的论文给出基本介绍</p>
-<h3 id="Temporal-Heterogeneous-Information-Network-Embedding-IJCAI’21"><a href="#Temporal-Heterogeneous-Information-Network-Embedding-IJCAI’21" class="headerlink" title="Temporal Heterogeneous Information Network Embedding[IJCAI’21]"></a>Temporal Heterogeneous Information Network Embedding[IJCAI’21]</h3><ul>
-<li>标签：动态图学习、异构图学习</li>
-<li>摘要：对于异构信息（顶点和边），论文使用基于元路径的随机游走来处理。元路径能够描述起始顶点和终止顶点之间的复杂关系，它可以经过任意类型的顶点和边。对于动态信息，使用Hawkes过程来建模过去事件对当前事件的影响，以attention机制来区分每个事件影响的重要程度。</li>
-<li>链接：<a href="https://www.ijcai.org/proceedings/2021/203" target="_blank" rel="noopener">https://www.ijcai.org/proceedings/2021/203</a></li>
-<li>是否有开源代码：<a href="https://github.com/S-rz/THINE" target="_blank" rel="noopener">https://github.com/S-rz/THINE</a></li>
-</ul>
-<h3 id="AddGraph-Anomaly-Detection-in-Dynamic-Graph-Using-Attention-based-Temporal-GCN-IJCAI’19"><a href="#AddGraph-Anomaly-Detection-in-Dynamic-Graph-Using-Attention-based-Temporal-GCN-IJCAI’19" class="headerlink" title="AddGraph: Anomaly Detection in Dynamic Graph Using Attention-based Temporal GCN[IJCAI’19]"></a>AddGraph: Anomaly Detection in Dynamic Graph Using Attention-based Temporal GCN[IJCAI’19]</h3><ul>
-<li>标签：动态图学习</li>
-<li>摘要：论文的目的是检测图上的异常边。对于一个包含若干快照的动态图，为了得到顶点在$t$时刻的特征表示，AddGraph首先将$t-1$时刻的特征表示通过一个多层的GCN，得到长期的表示，再将$t$时刻的顶点通过一个基于attention的上下文模型来得到短期的表示，将长短期两部分输入一个GRU来得到$t$时刻的特征表示$H^t$，随后被用来计算两个顶点间出现异常边的概率。因为有标签数据的获取难度，论文还加入了SVM中的Hinge损失函数来进行负采样</li>
-<li>链接：<a href="https://www.ijcai.org/proceedings/2019/614" target="_blank" rel="noopener">https://www.ijcai.org/proceedings/2019/614</a></li>
-<li>是否有开源代码：<a href="https://github.com/Ljiajie/Addgraph" target="_blank" rel="noopener">https://github.com/Ljiajie/Addgraph</a></li>
-</ul>
-<h2 id="Graph-Self-Supervised-Learning"><a href="#Graph-Self-Supervised-Learning" class="headerlink" title="Graph Self-Supervised Learning"></a>Graph Self-Supervised Learning</h2><p>图上自监督学习相关论文，对每篇读过的论文给出基本介绍</p>
-<h3 id="Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21"><a href="#Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21" class="headerlink" title="Self-supervised Graph Learning for Recommendation[SIGIR’21]"></a>Self-supervised Graph Learning for Recommendation[SIGIR’21]</h3><ul>
-<li>标签：图自监督学习</li>
-<li>摘要：在用户-物品交互图上应用对比学习，提出了图上三种数据增强的方式：顶点dropout、边dropout以及随机游走，来生成同一顶点的不同视角，最小化同一顶点不同视角之间的差异，同时最大化不同顶点的视角之间的差异。论文花了较大篇幅对加入对比学习导致的性能提升给出了理论分析。</li>
-<li>链接：<a href="https://dl.acm.org/doi/abs/10.1145/3404835.3462862" target="_blank" rel="noopener">https://dl.acm.org/doi/abs/10.1145/3404835.3462862</a></li>
-<li>数据集：<ul>
-<li>Yelp2018</li>
-<li>Amazon-Book</li>
-<li>Alibaba-iFashion</li>
-</ul>
-</li>
-<li>是否有开源代码：<a href="https://github.com/wujcan/SGL" target="_blank" rel="noopener">https://github.com/wujcan/SGL</a></li>
-</ul>
-<h3 id="Self-supervised-Representation-Learning-on-Dynamic-Graphs-CIKM’21"><a href="#Self-supervised-Representation-Learning-on-Dynamic-Graphs-CIKM’21" class="headerlink" title="Self-supervised Representation Learning on Dynamic Graphs[CIKM’21]"></a>Self-supervised Representation Learning on Dynamic Graphs[CIKM’21]</h3><ul>
-<li>标签：图自监督学习、动态图学习</li>
-<li>摘要：论文提出了一个去偏的动态图对比学习框架DDGCL。它将同一顶点在时间上相邻的快照看作不同的视图，并用一个时间相关的相似度函数进行衡量</li>
-<li>链接：<a href="https://dl.acm.org/doi/abs/10.1145/3459637.3482389" target="_blank" rel="noopener">https://dl.acm.org/doi/abs/10.1145/3459637.3482389</a></li>
-<li>是否有开源代码：无</li>
-</ul>
-<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h2 id="Graph-Self-Supervised-Learning-1"><a href="#Graph-Self-Supervised-Learning-1" class="headerlink" title="Graph Self-Supervised Learning"></a>Graph Self-Supervised Learning</h2><h3 id="Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21-1"><a href="#Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21-1" class="headerlink" title="Self-supervised Graph Learning for Recommendation[SIGIR’21]"></a>Self-supervised Graph Learning for Recommendation[SIGIR’21]</h3><p>SGL的核心思想是通过顶点drop out、边drop out和随机游走这三种方式来改变图的结构，从而为图中顶点生成不同的视图，通过最小化同一顶点视图之间的差异以及最大化不同顶点视图之间的差异，来达到对比学习：</p>
-<p><a href="https://imgtu.com/i/Iumo6I" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/05/Iumo6I.png" alt="Iumo6I.png" border="0"></a></p>
-<p>上面那段话已经把SGL的流程讲的差不多了，转换成数学表示式就是下面的形式：</p>
-<p><div align="center">
-<a href="https://imgtu.com/i/IunkAU" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/05/IunkAU.png" alt="IunkAU.png" border="0" width="50%"></a>
-</div><br>将同一顶点得到的不同视角看作正样本，不同顶点之间的视角看作负样本，SGL采用的是经典的对比学习损失函数InfoNCE：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}_{s s l}^{u s e r}=\sum_{u \in \mathcal{U}}-\log \frac{\exp \left(s\left(\mathbf{z}_{u}^{\prime}, \mathbf{z}_{u}^{\prime \prime}\right) / \tau\right)}{\sum_{v \in \mathcal{U}} \exp \left(s\left(\mathbf{z}_{u}^{\prime}, \mathbf{z}_{v}^{\prime \prime}\right) / \tau\right)}</script><p>总损失函数就是分类任务的损失与对比学习的损失通过参数$\lambda$进行平衡，以及一个正则项：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}=\mathcal{L}_{main}+\lambda_1\mathcal{L}_{ssl}+\lambda_2\Vert\Theta\Vert_2^2</script><p>SGL的方法非常直观，对比学习的引入也不是这篇论文首创，它的创新点其实是对加入对比学习性能提升的原因进行了理论分析。</p>
-
-          
+          <p>借这篇博客记录图学习的笔记。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/11/17/图学习笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2091,7 +2014,7 @@ Q^{+}=\arg \max _{\mathbf{q}^{1}, \mathbf{q}^{2}, \cdots, \mathbf{q}^{K} \in Q} 
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2177,7 +2100,7 @@ Q^{+}=\arg \max _{\mathbf{q}^{1}, \mathbf{q}^{2}, \cdots, \mathbf{q}^{K} \in Q} 
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共156.8k字</span>
+  <span class="post-count">小站全站共159.5k字</span>
 </div>
         
 

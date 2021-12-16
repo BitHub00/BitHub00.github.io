@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="增量学习,图," />
 
 
 
@@ -81,18 +81,19 @@
 
 
 
-<meta name="description" content="图增量学习现有的图上的增量学习没有提出新的思路，基本是将现有的增量学习方法移植到图上，可以沿用之前的分类。图上的「灾难性遗忘」现象有着相同的本质，以子图分类任务为例，下图展示了一个传统的网络模型在先后学习三个任务时在各个任务上的表现，可以看到，网络只在当前任务上能够取得好的表现，对于旧任务都会有显著的性能下降。       回放ER_GNN[AAAI’21]ER_GNN是一个典型的回放类增量学习方">
+<meta name="description" content="借这篇博客记录图增量学习的笔记。">
+<meta name="keywords" content="增量学习,图">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原力小站">
+<meta property="og:title" content="图增量学习笔记">
 <meta property="og:url" content="http://Bithub00.com/2021/11/17/图增量学习笔记/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="图增量学习现有的图上的增量学习没有提出新的思路，基本是将现有的增量学习方法移植到图上，可以沿用之前的分类。图上的「灾难性遗忘」现象有着相同的本质，以子图分类任务为例，下图展示了一个传统的网络模型在先后学习三个任务时在各个任务上的表现，可以看到，网络只在当前任务上能够取得好的表现，对于旧任务都会有显著的性能下降。       回放ER_GNN[AAAI’21]ER_GNN是一个典型的回放类增量学习方">
+<meta property="og:description" content="借这篇博客记录图增量学习的笔记。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://z3.ax1x.com/2021/11/04/ImVuee.png">
-<meta property="og:updated_time" content="2021-11-17T08:13:47.996Z">
+<meta property="og:updated_time" content="2021-12-16T15:18:44.987Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原力小站">
-<meta name="twitter:description" content="图增量学习现有的图上的增量学习没有提出新的思路，基本是将现有的增量学习方法移植到图上，可以沿用之前的分类。图上的「灾难性遗忘」现象有着相同的本质，以子图分类任务为例，下图展示了一个传统的网络模型在先后学习三个任务时在各个任务上的表现，可以看到，网络只在当前任务上能够取得好的表现，对于旧任务都会有显著的性能下降。       回放ER_GNN[AAAI’21]ER_GNN是一个典型的回放类增量学习方">
+<meta name="twitter:title" content="图增量学习笔记">
+<meta name="twitter:description" content="借这篇博客记录图增量学习的笔记。">
 <meta name="twitter:image" content="https://z3.ax1x.com/2021/11/04/ImVuee.png">
 
 
@@ -129,7 +130,7 @@
 
 
 
-  <title> | 原力小站</title>
+  <title>图增量学习笔记 | 原力小站</title>
   
 
 
@@ -331,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">图增量学习笔记</h1>
         
 
         <div class="post-meta">
@@ -361,7 +362,7 @@
 
           
           
-             <span id="/2021/11/17/图增量学习笔记/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2021/11/17/图增量学习笔记/" class="leancloud_visitors" data-flag-title="图增量学习笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -386,7 +387,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,348
+                  1,358
                 </span>
               
 
@@ -411,13 +412,14 @@
       
 
       
-        <h2 id="图增量学习"><a href="#图增量学习" class="headerlink" title="图增量学习"></a>图增量学习</h2><p>现有的图上的增量学习没有提出新的思路，基本是将现有的增量学习方法移植到图上，可以沿用之前的分类。图上的「灾难性遗忘」现象有着相同的本质，以子图分类任务为例，下图展示了一个传统的网络模型在先后学习三个任务时在各个任务上的表现，可以看到，网络只在当前任务上能够取得好的表现，对于旧任务都会有显著的性能下降。</p>
+        <p>借这篇博客记录图增量学习的笔记。<br><a id="more"></a></p>
+<p>现有的图上的增量学习没有提出新的思路，基本是将现有的增量学习方法移植到图上，可以沿用之前的分类。图上的「灾难性遗忘」现象有着相同的本质，以子图分类任务为例，下图展示了一个传统的网络模型在先后学习三个任务时在各个任务上的表现，可以看到，网络只在当前任务上能够取得好的表现，对于旧任务都会有显著的性能下降。</p>
 <div align="center">
 <a href="https://imgtu.com/i/ImVuee" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/04/ImVuee.png" alt="ImVuee.png" border="0"></a>
 </div>
 
 
-<h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><h3 id="回放"><a href="#回放" class="headerlink" title="回放"></a>回放</h3><h4 id="ER-GNN-AAAI’21"><a href="#ER-GNN-AAAI’21" class="headerlink" title="ER_GNN[AAAI’21]"></a>ER_GNN[AAAI’21]</h4><p>ER_GNN是一个典型的回放类增量学习方法，它在学习新任务时仍然能够使用旧任务的数据。类似于同类其他方法，ER_GNN的核心就是如何选取旧任务有代表性的数据。论文中用的是Experience Buffer（经验库）来指代存储旧任务数据的数据结构。给定训练集$D_i^{tr}$和经验库$B$，目标就是在其上训练一个分类器，来达到在新旧任务上都取得好的性能。分类任务的一个常用的损失函数是交叉熵函数：</p>
+<h2 id="回放"><a href="#回放" class="headerlink" title="回放"></a>回放</h2><h3 id="ER-GNN-AAAI’21"><a href="#ER-GNN-AAAI’21" class="headerlink" title="ER_GNN[AAAI’21]"></a>ER_GNN[AAAI’21]</h3><p>ER_GNN是一个典型的回放类增量学习方法，它在学习新任务时仍然能够使用旧任务的数据。类似于同类其他方法，ER_GNN的核心就是如何选取旧任务有代表性的数据。论文中用的是Experience Buffer（经验库）来指代存储旧任务数据的数据结构。给定训练集$D_i^{tr}$和经验库$B$，目标就是在其上训练一个分类器，来达到在新旧任务上都取得好的性能。分类任务的一个常用的损失函数是交叉熵函数：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 \mathcal{L}_{\mathcal{T}_{i}}\left(f_{\boldsymbol{\theta}}, \mathcal{D}\right)=-&\left(\sum _ { ( \boldsymbol { x } _ { i } , y _ { i } ) \in \mathcal { D } } \left(y_{i} \log f_{\boldsymbol{\theta}}\left(x_{i}\right)\right.\right.\\
@@ -437,7 +439,7 @@
 \mathcal{N}\left(v_{i}\right)=\left\{v_{j} \mid \operatorname{dist}\left(v_{i}-v_{j}\right)<d, \mathcal{Y}\left(v_{i}\right) \neq \mathcal{Y}\left(v_{j}\right)\right\},</script><p>排序越靠前，也就意味着该顶点与其他类别的顶点越重叠，它所携带的信息就越没有区分性，因此为了保存旧任务的信息，应该选取排序靠后的，也就是$\mathcal{N}\left(v_{i}\right)$最小的顶点作为代表性顶点。</p>
 <p><strong>Influence Maximization</strong></p>
 <p>这个策略跟正则化类方法有点类似，就是通过损失函数来反应各个顶点的重要性。一个最直观的做法是，每次从训练集中去除一个顶点进行重新训练，两次结果的差异就能翻译去除顶点的重要性，但这几乎是不现实的，因为要对每个顶点进行重训练。所以论文借鉴了影响函数（influence function）中的理论，即使不重新训练也能得到想要的结果。</p>
-<h4 id="TWP-AAAI’21"><a href="#TWP-AAAI’21" class="headerlink" title="TWP[AAAI’21]"></a>TWP[AAAI’21]</h4><p>TWP对于已经学习过的旧任务数据无法再访问，它通过计算网络中每个参数在不同任务以及拓扑结构上的重要性，固定对于旧任务重要的参数，将重要性低的参数用作新任务的学习，从而达到避免对旧任务知识的遗忘。</p>
+<h3 id="TWP-AAAI’21"><a href="#TWP-AAAI’21" class="headerlink" title="TWP[AAAI’21]"></a>TWP[AAAI’21]</h3><p>TWP对于已经学习过的旧任务数据无法再访问，它通过计算网络中每个参数在不同任务以及拓扑结构上的重要性，固定对于旧任务重要的参数，将重要性低的参数用作新任务的学习，从而达到避免对旧任务知识的遗忘。</p>
 <p>同样地，衡量一个参数对于一个任务的重要性类似于MAS的做法，通过损失函数在该参数上的梯度来决定：</p>
 <script type="math/tex; mode=display">
 \mathcal{L}\left(X_{k}^{t r} ; W+\Delta W\right)-\mathcal{L}\left(X_{k}^{t r} ; W\right) \approx \sum_{m} f_{m}\left(X_{k}^{t r}\right) \Delta \boldsymbol{w}_{m}</script><script type="math/tex; mode=display">
@@ -469,6 +471,14 @@ g_{m}\left(\boldsymbol{H}^{(l-1)}\right)=\frac{\partial\left(\mid\left[e_{1}^{(l
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/增量学习/" rel="tag">#增量学习</a>
+          
+            <a href="/tags/图/" rel="tag">#图</a>
+          
+        </div>
       
 
       
@@ -584,7 +594,7 @@ g_{m}\left(\boldsymbol{H}^{(l-1)}\right)=\frac{\partial\left(\mid\left[e_{1}^{(l
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -642,7 +652,7 @@ g_{m}\left(\boldsymbol{H}^{(l-1)}\right)=\frac{\partial\left(\mid\left[e_{1}^{(l
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图增量学习"><span class="nav-number">1.</span> <span class="nav-text">图增量学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">1.1.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回放"><span class="nav-number">1.2.</span> <span class="nav-text">回放</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ER-GNN-AAAI’21"><span class="nav-number">1.2.1.</span> <span class="nav-text">ER_GNN[AAAI’21]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TWP-AAAI’21"><span class="nav-number">1.2.2.</span> <span class="nav-text">TWP[AAAI’21]</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回放"><span class="nav-number">1.</span> <span class="nav-text">回放</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ER-GNN-AAAI’21"><span class="nav-number">1.1.</span> <span class="nav-text">ER_GNN[AAAI’21]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TWP-AAAI’21"><span class="nav-number">1.2.</span> <span class="nav-text">TWP[AAAI’21]</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -686,7 +696,7 @@ g_{m}\left(\boldsymbol{H}^{(l-1)}\right)=\frac{\partial\left(\mid\left[e_{1}^{(l
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共156.8k字</span>
+  <span class="post-count">小站全站共159.5k字</span>
 </div>
         
 
@@ -1277,7 +1287,33 @@ g_{m}\left(\boldsymbol{H}^{(l-1)}\right)=\frac{\partial\left(\mid\left[e_{1}^{(l
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1295,12 +1331,6 @@ g_{m}\left(\boldsymbol{H}^{(l-1)}\right)=\frac{\partial\left(\mid\left[e_{1}^{(l
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-  
-  
-
-  
   
 
 

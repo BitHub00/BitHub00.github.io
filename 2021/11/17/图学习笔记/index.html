@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="图神经网络," />
 
 
 
@@ -81,20 +81,36 @@
 
 
 
-<meta name="description" content="[TOC] 摘要Temporal Graph Learning动态图学习相关论文，对每篇读过的论文给出基本介绍 Temporal Heterogeneous Information Network Embedding[IJCAI’21] 标签：动态图学习、异构图学习 摘要：对于异构信息（顶点和边），论文使用基于元路径的随机游走来处理。元路径能够描述起始顶点和终止顶点之间的复杂关系，它可以经过任意类">
+<meta name="description" content="借这篇博客记录图学习的笔记。">
+<meta name="keywords" content="图神经网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原力小站">
+<meta property="og:title" content="图增量学习笔记">
 <meta property="og:url" content="http://Bithub00.com/2021/11/17/图学习笔记/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="[TOC] 摘要Temporal Graph Learning动态图学习相关论文，对每篇读过的论文给出基本介绍 Temporal Heterogeneous Information Network Embedding[IJCAI’21] 标签：动态图学习、异构图学习 摘要：对于异构信息（顶点和边），论文使用基于元路径的随机游走来处理。元路径能够描述起始顶点和终止顶点之间的复杂关系，它可以经过任意类">
+<meta property="og:description" content="借这篇博客记录图学习的笔记。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/29/oQsxUS.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/29/oQyJUO.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/11/05/Iumo6I.png">
-<meta property="og:image" content="https://z3.ax1x.com/2021/11/05/IunkAU.png">
-<meta property="og:updated_time" content="2021-11-17T08:13:35.546Z">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/24/oP9pFK.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/22/IzA9H0.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/22/Izkf9e.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/24/oP7WnS.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/22/IzvEtA.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/24/oP7zN9.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/24/oPbvWR.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/23/opCldK.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/23/opN9yj.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/23/opfdTf.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/23/opf0k8.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/23/op40zQ.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/23/opLxl6.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/24/oilpcj.png">
+<meta property="og:updated_time" content="2021-12-16T15:18:16.479Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原力小站">
-<meta name="twitter:description" content="[TOC] 摘要Temporal Graph Learning动态图学习相关论文，对每篇读过的论文给出基本介绍 Temporal Heterogeneous Information Network Embedding[IJCAI’21] 标签：动态图学习、异构图学习 摘要：对于异构信息（顶点和边），论文使用基于元路径的随机游走来处理。元路径能够描述起始顶点和终止顶点之间的复杂关系，它可以经过任意类">
-<meta name="twitter:image" content="https://z3.ax1x.com/2021/11/05/Iumo6I.png">
+<meta name="twitter:title" content="图增量学习笔记">
+<meta name="twitter:description" content="借这篇博客记录图学习的笔记。">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/11/29/oQsxUS.png">
 
 
 
@@ -130,7 +146,7 @@
 
 
 
-  <title> | 原力小站</title>
+  <title>图增量学习笔记 | 原力小站</title>
   
 
 
@@ -332,7 +348,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">图增量学习笔记</h1>
         
 
         <div class="post-meta">
@@ -362,7 +378,7 @@
 
           
           
-             <span id="/2021/11/17/图学习笔记/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2021/11/17/图学习笔记/" class="leancloud_visitors" data-flag-title="图增量学习笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -387,7 +403,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  966
+                  3,579
                 </span>
               
 
@@ -412,7 +428,8 @@
       
 
       
-        <p>[TOC]</p>
+        <p>借这篇博客记录图学习的笔记。<br><a id="more"></a></p>
+<p>[TOC]</p>
 <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><h2 id="Temporal-Graph-Learning"><a href="#Temporal-Graph-Learning" class="headerlink" title="Temporal Graph Learning"></a>Temporal Graph Learning</h2><p>动态图学习相关论文，对每篇读过的论文给出基本介绍</p>
 <h3 id="Temporal-Heterogeneous-Information-Network-Embedding-IJCAI’21"><a href="#Temporal-Heterogeneous-Information-Network-Embedding-IJCAI’21" class="headerlink" title="Temporal Heterogeneous Information Network Embedding[IJCAI’21]"></a>Temporal Heterogeneous Information Network Embedding[IJCAI’21]</h3><ul>
 <li>标签：动态图学习、异构图学习</li>
@@ -420,41 +437,213 @@
 <li>链接：<a href="https://www.ijcai.org/proceedings/2021/203" target="_blank" rel="noopener">https://www.ijcai.org/proceedings/2021/203</a></li>
 <li>是否有开源代码：<a href="https://github.com/S-rz/THINE" target="_blank" rel="noopener">https://github.com/S-rz/THINE</a></li>
 </ul>
+<h3 id="T-GCN-A-Temporal-Graph-Convolutional-Network-for-Traffic-Prediction-TITS’17"><a href="#T-GCN-A-Temporal-Graph-Convolutional-Network-for-Traffic-Prediction-TITS’17" class="headerlink" title="T-GCN: A Temporal Graph Convolutional Network for Traffic Prediction[TITS’17]"></a>T-GCN: A Temporal Graph Convolutional Network for Traffic Prediction[TITS’17]</h3><ul>
+<li><p>标签：</p>
+</li>
+<li><p>摘要：T-GCN将GCN与GRU结合来捕获交通数据中的空间与时间信息，其中GCN用于学习空间上的拓扑结构而GRU用来学习时间上的动态变化。</p>
+</li>
+</ul>
+<div align="center">
+  <a href="https://imgtu.com/i/oQsxUS" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/29/oQsxUS.png" alt="oQsxUS.png" border="0"></a>
+</div>
+
+<ul>
+<li><p>链接：<a href="https://ieeexplore.ieee.org/document/8809901" target="_blank" rel="noopener">https://ieeexplore.ieee.org/document/8809901</a></p>
+</li>
+<li><p>是否有开源代码：<a href="https://github.com/lehaifeng/T-GCN/tree/master/T-GCN/T-GCN-PyTorch" target="_blank" rel="noopener">https://github.com/lehaifeng/T-GCN/tree/master/T-GCN/T-GCN-PyTorch</a></p>
+</li>
+</ul>
 <h3 id="AddGraph-Anomaly-Detection-in-Dynamic-Graph-Using-Attention-based-Temporal-GCN-IJCAI’19"><a href="#AddGraph-Anomaly-Detection-in-Dynamic-Graph-Using-Attention-based-Temporal-GCN-IJCAI’19" class="headerlink" title="AddGraph: Anomaly Detection in Dynamic Graph Using Attention-based Temporal GCN[IJCAI’19]"></a>AddGraph: Anomaly Detection in Dynamic Graph Using Attention-based Temporal GCN[IJCAI’19]</h3><ul>
-<li>标签：动态图学习</li>
-<li>摘要：论文的目的是检测图上的异常边。对于一个包含若干快照的动态图，为了得到顶点在$t$时刻的特征表示，AddGraph首先将$t-1$时刻的特征表示通过一个多层的GCN，得到长期的表示，再将$t$时刻的顶点通过一个基于attention的上下文模型来得到短期的表示，将长短期两部分输入一个GRU来得到$t$时刻的特征表示$H^t$，随后被用来计算两个顶点间出现异常边的概率。因为有标签数据的获取难度，论文还加入了SVM中的Hinge损失函数来进行负采样</li>
-<li>链接：<a href="https://www.ijcai.org/proceedings/2019/614" target="_blank" rel="noopener">https://www.ijcai.org/proceedings/2019/614</a></li>
-<li>是否有开源代码：<a href="https://github.com/Ljiajie/Addgraph" target="_blank" rel="noopener">https://github.com/Ljiajie/Addgraph</a></li>
+<li><p>标签：动态图学习</p>
+</li>
+<li><p>摘要：论文的目的是检测图上的异常边。做法类似于T-GCN，对于一个包含若干快照的动态图，为了得到顶点在$t$时刻的特征表示，AddGraph首先将$t-1$时刻的特征表示通过一个多层的GCN，得到长期的表示，再将$t$时刻的顶点通过一个基于attention的上下文模型来得到短期的表示，将长短期两部分输入一个GRU来得到$t$时刻的特征表示$H^t$，随后被用来计算两个顶点间出现异常边的概率。因为有标签数据的获取难度，论文还加入了SVM中的Hinge损失函数来进行负采样。</p>
+</li>
+</ul>
+<div align="center">
+  <a href="https://imgtu.com/i/oQyJUO" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/29/oQyJUO.png" alt="oQyJUO.png" border="0"></a>
+</div>
+
+<ul>
+<li><p>链接：<a href="https://www.ijcai.org/proceedings/2019/614" target="_blank" rel="noopener">https://www.ijcai.org/proceedings/2019/614</a></p>
+</li>
+<li><p>是否有开源代码：<a href="https://github.com/Ljiajie/Addgraph" target="_blank" rel="noopener">https://github.com/Ljiajie/Addgraph</a></p>
+</li>
 </ul>
 <h2 id="Graph-Self-Supervised-Learning"><a href="#Graph-Self-Supervised-Learning" class="headerlink" title="Graph Self-Supervised Learning"></a>Graph Self-Supervised Learning</h2><p>图上自监督学习相关论文，对每篇读过的论文给出基本介绍</p>
 <h3 id="Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21"><a href="#Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21" class="headerlink" title="Self-supervised Graph Learning for Recommendation[SIGIR’21]"></a>Self-supervised Graph Learning for Recommendation[SIGIR’21]</h3><ul>
-<li>标签：图自监督学习</li>
-<li>摘要：在用户-物品交互图上应用对比学习，提出了图上三种数据增强的方式：顶点dropout、边dropout以及随机游走，来生成同一顶点的不同视角，最小化同一顶点不同视角之间的差异，同时最大化不同顶点的视角之间的差异。论文花了较大篇幅对加入对比学习导致的性能提升给出了理论分析。</li>
-<li>链接：<a href="https://dl.acm.org/doi/abs/10.1145/3404835.3462862" target="_blank" rel="noopener">https://dl.acm.org/doi/abs/10.1145/3404835.3462862</a></li>
-<li>数据集：<ul>
-<li>Yelp2018</li>
-<li>Amazon-Book</li>
-<li>Alibaba-iFashion</li>
-</ul>
+<li><p>标签：图自监督学习</p>
 </li>
-<li>是否有开源代码：<a href="https://github.com/wujcan/SGL" target="_blank" rel="noopener">https://github.com/wujcan/SGL</a></li>
+<li><p>摘要：在用户-物品交互图上应用对比学习，提出了图上三种数据增强的方式：顶点dropout、边dropout以及随机游走，来生成同一顶点的不同视角，最小化同一顶点不同视角之间的差异，同时最大化不同顶点的视角之间的差异。论文花了较大篇幅对加入对比学习导致的性能提升给出了理论分析。</p>
+<p><a href="https://imgtu.com/i/Iumo6I" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/05/Iumo6I.png" alt="Iumo6I.png" border="0"></a></p>
+</li>
+<li><p>链接：<a href="https://dl.acm.org/doi/abs/10.1145/3404835.3462862" target="_blank" rel="noopener">https://dl.acm.org/doi/abs/10.1145/3404835.3462862</a></p>
+</li>
+<li><p>是否有开源代码：<a href="https://github.com/wujcan/SGL" target="_blank" rel="noopener">https://github.com/wujcan/SGL</a></p>
+</li>
 </ul>
 <h3 id="Self-supervised-Representation-Learning-on-Dynamic-Graphs-CIKM’21"><a href="#Self-supervised-Representation-Learning-on-Dynamic-Graphs-CIKM’21" class="headerlink" title="Self-supervised Representation Learning on Dynamic Graphs[CIKM’21]"></a>Self-supervised Representation Learning on Dynamic Graphs[CIKM’21]</h3><ul>
-<li>标签：图自监督学习、动态图学习</li>
-<li>摘要：论文提出了一个去偏的动态图对比学习框架DDGCL。它将同一顶点在时间上相邻的快照看作不同的视图，并用一个时间相关的相似度函数进行衡量</li>
-<li>链接：<a href="https://dl.acm.org/doi/abs/10.1145/3459637.3482389" target="_blank" rel="noopener">https://dl.acm.org/doi/abs/10.1145/3459637.3482389</a></li>
-<li>是否有开源代码：无</li>
+<li><p>标签：图自监督学习、动态图学习</p>
+</li>
+<li><p>摘要：论文提出了一个去偏的动态图对比学习框架DDGCL。对于动态信息的处理，DDGCL从几个方面展开：首先在将子图转化成embedding时，在GNN中加入了时间t的embedding。其次，DDGCL从过去一个给定的时间间隔内随机取一个时刻对应的子图作为正样本，认为这段时间内顶点的标签没有发生变化。最后，在进行对比学习时，用了一个时间相关的相似度函数，对时间间隔进行了惩罚，避免两个子图结构相似的顶点在较长的时间间隔下也被判断为相似。</p>
+<p><a href="https://imgtu.com/i/oP9pFK" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/24/oP9pFK.png" alt="oP9pFK.png" border="0"></a></p>
+</li>
+<li><p>链接：<a href="https://dl.acm.org/doi/abs/10.1145/3459637.3482389" target="_blank" rel="noopener">https://dl.acm.org/doi/abs/10.1145/3459637.3482389</a></p>
+</li>
+<li><p>是否有开源代码：无</p>
+</li>
 </ul>
-<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h2 id="Graph-Self-Supervised-Learning-1"><a href="#Graph-Self-Supervised-Learning-1" class="headerlink" title="Graph Self-Supervised Learning"></a>Graph Self-Supervised Learning</h2><h3 id="Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21-1"><a href="#Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21-1" class="headerlink" title="Self-supervised Graph Learning for Recommendation[SIGIR’21]"></a>Self-supervised Graph Learning for Recommendation[SIGIR’21]</h3><p>SGL的核心思想是通过顶点drop out、边drop out和随机游走这三种方式来改变图的结构，从而为图中顶点生成不同的视图，通过最小化同一顶点视图之间的差异以及最大化不同顶点视图之间的差异，来达到对比学习：</p>
-<p><a href="https://imgtu.com/i/Iumo6I" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/05/Iumo6I.png" alt="Iumo6I.png" border="0"></a></p>
-<p>上面那段话已经把SGL的流程讲的差不多了，转换成数学表示式就是下面的形式：</p>
-<p><div align="center">
-<a href="https://imgtu.com/i/IunkAU" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/05/IunkAU.png" alt="IunkAU.png" border="0" width="50%"></a>
-</div><br>将同一顶点得到的不同视角看作正样本，不同顶点之间的视角看作负样本，SGL采用的是经典的对比学习损失函数InfoNCE：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}_{s s l}^{u s e r}=\sum_{u \in \mathcal{U}}-\log \frac{\exp \left(s\left(\mathbf{z}_{u}^{\prime}, \mathbf{z}_{u}^{\prime \prime}\right) / \tau\right)}{\sum_{v \in \mathcal{U}} \exp \left(s\left(\mathbf{z}_{u}^{\prime}, \mathbf{z}_{v}^{\prime \prime}\right) / \tau\right)}</script><p>总损失函数就是分类任务的损失与对比学习的损失通过参数$\lambda$进行平衡，以及一个正则项：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}=\mathcal{L}_{main}+\lambda_1\mathcal{L}_{ssl}+\lambda_2\Vert\Theta\Vert_2^2</script><p>SGL的方法非常直观，对比学习的引入也不是这篇论文首创，它的创新点其实是对加入对比学习性能提升的原因进行了理论分析。</p>
+<h3 id="Multi-View-Self-Supervised-Heterogeneous-Graph-Embedding-ECML-PKDD’21"><a href="#Multi-View-Self-Supervised-Heterogeneous-Graph-Embedding-ECML-PKDD’21" class="headerlink" title="Multi-View Self-Supervised Heterogeneous Graph Embedding[ECML-PKDD’21]"></a>Multi-View Self-Supervised Heterogeneous Graph Embedding[ECML-PKDD’21]</h3><ul>
+<li><p>标签：元路径</p>
+</li>
+<li><p>摘要：给定异构图中一个顶点和关联的若干条元路径，论文首先对每条元路径通过固定长度的随机游走来获得元路径相关的子图，并通过GIN来得到的每个子图的embedding。因为作者认为不同的元路径代表不同视角，所以顶点所形成的多个子图的embedding就构成了多视角的embedding，作为下一步MoCo对比学习框架输入的key和query。这里的对比学习包括intra-view和inter-view两种方式。</p>
+<p><a href="https://imgtu.com/i/IzA9H0" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/22/IzA9H0.png" alt="IzA9H0.png" border="0"></a></p>
+</li>
+<li><p>链接：<a href="https://2021.ecmlpkdd.org/wp-content/uploads/2021/07/sub_408.pdf" target="_blank" rel="noopener">https://2021.ecmlpkdd.org/wp-content/uploads/2021/07/sub_408.pdf</a></p>
+</li>
+<li><p>是否有开源代码：<a href="https://github.com/Andy-Border/MVSE" target="_blank" rel="noopener">https://github.com/Andy-Border/MVSE</a></p>
+</li>
+</ul>
+<h3 id="Graph-Debiased-Contrastive-Learning-with-Joint-Representation-Clustering-IJCAI’21"><a href="#Graph-Debiased-Contrastive-Learning-with-Joint-Representation-Clustering-IJCAI’21" class="headerlink" title="Graph Debiased Contrastive Learning with Joint Representation Clustering[IJCAI’21]"></a>Graph Debiased Contrastive Learning with Joint Representation Clustering[IJCAI’21]</h3><ul>
+<li><p>标签：聚类</p>
+</li>
+<li><p>摘要：现有的对比学习方法大多直接在图上随机采样作为负样本，这种做法是有偏的因为可能采到假阴性样本从而导致性能下降。论文提出的去偏方法是通过聚类来将不同簇的顶点作为负样本，减少图上随机采样的偏差。具体地，正样本是通过将输入顶点的特征随机mask，而负样本是通过将输入顶点经过GCN得到的embedding聚类后，选取不同簇的顶点。因此，聚类结果的好坏会很大影响模型的性能，论文使用KL散度与t分布来对每次迭代的聚类结果进行评估及更新。</p>
+<p><a href="https://imgtu.com/i/Izkf9e" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/22/Izkf9e.png" alt="Izkf9e.png" border="0"></a></p>
+</li>
+<li><p>链接：<a href="https://www.ijcai.org/proceedings/2021/473" target="_blank" rel="noopener">https://www.ijcai.org/proceedings/2021/473</a></p>
+</li>
+<li><p>是否有开源代码：无</p>
+</li>
+</ul>
+<h3 id="Self-supervised-Heterogeneous-Graph-Neural-Network-with-Co-contrastive-Learning-KDD’21"><a href="#Self-supervised-Heterogeneous-Graph-Neural-Network-with-Co-contrastive-Learning-KDD’21" class="headerlink" title="Self-supervised Heterogeneous Graph Neural Network with Co-contrastive Learning[KDD’21]"></a>Self-supervised Heterogeneous Graph Neural Network with Co-contrastive Learning[KDD’21]</h3><ul>
+<li><p>标签：元路径、attention</p>
+</li>
+<li><p>摘要：HeCo通过一个异构图的元路径和网络模式两个角度来学习顶点的embedding。首先将异构顶点的特征先投影到同一个特征空间中，得到顶点的初步embedding，接下来通过node-level和type-level的attention来对邻域内的异构顶点信息进行聚合，得到网络模式角度的embedding；先通过GCN将元路径上顶点的embedding聚合成元路径的embedding，再通过semantic-level的attention来得到元路径角度的embedding。得到两个角度的embedding后，HeCo将它们通过一个MLP来进行接下来的对比学习。HeCo的正负样本选取方式与其他图对比学习不同，它认为有多条元路径相连的两个顶点构成一对正样本，而元路径数量少于设定阈值的两个顶点视为一对负样本。</p>
+<p><a href="https://imgtu.com/i/oP7WnS" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/24/oP7WnS.png" alt="oP7WnS.png" border="0"></a></p>
+</li>
+<li><p>链接：<a href="https://arxiv.org/abs/2105.09111" target="_blank" rel="noopener">https://arxiv.org/abs/2105.09111</a></p>
+</li>
+<li><p>是否有开源代码：<a href="https://github.com/liun-online/HeCo" target="_blank" rel="noopener">https://github.com/liun-online/HeCo</a></p>
+</li>
+</ul>
+<h3 id="GCC—Graph-Contrastive-Coding-for-Graph-Neural-Network-Pre-Training-KDD’20"><a href="#GCC—Graph-Contrastive-Coding-for-Graph-Neural-Network-Pre-Training-KDD’20" class="headerlink" title="GCC—Graph Contrastive Coding for Graph Neural Network Pre-Training[KDD’20]"></a>GCC—Graph Contrastive Coding for Graph Neural Network Pre-Training[KDD’20]</h3><ul>
+<li><p>标签：随机游走</p>
+</li>
+<li><p>摘要：GCC作为图对比学习的一个方法，提出了自己的构造正负样本的方式。GCC以子图为单位来构造样本，这里的子图定义为r中心网络，即与中心顶点最短距离不大于r的顶点所形成的集合。在构造正负样本时，给定一个中心顶点，通过带重启的随机游走-&gt;子图抽取-&gt;匿名化三个步骤得到它的正样本，将不同顶点得到的视为负样本。得到的子图样本经过GIN得到各自的embedding，通过InfoNCE进行对比学习。</p>
+</li>
+</ul>
+<div align="center">
+  <a href="https://imgtu.com/i/IzvEtA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/22/IzvEtA.png" alt="IzvEtA.png" border="0"></a>
+</div>
+
+<ul>
+<li>链接：<a href="https://www.kdd.org/kdd2020/accepted-papers/view/gcc-graph-contrastive-coding-for-graph-neural-network-pre-training" target="_blank" rel="noopener">https://www.kdd.org/kdd2020/accepted-papers/view/gcc-graph-contrastive-coding-for-graph-neural-network-pre-training</a></li>
+<li>是否有开源代码：<a href="https://github.com/THUDM/GCC" target="_blank" rel="noopener">https://github.com/THUDM/GCC</a></li>
+<li>数据量级：LiveJournal[n=484,3953]</li>
+</ul>
+<h3 id="Deep-Graph-Infomax-ICLR’19"><a href="#Deep-Graph-Infomax-ICLR’19" class="headerlink" title="Deep Graph Infomax[ICLR’19]"></a>Deep Graph Infomax[ICLR’19]</h3><ul>
+<li><p>标签：互信息</p>
+</li>
+<li><p>摘要：DGI将Infomax准则用在了图上，所谓的Infomax准则是指最大化系统输入与输出之间的互信息。DGI通过最大化顶点与图特征表示之间的互信息来进行对比学习。输入一张图，DGI通过一个编码器例如GCN得到图中顶点的特征表示$H$后，利用一个readout函数例如average pooling聚合顶点的特征表示得到图的特征表示$S$。顶点和图的特征表示彼此构成正样本对，而对原图进行扰乱后经过相同编码器得到的顶点的特征$H’$表示则与原图的特征表示$S’$构成负样本对。按照Infomax准则，DGI中的系统指的是readout函数，输入为顶点特征$H$输出为图的特征表示$S$。用于区分正负样本的判别器选取双线性评分函数$D(h_i,s)=\sigma(h_i^TWs)$，输出的是$(h_i,s)$为正样本对的概率，用于更新特征表示的损失函数是Jensen-Shannon散度。关于DGI更详细的解析可见：</p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/149743192" target="_blank" rel="noopener">互信息及其在图表示学习中的应用</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/46524857" target="_blank" rel="noopener">深度学习中的互信息：无监督提取特征</a></li>
+</ul>
+<p><a href="https://imgtu.com/i/oP7zN9" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/24/oP7zN9.png" alt="oP7zN9.png" border="0"></a></p>
+</li>
+<li><p>链接：<a href="https://openreview.net/forum?id=rklz9iAcKQ" target="_blank" rel="noopener">https://openreview.net/forum?id=rklz9iAcKQ</a></p>
+</li>
+<li><p>有无开源代码：<a href="https://github.com/PetarV-/DGI" target="_blank" rel="noopener">https://github.com/PetarV-/DGI</a></p>
+</li>
+<li><p>数据量级：Reddit[n=23,1443]</p>
+</li>
+</ul>
+<h3 id="InfoGraph-Unsupervised-and-Semi-supervised-Graph-Level-Representation-Learning-via-Mutual-Information-Maximization-ICLR’20"><a href="#InfoGraph-Unsupervised-and-Semi-supervised-Graph-Level-Representation-Learning-via-Mutual-Information-Maximization-ICLR’20" class="headerlink" title="InfoGraph: Unsupervised and Semi-supervised Graph-Level Representation Learning via Mutual Information Maximization[ICLR’20]"></a>InfoGraph: Unsupervised and Semi-supervised Graph-Level Representation Learning via Mutual Information Maximization[ICLR’20]</h3><ul>
+<li><p>标签：互信息</p>
+</li>
+<li><p>摘要：InfoGraph的输入是一系列图，无监督任务下为每个图学习一个特征表示，半监督任务下利用给定的有限带标签图为未知图预测。InfoGraph的无监督学习部分与DGI类似，编码器上它使用GIN而不是DGI中的GCN，将$K$层后GIN得到的各顶点的特征表示通过readout函数聚合后得到图的特征表示$S$，而对GIN每一层得到的顶点特征表示进行拼接，得到patch特征表示作为正样本$H$。$S$表示全局信息而$H$表示局部信息。在负样本的选择上，InfoGraph将当前图的patch与不同图的特征表示进行组合作为负样本。在半监督任务下，为了更好地进行知识迁移，同时最大化监督部分的编码器与无监督部分的编码器之间的互信息。</p>
+<p><a href="https://imgtu.com/i/oPbvWR" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/24/oPbvWR.png" alt="oPbvWR.png" border="0"></a></p>
+</li>
+<li><p>链接：<a href="https://arxiv.org/abs/1908.01000" target="_blank" rel="noopener">https://arxiv.org/abs/1908.01000</a></p>
+</li>
+<li>有无开源代码：<a href="https://github.com/fanyun-sun/InfoGraph" target="_blank" rel="noopener">https://github.com/fanyun-sun/InfoGraph</a></li>
+<li>数据量级：RDT-M5K[n=4999*508.52]</li>
+</ul>
+<h3 id="Spatio-Temporal-Deep-Graph-Infomax-ICLR’19-workshop"><a href="#Spatio-Temporal-Deep-Graph-Infomax-ICLR’19-workshop" class="headerlink" title="Spatio-Temporal Deep Graph Infomax[ICLR’19 workshop]"></a>Spatio-Temporal Deep Graph Infomax[ICLR’19 workshop]</h3><ul>
+<li><p>标签：互信息、动态图学习</p>
+</li>
+<li><p>摘要：STDGI在DGI的基础上加入动态的时间信息，体现在正负样本的构造上：对于$t$时刻的图上所有顶点，通过一个编码器如GCN得到它们的embedding$H^{(t)}$，与$t+k$时刻的顶点特征$X^{(t+k)}$构成正样本；与$t+k$时刻随机mask的顶点特征构成负样本</p>
+<p><a href="https://imgtu.com/i/opCldK" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/23/opCldK.png" alt="opCldK.png" border="0"></a></p>
+</li>
+<li><p>链接：<a href="https://rlgm.github.io/papers/48.pdf" target="_blank" rel="noopener">https://rlgm.github.io/papers/48.pdf</a></p>
+</li>
+<li><p>有无开源代码：无</p>
+</li>
+<li><p>数据量级：METR-LA[n=207]</p>
+</li>
+</ul>
+<h3 id="Self-Supervised-Hypergraph-Convolutional-Networks-for-Session-based-Recommendation-AAAI’21"><a href="#Self-Supervised-Hypergraph-Convolutional-Networks-for-Session-based-Recommendation-AAAI’21" class="headerlink" title="Self-Supervised Hypergraph Convolutional Networks for Session-based Recommendation[AAAI’21]"></a>Self-Supervised Hypergraph Convolutional Networks for Session-based Recommendation[AAAI’21]</h3><ul>
+<li><p>标签：超图学习</p>
+</li>
+<li><p>摘要：论文在序列推荐任务上提出了DHCN方法，结合了超图学习和图对比学习的理论。所谓的超图是指将子图看作顶点，在子图之间添加边，构成一张超图。DHCN将一条用户点击序列看作一个子图，序列内任意两个物品之间构成一条边。这样构成了下图中的”Transformed Hypergraph”，以物品为顶点；而序列之间共享的物品作为连接两个子图的边。构成了下图中的”Line Graph”，以子图为顶点。两个图就构成了同一条序列的两个视角，通过图卷积得到各自的embedding后，同一序列的两个视角构成正样本，不同序列视为负样本。判别器选择将两个输入的embedding点乘的形式，损失函数为InfoNCE。</p>
+<p><a href="https://imgtu.com/i/opN9yj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/23/opN9yj.png" alt="opN9yj.png" border="0"></a></p>
+</li>
+<li><p>链接：<a href="https://ojs.aaai.org/index.php/AAAI/article/view/16578/16385" target="_blank" rel="noopener">https://ojs.aaai.org/index.php/AAAI/article/view/16578/16385</a></p>
+</li>
+<li><p>有无开源代码：<a href="https://github.com/xiaxin1998/DHCN" target="_blank" rel="noopener">https://github.com/xiaxin1998/DHCN</a></p>
+</li>
+<li><p>数据量级：Nowplaying[n=91,5128]</p>
+</li>
+</ul>
+<h3 id="Self-Supervised-Multi-Channel-Hypergraph-Convolutional-Network-for-Social-Recommendation-WWW’21"><a href="#Self-Supervised-Multi-Channel-Hypergraph-Convolutional-Network-for-Social-Recommendation-WWW’21" class="headerlink" title="Self-Supervised Multi-Channel Hypergraph Convolutional Network for Social Recommendation[WWW’21]"></a>Self-Supervised Multi-Channel Hypergraph Convolutional Network for Social Recommendation[WWW’21]</h3><ul>
+<li><p>标签：超图学习、Motif</p>
+</li>
+<li><p>摘要：论文在社会推荐任务上提出了MHCN方法，根据社会推荐场景中的好友-好友、好友-商品、用户-商品三种典型的关系模式，通过三类十种三角Motif来构造三个视角的超图进行对比学习。不同于DGI直接进行顶点-图的互信息最大化，MHCN加入了以顶点为中心的子图来进行顶点-子图-图的层次化互信息最大化。构造正负样本时，将子图中顶点的embedding顺序随机打乱来得到扰乱子图，作为顶点-子图和子图-图两个阶段对比学习的负样本，判别器选取的是将输入的两个embedding进行点乘，损失函数不同于常见的交叉熵选取了排序损失。</p>
+</li>
+</ul>
+<div align="center">
+  <a href="https://imgtu.com/i/opfdTf" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/23/opfdTf.png" alt="opfdTf.png" border="0"></a>
+  <a href="https://imgtu.com/i/opf0k8" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/23/opf0k8.png" alt="opf0k8.png" border="0"></a>
+  <a href="https://imgtu.com/i/op40zQ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/23/op40zQ.png" alt="op40zQ.png" border="0"></a>
+</div>
+
+<ul>
+<li><p>链接：<a href="https://dl.acm.org/doi/fullHtml/10.1145/3442381.3449844" target="_blank" rel="noopener">https://dl.acm.org/doi/fullHtml/10.1145/3442381.3449844</a></p>
+</li>
+<li><p>有无开源代码：<a href="https://github.com/Coder-Yu/RecQ" target="_blank" rel="noopener">https://github.com/Coder-Yu/RecQ</a></p>
+</li>
+<li><p>数据量级：Yelp[n=1,9539]</p>
+</li>
+</ul>
+<h3 id="Contrastive-and-Generative-Graph-Convolutional-Networks-for-Graph-based-Semi-Supervised-Learning-AAAI’21"><a href="#Contrastive-and-Generative-Graph-Convolutional-Networks-for-Graph-based-Semi-Supervised-Learning-AAAI’21" class="headerlink" title="Contrastive and Generative Graph Convolutional Networks for Graph-based Semi-Supervised Learning[AAAI’21]"></a>Contrastive and Generative Graph Convolutional Networks for Graph-based Semi-Supervised Learning[AAAI’21]</h3><ul>
+<li><p>标签：</p>
+</li>
+<li><p>摘要：论文解决的是如何利用有限带标签的样本来为大量无标签样本预测。分为无监督和有监督任务，从局部和全局两个视角进行对比学习，GCN因任务为是对邻域信息聚合，所以作为局部视角下的编码器，而Hierarchical GCN用来产生全局视角。在无监督任务下，因为没有数据的标签信息，论文将同一顶点的两个视角看作正样本，不同顶点视为负样本。在有监督任务时，同一类的为正样本而不同类的为负样本。</p>
+<p><a href="https://imgtu.com/i/opLxl6" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/23/opLxl6.png" alt="opLxl6.png" border="0"></a></p>
+</li>
+<li><p>链接：<a href="https://ojs.aaai.org/index.php/AAAI/article/view/17206/17013" target="_blank" rel="noopener">https://ojs.aaai.org/index.php/AAAI/article/view/17206/17013</a></p>
+</li>
+<li><p>有无开源代码：<a href="https://github.com/LEAP-WS/CG3" target="_blank" rel="noopener">https://github.com/LEAP-WS/CG3</a></p>
+</li>
+<li><p>数据量级：PubMed[n=1,9717]</p>
+</li>
+</ul>
+<h3 id="Spatio-Temporal-Graph-Contrastive-Learning"><a href="#Spatio-Temporal-Graph-Contrastive-Learning" class="headerlink" title="Spatio-Temporal Graph Contrastive Learning"></a>Spatio-Temporal Graph Contrastive Learning</h3><ul>
+<li><p>标签：动态图学习</p>
+</li>
+<li><p>摘要：STGCL的输入是传感器的采集数据，在构建正样本时，除了传统的特征mask和边dropout，还对相邻时刻的特征进行线性插值；在构建负样本时，为了避免采样到临近时刻的”hard negative”样本，论文只考虑时间间隔大于给定阈值的负样本。</p>
+<p><a href="https://imgtu.com/i/oilpcj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/24/oilpcj.png" alt="oilpcj.png" border="0"></a></p>
+</li>
+<li><p>链接：<a href="https://arxiv.org/abs/2102.12380" target="_blank" rel="noopener">https://arxiv.org/abs/2102.12380</a></p>
+</li>
+<li><p>有无开源代码：<a href="https://github.com/Mobzhang/PT-DGNN" target="_blank" rel="noopener">https://github.com/Mobzhang/PT-DGNN</a></p>
+</li>
+</ul>
+<h3 id="TCL-Transformer-based-Dynamic-Graph-Modelling-via-Contrastive-Learning"><a href="#TCL-Transformer-based-Dynamic-Graph-Modelling-via-Contrastive-Learning" class="headerlink" title="TCL: Transformer-based Dynamic Graph Modelling via Contrastive Learning"></a>TCL: Transformer-based Dynamic Graph Modelling via Contrastive Learning</h3><ul>
+<li>标签：动态图学习</li>
+<li>摘要：TCL的目标是利用历史信息预测t时刻用户是否会与物品产生交互，使用动态依赖-交互图作为图的呈现，各自得到用户和物品的k最短距离子图后，通过BFS转化为序列后输入定制的Transformer中，得到各自的特征表示。在构建正负样本时，用户已交互过的物品作为正样本，其余未交互过的物品作为负样本</li>
+<li>链接：<a href="https://arxiv.org/abs/2105.07944" target="_blank" rel="noopener">https://arxiv.org/abs/2105.07944</a></li>
+<li>有无开源代码：无</li>
+</ul>
 
       
     </div>
@@ -469,6 +658,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图神经网络/" rel="tag">#图神经网络</a>
+          
+        </div>
       
 
       
@@ -588,7 +783,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -646,7 +841,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Temporal-Graph-Learning"><span class="nav-number">1.1.</span> <span class="nav-text">Temporal Graph Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Temporal-Heterogeneous-Information-Network-Embedding-IJCAI’21"><span class="nav-number">1.1.1.</span> <span class="nav-text">Temporal Heterogeneous Information Network Embedding[IJCAI’21]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AddGraph-Anomaly-Detection-in-Dynamic-Graph-Using-Attention-based-Temporal-GCN-IJCAI’19"><span class="nav-number">1.1.2.</span> <span class="nav-text">AddGraph: Anomaly Detection in Dynamic Graph Using Attention-based Temporal GCN[IJCAI’19]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Self-Supervised-Learning"><span class="nav-number">1.2.</span> <span class="nav-text">Graph Self-Supervised Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21"><span class="nav-number">1.2.1.</span> <span class="nav-text">Self-supervised Graph Learning for Recommendation[SIGIR’21]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Self-supervised-Representation-Learning-on-Dynamic-Graphs-CIKM’21"><span class="nav-number">1.2.2.</span> <span class="nav-text">Self-supervised Representation Learning on Dynamic Graphs[CIKM’21]</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#笔记"><span class="nav-number">2.</span> <span class="nav-text">笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Self-Supervised-Learning-1"><span class="nav-number">2.1.</span> <span class="nav-text">Graph Self-Supervised Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">Self-supervised Graph Learning for Recommendation[SIGIR’21]</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Temporal-Graph-Learning"><span class="nav-number">1.1.</span> <span class="nav-text">Temporal Graph Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Temporal-Heterogeneous-Information-Network-Embedding-IJCAI’21"><span class="nav-number">1.1.1.</span> <span class="nav-text">Temporal Heterogeneous Information Network Embedding[IJCAI’21]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T-GCN-A-Temporal-Graph-Convolutional-Network-for-Traffic-Prediction-TITS’17"><span class="nav-number">1.1.2.</span> <span class="nav-text">T-GCN: A Temporal Graph Convolutional Network for Traffic Prediction[TITS’17]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AddGraph-Anomaly-Detection-in-Dynamic-Graph-Using-Attention-based-Temporal-GCN-IJCAI’19"><span class="nav-number">1.1.3.</span> <span class="nav-text">AddGraph: Anomaly Detection in Dynamic Graph Using Attention-based Temporal GCN[IJCAI’19]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Self-Supervised-Learning"><span class="nav-number">1.2.</span> <span class="nav-text">Graph Self-Supervised Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21"><span class="nav-number">1.2.1.</span> <span class="nav-text">Self-supervised Graph Learning for Recommendation[SIGIR’21]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Self-supervised-Representation-Learning-on-Dynamic-Graphs-CIKM’21"><span class="nav-number">1.2.2.</span> <span class="nav-text">Self-supervised Representation Learning on Dynamic Graphs[CIKM’21]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-View-Self-Supervised-Heterogeneous-Graph-Embedding-ECML-PKDD’21"><span class="nav-number">1.2.3.</span> <span class="nav-text">Multi-View Self-Supervised Heterogeneous Graph Embedding[ECML-PKDD’21]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Graph-Debiased-Contrastive-Learning-with-Joint-Representation-Clustering-IJCAI’21"><span class="nav-number">1.2.4.</span> <span class="nav-text">Graph Debiased Contrastive Learning with Joint Representation Clustering[IJCAI’21]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Self-supervised-Heterogeneous-Graph-Neural-Network-with-Co-contrastive-Learning-KDD’21"><span class="nav-number">1.2.5.</span> <span class="nav-text">Self-supervised Heterogeneous Graph Neural Network with Co-contrastive Learning[KDD’21]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GCC—Graph-Contrastive-Coding-for-Graph-Neural-Network-Pre-Training-KDD’20"><span class="nav-number">1.2.6.</span> <span class="nav-text">GCC—Graph Contrastive Coding for Graph Neural Network Pre-Training[KDD’20]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deep-Graph-Infomax-ICLR’19"><span class="nav-number">1.2.7.</span> <span class="nav-text">Deep Graph Infomax[ICLR’19]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InfoGraph-Unsupervised-and-Semi-supervised-Graph-Level-Representation-Learning-via-Mutual-Information-Maximization-ICLR’20"><span class="nav-number">1.2.8.</span> <span class="nav-text">InfoGraph: Unsupervised and Semi-supervised Graph-Level Representation Learning via Mutual Information Maximization[ICLR’20]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spatio-Temporal-Deep-Graph-Infomax-ICLR’19-workshop"><span class="nav-number">1.2.9.</span> <span class="nav-text">Spatio-Temporal Deep Graph Infomax[ICLR’19 workshop]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Self-Supervised-Hypergraph-Convolutional-Networks-for-Session-based-Recommendation-AAAI’21"><span class="nav-number">1.2.10.</span> <span class="nav-text">Self-Supervised Hypergraph Convolutional Networks for Session-based Recommendation[AAAI’21]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Self-Supervised-Multi-Channel-Hypergraph-Convolutional-Network-for-Social-Recommendation-WWW’21"><span class="nav-number">1.2.11.</span> <span class="nav-text">Self-Supervised Multi-Channel Hypergraph Convolutional Network for Social Recommendation[WWW’21]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contrastive-and-Generative-Graph-Convolutional-Networks-for-Graph-based-Semi-Supervised-Learning-AAAI’21"><span class="nav-number">1.2.12.</span> <span class="nav-text">Contrastive and Generative Graph Convolutional Networks for Graph-based Semi-Supervised Learning[AAAI’21]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spatio-Temporal-Graph-Contrastive-Learning"><span class="nav-number">1.2.13.</span> <span class="nav-text">Spatio-Temporal Graph Contrastive Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCL-Transformer-based-Dynamic-Graph-Modelling-via-Contrastive-Learning"><span class="nav-number">1.2.14.</span> <span class="nav-text">TCL: Transformer-based Dynamic Graph Modelling via Contrastive Learning</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -690,7 +885,7 @@
 
 <div class="theme-info">
   <span class="post-meta-divider">|</span>
-  <span class="post-count">小站全站共156.8k字</span>
+  <span class="post-count">小站全站共159.5k字</span>
 </div>
         
 
@@ -1281,7 +1476,33 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1299,12 +1520,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-  
-  
-
-  
   
 
 
