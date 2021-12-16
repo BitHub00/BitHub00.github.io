@@ -695,10 +695,11 @@ L_{ARR}=\sum_{i=1,2,\dots,|R|-1}||W_{r_i+1}-W_{r_i}||_F^2</script><p>这里假�
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//寻找旋转数组的最小元素即为寻找右排序数组的首个元素</span></span><br><span class="line"><span class="comment">//当nums[mid]&gt;nums[right]时，一定在左排序数组里，旋转点一定在[mid+1,right]区间内</span></span><br><span class="line"><span class="comment">//当nums[mid]&lt;nums[right]时，一定在右排序数组里，旋转点一定在[left,mid]区间内</span></span><br><span class="line"><span class="comment">//当nums[mid]==nums[right]时，无法判断，缩小搜索区间为[left,right-1]</span></span><br><span class="line"><span class="comment">//与right比较是因为right初始值肯定在右排序数组中，而left如果原数组未旋转在右排序，旋转则在左排序</span></span><br><span class="line"><span class="comment">//初始搜索区间为[1,numbers.size()-1]左闭右闭，因此while循环条件为left&lt;=right</span></span><br><span class="line"><span class="comment">//退出循环时left=right+1，此时numbers[right]一定不是旋转点，right指向的是旋转点左侧的位置</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; numbers)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = numbers.size()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(numbers[mid] &gt; numbers[right]) left = mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(numbers[mid] &lt; numbers[right]) right = mid;</span><br><span class="line">            <span class="keyword">else</span> right--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> numbers[left];<span class="comment">//return numbers[right+1]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h3 id="0-n-1中缺失的数字"><a href="#0-n-1中缺失的数字" class="headerlink" title="0~n-1中缺失的数字"></a>0~n-1中缺失的数字</h3><p><a href="https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/" target="_blank" rel="noopener">题目</a>：一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//缺失数字的右侧满足nums[mid]&gt;mid，左侧满足nums[mid]=mid</span></span><br><span class="line"><span class="comment">//初始搜索区间为[1,numbers.size())左闭右开，因此while循环条件为left&lt;right</span></span><br><span class="line"><span class="comment">//当mid位于右侧时，缩小搜索区间为[left,mid)，当mid位于左侧时，缩小搜索区间为[mid+1,right)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.size();</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left + (right-left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &gt; mid) &#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt;= mid) &#123;</span><br><span class="line">                left = mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始搜索区间为[1,numbers.size()-1]左闭右闭，因此while循环条件为left&lt;=right</span></span><br><span class="line"><span class="comment">//当mid位于右侧时，缩小搜索区间为[left,mid-1]，当mid位于左侧时，缩小搜索区间为[mid+1,right]</span></span><br><span class="line"><span class="comment">//退出循环时left==right+1，根据它们的更新式，此时nums[right]&lt;=mid，而nums[left]&gt;mid，right指向缺失数字左边的位置，而left正好指向缺失数字的位置</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.size()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left + (right-left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &gt; mid) &#123;</span><br><span class="line">                right = mid<span class="number">-1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt;= mid) &#123;</span><br><span class="line">                left = mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="搜索旋转排序数组"><a href="#搜索旋转排序数组" class="headerlink" title="搜索旋转排序数组"></a>搜索旋转排序数组</h3><p><a href="">题目</a>：整数数组nums按升序排列，数组中的值互不相同。 在传递给函数之前，nums在预先未知的某个下标 k（0 &lt;= k &lt; nums.length）上进行了旋转。给你旋转后的数组nums和一个整数target ，如果 nums中存在这个目标值 target ，则返回它的下标，否则返回 -1</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="搜索旋转排序数组"><a href="#搜索旋转排序数组" class="headerlink" title="搜索旋转排序数组"></a>搜索旋转排序数组</h3><p><a href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener">题目</a>：整数数组nums按升序排列，数组中的值互不相同。 在传递给函数之前，nums在预先未知的某个下标 k（0 &lt;= k &lt; nums.length）上进行了旋转。给你旋转后的数组nums和一个整数target ，如果 nums中存在这个目标值 target ，则返回它的下标，否则返回 -1</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//旋转数组的特点是，数组中至少有一半的元素是有序的，每次二分时只需要判断target是否在有序的一侧</span></span><br><span class="line"><span class="comment">//初始搜索区间为[1,arr.size()-1]左闭右闭，因此while循环条件为left&lt;=right</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.size()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left + (right-left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] == target) <span class="keyword">return</span> mid;</span><br><span class="line">            <span class="comment">//当left==right且target不存在数组时，会进入死循环，需要额外进行判断</span></span><br><span class="line">            <span class="keyword">if</span>(left == right &amp;&amp; nums[mid] != target) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">            <span class="comment">//左子数组有序</span></span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &gt; nums[right]) &#123;</span><br><span class="line">                <span class="comment">//在左子数组中，可能target刚好位于左边界target[left]，这里要用&gt;=</span></span><br><span class="line">                <span class="comment">//而判断是否为目标值交给nums[mid]==target判断</span></span><br><span class="line">                <span class="keyword">if</span>(target &gt;= nums[left] &amp;&amp; target &lt; nums[mid]) &#123;</span><br><span class="line">                    right = mid<span class="number">-1</span>;</span><br><span class="line">                <span class="comment">//在右子数组中</span></span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    left = mid+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//右子数组有序</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; nums[right]) &#123;</span><br><span class="line">                <span class="comment">//在右子数组中</span></span><br><span class="line">                <span class="keyword">if</span>(target &gt; nums[mid] &amp;&amp; target &lt;= nums[right]) &#123;</span><br><span class="line">                    left = mid+<span class="number">1</span>;</span><br><span class="line">                <span class="comment">//在左子数组中</span></span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    right = mid<span class="number">-1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h3 id="搜索旋转数组"><a href="#搜索旋转数组" class="headerlink" title="搜索旋转数组"></a>搜索旋转数组</h3><p><a href="https://leetcode-cn.com/problems/search-rotate-array-lcci/" target="_blank" rel="noopener">题目</a>：给定一个排序后的数组，包含n个整数，但这个数组已被旋转过很多次了，次数不详。请编写代码找出数组中的某个元素，假设数组元素原先是按升序排列的。若有多个相同元素，返回索引值最小的一个。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//旋转数组的特点是，数组中至少有一半的元素是有序的，每次二分时只需要判断target是否在有序的一侧</span></span><br><span class="line"><span class="comment">//初始搜索区间为[1,arr.size()-1]左闭右闭，因此while循环条件为left&lt;=right</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right  = arr.size() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">            <span class="comment">//当target不存在</span></span><br><span class="line">            <span class="keyword">if</span>(left == right &amp;&amp; arr[left] != target)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">            &#125; </span><br><span class="line">            <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(arr[mid] == target)&#123;</span><br><span class="line">              	<span class="comment">//找到target的同时还需要找到其中索引值最小的一个</span></span><br><span class="line">                <span class="keyword">while</span>(mid &gt; <span class="number">0</span> &amp;&amp; arr[mid] == arr[mid - <span class="number">1</span>])&#123;</span><br><span class="line">                    mid--;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(arr[<span class="number">0</span>] == target) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//arr[mid] == arr[left] 则缩短数组左边界</span></span><br><span class="line">            <span class="keyword">while</span>(left &lt; mid &amp;&amp; arr[mid] == arr[left])&#123;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//arr[mid] == arr[right] 则缩短数组右边界</span></span><br><span class="line">            <span class="keyword">while</span>(right &gt; mid &amp;&amp; arr[mid] == arr[right])&#123;</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//左边有序</span></span><br><span class="line">            <span class="keyword">if</span>(arr[mid] &gt;= arr[left])&#123;</span><br><span class="line">                <span class="comment">//目标在左边部分，缩减搜索区间为[left,mid-1]</span></span><br><span class="line">                <span class="keyword">if</span>(target &gt;= arr[left] &amp;&amp; target &lt;= arr[mid])&#123;</span><br><span class="line">                    right = mid - <span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//目标在右边部分，缩减搜索区间为[mid+1,right]</span></span><br><span class="line">                    left = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">              	<span class="comment">//右边有序，arr[mid] &lt;= arr[right]</span></span><br><span class="line">                <span class="comment">//目标在右边部分，缩减搜索区间为[mid+1,right]</span></span><br><span class="line">                <span class="keyword">if</span>(target &gt;= arr[mid] &amp;&amp; target &lt;= arr[right])&#123;</span><br><span class="line">                    left = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//目标在左边部分，缩减搜索区间为[left,mid-1]</span></span><br><span class="line">                    right = mid - <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="寻找旋转排序数组中的最小值"><a href="#寻找旋转排序数组中的最小值" class="headerlink" title="寻找旋转排序数组中的最小值"></a>寻找旋转排序数组中的最小值</h3><p><a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="noopener">题目</a>：</p>
 <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="中缀表达式转后缀表达式"><a href="#中缀表达式转后缀表达式" class="headerlink" title="中缀表达式转后缀表达式"></a>中缀表达式转后缀表达式</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1. 数字直接输出</span></span><br><span class="line"><span class="comment">//2. 运算符号</span></span><br><span class="line"><span class="comment">//若当前运算符优先度较高，进栈，否则栈顶出栈输出，直到当前运算符优先度高于栈顶运算符，再进栈</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; RPN;<span class="comment">//后缀表达式（波兰表达式）</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isNumber</span><span class="params">(<span class="built_in">string</span>&amp; c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !((c == <span class="string">"+"</span>) || (c == <span class="string">"-"</span>) || (c == <span class="string">"*"</span>) || (c == <span class="string">"/"</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InToRPN</span><span class="params">(<span class="built_in">string</span>&amp; s)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="built_in">string</span>&gt; cs;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; record(&#123;&#123;<span class="string">"+"</span>, <span class="number">1</span>&#125;, &#123;<span class="string">"-"</span>, <span class="number">1</span>&#125;, &#123;<span class="string">"*"</span>, <span class="number">2</span>&#125;, &#123;<span class="string">"/"</span>, <span class="number">2</span>&#125;&#125;);</span><br><span class="line">    <span class="function"><span class="built_in">istringstream</span> <span class="title">iss</span><span class="params">(s)</span></span>;</span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> op;</span><br><span class="line">    <span class="keyword">while</span>(iss &gt;&gt; num) &#123;</span><br><span class="line">        RPN.push_back(to_string(num));</span><br><span class="line">        iss &gt;&gt; op;</span><br><span class="line">        <span class="keyword">if</span>(!iss) <span class="keyword">break</span>;<span class="comment">//读取完表达式最后一个整数，这时的op不需要再使用</span></span><br><span class="line">        <span class="function"><span class="built_in">string</span> <span class="title">token</span><span class="params">(<span class="number">1</span>, op)</span></span>;</span><br><span class="line">        <span class="keyword">if</span>(cs.empty()) cs.push(token);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> priority = record[token];</span><br><span class="line">            <span class="keyword">if</span>(priority &gt; record[cs.top()]) cs.push(token);</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(!cs.empty() &amp;&amp; priority &lt;= record[cs.top()]) &#123;</span><br><span class="line">                    RPN.push_back(cs.top());</span><br><span class="line">                    cs.pop();</span><br><span class="line">                &#125;</span><br><span class="line">                cs.push(token);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(!cs.empty()) &#123;</span><br><span class="line">        RPN.push_back(cs.top());</span><br><span class="line">        cs.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sortArray(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> size = nums.size();</span><br><span class="line">        <span class="keyword">int</span> i, j;</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">            <span class="keyword">for</span>(j = i; j &gt; <span class="number">0</span> &amp;&amp; nums[j<span class="number">-1</span>] &gt; temp; j--) &#123;</span><br><span class="line">                nums[j] = nums[j<span class="number">-1</span>];<span class="comment">//升序排列，将比temp大的数往数组后面移动</span></span><br><span class="line">            &#125;</span><br><span class="line">            nums[j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h3 id="基尔排序"><a href="#基尔排序" class="headerlink" title="基尔排序"></a>基尔排序</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sortArray(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> size = nums.size();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> gap = size / <span class="number">2</span>; gap &gt; <span class="number">0</span>; gap /= <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = gap; i &lt; size; i++) &#123;</span><br><span class="line">                <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">                <span class="keyword">int</span> j;</span><br><span class="line">                <span class="keyword">for</span>(j = i; j &gt;= gap &amp;&amp; nums[j-gap] &gt; temp; j-= gap) &#123;</span><br><span class="line">                    nums[j] = nums[j-gap];</span><br><span class="line">                &#125;</span><br><span class="line">                nums[j] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -4591,157 +4592,310 @@ b_i=\frac{1}{|U_i|}\sum_{u \in U_i}(r_{u,i}-b_u-\mu)</script></li>
     <url>/2021/11/16/%E5%B7%A5%E4%B8%9A%E7%95%8C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<p>借这篇博客记录看工业界推荐系统论文的心得。</p>
 <a id="more"></a>
-<h2 id="Logistics-Regression"><a href="#Logistics-Regression" class="headerlink" title="Logistics Regression"></a>Logistics Regression</h2><p>本节主要参考<a href="https://zhuanlan.zhihu.com/p/151036015" target="_blank" rel="noopener">刘启林的推荐系统</a></p>
-<p>逻辑回归是推荐领域的经典模型之一，回归是指将值回归到[0,1]区间。</p>
-<h3 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h4><p>LR将线性回归模型与Sigmoid函数相结合，线性回归模型的常见形式为$y=w^Tx+b$，为了表达形式上的统一，常将$w_0=b,x_0=1$，则有下图的$y=\sum_{i=0}^nw_ix_i=w^Tx$：</p>
-<p><a href="https://imgtu.com/i/4BEwJs" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4BEwJs.jpg" alt="4BEwJs.jpg"></a></p>
-<p>LR按照输出y的取值可以分为$y\in\{0,1\}、y\in\{-1,1\}$两种形式：</p>
-<ul>
-<li><p>CTR预估（0：曝光后未被点击，1：曝光后被点击）</p>
-<blockquote>
-<p>伯努利分布：随机变量X只能取0和1两个值：</p>
-<script type="math/tex; mode=display">
-P(X=k)=p^k(1-p)^{1-k},~k={0,1}</script></blockquote>
-<p><a href="https://imgtu.com/i/4BVanK" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4BVanK.jpg" alt="4BVanK.jpg"></a></p>
-</li>
-<li><p>分类预估（-1：负类，1：正类）</p>
-<p><a href="https://imgtu.com/i/4BVNX6" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4BVNX6.jpg" alt="4BVNX6.jpg"></a></p>
-</li>
+<p>[TOC]</p>
+<h3 id="问题与挑战"><a href="#问题与挑战" class="headerlink" title="问题与挑战"></a>问题与挑战</h3><ul>
+<li><strong>列表展示中的正负样本选择</strong>：物品曝光，并不代表用户注意到了。因此选择用户在推荐列表最下面的一个点击位置以上的曝光作为负样本区域。例如以下展示列表和点击动作情况（最下一个点击位为7），使用3、7为正样本，1、2、4、5、6为负样本。而8、9、10等位置虽然曝光但用户可能并未看到，丢弃该数据。</li>
 </ul>
-<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p><a href="https://imgtu.com/i/4BZZUe" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4BZZUe.jpg" alt="4BZZUe.jpg"></a></p>
-<p><a href="https://imgtu.com/i/4BZnCd" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4BZnCd.jpg" alt="4BZnCd.jpg"></a><br><a href="https://imgtu.com/i/4BZVED" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4BZVED.jpg" alt="4BZVED.jpg"></a></p>
-<p><a href="https://imgtu.com/i/4BZgPJ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4BZgPJ.jpg" alt="4BZgPJ.jpg"></a><br><a href="https://imgtu.com/i/4BZ654" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4BZ654.jpg" alt="4BZ654.jpg"></a></p>
-<p><a href="https://imgtu.com/i/4Besyt" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4Besyt.jpg" alt="4Besyt.jpg"></a><br><a href="https://imgtu.com/i/4BerQI" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4BerQI.jpg" alt="4BerQI.jpg"></a><br><a href="https://imgtu.com/i/4BeDSA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4BeDSA.jpg" alt="4BeDSA.jpg"></a></p>
-<h4 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h4><ul>
-<li>适合离散特征；增加、减少特征容易，易于拟合、快速迭代</li>
-<li>特征空间大，容易过拟合；</li>
-<li>去掉高度相关特征；</li>
-</ul>
-<h2 id="Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16"><a href="#Wide-amp-Deep-Learning-for-Recommender-Systems-DLRS’16" class="headerlink" title="Wide &amp; Deep Learning for Recommender Systems[DLRS’16]"></a>Wide &amp; Deep Learning for Recommender Systems[DLRS’16]</h2><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>解决推荐时Memorization和Generalization无法兼顾的问题。</p>
-<h4 id="Memorization"><a href="#Memorization" class="headerlink" title="Memorization"></a>Memorization</h4><p>面对拥有大规模离散sparse特征的CTR预估问题时，可以通过将特征之间进行叉乘来捕捉特征之间的相关性，典型代表如LR模型，使用原始sparse特征和叉乘特征作为输入。但缺点是特征的叉乘需要人工进行设计，而且对于训练数据中未曾出现过的特征对，模型中对应项的权重也会为0.</p>
-<h4 id="Generalization"><a href="#Generalization" class="headerlink" title="Generalization"></a>Generalization</h4><p>Generalization为sparse特征学习低维的dense embeddings来捕获相关性，它相较于Memorization涉及更少的人工设计以及更好的泛化能力，即使训练数据中未曾出现的特征对，对应的权重也会因为各自的dense embeddings而非零。但缺点也是会带来过度泛化，当user-item矩阵非常稀疏时，例如小众爱好的user和冷门商品，这时大部分user-item应该是没有关联的，但dense embedding还是能得到非零预测，导致推荐不怎么相关的商品，这时Memorization更好，因为它可以记忆这些特殊的特征组合。</p>
-<p>Memorization根据历史行为数据，产生的推荐通常和用户已有行为的物品直接相关的物品。而Generalization会学习新的特征组合，提高推荐物品的多样性。 论文作者结合两者的优点，提出了一个新的学习算法——Wide &amp; Deep Learning，其中Wide &amp; Deep分别对应Memorization &amp; Generalization。</p>
-<p><a href="https://imgtu.com/i/4KtfW8" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/17/4KtfW8.png" alt="4KtfW8.png"></a></p>
-<h3 id="做法及创新-1"><a href="#做法及创新-1" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h4><p><strong>Wide</strong>部分是一个广义线性模型，其中$x$和$\phi(x)$表示原始特征和叉乘特征：</p>
-<script type="math/tex; mode=display">
-y=w^T[x,\phi(x)]+b</script><p>原始特征$x=[x_1,x_2,\cdots,x_d]$有$d$维，叉乘特征的构造方式为：$\phi_k(x)=\Pi_{i=1}^dx_i^{c_{ki}},~c_{ki}\in\{0,1\}$</p>
-<p>其实就是用一个布尔变量来标示哪些特征进行了叉乘。</p>
-<p><strong>Deep</strong>部分是前馈神经网络，它会对一些sparse特征（如ID类特征）学习一个dense embeddings，维度在O(10)到O(100)之间。</p>
-<script type="math/tex; mode=display">
-a^{l+1}=f(W^la^l+b^l)</script><p><strong>损失函数</strong>选取的是logistic损失函数，模型最后的预测输出为，其中$a^{l_f}$是神经网络最后一层的激活值：</p>
-<script type="math/tex; mode=display">
-p(y=1|x)=\sigma(w^T_{wide}[x,\phi(x)]+w^T_{deep}a^{l_f}+b)</script><p><strong>联合训练</strong>时Wide部分只需要做一小部分的特征叉乘来弥补Deep部分的不足，不需要一个完整的Wide模型。优化方法使用的是mini-batch随机梯度下降，Wide部分是带L1正则的FTRL算法，Deep部分是AdaGrad算法。</p>
-<p><a href="https://imgtu.com/i/4KB1ts" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/17/4KB1ts.png" alt="4KB1ts.png"></a></p>
-<p>实验部分采取的模型设置如上图所示，其中的细节为：</p>
-<ul>
-<li>连续型特征会被归一化到[0,1]之间</li>
-<li>离散型特征映射到32维embeddings，与原始连续特征共1200维作为网络输入</li>
-<li>Wide部分只有一组特征叉乘，被推荐的App×用户下载的App，希望Wide部分能发现这样的规则：用户安装了应用A，此时曝光应用B，用户安装的B概率大。</li>
-<li>线上模型更新时，用上次的embeddings和模型参数进行”热启动“</li>
-</ul>
-<h4 id="实践细节"><a href="#实践细节" class="headerlink" title="实践细节"></a>实践细节</h4><ol>
-<li><p>为什么Wide部分要用L1 FTRL训练？</p>
-<p>FTRL的介绍可见<a href="https://github.com/wzhe06/Ad-papers/blob/master/Optimization%20Method/%E5%9C%A8%E7%BA%BF%E6%9C%80%E4%BC%98%E5%8C%96%E6%B1%82%E8%A7%A3(Online%20Optimization" target="_blank" rel="noopener">文章</a>-%E5%86%AF%E6%89%AC.pdf)。这种方式注重模型的稀疏性，能让Wide部分变得更加稀疏，大部分权重都为0。</p>
-</li>
-<li><p>为什么Deep部分不考虑稀疏性的问题？</p>
-<p>Deep部分的输入，要么是Age，#App Installs这些数值类特征，要么是已经降维并稠密化的Embeddings向量。所以Deep部分不存在严重的特征稀疏问题，自然可以使用精度更好，更适用于深度学习训练的AdaGrad去训练。</p>
-</li>
-</ol>
-<h2 id="Factorization-Machines"><a href="#Factorization-Machines" class="headerlink" title="Factorization Machines"></a>Factorization Machines</h2><p>本节内容主要参考<a href="https://zhuanlan.zhihu.com/p/145436595" target="_blank" rel="noopener">刘启林的推荐系统</a></p>
-<h3 id="解决的问题-1"><a href="#解决的问题-1" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>因子分解机在线性回归模型中加入了特征的交互，来建模特征的相关性，并且解决数据的稀疏性以及特征空间维度过高的问题。</p>
-<p>对于常见的categorical特征，经过one-hot编码以后，样本的数据就会变得很稀疏。举例来说，假设淘宝或者京东上的item为100万，如果对item这个维度进行one-hot编码，光这一个维度数据的稀疏度就是百万分之一。将item进行one-hot编码以后，样本空间有一个categorical变为了百万维的数值特征，特征空间也会一下子暴增一百万。</p>
-<h3 id="做法及创新-2"><a href="#做法及创新-2" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="核心思想-1"><a href="#核心思想-1" class="headerlink" title="核心思想"></a>核心思想</h4><p>线性回归模型假设特征之间相互独立：</p>
-<script type="math/tex; mode=display">
-y=w_0+\sum_{i=1}^nw_ix_i</script><p>而现实场景中，特征之间是有相关性的，例如&lt;程序员&gt;与&lt;计算机类书籍&gt;，因此需要在线性回归模型中加入特征组合项。最简单的组合方式是两两组合，变为二阶多项式回归模型，多出$\frac{n(n-1)}{2}$项：</p>
-<script type="math/tex; mode=display">
-y=w_0+\sum_{i=1}^nw_ix_i+\sum_{i=1}^n\sum_{j\ge i}^nw_{ij}x_ix_j</script><p>这样做的局限是对于样本中没出现过交互的特征组合，就无法对相应的参数进行估计，而且时间复杂度上升到了$O(n^2)$。</p>
-<p>上式中的二项式参数$w_{ij}$可以组成一个对称矩阵$W$，根据Cholesky分解可以分解成：</p>
-<blockquote>
-<p>Cholesky分解：将一个对称正定矩阵化为一个下三角矩阵与其共轭转置矩阵的积</p>
-</blockquote>
-<script type="math/tex; mode=display">
-W=VV^T</script><p>二次项参数转化为$w_{ij}=<v_i,v_j>=\sum_{f=1}^kv_{i,f}v_{j,f}$，此时隐向量的特征维度$k$一般远小于原始特征维度$n$。$v_i\in \mathbb{R}^k$是特征i的嵌入向量。FM的假设是，特征两两相关。</v_i,v_j></p>
-<h4 id="计算化简"><a href="#计算化简" class="headerlink" title="计算化简"></a>计算化简</h4><p>FM的计算复杂度可以化简为线性复杂度：</p>
-<p><a href="https://imgtu.com/i/4ahAk6" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4ahAk6.jpg" alt="4ahAk6.jpg"></a></p>
-<p><a href="https://imgtu.com/i/4ahMnA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4ahMnA.jpg" alt="4ahMnA.jpg"></a></p>
-<p><a href="https://imgtu.com/i/4ahhH1" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4ahhH1.jpg" alt="4ahhH1.jpg"></a></p>
-<h4 id="损失函数-1"><a href="#损失函数-1" class="headerlink" title="损失函数"></a>损失函数</h4><p>FM模型可用于回归（Regression）、二分类（Binary classification）、排名（Ranking）任务，其对应的损失函数如下：</p>
-<p><a href="https://imgtu.com/i/4a4d2D" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4a4d2D.jpg" alt="4a4d2D.jpg"></a></p>
-<p><a href="https://imgtu.com/i/4a5Uwn" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4a5Uwn.jpg" alt="4a5Uwn.jpg"></a></p>
-<p>以随机梯度下降训练为例：</p>
-<p><a href="https://imgtu.com/i/4aIt1O" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4aIt1O.jpg" alt="4aIt1O.jpg"></a></p>
-<p><a href="https://imgtu.com/i/4aovQS" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4aovQS.jpg" alt="4aovQS.jpg"></a></p>
-<h4 id="特征工程-1"><a href="#特征工程-1" class="headerlink" title="特征工程"></a>特征工程</h4><p>FM模型对特征两两自动组合，不需要人工参与，类别特征One-Hot化，以一个电影数据集为例：</p>
-<p><a href="https://imgtu.com/i/4aT2wj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4aT2wj.jpg" alt="4aT2wj.jpg"></a></p>
-<p><a href="https://imgtu.com/i/4aTRTs" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4aTRTs.jpg" alt="4aTRTs.jpg"></a></p>
-<p><a href="https://imgtu.com/i/4aTIpV" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4aTIpV.jpg" alt="4aTIpV.jpg"></a></p>
-<h2 id="Field-aware-Factorization-Machines-for-CTR-Prediction-RecSys’16"><a href="#Field-aware-Factorization-Machines-for-CTR-Prediction-RecSys’16" class="headerlink" title="Field-aware Factorization Machines for CTR Prediction[RecSys’16]"></a>Field-aware Factorization Machines for CTR Prediction[RecSys’16]</h2><p>本节主要参考<a href="https://tech.meituan.com/2016/03/03/deep-understanding-of-ffm-principles-and-practices.html" target="_blank" rel="noopener">深入FFM原理与实践</a>、<a href="https://www.jianshu.com/p/781cde3d5f3d" target="_blank" rel="noopener">FFM模型理论和实践</a></p>
-<h3 id="解决的问题-2"><a href="#解决的问题-2" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>FM在遇到one-hot类型的特征时遇到的数据稀疏性问题。</p>
-<h3 id="做法及创新-3"><a href="#做法及创新-3" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="核心思想-2"><a href="#核心思想-2" class="headerlink" title="核心思想"></a>核心思想</h4><p>FFM模型中引入了域（field）的概念，同一个categorical特征经过One-Hot编码生成的数值特征都可以放到同一个域，包括用户国籍，广告类型，日期等等，以一条CTR点击数据为例，说明FFM与FM的区别：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Clicked</th>
-<th style="text-align:center">Publisher(P)</th>
-<th style="text-align:center">Advertiser(A)</th>
-<th style="text-align:center">Gender(G)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Yes</td>
-<td style="text-align:center">ESPN</td>
-<td style="text-align:center">Nike</td>
-<td style="text-align:center">Male</td>
-</tr>
-</tbody>
-</table>
+<div align="center">
+  <a href="https://imgtu.com/i/oc1Tij" target="_blank" rel="noopener"><img src="https://s4.ax1x.com/2021/12/07/oc1Tij.png" alt="oc1Tij.png" border="0"></a>
 </div>
-<p>对于FM，只会考虑二次交叉项：</p>
-<script type="math/tex; mode=display">
-\phi_{FM}=V_{ESPN}\cdot V_{Nike}+V_{ESPN}\cdot V_{Male}+V_{Nike}\cdot V_{Male}</script><p>因为Nike与Male显然属于不同的field，所以（ESPN，Nike）和（ESPN，Male）的隐含含义也可能是不同的，而FM只用一个隐向量$V_{ESPN}$来统一表示ESPN与Nike和Maled的交互作用，不够准确。而在FFM中，域之间的交互作用是不同的，每个特征有k个隐向量个数，k为其余特征field的个数：</p>
-<script type="math/tex; mode=display">
-\phi_{FFM}=V_{ESPN,A}\cdot V_{Nike,P}+V_{ESPN,G}\cdot V_{Male,P}+V_{Nike,G}\cdot V_{Male,A}</script><p>所以FFM的数学表达式为：</p>
-<script type="math/tex; mode=display">
-\phi_{FFM}(w,x)=\sum_{i=1}^n\sum_{j\ge i}^nw_{i,f_j}\cdot w_{j,f_i}x_ix_j</script><p>FFM的参数个数为kfn，FM可以看作FFM的特例，是把所有特征都归属到一个field时的FFM模型。值得注意的是，由于隐向量与field相关，所以FFM中的二次项不能够化简，它的时间复杂度为$O(kn^2)$。</p>
-<h4 id="实践细节-1"><a href="#实践细节-1" class="headerlink" title="实践细节"></a>实践细节</h4><ol>
-<li>样本归一化。FFM默认是进行样本数据的归一化，否则容易造成数据inf溢出，进而引起梯度计算的nan错误。因此，样本层面的数据是推荐进行归一化的。</li>
-<li>特征归一化。CTR/CVR模型采用了多种类型的源特征，包括数值型和categorical类型等。但是，categorical类编码后的特征取值只有0或1，较大的数值型特征会造成样本归一化后categorical类生成特征的值非常小，没有区分性。例如，一条用户-商品记录，用户为“男”性，商品的销量是5000个（假设其它特征的值为零），那么归一化后特征“sex=male”（性别为男）的值略小于0.0002，而“volume”（销量）的值近似为1。特征“sex=male”在这个样本中的作用几乎可以忽略不计，这是相当不合理的。因此，将源数值型特征的值归一化到[0,1]是非常必要的。</li>
-<li>省略零值特征。零值特征对模型完全没有贡献。包含零值特征的一次项和组合项均为零，对于训练模型参数或者目标值预估是没有作用的。因此，可以省去零值特征，提高FFM模型训练和预测的速度，这也是稀疏样本采用FFM的显著优势。</li>
-</ol>
-<h2 id="DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-IJCAI’17"><a href="#DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-IJCAI’17" class="headerlink" title="DeepFM: A Factorization-Machine based Neural Network for CTR Prediction[IJCAI’17]"></a>DeepFM: A Factorization-Machine based Neural Network for CTR Prediction[IJCAI’17]</h2><p>本节主要参考<a href="https://static001.geekbang.org/con/33/pdf/1511951900/file/%E6%9C%80%E7%BB%88%E7%89%88-%E5%BC%A0%E4%BF%8A%E6%9E%97-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%8E%A8%E8%8D%90%E7%9A%84%E6%8A%80%E6%9C%AF%E8%BF%9B%E5%B1%95%E5%8F%8A%E5%BE%AE%E5%8D%9A%E7%9A%84%E5%BA%94%E7%94%A8.pdf" target="_blank" rel="noopener">深度学习在推荐的技术进展及微博的应用</a>、<a href="https://www.jianshu.com/p/6f1c2643d31b" target="_blank" rel="noopener">DeepFM模型理论与实践</a></p>
-<h3 id="解决的问题-3"><a href="#解决的问题-3" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>对于一个基于CTR预估的推荐系统，最重要的是学习到用户点击行为背后隐含的特征组合。举例来说，在主流的app市场上，我们发现，用户喜欢在用餐时间下载送餐app， 说明二阶交叉特征“app类别-时间戳” 可以作为CTR预估的重要特征。另一个发现， 男青年喜欢射击游戏和RPG游戏，因此，三阶交叉特征“app类别-用户性别-用户年龄”也可以作为CTR预估的一个特征。但是这种交叉特征往往需要专家知识，类似“尿布-啤酒”这种经典的例子。</p>
-<p>前面提到的FM虽然理论上来讲可以对高阶特征组合进行建模，但实际上因为计算复杂度的原因一般都只用到了二阶特征组合。而多层神经网络能够学习复杂的交叉特征。</p>
-<h3 id="做法及创新-4"><a href="#做法及创新-4" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="DNN与高维特征"><a href="#DNN与高维特征" class="headerlink" title="DNN与高维特征"></a>DNN与高维特征</h4><p>虽然DNN能够学习复杂的特征组合，但直接应用于CTR预告等问题上时会在离散型特征上遇到阻碍，对于离散型特征典型的做法是进行one-hot编码，这会导致输入的数据维度非常高：</p>
-<p><a href="https://imgtu.com/i/4wrxln" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4wrxln.png" alt="4wrxln.png"></a></p>
-<p><a href="https://imgtu.com/i/4wsVp9" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4wsVp9.png" alt="4wsVp9.png"></a></p>
-<p>类似于FFM中将特征按域来进行分类，可以将输入的one-hot数据按照域形成对应的dense vector，来避免数据稀疏性的问题：</p>
-<p><a href="https://imgtu.com/i/4wsmOx" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4wsmOx.png" alt="4wsmOx.png"></a></p>
-<p><a href="https://imgtu.com/i/4wsGpd" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4wsGpd.png" alt="4wsGpd.png"></a></p>
-<p><a href="https://imgtu.com/i/4wscXq" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4wscXq.png" alt="4wscXq.png"></a></p>
-<p><a href="https://imgtu.com/i/4wyp3d" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/4wyp3d.png" alt="4wyp3d.png"></a></p>
-<p>也就是希望能将DNN与FM进行一个融合，而融合的形式总的来说分为串行与并行，本节介绍的DeepFM以及前面介绍过的Wide&amp;Deep都为典型的并行结构。</p>
-<p><a href="https://imgtu.com/i/40FPt1" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/40FPt1.png" alt="40FPt1.png"></a></p>
-<h4 id="核心思想-3"><a href="#核心思想-3" class="headerlink" title="核心思想"></a>核心思想</h4><p><a href="https://imgtu.com/i/40AJoj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/40AJoj.png" alt="40AJoj.png"></a></p>
-<p>首先来看DeepFM的结构，FM与DNN分别负责提取低阶与高阶特征，这两部分<strong>共享输入</strong>：</p>
-<p><a href="https://imgtu.com/i/40Eihn" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/23/40Eihn.png" alt="40Eihn.png"></a></p>
-<p>FM部分与标准的FM并无不同，而DNN部分，在进入第一层隐藏层之前，首先通过一个嵌入层来将输入的高维特征压缩到低维稠密向量。这一部分的两个特点为：</p>
-<ol>
-<li>尽管不同域的特征维度不同，在经过压缩后的维度均为k。</li>
-<li>FM部分的隐向量V现在作为DNN的嵌入层权重。这样一来就不需要通过FM对隐向量V进行预训练之后对DNN的嵌入层进行初始化，而是在训练DNN时对V一起进行学习，做到端到端。</li>
-</ol>
-<h2 id="Deep-Neural-Networks-for-YouTube-Recommendations-RecSys’16"><a href="#Deep-Neural-Networks-for-YouTube-Recommendations-RecSys’16" class="headerlink" title="Deep Neural Networks for YouTube Recommendations[RecSys’16]"></a>Deep Neural Networks for YouTube Recommendations[RecSys’16]</h2><p>本节要介绍的是Youtube出品的经典工业界论文，主要内容参考<a href="https://zhuanlan.zhihu.com/p/52169807" target="_blank" rel="noopener">王喆的机器学习笔记1</a>、<a href="https://zhuanlan.zhihu.com/p/61827629" target="_blank" rel="noopener">王喆的机器学习笔记2</a>、<a href="https://www.jianshu.com/p/8fa4dcbd5588" target="_blank" rel="noopener">深度学习遇上推荐系统</a>。</p>
-<h3 id="解决的问题-4"><a href="#解决的问题-4" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>作为全球最大的UGC的视频网站，Youtube需要在百万量级的视频规模下进行个性化推荐。由于候选视频集合过大，考虑online系统延迟问题，不宜用复杂网络直接进行推荐，所以Youtube采取了两层深度网络完成整个推荐过程：</p>
-<ol>
-<li>第一层是<strong>Candidate Generation Model</strong>完成候选视频的快速筛选，这一步候选视频集合由百万降低到了百的量级（粗排）。</li>
-<li>第二层是用<strong>Ranking Model</strong>完成几百个候选视频的排序（精排）。</li>
-</ol>
+* **样本冲突**：物品可以重复推荐，这样就存在用户选择前后矛盾的情况，即对于同一个物品上次用户选择点击，而这次选择不点击，或者反过来上次选择不点击，这次选择点击。对于一个时效性要求较高的系统，将这两种情况的数据都作为样本加入系统，可以增加模型对时效性特征的理解。24小时之内，存在正负样本冲突的，仅保留正样本。同时如果24小时之内有多个负样本，仅保留最后也就是最新的负样本。
+
+* **数据穿透**：特征数据一定要选取样本发生时刻之前的，如果选取了样本时刻之后的特征，相当于在学习阶段，让模型知道了标准答案，使得模型仅学会了对答案进行抄袭，而在上线预测时，标准答案还存在于尚未发生的未来的，模型此时得不到标准答案，预测结果就很差。
+
+  由于CTR预估对实时性要求高，实际过程中存在另外一种数据穿透的情况，线上数据延迟带来的穿透。即，在离线训练阶段，如果选取样本时刻之前的所有特征，这些特征本来是没有穿透的，但是上线阶段，由于前端、后台、数据系统等等存在一些延迟，最近时间的一些特征在预测时并没有流入推荐系统，导致线上预测阶段，模型拿到的是残缺的数据。这样会导致模型离线阶段效果还不错，线上阶段预测效果就不好的情况。
+
+  面对这个问题，在算法离线训练阶段，就不考虑样本最近一段时间的特征数据，即让模型只使用残缺的数据学习，逼迫模型从残缺的数据中发掘数据关联，即不依赖线上容易发生延迟的数据部分。这个处理会使得线下AUC指标降低，即降低了算法上限，但在数据延迟的情况下有更好的健壮性。
+
+## Logistics Regression
+
+本节主要参考[刘启林的推荐系统](https://zhuanlan.zhihu.com/p/151036015)
+
+逻辑回归是推荐领域的经典模型之一，回归是指将值回归到[0,1]区间。
+
+### 做法及创新
+
+#### 核心思想
+
+LR将线性回归模型与Sigmoid函数相结合，线性回归模型的常见形式为$y=w^Tx+b$，为了表达形式上的统一，常将$w_0=b,x_0=1$，则有下图的$y=\sum_{i=0}^nw_ix_i=w^Tx$：
+
+[![4BEwJs.jpg](https://z3.ax1x.com/2021/09/24/4BEwJs.jpg)](https://imgtu.com/i/4BEwJs)
+
+LR按照输出y的取值可以分为$y\in\{0,1\}、y\in\{-1,1\}$两种形式：
+
+* CTR预估（0：曝光后未被点击，1：曝光后被点击）
+
+  > 伯努利分布：随机变量X只能取0和1两个值：
+  > $$
+  > P(X=k)=p^k(1-p)^{1-k},~k={0,1}
+  > $$
+
+  [![4BVanK.jpg](https://z3.ax1x.com/2021/09/24/4BVanK.jpg)](https://imgtu.com/i/4BVanK)
+
+* 分类预估（-1：负类，1：正类）
+
+  [![4BVNX6.jpg](https://z3.ax1x.com/2021/09/24/4BVNX6.jpg)](https://imgtu.com/i/4BVNX6)
+
+#### 损失函数
+
+[![4BZZUe.jpg](https://z3.ax1x.com/2021/09/24/4BZZUe.jpg)](https://imgtu.com/i/4BZZUe)
+
+[![4BZnCd.jpg](https://z3.ax1x.com/2021/09/24/4BZnCd.jpg)](https://imgtu.com/i/4BZnCd)
+[![4BZVED.jpg](https://z3.ax1x.com/2021/09/24/4BZVED.jpg)](https://imgtu.com/i/4BZVED)
+
+[![4BZgPJ.jpg](https://z3.ax1x.com/2021/09/24/4BZgPJ.jpg)](https://imgtu.com/i/4BZgPJ)
+[![4BZ654.jpg](https://z3.ax1x.com/2021/09/24/4BZ654.jpg)](https://imgtu.com/i/4BZ654)
+
+[![4Besyt.jpg](https://z3.ax1x.com/2021/09/24/4Besyt.jpg)](https://imgtu.com/i/4Besyt)
+[![4BerQI.jpg](https://z3.ax1x.com/2021/09/24/4BerQI.jpg)](https://imgtu.com/i/4BerQI)
+[![4BeDSA.jpg](https://z3.ax1x.com/2021/09/24/4BeDSA.jpg)](https://imgtu.com/i/4BeDSA)
+
+#### 特征工程
+
+* 适合离散特征；增加、减少特征容易，易于拟合、快速迭代
+* 特征空间大，容易过拟合；
+* 去掉高度相关特征；
+
+## Wide & Deep Learning for Recommender Systems[DLRS'16]
+
+### 解决的问题
+
+解决推荐时Memorization和Generalization无法兼顾的问题。
+
+#### Memorization
+
+面对拥有大规模离散sparse特征的CTR预估问题时，可以通过将特征之间进行叉乘来捕捉特征之间的相关性，典型代表如LR模型，使用原始sparse特征和叉乘特征作为输入。但缺点是特征的叉乘需要人工进行设计，而且对于训练数据中未曾出现过的特征对，模型中对应项的权重也会为0.
+
+#### Generalization
+
+Generalization为sparse特征学习低维的dense embeddings来捕获相关性，它相较于Memorization涉及更少的人工设计以及更好的泛化能力，即使训练数据中未曾出现的特征对，对应的权重也会因为各自的dense embeddings而非零。但缺点也是会带来过度泛化，当user-item矩阵非常稀疏时，例如小众爱好的user和冷门商品，这时大部分user-item应该是没有关联的，但dense embedding还是能得到非零预测，导致推荐不怎么相关的商品，这时Memorization更好，因为它可以记忆这些特殊的特征组合。
+
+Memorization根据历史行为数据，产生的推荐通常和用户已有行为的物品直接相关的物品。而Generalization会学习新的特征组合，提高推荐物品的多样性。 论文作者结合两者的优点，提出了一个新的学习算法——Wide & Deep Learning，其中Wide & Deep分别对应Memorization & Generalization。
+
+[![4KtfW8.png](https://z3.ax1x.com/2021/09/17/4KtfW8.png)](https://imgtu.com/i/4KtfW8)
+
+### 做法及创新
+
+#### 网络结构
+
+**Wide**部分是一个广义线性模型，其中$x$和$\phi(x)$表示原始特征和叉乘特征：
+$$
+y=w^T[x,\phi(x)]+b
+$$
+原始特征$x=[x_1,x_2,\cdots,x_d]$有$d$维，叉乘特征的构造方式为：$\phi_k(x)=\Pi_{i=1}^dx_i^{c_{ki}},~c_{ki}\in\{0,1\}$
+
+其实就是用一个布尔变量来标示哪些特征进行了叉乘。
+
+**Deep**部分是前馈神经网络，它会对一些sparse特征（如ID类特征）学习一个dense embeddings，维度在O(10)到O(100)之间。
+$$
+a^{l+1}=f(W^la^l+b^l)
+$$
+**损失函数**选取的是logistic损失函数，模型最后的预测输出为，其中$a^{l_f}$是神经网络最后一层的激活值：
+$$
+p(y=1|x)=\sigma(w^T_{wide}[x,\phi(x)]+w^T_{deep}a^{l_f}+b)
+$$
+**联合训练**时Wide部分只需要做一小部分的特征叉乘来弥补Deep部分的不足，不需要一个完整的Wide模型。优化方法使用的是mini-batch随机梯度下降，Wide部分是带L1正则的FTRL算法，Deep部分是AdaGrad算法。
+
+[![4KB1ts.png](https://z3.ax1x.com/2021/09/17/4KB1ts.png)](https://imgtu.com/i/4KB1ts)
+
+实验部分采取的模型设置如上图所示，其中的细节为：
+
+* 连续型特征会被归一化到[0,1]之间
+* 离散型特征映射到32维embeddings，与原始连续特征共1200维作为网络输入
+* Wide部分只有一组特征叉乘，被推荐的App×用户下载的App，希望Wide部分能发现这样的规则：用户安装了应用A，此时曝光应用B，用户安装的B概率大。
+* 线上模型更新时，用上次的embeddings和模型参数进行”热启动“
+
+#### 实践细节
+
+1. 为什么Wide部分要用L1 FTRL训练？
+
+   FTRL的介绍可见[文章](https://github.com/wzhe06/Ad-papers/blob/master/Optimization%20Method/%E5%9C%A8%E7%BA%BF%E6%9C%80%E4%BC%98%E5%8C%96%E6%B1%82%E8%A7%A3(Online%20Optimization)-%E5%86%AF%E6%89%AC.pdf)。这种方式注重模型的稀疏性，能让Wide部分变得更加稀疏，大部分权重都为0。
+
+2. 为什么Deep部分不考虑稀疏性的问题？
+
+   Deep部分的输入，要么是Age，App Installs这些数值类特征，要么是已经降维并稠密化的Embeddings向量。所以Deep部分不存在严重的特征稀疏问题，自然可以使用精度更好，更适用于深度学习训练的AdaGrad去训练。
+
+
+
+## Factorization Machines
+
+本节内容主要参考[刘启林的推荐系统](https://zhuanlan.zhihu.com/p/145436595)
+
+### 解决的问题
+
+因子分解机在线性回归模型中加入了特征的交互，来建模特征的相关性，并且解决数据的稀疏性以及特征空间维度过高的问题。
+
+对于常见的categorical特征，经过one-hot编码以后，样本的数据就会变得很稀疏。举例来说，假设淘宝或者京东上的item为100万，如果对item这个维度进行one-hot编码，光这一个维度数据的稀疏度就是百万分之一。将item进行one-hot编码以后，样本空间有一个categorical变为了百万维的数值特征，特征空间也会一下子暴增一百万。
+
+### 做法及创新
+
+#### 核心思想
+
+线性回归模型假设特征之间相互独立：
+$$
+y=w_0+\sum_{i=1}^nw_ix_i
+$$
+而现实场景中，特征之间是有相关性的，例如<程序员>与<计算机类书籍>，因此需要在线性回归模型中加入特征组合项。最简单的组合方式是两两组合，变为二阶多项式回归模型，多出$\frac{n(n-1)}{2}$项：
+$$
+y=w_0+\sum_{i=1}^nw_ix_i+\sum_{i=1}^n\sum_{j\ge i}^nw_{ij}x_ix_j
+$$
+这样做的局限是对于样本中没出现过交互的特征组合，就无法对相应的参数进行估计，而且时间复杂度上升到了$O(n^2)$。
+
+上式中的二项式参数$w_{ij}$可以组成一个对称矩阵$W$，根据Cholesky分解可以分解成：
+
+> Cholesky分解：将一个对称正定矩阵化为一个下三角矩阵与其共轭转置矩阵的积
+
+$$
+W=VV^T
+$$
+
+二次项参数转化为$w_{ij}=<v_i,v_j>=\sum_{f=1}^kv_{i,f}v_{j,f}$，此时隐向量的特征维度$k$一般远小于原始特征维度$n$。$v_i\in \mathbb{R}^k$是特征i的嵌入向量。FM的假设是，特征两两相关。
+
+#### 计算化简
+
+FM的计算复杂度可以化简为线性复杂度：
+
+[![4ahAk6.jpg](https://z3.ax1x.com/2021/09/23/4ahAk6.jpg)](https://imgtu.com/i/4ahAk6)
+
+[![4ahMnA.jpg](https://z3.ax1x.com/2021/09/23/4ahMnA.jpg)](https://imgtu.com/i/4ahMnA)
+
+[![4ahhH1.jpg](https://z3.ax1x.com/2021/09/23/4ahhH1.jpg)](https://imgtu.com/i/4ahhH1)
+
+#### 损失函数
+
+FM模型可用于回归（Regression）、二分类（Binary classification）、排名（Ranking）任务，其对应的损失函数如下：
+
+[![4a4d2D.jpg](https://z3.ax1x.com/2021/09/23/4a4d2D.jpg)](https://imgtu.com/i/4a4d2D)
+
+[![4a5Uwn.jpg](https://z3.ax1x.com/2021/09/23/4a5Uwn.jpg)](https://imgtu.com/i/4a5Uwn)
+
+以随机梯度下降训练为例：
+
+[![4aIt1O.jpg](https://z3.ax1x.com/2021/09/23/4aIt1O.jpg)](https://imgtu.com/i/4aIt1O)
+
+[![4aovQS.jpg](https://z3.ax1x.com/2021/09/23/4aovQS.jpg)](https://imgtu.com/i/4aovQS)
+
+#### 特征工程
+
+FM模型对特征两两自动组合，不需要人工参与，类别特征One-Hot化，以一个电影数据集为例：
+
+[![4aT2wj.jpg](https://z3.ax1x.com/2021/09/23/4aT2wj.jpg)](https://imgtu.com/i/4aT2wj)
+
+[![4aTRTs.jpg](https://z3.ax1x.com/2021/09/23/4aTRTs.jpg)](https://imgtu.com/i/4aTRTs)
+
+[![4aTIpV.jpg](https://z3.ax1x.com/2021/09/23/4aTIpV.jpg)](https://imgtu.com/i/4aTIpV)
+
+
+
+## Field-aware Factorization Machines for CTR Prediction[RecSys'16]
+
+本节主要参考[深入FFM原理与实践](https://tech.meituan.com/2016/03/03/deep-understanding-of-ffm-principles-and-practices.html)、[FFM模型理论和实践](https://www.jianshu.com/p/781cde3d5f3d)
+
+### 解决的问题
+
+FM在遇到one-hot类型的特征时遇到的数据稀疏性问题。
+
+### 做法及创新
+
+#### 核心思想
+
+FFM模型中引入了域（field）的概念，同一个categorical特征经过One-Hot编码生成的数值特征都可以放到同一个域，包括用户国籍，广告类型，日期等等，以一条CTR点击数据为例，说明FFM与FM的区别：
+
+| Clicked | Publisher(P) | Advertiser(A) | Gender(G) |
+| :-----: | :----------: | :-----------: | :-------: |
+|   Yes   |     ESPN     |     Nike      |   Male    |
+
+对于FM，只会考虑二次交叉项：
+$$
+\phi_{FM}=V_{ESPN}\cdot V_{Nike}+V_{ESPN}\cdot V_{Male}+V_{Nike}\cdot V_{Male}
+$$
+因为Nike与Male显然属于不同的field，所以（ESPN，Nike）和（ESPN，Male）的隐含含义也可能是不同的，而FM只用一个隐向量$V_{ESPN}$来统一表示ESPN与Nike和Maled的交互作用，不够准确。而在FFM中，域之间的交互作用是不同的，每个特征有k个隐向量个数，k为其余特征field的个数：
+$$
+\phi_{FFM}=V_{ESPN,A}\cdot V_{Nike,P}+V_{ESPN,G}\cdot V_{Male,P}+V_{Nike,G}\cdot V_{Male,A}
+$$
+所以FFM的数学表达式为：
+$$
+\phi_{FFM}(w,x)=\sum_{i=1}^n\sum_{j\ge i}^nw_{i,f_j}\cdot w_{j,f_i}x_ix_j
+$$
+FFM的参数个数为kfn，FM可以看作FFM的特例，是把所有特征都归属到一个field时的FFM模型。值得注意的是，由于隐向量与field相关，所以FFM中的二次项不能够化简，它的时间复杂度为$O(kn^2)$。
+
+#### 实践细节
+
+1. 样本归一化。FFM默认是进行样本数据的归一化，否则容易造成数据inf溢出，进而引起梯度计算的nan错误。因此，样本层面的数据是推荐进行归一化的。
+2. 特征归一化。CTR/CVR模型采用了多种类型的源特征，包括数值型和categorical类型等。但是，categorical类编码后的特征取值只有0或1，较大的数值型特征会造成样本归一化后categorical类生成特征的值非常小，没有区分性。例如，一条用户-商品记录，用户为“男”性，商品的销量是5000个（假设其它特征的值为零），那么归一化后特征“sex=male”（性别为男）的值略小于0.0002，而“volume”（销量）的值近似为1。特征“sex=male”在这个样本中的作用几乎可以忽略不计，这是相当不合理的。因此，将源数值型特征的值归一化到[0,1]是非常必要的。
+3. 省略零值特征。零值特征对模型完全没有贡献。包含零值特征的一次项和组合项均为零，对于训练模型参数或者目标值预估是没有作用的。因此，可以省去零值特征，提高FFM模型训练和预测的速度，这也是稀疏样本采用FFM的显著优势。
+
+
+
+## DeepFM: A Factorization-Machine based Neural Network for CTR Prediction[IJCAI'17]
+
+本节主要参考[深度学习在推荐的技术进展及微博的应用](https://static001.geekbang.org/con/33/pdf/1511951900/file/%E6%9C%80%E7%BB%88%E7%89%88-%E5%BC%A0%E4%BF%8A%E6%9E%97-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%8E%A8%E8%8D%90%E7%9A%84%E6%8A%80%E6%9C%AF%E8%BF%9B%E5%B1%95%E5%8F%8A%E5%BE%AE%E5%8D%9A%E7%9A%84%E5%BA%94%E7%94%A8.pdf)、[DeepFM模型理论与实践](https://www.jianshu.com/p/6f1c2643d31b)
+
+### 解决的问题
+
+对于一个基于CTR预估的推荐系统，最重要的是学习到用户点击行为背后隐含的特征组合。举例来说，在主流的app市场上，我们发现，用户喜欢在用餐时间下载送餐app， 说明二阶交叉特征“app类别-时间戳” 可以作为CTR预估的重要特征。另一个发现， 男青年喜欢射击游戏和RPG游戏，因此，三阶交叉特征“app类别-用户性别-用户年龄”也可以作为CTR预估的一个特征。但是这种交叉特征往往需要专家知识，类似“尿布-啤酒”这种经典的例子。
+
+前面提到的FM虽然理论上来讲可以对高阶特征组合进行建模，但实际上因为计算复杂度的原因一般都只用到了二阶特征组合。而多层神经网络能够学习复杂的交叉特征。
+
+### 做法及创新
+
+#### DNN与高维特征
+
+虽然DNN能够学习复杂的特征组合，但直接应用于CTR预告等问题上时会在离散型特征上遇到阻碍，对于离散型特征典型的做法是进行one-hot编码，这会导致输入的数据维度非常高：
+
+[![4wrxln.png](https://z3.ax1x.com/2021/09/23/4wrxln.png)](https://imgtu.com/i/4wrxln)
+
+[![4wsVp9.png](https://z3.ax1x.com/2021/09/23/4wsVp9.png)](https://imgtu.com/i/4wsVp9)
+
+类似于FFM中将特征按域来进行分类，可以将输入的one-hot数据按照域形成对应的dense vector，来避免数据稀疏性的问题：
+
+[![4wsmOx.png](https://z3.ax1x.com/2021/09/23/4wsmOx.png)](https://imgtu.com/i/4wsmOx)
+
+[![4wsGpd.png](https://z3.ax1x.com/2021/09/23/4wsGpd.png)](https://imgtu.com/i/4wsGpd)
+
+[![4wscXq.png](https://z3.ax1x.com/2021/09/23/4wscXq.png)](https://imgtu.com/i/4wscXq)
+
+[![4wyp3d.png](https://z3.ax1x.com/2021/09/23/4wyp3d.png)](https://imgtu.com/i/4wyp3d)
+
+也就是希望能将DNN与FM进行一个融合，而融合的形式总的来说分为串行与并行，本节介绍的DeepFM以及前面介绍过的Wide&Deep都为典型的并行结构。
+
+[![40FPt1.png](https://z3.ax1x.com/2021/09/23/40FPt1.png)](https://imgtu.com/i/40FPt1)
+
+#### 核心思想
+
+[![40AJoj.png](https://z3.ax1x.com/2021/09/23/40AJoj.png)](https://imgtu.com/i/40AJoj)
+
+首先来看DeepFM的结构，FM与DNN分别负责提取低阶与高阶特征，这两部分**共享输入**，即Embedding：
+
+[![40Eihn.png](https://z3.ax1x.com/2021/09/23/40Eihn.png)](https://imgtu.com/i/40Eihn)
+
+DeepFM与Wide & Deep的不同之处在于，DeepFM中的wide部分使用FM来进行特征的自动交叉，而Wide & Deep中的wide部分需要人工设计特征交叉。
+
+FM部分与标准的FM并无不同，而DNN部分，在进入第一层隐藏层之前，首先通过一个嵌入层来将输入的高维特征压缩到低维稠密向量。这一部分的两个特点为：
+
+1. 尽管不同域的特征维度不同，在经过压缩后的维度均为k。
+2. FM部分的隐向量V现在作为DNN的嵌入层权重。这样一来就不需要通过FM对隐向量V进行预训练之后对DNN的嵌入层进行初始化，而是在训练DNN时对V一起进行学习，做到端到端。
+
+#### 实践细节
+
+
+
+## Deep Neural Networks for YouTube Recommendations[RecSys'16]
+
+本节要介绍的是Youtube出品的经典工业界论文，主要内容参考[王喆的机器学习笔记1](https://zhuanlan.zhihu.com/p/52169807)、[王喆的机器学习笔记2](https://zhuanlan.zhihu.com/p/61827629)、[深度学习遇上推荐系统](https://www.jianshu.com/p/8fa4dcbd5588)。
+
+### 解决的问题
+
+作为全球最大的UGC的视频网站，Youtube需要在百万量级的视频规模下进行个性化推荐。由于候选视频集合过大，考虑online系统延迟问题，不宜用复杂网络直接进行推荐，所以Youtube采取了两层深度网络完成整个推荐过程：
+
+1. 第一层是**Candidate Generation Model**完成候选视频的快速筛选，这一步候选视频集合由百万降低到了百的量级（粗排）。
+2. 第二层是用**Ranking Model**完成几百个候选视频的排序（精排）。
+
 <div align="center">
 <a href="https://imgtu.com/i/4BqpB6" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4BqpB6.png" alt="4BqpB6.png" border="0" width="75%"></a>
 </div>
 
-<h4 id="做法及创新-5"><a href="#做法及创新-5" class="headerlink" title="做法及创新"></a>做法及创新</h4><h4 id="粗排模型"><a href="#粗排模型" class="headerlink" title="粗排模型"></a>粗排模型</h4><div align="center">
+<h4 id="做法及创新"><a href="#做法及创新" class="headerlink" title="做法及创新"></a>做法及创新</h4><h4 id="粗排模型"><a href="#粗排模型" class="headerlink" title="粗排模型"></a>粗排模型</h4><div align="center">
 <a href="https://imgtu.com/i/4BOiSH" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/24/4BOiSH.png" alt="4BOiSH.png" border="0" width="65%/"></a>
 </div>
 
@@ -4853,49 +5007,255 @@ x_{l+1}=x_0x^T_lw_l+b_l+x_l=f(x_l,w_l,b_l)+x_l</script><ol>
 <li><strong>参数共享</strong>：不同叉乘项对应的权重不同，但并非每个叉乘组合对应独立的权重（指数数量级）， 通过参数共享，Cross有效<strong>降低了参数量</strong>。此外，参数共享还使得模型有更强的<strong>泛化性</strong>和<strong>鲁棒性</strong>。例如，如果独立训练权重，当训练集中$x_i\not =0 \land x_j\not =0$这个叉乘特征没有出现 ，对应权重肯定是零，而参数共享则不会，类似地，数据集中的一些噪声可以由大部分正常样本来纠正权重参数的学习</li>
 </ul>
 <p>训练部分，模型的Deep 部分如上图右侧部分所示，DCN拼接Cross和Deep的输出，采用logistic loss作为损失函数，进行联合训练，这些细节与Wide &amp; Deep几乎是一致的，在这里不再展开论述。另外，文中也在目标函数中加入L2正则防止过拟合。</p>
-<h2 id="Attentional-Factorization-Machines-IJCAI’17"><a href="#Attentional-Factorization-Machines-IJCAI’17" class="headerlink" title="Attentional Factorization Machines[IJCAI’17]"></a>Attentional Factorization Machines[IJCAI’17]</h2><p>本节主要参考<a href="https://zhuanlan.zhihu.com/p/395140453" target="_blank" rel="noopener">推荐算法精排模型AFM</a></p>
-<h3 id="解决的问题-5"><a href="#解决的问题-5" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>FM在做特征交互时，对所有交叉项赋予相同的权重，这可能是不够准确的，不相关的特征的交叉项可能还会引来噪声，论文通过attention机制学习各特征交叉项的重要程度进行加权求和。</p>
-<h3 id="做法及创新-6"><a href="#做法及创新-6" class="headerlink" title="做法及创新"></a>做法及创新</h3><p>前面介绍DeepFM时说到它是典型的一种DNN与FM融合的并行结构，而本节的AFM就是典型的一种串行结构：</p>
-<p><a href="https://imgtu.com/i/4skFPJ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/25/4skFPJ.png" alt="4skFPJ.png" border="0"></a></p>
-<h4 id="核心思想-4"><a href="#核心思想-4" class="headerlink" title="核心思想"></a>核心思想</h4><p>AFM的目的也是像FFM一样区分同一特征与不同特征组合时的相互作用，只是不再划分为field而是通过一个注意力网络学习得到权重，总体参数量增加不明显。</p>
-<p>回顾FM的预测公式：</p>
+<h2 id="Neural-Factorization-Machines-for-Sparse-Predictive-Analytics-SIGIR’17"><a href="#Neural-Factorization-Machines-for-Sparse-Predictive-Analytics-SIGIR’17" class="headerlink" title="Neural Factorization Machines for Sparse Predictive Analytics[SIGIR’17]"></a>Neural Factorization Machines for Sparse Predictive Analytics[SIGIR’17]</h2><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>FM虽然引入了高阶特征，但只限于二阶的特征交叉项，而神经网络非常适合建模更高阶的特征之间的关系，因此论文用神经网络DNN替代FM中二阶隐向量内积的部分。</p>
+<h3 id="做法及创新-1"><a href="#做法及创新-1" class="headerlink" title="做法及创新"></a>做法及创新</h3><p>FM的表达式为：</p>
 <script type="math/tex; mode=display">
-\hat{y}(x):=w_{0}+\sum_{i=1}^{n} w_{i} x_{i}+\sum_{i=1}^{n} \sum_{j=i+1}^{n}<v_{i}, v_{j}>x_{i} x_{j}</script><p>其中需要学习的参数为：</p>
+y=w_0+\sum_{i=1}^nw_ix_i+\sum_{i=1}^n\sum_{j\ge i}^n<v_i,v_j>x_ix_j</script><p>NFM修改为：</p>
 <script type="math/tex; mode=display">
-w_{0} \in \mathbb{R}, \quad w \in \mathbb{R}^{n}, \quad V \in \mathbb{R}^{n \times k}</script><p>它们的含义为：</p>
-<ul>
-<li>$w_0$表示全局的偏差；</li>
-<li>$w_i$表示第i个特征的强度；</li>
-<li>$w_{ij}$表示第i个特征和第j个特征之间的交互，在实际参数学习中不是直接学习交互特征的权重参数$w_{ij}$的，而是通过<strong>学习因式分解参数</strong>来学习交互特征的参数。</li>
-</ul>
-<p><a href="https://imgtu.com/i/4sk3RA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/25/4sk3RA.png" alt="4sk3RA.png" border="0"></a></p>
-<p>输入层和embedding层与FM模型是一样的，其中对于输入特征都采取了稀疏表示，即将所有的非零特征都嵌入到dense特征。嵌入后的表示为$v_ix_i$，而FM中二次项的系数分解为两个特征i和j的嵌入向量的叉乘，$w_{ij}=v_i^Tv_j$，这里$v_i$就是特征i的嵌入向量。</p>
-<p><strong>Pair-wise交互层</strong></p>
-<p>这一层的目的是在神经网络中表达FM的计算逻辑：</p>
-<script type="math/tex; mode=display">
-\hat{y}=\mathbf{p}^{T} \sum_{(i, j) \in \mathcal{R}_{x}}\left(\mathbf{v}_{i} \odot \mathbf{v}_{j}\right) x_{i} x_{j}+b</script><p>向量p置为全1以及b设为0就回退到传统的FM模型。</p>
-<p><strong>Attention-based池化层</strong></p>
-<script type="math/tex; mode=display">
-f_{\text {Att }}\left(f_{P I}(\mathcal{E})\right)=\sum_{(i, j) \in \mathcal{R}_{x}} a_{i j}\left(\mathbf{v}_{i} \odot \mathbf{v}_{j}\right) x_{i} x_{j}</script><p>跟传统attention一样，$a_{ij}$就是表示特征i和j的交互在进行预测时的重要程度，可以直接通过最小化loss函数去学习$a_{ij}$，虽然看起来是可行的，但是这又会碰到之前的问题：当某个交互特征没有出现在样本中时，就没法学习某个交互特征的attention分数了。为了解决这个泛化能力方面的问题，我们使用MLP网络去参数化这个attention分数，该MLP网络称之为attention network。attention network的输入是嵌入后的两个特征的交互向量：</p>
-<script type="math/tex; mode=display">
+y=w_0+\sum_{i=1}^nw_ix_i+f(x)</script><p>其中$f(x)$用来建模特征之间的高阶交互关系，它的架构如下：</p>
+<div align="center">
+<a href="https://imgtu.com/i/os5zsP" target="_blank" rel="noopener"><img src="https://s4.ax1x.com/2021/12/06/os5zsP.png" alt="os5zsP.png" border="0"></a>
+</div>
+* **Embedding Layer**同FM中的$<v_i,v_j>$，将高维的离散特征转化为低维稠密的embedding
+* **Bi-Interaction Layer**同FM的二次项计算过程，将embedding转化为FM中二阶交叉的形式
+* **Hidden Layer**就是引入的神经网络部分，它将上一层的结果进一步输入DNN中，捕捉特征之间的高阶交互关系
+* **Prediction Layer**将最后一层的输出转化为预测评分$f(x)=h^Tz_L$
+
+
+
+
+## Attentional Factorization Machines[IJCAI'17]
+本节主要参考[推荐算法精排模型AFM](https://zhuanlan.zhihu.com/p/395140453)
+
+### 解决的问题
+
+FM在做特征交互时，对所有交叉项赋予相同的权重，这可能是不够准确的，不相关的特征的交叉项可能还会引来噪声，论文通过attention机制学习各特征交叉项的重要程度进行加权求和。
+
+### 做法及创新
+
+前面介绍DeepFM时说到它是典型的一种DNN与FM融合的并行结构，而本节的AFM就是典型的一种串行结构：
+
+<a href="https://imgtu.com/i/4skFPJ" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/25/4skFPJ.png" alt="4skFPJ.png" border="0"></a>
+
+#### 核心思想
+
+AFM的目的也是像FFM一样区分同一特征与不同特征组合时的相互作用，只是不再划分为field而是通过一个注意力网络学习得到权重，总体参数量增加不明显。
+
+回顾FM的预测公式：
+$$
+\hat{y}(x):=w_{0}+\sum_{i=1}^{n} w_{i} x_{i}+\sum_{i=1}^{n} \sum_{j=i+1}^{n}<v_{i}, v_{j}="">x_{i} x_{j}
+$$
+其中需要学习的参数为：
+$$
+w_{0} \in \mathbb{R}, \quad w \in \mathbb{R}^{n}, \quad V \in \mathbb{R}^{n \times k}
+$$
+它们的含义为：
+
+- $w_0$表示全局的偏差；
+- $w_i$表示第i个特征的强度；
+- $w_{ij}$表示第i个特征和第j个特征之间的交互，在实际参数学习中不是直接学习交互特征的权重参数$w_{ij}$的，而是通过**学习因式分解参数**来学习交互特征的参数。
+
+<a href="https://imgtu.com/i/4sk3RA" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/25/4sk3RA.png" alt="4sk3RA.png" border="0"></a>
+
+输入层和embedding层与FM模型是一样的，其中对于输入特征都采取了稀疏表示，即将所有的非零特征都嵌入到dense特征。嵌入后的表示为$v_ix_i$，而FM中二次项的系数分解为两个特征i和j的嵌入向量的叉乘，$w_{ij}=v_i^Tv_j$，这里$v_i$就是特征i的嵌入向量。
+
+**Pair-wise交互层**
+
+这一层的目的是在神经网络中表达FM的计算逻辑：
+$$
+\hat{y}=\mathbf{p}^{T} \sum_{(i, j) \in \mathcal{R}_{x}}\left(\mathbf{v}_{i} \odot \mathbf{v}_{j}\right) x_{i} x_{j}+b
+$$
+向量p置为全1以及b设为0就回退到传统的FM模型。
+
+**Attention-based池化层**
+$$
+f_{\text {Att }}\left(f_{P I}(\mathcal{E})\right)=\sum_{(i, j) \in \mathcal{R}_{x}} a_{i j}\left(\mathbf{v}_{i} \odot \mathbf{v}_{j}\right) x_{i} x_{j}
+$$
+跟传统attention一样，$a_{ij}$就是表示特征i和j的交互在进行预测时的重要程度，可以直接通过最小化loss函数去学习$a_{ij}$，虽然看起来是可行的，但是这又会碰到之前的问题：当某个交互特征没有出现在样本中时，就没法学习某个交互特征的attention分数了。为了解决这个泛化能力方面的问题，我们使用MLP网络去参数化这个attention分数，该MLP网络称之为attention network。attention network的输入是嵌入后的两个特征的交互向量：
+$$
 \begin{aligned}
 a_{i j}^{\prime} &=\mathbf{h}^{T} ReL U\left(\mathbf{W}\left(\mathbf{v}_{i} \odot \mathbf{v}_{j}\right) x_{i} x_{j}+\mathbf{b}\right) \\
 a_{i j} &=\frac{\exp \left(a_{i j}^{\prime}\right)}{\sum_{(i, j) \in \mathcal{R}_{x}} \exp \left(a_{i j}^{\prime}\right)}
-\end{aligned}</script><p>Attention-based 池化层的输出是一个k维的向量，它在embedding空间中通过区分出各特征交互的重要性，来压缩所有的特征交互，然后将这些映射到最终的预测结果上面。</p>
-<p>AFM模型在防止过拟合上的做法：</p>
-<ul>
-<li>dropout方式是通过防止神经元之间的共现性从而防止过拟合。由于AFM模型中会学习所有的特征之间的二阶交互特征，因此更加容易导致模型学习特征之间的共现性从而更容易导致过拟合，因此在pair-wise交互层使用了dropout方法来避免共现性。</li>
-<li>对于AFM模型中的attention network，它是一个单层的MLP网络，这里使用L2正则化来防止过拟合，对于attention network，不选择dropout防止过拟合。</li>
-</ul>
-<h2 id="Practical-Lessons-from-Predicting-Clicks-on-Ads-at-Facebook-ADKDD’14"><a href="#Practical-Lessons-from-Predicting-Clicks-on-Ads-at-Facebook-ADKDD’14" class="headerlink" title="Practical Lessons from Predicting Clicks on Ads at Facebook[ADKDD’14]"></a>Practical Lessons from Predicting Clicks on Ads at Facebook[ADKDD’14]</h2><p>本节主要参考<a href="https://cloud.tencent.com/developer/article/1164780" target="_blank" rel="noopener">GBDT+LR融合方案实战</a>、<a href="https://zhuanlan.zhihu.com/p/280222403" target="_blank" rel="noopener">GBDT的原理</a></p>
-<h3 id="解决的问题-6"><a href="#解决的问题-6" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>LR虽然能够处理大规模数据，但它的学习能力有限，需要大量的特征工程来增加模型的学习能力，这个过程费时费力而且不一定能保证性能上的提升。论文通过GBDT来自动地进行特征组合，来减少人工的特征工程。</p>
-<h3 id="做法及创新-7"><a href="#做法及创新-7" class="headerlink" title="做法及创新"></a>做法及创新</h3><h4 id="核心思想-5"><a href="#核心思想-5" class="headerlink" title="核心思想"></a>核心思想</h4><div align="center">
+\end{aligned}
+$$
+Attention-based 池化层的输出是一个k维的向量，它在embedding空间中通过区分出各特征交互的重要性，来压缩所有的特征交互，然后将这些映射到最终的预测结果上面。
+
+AFM模型在防止过拟合上的做法：
+
+- dropout方式是通过防止神经元之间的共现性从而防止过拟合。由于AFM模型中会学习所有的特征之间的二阶交互特征，因此更加容易导致模型学习特征之间的共现性从而更容易导致过拟合，因此在pair-wise交互层使用了dropout方法来避免共现性。
+- 对于AFM模型中的attention network，它是一个单层的MLP网络，这里使用L2正则化来防止过拟合，对于attention network，不选择dropout防止过拟合。
+
+**输出层**
+
+将池化层的输出结果映射到最终的预测评分中：
+$$
+\hat{y}_{AFM}(x)=w_0+\sum_{i=1}^nw_ix_i+\mathbf{p}^{T} \sum_{i=1}^n\sum_{j=i+1}^na_{ij}\left(\mathbf{v}_{i} \odot \mathbf{v}_{j}\right) x_{i} x_{j}+b
+$$
+
+
+## Practical Lessons from Predicting Clicks on Ads at Facebook[ADKDD'14]
+
+本节主要参考[GBDT+LR融合方案实战](https://cloud.tencent.com/developer/article/1164780)、[GBDT的原理](https://zhuanlan.zhihu.com/p/280222403)
+
+### 解决的问题
+
+LR虽然能够处理大规模数据，但它的学习能力有限，需要大量的特征工程来增加模型的学习能力，这个过程费时费力而且不一定能保证性能上的提升。论文通过GBDT来自动地进行特征组合，来减少人工的特征工程。
+
+### 做法及创新
+
+#### 核心思想
+
+<div align="center">
 <a href="https://imgtu.com/i/IWxx1O" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/16/IWxx1O.png" alt="IWxx1O.png" border="0"></a>
 </div>
 
-<p>通过GBDT将每棵树的叶子节点编码作为新的特征，输入LR模型。以上图为例，图中的梯度提升树有左右两棵子树，叶节点的数量分别为3和2，假设输入的样本x经过梯度提升树后落在了左子树的第二个叶节点以及右子树的第一个叶节点，则新的特征表示为[0,1,0,1,0]，是一种one-hot的编码形式。</p>
+
+<p>通过GBDT将每棵树的叶子节点编码作为新的特征，输入LR模型。以上图为例，图中的梯度提升树有左右两棵子树，叶节点的数量分别为3和2，假设输入的样本$x$经过梯度提升树后落在了左子树的第二个叶节点以及右子树的第一个叶节点，则新的特征表示为$[0,1,0,1,0]$，是一种one-hot的编码形式。</p>
 <p>GBDT及决策树的介绍可见<a href="https://zhuanlan.zhihu.com/p/339380585" target="_blank" rel="noopener">决策树的原理</a>，作者介绍的非常详细。</p>
-]]></content>
+<h2 id="Pytorch-FM"><a href="#Pytorch-FM" class="headerlink" title="Pytorch-FM"></a>Pytorch-FM</h2><p>介绍了LR、FM等方法后，这里通过<a href="https://github.com/rixwew/pytorch-fm" target="_blank" rel="noopener">pytorch-fm</a>库来了解这些模型的具体实现。</p>
+<p><strong>数据预处理</strong></p>
+<p><code>MovieLens20M</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MovieLens20MDataset</span><span class="params">(torch.utils.data.Dataset)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    MovieLens 20M Dataset</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Data preparation</span></span><br><span class="line"><span class="string">        treat samples with a rating less than 3 as negative samples</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param dataset_path: MovieLens dataset path</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Reference:</span></span><br><span class="line"><span class="string">        https://grouplens.org/datasets/movielens</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, dataset_path, sep=<span class="string">','</span>, engine=<span class="string">'c'</span>, header=<span class="string">'infer'</span>)</span>:</span></span><br><span class="line">        data = pd.read_csv(dataset_path, sep=sep, engine=engine, header=header).to_numpy()[:, :<span class="number">3</span>]</span><br><span class="line">        self.items = data[:, :<span class="number">2</span>].astype(np.int) - <span class="number">1</span>  <span class="comment"># -1 because ID begins from 1</span></span><br><span class="line">        self.targets = self.__preprocess_target(data[:, <span class="number">2</span>]).astype(np.float32)</span><br><span class="line">        self.field_dims = np.max(self.items, axis=<span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        self.user_field_idx = np.array((<span class="number">0</span>, ), dtype=np.long)</span><br><span class="line">        self.item_field_idx = np.array((<span class="number">1</span>,), dtype=np.long)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.targets.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, index)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.items[index], self.targets[index]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__preprocess_target</span><span class="params">(self, target)</span>:</span></span><br><span class="line">        target[target &lt;= <span class="number">3</span>] = <span class="number">0</span></span><br><span class="line">        target[target &gt; <span class="number">3</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> target</span><br></pre></td></tr></table></figure>
+<p>ml-20m/ratings.csv形式如下：</p>
+<div align="center">
+<a href="https://imgtu.com/i/IobKZd" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/18/IobKZd.png" alt="IobKZd.png" border="0"></a>
+</div>
+* 这里的实现继承torch.utils.data.Dataset，根据官方文档的说明，一个自定义的数据集必须包含三个函数：*\_\_init\_\_, \_\_len\_\_, \_\_getitem\_\__*
+  * *\_\_init\_\_*在数据集实例化时运行一次
+  * *\_\_len\_\_*返回数据集中的样本个数
+  * *\_\_getitem\_\_*给定一个索引idx返回一个对应位置的样本，这里返回的是用户Id、电影Id以及评分离散化后的标签
+* pd.read_csv返回值为dataframe，不支持[:, :3]切片操作，因此需要首先通过to_numpy()转化为ndarray格式。
+* [:, :3]表示取前三列['userId', 'movieId', 'rating']
+* items = data[:, :2].astype(np.int)取出前两列['userId', 'movieId']，并指定它们的格式为int64，因为数据集中id从1开始编码，这里的-1操作是让id从0开始编码
+* targets = data[:, 2]取出['rating']这一列并将其中的值离散为0和1，这里的实现方式是将评分小于等于3的电影看成负样本，targets.shape[0]即为评分总数，在Movielens20M中为20000263
+* np.max求序列中的最大值，axis=0表示纵向，这里得到的field_dims包含两个元素，分别是user和movie的数量，+1的原因是上一步里将id从0开始编码，而数量是从1开始计数
+* np.array((0, ), dtype=np.long)得到一个行数为1的array，列数不固定
+
+`MovieLens1M`
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MovieLens1MDataset</span><span class="params">(MovieLens20MDataset)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    MovieLens 1M Dataset</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Data preparation</span></span><br><span class="line"><span class="string">        treat samples with a rating less than 3 as negative samples</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param dataset_path: MovieLens dataset path</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Reference:</span></span><br><span class="line"><span class="string">        https://grouplens.org/datasets/movielens</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, dataset_path)</span>:</span></span><br><span class="line">        super().__init__(dataset_path, sep=<span class="string">'::'</span>, engine=<span class="string">'python'</span>, header=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+
+ml-1m/ratings.dat形式如下：
+
+<div align="center">
+<a href="https://imgtu.com/i/ITm75R" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/18/ITm75R.png" alt="ITm75R.png" border="0"></a>
+</div>
+和MovieLens20M完全相同，所以这里直接调用了MovieLens20MDataset的构造函数
+
+### 基本组件
+
+#### FeaturesLinear
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FeaturesLinear</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, field_dims, output_dim=<span class="number">1</span>)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.fc = torch.nn.Embedding(sum(field_dims), output_dim)</span><br><span class="line">        self.bias = torch.nn.Parameter(torch.zeros((output_dim,)))</span><br><span class="line">        self.offsets = np.array((<span class="number">0</span>, *np.cumsum(field_dims)[:<span class="number">-1</span>]), dtype=np.long)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Long tensor of size ``(batch_size, num_fields)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        x = x + x.new_tensor(self.offsets).unsqueeze(<span class="number">0</span>)</span><br><span class="line">        <span class="comment"># a = torch.tensor([[1,2,3],[4,5,6]])</span></span><br><span class="line">        <span class="comment"># torch.sum(a,dim=1) -&gt; tensor([6,15]) &lt;- torch.Size([2])</span></span><br><span class="line">        <span class="keyword">return</span> torch.sum(self.fc(x), dim=<span class="number">1</span>) + self.bias</span><br></pre></td></tr></table></figure>
+
+* 参考[推荐系统——FFM模型点击率CTR预估（代码，数据流动详细过程）](https://www.cnblogs.com/sunupo/p/12826308.html)
+
+* fc将输入的特征转换为embedding返回，相当于构建了一个embedding字典，以MovieLens20M为例，field_dims为[138493, 131262]，分别为用户Id与电影Id的数量，则sum(field_dims)为269755，是所有Id的总数，这里是把每个Id看作一个特征，那么索引为1到269755，每个索引对应一个长度为output_dim=1的向量，这里取output_dim=1对应LR中$\sum_{i=1}^{n}w_ix_i$的系数$w_i$
+
+  * `torch.nn.Embedding(num_embeddings, embedding_dim)`
+    * num_embeddings：存储的embedding数量
+    * embedding_dim：embedding的维度
+
+  <div align="center">
+    <a href="https://imgtu.com/i/oFhlFI" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/25/oFhlFI.jpg" alt="oFhlFI.jpg" border="0"></a>
+  </div>
+
+<ul>
+<li><p>LR将线性回归模型与Sigmoid函数相结合，线性回归模型的常见形式为$y=w^Tx+b$，这里的bias即对应$b$，初始化为0，作为模型参数的一部分torch.nn.Parameter可以在训练过程中被更新</p>
+</li>
+<li><p>offset的作用是得到每个特征的索引偏移量，这里以field_dims=[5,10,5]为例，样本为[1,5,1]，那么one-hot编码过后为[<strong>1</strong>,0,0,0,0,0,0,0,0,<strong>1</strong>,0,0,0,0,0,<strong>1</strong>,0,0,0,0]，1所在的位置对应的索引分别为1、10、16，offset的作用就是得到这个索引：</p>
+<ul>
+<li>np.cumsum()返回序列中每个元素的累加和，那么offset为np.cumsum(field_dims)[:-1]=[0,5,15]，与输入的样本求和就得到[1,5,1]+[0,5,15]=[1,10,16]</li>
+<li>以1、10和16作为索引从embedding字典中取出对应的embedding，样本[1,5,1]会取出三个embedding，torch.sum(self.fc(x), dim=1)的作用就是将三个embedding求和得到样本最终的embedding</li>
+</ul>
+</li>
+<li><p>x.new_tensor(self.offsets)在MovieLens20M的例子中得到的tensor形状为torch.Size([1,2])，因此通过unsqueeze(0)去掉第一个维度的1</p>
+</li>
+<li><p>self.fc(x)会得到一个batch_size*num_field*output_dim的tensor，torch.sum(self.fc(x), dim=1)得到一个batch_size*output_dim的tensor</p>
+</li>
+<li><p><code>FeaturesLinear</code>对应LR中的$w^Tx+b$，FM中的$w_0+\sum_{i=1}^nw_ix_i$</p>
+</li>
+</ul>
+<h4 id="FeaturesEmbedding"><a href="#FeaturesEmbedding" class="headerlink" title="FeaturesEmbedding"></a>FeaturesEmbedding</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FeaturesEmbedding</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, field_dims, embed_dim)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.embedding = torch.nn.Embedding(sum(field_dims), embed_dim)</span><br><span class="line">        self.offsets = np.array((<span class="number">0</span>, *np.cumsum(field_dims)[:<span class="number">-1</span>]), dtype=np.long)</span><br><span class="line">        torch.nn.init.xavier_uniform_(self.embedding.weight.data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Long tensor of size ``(batch_size, num_fields)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        x = x + x.new_tensor(self.offsets).unsqueeze(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> self.embedding(x)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参考<a href="https://zhuanlan.zhihu.com/p/165610397" target="_blank" rel="noopener">FM 代码实现细节（Embedding 和数学实现）</a></li>
+</ul>
+<h4 id="MultiLayer-Perceptron"><a href="#MultiLayer-Perceptron" class="headerlink" title="MultiLayer Perceptron"></a>MultiLayer Perceptron</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MultiLayerPerceptron</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, input_dim, embed_dims, dropout, output_layer=True)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        layers = list()</span><br><span class="line">        <span class="keyword">for</span> embed_dim <span class="keyword">in</span> embed_dims:</span><br><span class="line">            layers.append(torch.nn.Linear(input_dim, embed_dim))</span><br><span class="line">            layers.append(torch.nn.BatchNorm1d(embed_dim))</span><br><span class="line">            layers.append(torch.nn.ReLU())</span><br><span class="line">            layers.append(torch.nn.Dropout(p=dropout))</span><br><span class="line">            input_dim = embed_dim</span><br><span class="line">        <span class="keyword">if</span> output_layer:</span><br><span class="line">            layers.append(torch.nn.Linear(input_dim, <span class="number">1</span>))</span><br><span class="line">        self.mlp = torch.nn.Sequential(*layers)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Float tensor of size ``(batch_size, embed_dim)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.mlp(x)</span><br></pre></td></tr></table></figure>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><h4 id="Logistics-Regression"><a href="#Logistics-Regression" class="headerlink" title="Logistics Regression"></a>Logistics Regression</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_model</span><span class="params">(name, dataset)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Hyperparameters are empirically determined, not opitmized.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    field_dims = dataset.field_dims</span><br><span class="line">    <span class="keyword">if</span> name == <span class="string">'lr'</span>:</span><br><span class="line">        <span class="keyword">return</span> LogisticRegressionModel(field_dims)</span><br><span class="line">      </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LogisticRegressionModel</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    A pytorch implementation of Logistic Regression.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, field_dims)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.linear = FeaturesLinear(field_dims)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Long tensor of size ``(batch_size, num_fields)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> torch.sigmoid(self.linear(x).squeeze(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="Factorization-Machine"><a href="#Factorization-Machine" class="headerlink" title="Factorization Machine"></a>Factorization Machine</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FactorizationMachine</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, reduce_sum=True)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.reduce_sum = reduce_sum</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Float tensor of size ``(batch_size, num_fields, embed_dim)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        square_of_sum = torch.sum(x, dim=<span class="number">1</span>) ** <span class="number">2</span></span><br><span class="line">        sum_of_square = torch.sum(x ** <span class="number">2</span>, dim=<span class="number">1</span>)</span><br><span class="line">        ix = square_of_sum - sum_of_square</span><br><span class="line">        <span class="comment"># if reduce_sum = False, ouput size is (batch_size, embed_dim)</span></span><br><span class="line">        <span class="comment"># if reduce_sum = True, ouput size is (batch_size, 1)</span></span><br><span class="line">        <span class="keyword">if</span> self.reduce_sum:</span><br><span class="line">            ix = torch.sum(ix, dim=<span class="number">1</span>, keepdim=<span class="keyword">True</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.5</span> * ix</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FactorizationMachineModel</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    A pytorch implementation of Factorization Machine.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Reference:</span></span><br><span class="line"><span class="string">        S Rendle, Factorization Machines, 2010.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, field_dims, embed_dim)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.embedding = FeaturesEmbedding(field_dims, embed_dim)</span><br><span class="line">        self.linear = FeaturesLinear(field_dims)</span><br><span class="line">        self.fm = FactorizationMachine(reduce_sum=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Long tensor of size ``(batch_size, num_fields)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        x = self.linear(x) + self.fm(self.embedding(x))</span><br><span class="line">        <span class="keyword">return</span> torch.sigmoid(x.squeeze(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+y=w_0+\sum_{i=1}^nw_ix_i+\frac{1}{2}\sum_{f=1}^k[(\sum_{i=1}^nv_{i,f}x_i)^2-\sum_{i=1}^nv_{i,f}^2x_i^2]</script><p>pytorch-fm的实现中</p>
+<script type="math/tex; mode=display">
+\frac{1}{2}\sum_{f=1}^k[(\sum_{i=1}^nv_{i,f}x_i)^2-\sum_{i=1}^nv_{i,f}^2x_i^2]=\frac{1}{2}\sum_{f=1}^k(S_{1,f}^2-S_{2,f})=\frac{1}{2}(S_1^2-S_2)</script><ul>
+<li>$\sum_{i=1}^nv_{i,f}x_i$中的$x_i$通常很稀疏，以MovieLens为例：</li>
+</ul>
+<div align="center">
+  <a href="https://imgtu.com/i/oFhlFI" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/25/oFhlFI.jpg" alt="oFhlFI.jpg" border="0"></a>
+</div>
+
+<p>​    以一个batch中的样本为例，假设batch_size=56，那么在MovieLens1M数据集上得到的就是维度为[56,2]的输入，其中第一列为用户id，第二列为电影id：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># x.shape -&gt; torch.Size([56,2])</span></span><br><span class="line">x -&gt; tensor(</span><br><span class="line">  [[   <span class="number">0</span>,  <span class="number">660</span>],</span><br><span class="line">   [   <span class="number">0</span>,  <span class="number">913</span>],</span><br><span class="line">   [   <span class="number">0</span>, <span class="number">3407</span>],</span><br><span class="line">   [   <span class="number">0</span>, <span class="number">2354</span>],</span><br><span class="line">   ...</span><br><span class="line">   [   <span class="number">1</span>,  <span class="number">646</span>]]</span><br><span class="line">)</span><br><span class="line">embedding = FeaturesEmbedding(dataset.field_dims,<span class="number">10</span>)</span><br><span class="line">e = embedding(x)</span><br><span class="line"><span class="comment"># e.shape -&gt; torch.Size([56, 2, 10])</span></span><br><span class="line">e -&gt; tensor(</span><br><span class="line">  [[[ <span class="number">0.0116</span>, <span class="number">-0.0165</span>,  <span class="number">0.0232</span>,  ...,  <span class="number">0.0208</span>,  <span class="number">0.0075</span>, <span class="number">-0.0057</span>],</span><br><span class="line">    [<span class="number">-0.0108</span>, <span class="number">-0.0218</span>,  <span class="number">0.0192</span>,  ...,  <span class="number">0.0243</span>,  <span class="number">0.0056</span>, <span class="number">-0.0129</span>]],</span><br><span class="line"></span><br><span class="line">   [[ <span class="number">0.0116</span>, <span class="number">-0.0165</span>,  <span class="number">0.0232</span>,  ...,  <span class="number">0.0208</span>,  <span class="number">0.0075</span>, <span class="number">-0.0057</span>],</span><br><span class="line">    [<span class="number">-0.0098</span>, <span class="number">-0.0042</span>, <span class="number">-0.0118</span>,  ...,  <span class="number">0.0168</span>,  <span class="number">0.0208</span>, <span class="number">-0.0151</span>]],</span><br><span class="line"></span><br><span class="line">   [[ <span class="number">0.0116</span>, <span class="number">-0.0165</span>,  <span class="number">0.0232</span>,  ...,  <span class="number">0.0208</span>,  <span class="number">0.0075</span>, <span class="number">-0.0057</span>],</span><br><span class="line">    [ <span class="number">0.0041</span>, <span class="number">-0.0208</span>, <span class="number">-0.0117</span>,  ..., <span class="number">-0.0241</span>,  <span class="number">0.0067</span>, <span class="number">-0.0147</span>]],</span><br><span class="line">   ...,</span><br><span class="line"></span><br><span class="line">   [[<span class="number">-0.0053</span>,  <span class="number">0.0034</span>,  <span class="number">0.0165</span>,  ...,  <span class="number">0.0195</span>,  <span class="number">0.0137</span>,  <span class="number">0.0239</span>],</span><br><span class="line">    [<span class="number">-0.0009</span>,  <span class="number">0.0021</span>, <span class="number">-0.0135</span>,  ..., <span class="number">-0.0206</span>,  <span class="number">0.0217</span>,  <span class="number">0.0160</span>]],</span><br><span class="line"></span><br><span class="line">   [[<span class="number">-0.0053</span>,  <span class="number">0.0034</span>,  <span class="number">0.0165</span>,  ...,  <span class="number">0.0195</span>,  <span class="number">0.0137</span>,  <span class="number">0.0239</span>],</span><br><span class="line">    [ <span class="number">0.0064</span>, <span class="number">-0.0229</span>, <span class="number">-0.0185</span>,  ...,  <span class="number">0.0148</span>,  <span class="number">0.0118</span>,  <span class="number">0.0018</span>]],</span><br><span class="line"></span><br><span class="line">   [[<span class="number">-0.0053</span>,  <span class="number">0.0034</span>,  <span class="number">0.0165</span>,  ...,  <span class="number">0.0195</span>,  <span class="number">0.0137</span>,  <span class="number">0.0239</span>],</span><br><span class="line">    [<span class="number">-0.0141</span>,  <span class="number">0.0136</span>, <span class="number">-0.0051</span>,  ..., <span class="number">-0.0224</span>, <span class="number">-0.0162</span>, <span class="number">-0.0134</span>]]],</span><br><span class="line">  grad_fn=&lt;EmbeddingBackward&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>取样本中的第一个交互记录[0, 660]，假设经过one-hot编码后用户0在整个特征向量中是第0个，电影660是第6700个，在<code>FeaturesEmbedding</code>中通过x = x + x.new_tensor(self.offsets).unsqueeze(0)转化为一个除了第0位与6700位为1之外其余均为0的特征向量，self.embedding()从embedding字典中根据索引0和6700取出对应的embedding，则$\sum_{i=1}^nv_{i,f}x_i=v_{0,f}\times1+v_{6700,f}\times1$，就是取出的embedding相加：</p>
+<p>[ 0.0116, -0.0165,  0.0232,  …,  0.0208,  0.0075, -0.0057]</p>
+<p>[-0.0108, -0.0218,  0.0192,  …,  0.0243,  0.0056, -0.0129]</p>
+</li>
+<li><p>实现上面的embedding相加是通过torch.sum(dim=1)，因此pytorch-fm的实现方式为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">square_of_sum = torch.sum(x, dim=<span class="number">1</span>) ** <span class="number">2</span></span><br><span class="line">sum_of_square = torch.sum(x ** <span class="number">2</span>, dim=<span class="number">1</span>)</span><br><span class="line">ix = square_of_sum - sum_of_square</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Field-aware-Factorization-Machine"><a href="#Field-aware-Factorization-Machine" class="headerlink" title="Field-aware Factorization Machine"></a>Field-aware Factorization Machine</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FieldAwareFactorizationMachine</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, field_dims, embed_dim)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.num_fields = len(field_dims)</span><br><span class="line">        self.embeddings = torch.nn.ModuleList([</span><br><span class="line">            torch.nn.Embedding(sum(field_dims), embed_dim) <span class="keyword">for</span> _ <span class="keyword">in</span> range(self.num_fields)</span><br><span class="line">        ])</span><br><span class="line">        self.offsets = np.array((<span class="number">0</span>, *np.cumsum(field_dims)[:<span class="number">-1</span>]), dtype=np.long)</span><br><span class="line">        <span class="keyword">for</span> embedding <span class="keyword">in</span> self.embeddings:</span><br><span class="line">            torch.nn.init.xavier_uniform_(embedding.weight.data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Long tensor of size ``(batch_size, num_fields)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        x = x + x.new_tensor(self.offsets).unsqueeze(<span class="number">0</span>)</span><br><span class="line">        xs = [self.embeddings[i](x) <span class="keyword">for</span> i <span class="keyword">in</span> range(self.num_fields)]</span><br><span class="line">        ix = list()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.num_fields - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, self.num_fields):</span><br><span class="line">                ix.append(xs[j][:, i] * xs[i][:, j])</span><br><span class="line">        ix = torch.stack(ix, dim=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> ix</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FieldAwareFactorizationMachineModel</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    A pytorch implementation of Field-aware Factorization Machine.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Reference:</span></span><br><span class="line"><span class="string">        Y Juan, et al. Field-aware Factorization Machines for CTR Prediction, 2015.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, field_dims, embed_dim)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.linear = FeaturesLinear(field_dims)</span><br><span class="line">        self.ffm = FieldAwareFactorizationMachine(field_dims, embed_dim)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Long tensor of size ``(batch_size, num_fields)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        ffm_term = torch.sum(torch.sum(self.ffm(x), dim=<span class="number">1</span>), dim=<span class="number">1</span>, keepdim=<span class="keyword">True</span>)</span><br><span class="line">        x = self.linear(x) + ffm_term</span><br><span class="line">        <span class="keyword">return</span> torch.sigmoid(x.squeeze(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>在FM中，不对各个field之间的交互进行区分，而FFM中，每一维特征，在与每个field的特征交互时使用的是不同的隐变量，因此有多少个field就需要构建多少个torch.nn.Embedding层：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.embeddings = torch.nn.ModuleList([</span><br><span class="line">  torch.nn.Embedding(sum(field_dims), embed_dim) <span class="keyword">for</span> _ <span class="keyword">in</span> range(self.num_fields)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>xs = [self.embeddings[i](x) for i in range(self.num_fields)]</code>得到一个长度为num_fields的列表，其中的每一个元素大小为batch_size*num_fields*embed_dim，即FM中embedding大小，而这里形成的num_fields个元素就体现了FFM的Field-aware的思想，以batch_size=5，num_fields=3为例，则列表的第1、2、3个元素分别记录着当前batch中的所有样本各自的特征对第1、2、3个field的隐向量。</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ix = list()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(self.num_fields - <span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, self.num_fields):</span><br><span class="line">        ix.append(xs[j][:, i] * xs[i][:, j])</span><br></pre></td></tr></table></figure>
+<p>这里的代码是求$w_{i,f_j}\cdot w_{j,f_i}x_ix_j$，以field_dims=[5,10,5]，样本[1,5,1]为例，首先需要说明的是在FFM中同一field之间的特征不交互，例如”1”和”5”不交互，因为1和5属于[1,2,…,5]都是field1，所以考虑的是field1、field2、field3之间的交叉。</p>
+<p>每个embeddings[i]都是n*sum(field_dims)=20大小的字典，根据对应的索引取出embedding。样本经过offset后得到[1,10,16]，因为只有1、10和16的位置不为0，所以只会考虑这三个特征之间的相互交互，得到3项特征交互项：field1*field2，field2*field3、field1*field3，则最后得到的ix就是一个长度为3（指特征交互项的数目，不是num_fields）的列表。</p>
+<p>关于参与交互的特征，id类特征经过one-hot编码后每一个id就是一个特征了，只有当前id的电影在这个特征上为1其余电影均为0。而其他0/1变量例如是否为动作电影等各自成为一个特征：</p>
+<p>|        |      |      |      |      |      | is_action |<br>| :——: | :—: | :—: | :—: | :—: | :—: | :———-: |<br>| movie1 |  1   |  0   |  0   |  0   |  0   |     1     |<br>| movie2 |  0   |  1   |  0   |  0   |  0   |     1     |<br>| movie3 |  0   |  0   |  1   |  0   |  0   |     0     |</p>
+<p>还是以样本[1,5,1]为例，它的特征向量[1,10,16]对3个field的隐向量分别为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">[[<span class="number">-0.3187</span>, <span class="number">-0.2215</span>,  <span class="number">0.2950</span>, <span class="number">-0.2186</span>],  <span class="comment"># 特征“1”对field1的隐向量</span></span><br><span class="line"> [<span class="number">-0.1316</span>,  <span class="number">0.1353</span>,  <span class="number">0.3162</span>,  <span class="number">0.0994</span>], <span class="comment"># 特征“10”对field1的隐向量</span></span><br><span class="line"> [ <span class="number">0.1061</span>,  <span class="number">0.0932</span>, <span class="number">-0.3512</span>, <span class="number">-0.2172</span>]], <span class="comment"># 特征“16”对field1的隐向量</span></span><br><span class="line"></span><br><span class="line">[[<span class="number">-0.2026</span>,  <span class="number">0.0910</span>, <span class="number">-0.1647</span>, <span class="number">-0.0428</span>], <span class="comment"># 特征“1”对field2的隐向量</span></span><br><span class="line"> [ <span class="number">0.1085</span>,  <span class="number">0.2459</span>,  <span class="number">0.2358</span>, <span class="number">-0.0501</span>], <span class="comment"># 特征“10”对field2的隐向量</span></span><br><span class="line"> [ <span class="number">0.2694</span>,  <span class="number">0.0325</span>,  <span class="number">0.2198</span>,  <span class="number">0.2486</span>]], <span class="comment"># 特征“16”对field2的隐向量</span></span><br><span class="line"></span><br><span class="line">[[<span class="number">-0.0756</span>, <span class="number">-0.1417</span>,  <span class="number">0.0075</span>,  <span class="number">0.0632</span>], <span class="comment"># 特征“1”对field3的隐向量</span></span><br><span class="line"> [<span class="number">-0.0770</span>,  <span class="number">0.2010</span>,  <span class="number">0.0051</span>,  <span class="number">0.0050</span>], <span class="comment"># 特征“10”对field3的隐向量</span></span><br><span class="line">  [<span class="number">-0.1394</span>,  <span class="number">0.0776</span>,  <span class="number">0.2685</span>, <span class="number">-0.1017</span>]], <span class="comment"># 特征“16”对field3的隐向量</span></span><br></pre></td></tr></table></figure>
+<p>最终得到的ix为长度为3（指特征交互项的数目，不是num_fields）的列表：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># [tensor([</span></span><br><span class="line"><span class="comment">#					[ 0.0267,  0.0123, -0.0521, -0.0043],</span></span><br><span class="line"><span class="comment">#         [-0.0288, -0.0049,  0.0477,  0.0070],</span></span><br><span class="line"><span class="comment">#         [ 0.0045, -0.0982,  0.0159, -0.0079],</span></span><br><span class="line"><span class="comment">#         [ 0.0352, -0.0154,  0.0057, -0.0013],</span></span><br><span class="line"><span class="comment">#         [-0.0783, -0.0160,  0.0329, -0.0632]</span></span><br><span class="line"><span class="comment">#				], grad_fn=&lt;MulBackward0&gt;),   	</span></span><br><span class="line"><span class="comment">#  tensor([</span></span><br><span class="line"><span class="comment">#					[-0.0080, -0.0132, -0.0026, -0.0137],</span></span><br><span class="line"><span class="comment">#         [-0.0080, -0.0132, -0.0026, -0.0137],</span></span><br><span class="line"><span class="comment">#         [-0.0933, -0.0658, -0.0572, -0.0075],</span></span><br><span class="line"><span class="comment">#         [ 0.0065, -0.0565, -0.0052, -0.1054],</span></span><br><span class="line"><span class="comment">#         [-0.0130, -0.0319, -0.0128,  0.0080]</span></span><br><span class="line"><span class="comment">#				], grad_fn=&lt;MulBackward0&gt;), </span></span><br><span class="line"><span class="comment">#  tensor([</span></span><br><span class="line"><span class="comment">#					[-0.0207,  0.0065,  0.0011,  0.0012],</span></span><br><span class="line"><span class="comment">#         [-0.0487,  0.0010,  0.0265,  0.0394],</span></span><br><span class="line"><span class="comment">#         [ 0.0219, -0.0474, -0.0293, -0.0323],</span></span><br><span class="line"><span class="comment">#         [-0.0141, -0.0528,  0.0460, -0.0026],</span></span><br><span class="line"><span class="comment">#         [ 0.0227,  0.0099,  0.0768,  0.0151]</span></span><br><span class="line"><span class="comment">#				], grad_fn=&lt;MulBackward0&gt;)]</span></span><br></pre></td></tr></table></figure>
+<p>[0.0267,  0.0123, -0.0521, -0.0043]表示batch_size=5的batch中样本1的特征”1”和特征”10”的交互，</p>
+<p>[-0.0288, -0.0049,  0.0477,  0.0070]表示batch_size=5的batch中样本2的特征”1”和特征”10”的交互，</p>
+<p>[-0.0080, -0.0132, -0.0026, -0.0137]表示batch_size=5的batch中样本1的特征”1”和特征”16”的交互，以此类推</p>
+</li>
+<li><p>上面得到的ix中的元素是不同样本的相同特征交互项，例如都表示特征”1”和特征”10”的交互，我们希望得到相同样本的不同特征交互项，代码中就是通过<code>ix = torch.stack(ix, dim=1)</code>实现：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#	tensor(</span></span><br><span class="line"><span class="comment">#       [[[ 0.0267,  0.0123, -0.0521, -0.0043],</span></span><br><span class="line"><span class="comment">#          [-0.0080, -0.0132, -0.0026, -0.0137],</span></span><br><span class="line"><span class="comment">#          [-0.0207,  0.0065,  0.0011,  0.0012]],</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#         [[-0.0288, -0.0049,  0.0477,  0.0070],</span></span><br><span class="line"><span class="comment">#          [-0.0080, -0.0132, -0.0026, -0.0137],</span></span><br><span class="line"><span class="comment">#          [-0.0487,  0.0010,  0.0265,  0.0394]],</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#         [[ 0.0045, -0.0982,  0.0159, -0.0079],</span></span><br><span class="line"><span class="comment">#          [-0.0933, -0.0658, -0.0572, -0.0075],</span></span><br><span class="line"><span class="comment">#          [ 0.0219, -0.0474, -0.0293, -0.0323]],</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#         [[ 0.0352, -0.0154,  0.0057, -0.0013],</span></span><br><span class="line"><span class="comment">#          [ 0.0065, -0.0565, -0.0052, -0.1054],</span></span><br><span class="line"><span class="comment">#          [-0.0141, -0.0528,  0.0460, -0.0026]],</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#         [[-0.0783, -0.0160,  0.0329, -0.0632],</span></span><br><span class="line"><span class="comment">#          [-0.0130, -0.0319, -0.0128,  0.0080],</span></span><br><span class="line"><span class="comment">#          [ 0.0227,  0.0099,  0.0768,  0.0151]]], grad_fn=&lt;StackBackward&gt;)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ffm_term = torch.sum(torch.sum(self.ffm(x), dim=<span class="number">1</span>), dim=<span class="number">1</span>, keepdim=<span class="keyword">True</span>)</span><br><span class="line">x = self.linear(x) + ffm_term</span><br></pre></td></tr></table></figure>
+<p>各自得到线性和特征交互项后，通过上面的代码将两部分相加。self.ffm(x)返回batch_size*num_fields*embed_dim大小的列表，torch.sum(self.ffm(x), dim=1)沿着num_fields对各个field求和，得到batch_size<em>embed_dim的结果，再沿着embed_dim求和得到batch_size\</em>1的结果，即为ffm_term的大小，而self.linear(x)返回的是batch_size*output_dim大小的列表，其中output_dim=1，因此两部分可以直接相加，最后通过<code>x.squeeze(1)</code>消除长度为1的维度。</p>
+</li>
+<li><p>最后经过一个sigmoid得到大小为batch_size的一个tensor，其中每一个元素都在0到1之间，在MovieLens1M下表示用户喜欢电影的概率，CTR预估场景下为广告是否会被点击的概率。</p>
+</li>
+</ul>
+<h4 id="Wide-amp-Deep"><a href="#Wide-amp-Deep" class="headerlink" title="Wide &amp; Deep"></a>Wide &amp; Deep</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">elif</span> name == <span class="string">'wd'</span>:</span><br><span class="line">  <span class="keyword">return</span> WideAndDeepModel(field_dims, embed_dim=<span class="number">16</span>, mlp_dims=(<span class="number">16</span>, <span class="number">16</span>), dropout=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WideAndDeepModel</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    A pytorch implementation of wide and deep learning.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Reference:</span></span><br><span class="line"><span class="string">        HT Cheng, et al. Wide &amp; Deep Learning for Recommender Systems, 2016.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, field_dims, embed_dim, mlp_dims, dropout)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.linear = FeaturesLinear(field_dims)</span><br><span class="line">        self.embedding = FeaturesEmbedding(field_dims, embed_dim)</span><br><span class="line">        self.embed_output_dim = len(field_dims) * embed_dim</span><br><span class="line">        self.mlp = MultiLayerPerceptron(self.embed_output_dim, mlp_dims, dropout)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Long tensor of size ``(batch_size, num_fields)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        embed_x = self.embedding(x)</span><br><span class="line">        x = self.linear(x) + self.mlp(embed_x.view(<span class="number">-1</span>, self.embed_output_dim))</span><br><span class="line">        <span class="keyword">return</span> torch.sigmoid(x.squeeze(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Wide &amp; Deep模型中，Deep包含所有特征，Wide中包含人工设计的需要加强记忆能力的特征交互，Deep部分在pytorch-fm中由MLP实现，而Wide部分使用的是全部的物品特征，而且没有人工设计特征交互，使用LR进行实现。</li>
+<li><code>embed_x.view(-1, self.embed_output_dim)</code>中的-1表示这一维度将由其他维度的结果推测得到。</li>
+</ul>
+<h4 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a>DeepFM</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">elif</span> name == <span class="string">'dfm'</span>:</span><br><span class="line">  <span class="keyword">return</span> DeepFactorizationMachineModel(field_dims, embed_dim=<span class="number">16</span>, mlp_dims=(<span class="number">16</span>, <span class="number">16</span>), dropout=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DeepFactorizationMachineModel</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    A pytorch implementation of DeepFM.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Reference:</span></span><br><span class="line"><span class="string">        H Guo, et al. DeepFM: A Factorization-Machine based Neural Network for CTR Prediction, 2017.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, field_dims, embed_dim, mlp_dims, dropout)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.linear = FeaturesLinear(field_dims)</span><br><span class="line">        self.fm = FactorizationMachine(reduce_sum=<span class="keyword">True</span>)</span><br><span class="line">        self.embedding = FeaturesEmbedding(field_dims, embed_dim)</span><br><span class="line">        self.embed_output_dim = len(field_dims) * embed_dim</span><br><span class="line">        self.mlp = MultiLayerPerceptron(self.embed_output_dim, mlp_dims, dropout)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Long tensor of size ``(batch_size, num_fields)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        embed_x = self.embedding(x)</span><br><span class="line">        x = self.linear(x) + self.fm(embed_x) + self.mlp(embed_x.view(<span class="number">-1</span>, self.embed_output_dim))</span><br><span class="line">        <span class="keyword">return</span> torch.sigmoid(x.squeeze(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>与Wide &amp; Deep对比，DeepFM在wide部分加入self.fm(embed_x)来进行特征的二阶自动交叉。</li>
+</ul>
+<h4 id="Neural-Factorization-Machine"><a href="#Neural-Factorization-Machine" class="headerlink" title="Neural Factorization Machine"></a>Neural Factorization Machine</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NeuralFactorizationMachineModel</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    A pytorch implementation of Neural Factorization Machine.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Reference:</span></span><br><span class="line"><span class="string">        X He and TS Chua, Neural Factorization Machines for Sparse Predictive Analytics, 2017.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, field_dims, embed_dim, mlp_dims, dropouts)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.embedding = FeaturesEmbedding(field_dims, embed_dim)</span><br><span class="line">        self.linear = FeaturesLinear(field_dims)</span><br><span class="line">        self.fm = torch.nn.Sequential(</span><br><span class="line">            FactorizationMachine(reduce_sum=<span class="keyword">False</span>),</span><br><span class="line">            torch.nn.BatchNorm1d(embed_dim),</span><br><span class="line">            torch.nn.Dropout(dropouts[<span class="number">0</span>])</span><br><span class="line">        )</span><br><span class="line">        self.mlp = MultiLayerPerceptron(embed_dim, mlp_dims, dropouts[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Long tensor of size ``(batch_size, num_fields)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        cross_term = self.fm(self.embedding(x))</span><br><span class="line">        x = self.linear(x) + self.mlp(cross_term)</span><br><span class="line">        <span class="keyword">return</span> torch.sigmoid(x.squeeze(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>pytorch-fm通过FM实现NFM中的Bi-Interaction Layer，除此之外，NFM原文提到在Bi-Interaction Layer后面接着Batch Normalization和Dropout操作</li>
+</ul>
+<h4 id="Attention-Factorization-Machine"><a href="#Attention-Factorization-Machine" class="headerlink" title="Attention Factorization Machine"></a>Attention Factorization Machine</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">elif</span> name == <span class="string">'afm'</span>:</span><br><span class="line">  <span class="keyword">return</span> AttentionalFactorizationMachineModel(field_dims, embed_dim=<span class="number">16</span>, attn_size=<span class="number">16</span>, dropouts=(<span class="number">0.2</span>, <span class="number">0.2</span>))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AttentionalFactorizationMachine</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, embed_dim, attn_size, dropouts)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.attention = torch.nn.Linear(embed_dim, attn_size)</span><br><span class="line">        self.projection = torch.nn.Linear(attn_size, <span class="number">1</span>)</span><br><span class="line">        self.fc = torch.nn.Linear(embed_dim, <span class="number">1</span>)</span><br><span class="line">        self.dropouts = dropouts</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Float tensor of size ``(batch_size, num_fields, embed_dim)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        num_fields = x.shape[<span class="number">1</span>]</span><br><span class="line">        row, col = list(), list()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(num_fields - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, num_fields):</span><br><span class="line">                row.append(i), col.append(j)</span><br><span class="line">        p, q = x[:, row], x[:, col]</span><br><span class="line">        inner_product = p * q</span><br><span class="line">        attn_scores = F.relu(self.attention(inner_product))</span><br><span class="line">        attn_scores = F.softmax(self.projection(attn_scores), dim=<span class="number">1</span>)</span><br><span class="line">        attn_scores = F.dropout(attn_scores, p=self.dropouts[<span class="number">0</span>], training=self.training)</span><br><span class="line">        attn_output = torch.sum(attn_scores * inner_product, dim=<span class="number">1</span>)</span><br><span class="line">        attn_output = F.dropout(attn_output, p=self.dropouts[<span class="number">1</span>], training=self.training)</span><br><span class="line">        <span class="keyword">return</span> self.fc(attn_output)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AttentionalFactorizationMachineModel</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    A pytorch implementation of Attentional Factorization Machine.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Reference:</span></span><br><span class="line"><span class="string">        J Xiao, et al. Attentional Factorization Machines: Learning the Weight of Feature Interactions via Attention Networks, 2017.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, field_dims, embed_dim, attn_size, dropouts)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.num_fields = len(field_dims)</span><br><span class="line">        self.embedding = FeaturesEmbedding(field_dims, embed_dim)</span><br><span class="line">        self.linear = FeaturesLinear(field_dims)</span><br><span class="line">        self.afm = AttentionalFactorizationMachine(embed_dim, attn_size, dropouts)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param x: Long tensor of size ``(batch_size, num_fields)``</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        x = self.linear(x) + self.afm(self.embedding(x))</span><br><span class="line">        <span class="keyword">return</span> torch.sigmoid(x.squeeze(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\hat{y}_{AFM}(x)=w_0+\sum_{i=1}^nw_ix_i+\mathbf{p}^{T} \sum_{i=1}^n\sum_{j=i+1}^na_{ij}\left(\mathbf{v}_{i} \odot \mathbf{v}_{j}\right) x_{i} x_{j}+b\\
+\begin{aligned}
+a_{ij}^{\prime} &=\mathbf{h}^{T} ReLU\left(\mathbf{W}\left(\mathbf{v}_{i} \odot \mathbf{v}_{j}\right) x_{i} x_{j}+\mathbf{b}\right) \\
+a_{ij} &=\frac{\exp \left(a_{ij}^{\prime}\right)}{\sum_{(i,j) \in \mathcal{R}_{x}} \exp \left(a_{ij}^{\prime}\right)}
+\end{aligned}</script><ul>
+<li>两个for循环是为了得到公式中embedding两两交叉，维度为(num_fields*(num_fields-1))/2的结果矩阵，row和col存储的是需要交叉的embedding的索引，以num_fields=3为例，需要两两交叉的embedding索引为[0,1],[0,2],[1,2]，则row=[0,0,1]，col=[1,2,2]。p，q分别为需要两两交叉的embedding中对应的第一个和第二个。</li>
+</ul>
+</v_{i},></v_i,v_j></v_i,v_j></计算机类书籍></程序员>]]></content>
       <tags>
         <tag>推荐系统</tag>
       </tags>
@@ -5019,12 +5379,21 @@ x_u & = (Y^TC_uY+\lambda I)^{-1}Y^TC_up(u)
     <url>/2020/06/08/%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<p>用本文记录平时遇到的一些问题和解决方法，自己试过成功的<br><a id="more"></a></p>
 <h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><ul>
-<li>修改Ubuntu的apt-get源为国内镜像源 <a href="https://blog.csdn.net/zgljl2012/article/details/79065174" target="_blank" rel="noopener">CSDN</a></li>
-<li>Ubuntu16.04安装python3.5同时保留python2.7 <a href="https://askubuntu.com/questions/1142982/install-python-3-alongside-python-2-7-on-ubuntu-18-04" target="_blank" rel="noopener">askubuntu</a></li>
-<li>修改Ubuntu的pip源为阿里源 <a href="https://blog.csdn.net/w5688414/article/details/104439181" target="_blank" rel="noopener">CSDN</a></li>
-<li>win10安装ubuntu第一次开启时黑屏：netsh winsock reset<a href="https://zhuanlan.zhihu.com/p/93980116" target="_blank" rel="noopener">知乎</a></li>
-<li>动态查看GPU资源使用情况：watch -d -n 0.5 nvidia-smi</li>
-<li>解压文件<code>gz: tar -xzvf bz2: tar -xjvf</code></li>
+<li><p>修改Ubuntu的apt-get源为国内镜像源 <a href="https://blog.csdn.net/zgljl2012/article/details/79065174" target="_blank" rel="noopener">CSDN</a></p>
+</li>
+<li><p>Ubuntu16.04安装python3.5同时保留python2.7 <a href="https://askubuntu.com/questions/1142982/install-python-3-alongside-python-2-7-on-ubuntu-18-04" target="_blank" rel="noopener">askubuntu</a></p>
+</li>
+<li><p>修改Ubuntu的pip源为阿里源 <a href="https://blog.csdn.net/w5688414/article/details/104439181" target="_blank" rel="noopener">CSDN</a></p>
+</li>
+<li><p>win10安装ubuntu第一次开启时黑屏：netsh winsock reset<a href="https://zhuanlan.zhihu.com/p/93980116" target="_blank" rel="noopener">知乎</a></p>
+</li>
+<li><p>动态查看GPU资源使用情况：watch -d -n 0.5 nvidia-smi</p>
+</li>
+<li><p>解压文件<code>gz: tar -xzvf bz2: tar -xjvf</code></p>
+</li>
+<li><p>内存buff/cache占用过高</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sync</span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/vm/drop_caches</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <h4 id="Linux通过ssh传输文件"><a href="#Linux通过ssh传输文件" class="headerlink" title="Linux通过ssh传输文件"></a>Linux通过ssh传输文件</h4><p>当我们需要下载或上传远程服务器上的某个文件，而服务器没有配置ftp服务器等途径时，使用scp命令可以轻松达到目的。</p>
 <p><strong>下载远程服务器上的文件</strong></p>
@@ -5145,7 +5514,13 @@ x_u & = (Y^TC_uY+\lambda I)^{-1}Y^TC_up(u)
 <p>运行jupyterlab，port_num与刚才选择的要保持一致，不与常见端口冲突即可，例如选择当天的日期1116等</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter-lab --no-browser --port=port_num</span><br><span class="line"></span><br><span class="line">  To access the notebook, open this file <span class="keyword">in</span> a browser:</span><br><span class="line">      file:///xxxxxxxxxxxxxxxxxxxxx.html</span><br><span class="line">  Or copy and paste one of these URLs:</span><br><span class="line">         http://localhost:port_num/?token=jupyterlab_token</span><br></pre></td></tr></table></figure>
 <p>复制cmd窗口最后一行的地址，在本地浏览器中打开，就可以使用服务器的资源来运行jupyterlab了。</p>
-<h4 id="json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><a href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决" class="headerlink" title="json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决"></a>json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</h4><p><strong>解决方法</strong><br>将判断条件由</p>
+<h4 id="dglGPU版本离线安装"><a href="#dglGPU版本离线安装" class="headerlink" title="dglGPU版本离线安装"></a>dglGPU版本离线安装</h4><p>首先安装pytorch1.7.1<a href="https://pytorch.org/get-started/previous-versions/" target="_blank" rel="noopener">https://pytorch.org/get-started/previous-versions/</a></p>
+<p><code>conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch</code></p>
+<p>接着下载dgl所需版本的<a href="https://data.dgl.ai/wheels/repo.html" target="_blank" rel="noopener">wheel</a></p>
+<p><code>wget https://data.dgl.ai/wheels/dgl_cu110-0.6-cp38-cp38-manylinux1_x86_64.whl</code></p>
+<p>如果创建了conda虚拟环境希望在对应的虚拟环境中安装dgl的话：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n dglcuda python=3.8</span><br><span class="line">conda activate dglcuda</span><br><span class="line">python -m pip install dgl_cu110-0.6-cp38-cp38-manylinux1_x86_64.whl</span><br></pre></td></tr></table></figure>
+<h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><h4 id="json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决"><a href="#json-decoder-JSONDecodeError-Expecting-value-line-1column-1-char-0-报错解决" class="headerlink" title="json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决"></a>json.decoder.JSONDecodeError Expecting value line 1column 1 (char 0)报错解决</h4><p><strong>解决方法</strong><br>将判断条件由</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br></pre></td></tr></table></figure>
 <p>改为<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> response.content:</span><br></pre></td></tr></table></figure></p>
 <p>  <img src="https://s1.ax1x.com/2020/06/10/toiGm4.png" alt=""></p>
@@ -6929,5 +7304,220 @@ L(\theta)=L_{n}(\theta)+\lambda \sum_{i, j} \Omega_{i j}\left(\theta_{i j}-\thet
       <tags>
         <tag>增量学习</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2021/11/17/%E5%9B%BE%E5%A2%9E%E9%87%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="图增量学习"><a href="#图增量学习" class="headerlink" title="图增量学习"></a>图增量学习</h2><p>现有的图上的增量学习没有提出新的思路，基本是将现有的增量学习方法移植到图上，可以沿用之前的分类。图上的「灾难性遗忘」现象有着相同的本质，以子图分类任务为例，下图展示了一个传统的网络模型在先后学习三个任务时在各个任务上的表现，可以看到，网络只在当前任务上能够取得好的表现，对于旧任务都会有显著的性能下降。</p>
+<div align="center">
+<a href="https://imgtu.com/i/ImVuee" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/04/ImVuee.png" alt="ImVuee.png" border="0"></a>
+</div>
+
+
+<h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><h3 id="回放"><a href="#回放" class="headerlink" title="回放"></a>回放</h3><h4 id="ER-GNN-AAAI’21"><a href="#ER-GNN-AAAI’21" class="headerlink" title="ER_GNN[AAAI’21]"></a>ER_GNN[AAAI’21]</h4><p>ER_GNN是一个典型的回放类增量学习方法，它在学习新任务时仍然能够使用旧任务的数据。类似于同类其他方法，ER_GNN的核心就是如何选取旧任务有代表性的数据。论文中用的是Experience Buffer（经验库）来指代存储旧任务数据的数据结构。给定训练集$D_i^{tr}$和经验库$B$，目标就是在其上训练一个分类器，来达到在新旧任务上都取得好的性能。分类任务的一个常用的损失函数是交叉熵函数：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathcal{L}_{\mathcal{T}_{i}}\left(f_{\boldsymbol{\theta}}, \mathcal{D}\right)=-&\left(\sum _ { ( \boldsymbol { x } _ { i } , y _ { i } ) \in \mathcal { D } } \left(y_{i} \log f_{\boldsymbol{\theta}}\left(x_{i}\right)\right.\right.\\
+&\left.\left.+\left(1-y_{i}\right) \log \left(1-f_{\boldsymbol{\theta}}\left(x_{i}\right)\right)\right)\right)
+\end{aligned}</script><p>对于来自新任务训练集和旧任务经验库的信息，需要一个参数$\beta$进行平衡，得到下面的目标式：</p>
+<script type="math/tex; mode=display">
+\beta=|B| /\left(\left|\mathcal{D}_{i}^{\mathrm{tr}}\right|+|B|\right)</script><script type="math/tex; mode=display">
+\begin{aligned}
+\mathcal{L}_{\mathcal{T}_{i}}^{\prime}\left(f_{\theta}, \mathcal{D}_{i}^{\mathrm{tr}}, B\right)=& \beta \mathcal{L}_{\mathcal{T}_{i}}\left(f_{\theta}, \mathcal{D}_{i}^{\mathrm{tr}}\right) \\
+&+(1-\beta) \mathcal{L}_{\mathcal{T}_{i}}\left(f_{\theta}, B\right)
+\end{aligned}</script><p>上面介绍的还是一些通用的方法，在其他领域的增量学习方法上也适用，论文的核心还是提出在图上如何对经验库$B$进行选取，给出了三种策略：</p>
+<p><strong>Mean of Feature</strong></p>
+<p>这个策略跟iCaRL基本一致，也就是选取每个类别中最靠近类别均值的样本作为代表性样本</p>
+<p><strong>Coverage Maximizaiton</strong></p>
+<p>这个策略的思想是，虽然有代表性的顶点只占少数，但我们可以在特征空间中将它们最大化。具体的做法是，将每个类别中的顶点进行排序，排序的依据是与其他类别距离小于$d$的顶点的数量：</p>
+<script type="math/tex; mode=display">
+\mathcal{N}\left(v_{i}\right)=\left\{v_{j} \mid \operatorname{dist}\left(v_{i}-v_{j}\right)<d, \mathcal{Y}\left(v_{i}\right) \neq \mathcal{Y}\left(v_{j}\right)\right\},</script><p>排序越靠前，也就意味着该顶点与其他类别的顶点越重叠，它所携带的信息就越没有区分性，因此为了保存旧任务的信息，应该选取排序靠后的，也就是$\mathcal{N}\left(v_{i}\right)$最小的顶点作为代表性顶点。</p>
+<p><strong>Influence Maximization</strong></p>
+<p>这个策略跟正则化类方法有点类似，就是通过损失函数来反应各个顶点的重要性。一个最直观的做法是，每次从训练集中去除一个顶点进行重新训练，两次结果的差异就能翻译去除顶点的重要性，但这几乎是不现实的，因为要对每个顶点进行重训练。所以论文借鉴了影响函数（influence function）中的理论，即使不重新训练也能得到想要的结果。</p>
+<h4 id="TWP-AAAI’21"><a href="#TWP-AAAI’21" class="headerlink" title="TWP[AAAI’21]"></a>TWP[AAAI’21]</h4><p>TWP对于已经学习过的旧任务数据无法再访问，它通过计算网络中每个参数在不同任务以及拓扑结构上的重要性，固定对于旧任务重要的参数，将重要性低的参数用作新任务的学习，从而达到避免对旧任务知识的遗忘。</p>
+<p>同样地，衡量一个参数对于一个任务的重要性类似于MAS的做法，通过损失函数在该参数上的梯度来决定：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}\left(X_{k}^{t r} ; W+\Delta W\right)-\mathcal{L}\left(X_{k}^{t r} ; W\right) \approx \sum_{m} f_{m}\left(X_{k}^{t r}\right) \Delta \boldsymbol{w}_{m}</script><script type="math/tex; mode=display">
+f_{m}\left(X_{k}^{t r}\right)=\frac{\partial \mathcal{L}}{\partial \boldsymbol{w}_{m}}</script><p>论文的一个创新之处在于定义了参数在图拓扑结构上的重要性。以GAT网络为例，TWP将中心顶点与邻域顶点之间的attention系数视为拓扑结构上的重要性，则类似地可以通过求attention系数在某个参数上的梯度来得到：</p>
+<script type="math/tex; mode=display">
+e_{i j}^{(l)}=a\left(\boldsymbol{H}_{i, j}^{(l-1)} ; W^{(l)}\right)</script><script type="math/tex; mode=display">
+\begin{aligned}
+a\left(\boldsymbol{H}_{i, j}^{(l-1)} ; W^{(l)}+\Delta\right.&\left.W^{(l)}\right)-a\left(\boldsymbol{H}_{i, j}^{(l-1)} ; W^{(l)}\right) \\
+& \approx \sum_{m} g_{m}\left(\boldsymbol{H}_{i, j}^{(l-1)}\right) \Delta \boldsymbol{w}_{m}
+\end{aligned}</script><p>值得注意的是，特定任务的损失函数都是给定的，所以对于参数的梯度是一个值，而每一层的attention系数没有所谓的损失函数，因此会得到一个多维向量$e_i^{(l)}=[e_{i1}^{(l)},\dots,e_{i|N_i|}^{(l)}]$。论文将拓扑结构上的损失函数定义为：</p>
+<script type="math/tex; mode=display">
+g_{m}\left(\boldsymbol{H}^{(l-1)}\right)=\frac{\partial\left(\mid\left[e_{1}^{(l)}, \ldots, e_{\left|\mathcal{D}_{k}^{t r}\right|}^{(l)}\right]_{2}^{2}\right)}{\partial \boldsymbol{w}_{m}}</script><p>最后通过超参数$\lambda$来平衡这两部分损失函数的比例。</p>
+<p>上面介绍的主要是对于单个任务要怎么学习，那对于增量学习的场景下，新旧任务之间如何继续保持网络的性能，论文也是通过定义一个损失函数来对旧任务上重要的参数进行惩罚，使得它们在学习新任务时尽量不变动：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{k+1}^{\prime}(W)=\mathcal{L}_{k+1}^{\text {new }}(W)+\sum_{n=1}^{k} I_{n} \otimes\left(W-W_{n}^{*}\right)^{2}</script><p>其中$I_n$表示网络参数在旧任务上的重要性，$W_n^*$表示网络在任务$\Gamma_n$的最优参数。上面的损失函数能够让低重要性的网络参数重新学习来适应新任务，而重要性高的参数保持固定。最后，为了避免因为固定太多的参数而导致网络在新任务上重新调整学习的余地很小，论文另外加了一个L1正则项来保证网络的学习能力：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{k+1}(W)=\mathcal{L}_{k+1}^{\prime}(W)+\beta\uparrow\left\|I_{k+1}\right\|_{1}\downarrow</script><p>当前任务为$\Gamma_{k+1}$，加入正则项后能避免在该任务上网络参数的重要性都很高，这样一来也就不存在不重要的参数用来学习新任务。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2021/11/17/%E5%9B%BE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><h2 id="Temporal-Graph-Learning"><a href="#Temporal-Graph-Learning" class="headerlink" title="Temporal Graph Learning"></a>Temporal Graph Learning</h2><p>动态图学习相关论文，对每篇读过的论文给出基本介绍</p>
+<h3 id="Temporal-Heterogeneous-Information-Network-Embedding-IJCAI’21"><a href="#Temporal-Heterogeneous-Information-Network-Embedding-IJCAI’21" class="headerlink" title="Temporal Heterogeneous Information Network Embedding[IJCAI’21]"></a>Temporal Heterogeneous Information Network Embedding[IJCAI’21]</h3><ul>
+<li>标签：动态图学习、异构图学习</li>
+<li>摘要：对于异构信息（顶点和边），论文使用基于元路径的随机游走来处理。元路径能够描述起始顶点和终止顶点之间的复杂关系，它可以经过任意类型的顶点和边。对于动态信息，使用Hawkes过程来建模过去事件对当前事件的影响，以attention机制来区分每个事件影响的重要程度。</li>
+<li>链接：<a href="https://www.ijcai.org/proceedings/2021/203" target="_blank" rel="noopener">https://www.ijcai.org/proceedings/2021/203</a></li>
+<li>是否有开源代码：<a href="https://github.com/S-rz/THINE" target="_blank" rel="noopener">https://github.com/S-rz/THINE</a></li>
+</ul>
+<h3 id="AddGraph-Anomaly-Detection-in-Dynamic-Graph-Using-Attention-based-Temporal-GCN-IJCAI’19"><a href="#AddGraph-Anomaly-Detection-in-Dynamic-Graph-Using-Attention-based-Temporal-GCN-IJCAI’19" class="headerlink" title="AddGraph: Anomaly Detection in Dynamic Graph Using Attention-based Temporal GCN[IJCAI’19]"></a>AddGraph: Anomaly Detection in Dynamic Graph Using Attention-based Temporal GCN[IJCAI’19]</h3><ul>
+<li>标签：动态图学习</li>
+<li>摘要：论文的目的是检测图上的异常边。对于一个包含若干快照的动态图，为了得到顶点在$t$时刻的特征表示，AddGraph首先将$t-1$时刻的特征表示通过一个多层的GCN，得到长期的表示，再将$t$时刻的顶点通过一个基于attention的上下文模型来得到短期的表示，将长短期两部分输入一个GRU来得到$t$时刻的特征表示$H^t$，随后被用来计算两个顶点间出现异常边的概率。因为有标签数据的获取难度，论文还加入了SVM中的Hinge损失函数来进行负采样</li>
+<li>链接：<a href="https://www.ijcai.org/proceedings/2019/614" target="_blank" rel="noopener">https://www.ijcai.org/proceedings/2019/614</a></li>
+<li>是否有开源代码：<a href="https://github.com/Ljiajie/Addgraph" target="_blank" rel="noopener">https://github.com/Ljiajie/Addgraph</a></li>
+</ul>
+<h2 id="Graph-Self-Supervised-Learning"><a href="#Graph-Self-Supervised-Learning" class="headerlink" title="Graph Self-Supervised Learning"></a>Graph Self-Supervised Learning</h2><p>图上自监督学习相关论文，对每篇读过的论文给出基本介绍</p>
+<h3 id="Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21"><a href="#Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21" class="headerlink" title="Self-supervised Graph Learning for Recommendation[SIGIR’21]"></a>Self-supervised Graph Learning for Recommendation[SIGIR’21]</h3><ul>
+<li>标签：图自监督学习</li>
+<li>摘要：在用户-物品交互图上应用对比学习，提出了图上三种数据增强的方式：顶点dropout、边dropout以及随机游走，来生成同一顶点的不同视角，最小化同一顶点不同视角之间的差异，同时最大化不同顶点的视角之间的差异。论文花了较大篇幅对加入对比学习导致的性能提升给出了理论分析。</li>
+<li>链接：<a href="https://dl.acm.org/doi/abs/10.1145/3404835.3462862" target="_blank" rel="noopener">https://dl.acm.org/doi/abs/10.1145/3404835.3462862</a></li>
+<li>数据集：<ul>
+<li>Yelp2018</li>
+<li>Amazon-Book</li>
+<li>Alibaba-iFashion</li>
+</ul>
+</li>
+<li>是否有开源代码：<a href="https://github.com/wujcan/SGL" target="_blank" rel="noopener">https://github.com/wujcan/SGL</a></li>
+</ul>
+<h3 id="Self-supervised-Representation-Learning-on-Dynamic-Graphs-CIKM’21"><a href="#Self-supervised-Representation-Learning-on-Dynamic-Graphs-CIKM’21" class="headerlink" title="Self-supervised Representation Learning on Dynamic Graphs[CIKM’21]"></a>Self-supervised Representation Learning on Dynamic Graphs[CIKM’21]</h3><ul>
+<li>标签：图自监督学习、动态图学习</li>
+<li>摘要：论文提出了一个去偏的动态图对比学习框架DDGCL。它将同一顶点在时间上相邻的快照看作不同的视图，并用一个时间相关的相似度函数进行衡量</li>
+<li>链接：<a href="https://dl.acm.org/doi/abs/10.1145/3459637.3482389" target="_blank" rel="noopener">https://dl.acm.org/doi/abs/10.1145/3459637.3482389</a></li>
+<li>是否有开源代码：无</li>
+</ul>
+<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h2 id="Graph-Self-Supervised-Learning-1"><a href="#Graph-Self-Supervised-Learning-1" class="headerlink" title="Graph Self-Supervised Learning"></a>Graph Self-Supervised Learning</h2><h3 id="Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21-1"><a href="#Self-supervised-Graph-Learning-for-Recommendation-SIGIR’21-1" class="headerlink" title="Self-supervised Graph Learning for Recommendation[SIGIR’21]"></a>Self-supervised Graph Learning for Recommendation[SIGIR’21]</h3><p>SGL的核心思想是通过顶点drop out、边drop out和随机游走这三种方式来改变图的结构，从而为图中顶点生成不同的视图，通过最小化同一顶点视图之间的差异以及最大化不同顶点视图之间的差异，来达到对比学习：</p>
+<p><a href="https://imgtu.com/i/Iumo6I" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/05/Iumo6I.png" alt="Iumo6I.png" border="0"></a></p>
+<p>上面那段话已经把SGL的流程讲的差不多了，转换成数学表示式就是下面的形式：</p>
+<p><div align="center">
+<a href="https://imgtu.com/i/IunkAU" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/05/IunkAU.png" alt="IunkAU.png" border="0" width="50%"></a>
+</div><br>将同一顶点得到的不同视角看作正样本，不同顶点之间的视角看作负样本，SGL采用的是经典的对比学习损失函数InfoNCE：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{s s l}^{u s e r}=\sum_{u \in \mathcal{U}}-\log \frac{\exp \left(s\left(\mathbf{z}_{u}^{\prime}, \mathbf{z}_{u}^{\prime \prime}\right) / \tau\right)}{\sum_{v \in \mathcal{U}} \exp \left(s\left(\mathbf{z}_{u}^{\prime}, \mathbf{z}_{v}^{\prime \prime}\right) / \tau\right)}</script><p>总损失函数就是分类任务的损失与对比学习的损失通过参数$\lambda$进行平衡，以及一个正则项：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}=\mathcal{L}_{main}+\lambda_1\mathcal{L}_{ssl}+\lambda_2\Vert\Theta\Vert_2^2</script><p>SGL的方法非常直观，对比学习的引入也不是这篇论文首创，它的创新点其实是对加入对比学习性能提升的原因进行了理论分析。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2021/11/17/%E5%AD%90%E5%9B%BE%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="子图表示学习"><a href="#子图表示学习" class="headerlink" title="子图表示学习"></a>子图表示学习</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><h3 id="SGRL-WWW投稿"><a href="#SGRL-WWW投稿" class="headerlink" title="SGRL[WWW投稿]"></a>SGRL[WWW投稿]</h3><h3 id="SubGNN-NIPS’20"><a href="#SubGNN-NIPS’20" class="headerlink" title="SubGNN[NIPS’20]"></a>SubGNN[NIPS’20]</h3><h3 id="AQCL"><a href="#AQCL" class="headerlink" title="AQCL"></a>AQCL</h3><h3 id="Sub2Vec-PAKDD’18"><a href="#Sub2Vec-PAKDD’18" class="headerlink" title="Sub2Vec[PAKDD’18]"></a>Sub2Vec[PAKDD’18]</h3><ul>
+<li>标签：随机游走</li>
+<li>链接：<a href="https://www.cc.gatech.edu/~badityap/papers/sub2vec-pakdd18.pdf" target="_blank" rel="noopener">https://www.cc.gatech.edu/~badityap/papers/sub2vec-pakdd18.pdf</a></li>
+<li>摘要：Sub2Vec通过随机游走来捕获子图结构和领域两个角度的特征，在结构角度将随机游走的边权重定义为顶点度数与子图大小的比值，来避免子图规模带来的影响。Sub2Vec还借鉴了Paragraph2Vec的思想，在学习子图特征表示时保留相似（有着类似的node co-occurrence）子图间的距离</li>
+<li>有无开源代码：<a href="https://github.com/bijayaVT/sub2vec" target="_blank" rel="noopener">https://github.com/bijayaVT/sub2vec</a></li>
+</ul>
+<h3 id="Sub-graph-Contrast-for-Scalable-Self-Supervised-Graph-Representation-Learning-ICDM’20"><a href="#Sub-graph-Contrast-for-Scalable-Self-Supervised-Graph-Representation-Learning-ICDM’20" class="headerlink" title="Sub-graph Contrast for Scalable Self-Supervised Graph Representation Learning[ICDM’20]"></a>Sub-graph Contrast for Scalable Self-Supervised Graph Representation Learning[ICDM’20]</h3><ul>
+<li>标签：PPR</li>
+<li>链接：<a href="https://arxiv.org/abs/2009.10273v3" target="_blank" rel="noopener">https://arxiv.org/abs/2009.10273v3</a></li>
+<li>摘要：SUBG-CON将一个中心顶点邻域中PPR值topk的顶点作为子图，通过一个GNN将子图转换成特征表示。有了中心顶点和子图各自的特征表示后，进一步使用了对比学习：子图的表示作为中心顶点表示的正样本，将子图进行扰乱后作为负样本。因为正负样本实际都来自相同的子图，论文没有使用交叉熵损失函数，而是边缘损失。</li>
+<li>有无开源代码：<a href="https://github.com/yzjiao/Subg-Con" target="_blank" rel="noopener">https://github.com/yzjiao/Subg-Con</a></li>
+</ul>
+<h3 id="Inductive-and-Unsupervised-Representation-Learning-on-Graph-Structured-Objects-ICLR’20"><a href="#Inductive-and-Unsupervised-Representation-Learning-on-Graph-Structured-Objects-ICLR’20" class="headerlink" title="Inductive and Unsupervised Representation Learning on Graph Structured Objects[ICLR’20]"></a>Inductive and Unsupervised Representation Learning on Graph Structured Objects[ICLR’20]</h3><ul>
+<li><p>标签：随机游走</p>
+</li>
+<li><p>链接：<a href="https://openreview.net/forum?id=rkem91rtDB" target="_blank" rel="noopener">https://openreview.net/forum?id=rkem91rtDB</a></p>
+</li>
+<li><p>摘要：SEED通过一种记录最早访问时间的随机游走来产生一个中心顶点的子图，再通过一个自编码器得到子图的特征表示</p>
+<p><a href="https://imgtu.com/i/IBwIy9" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/12/IBwIy9.png" alt="IBwIy9.png" border="0"></a></p>
+</li>
+<li><p>有无开源代码：<a href="https://github.com/wenwen0319/SEED-Reimplementation" target="_blank" rel="noopener">https://github.com/wenwen0319/SEED-Reimplementation</a></p>
+</li>
+</ul>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="SGRL-WWW投稿-1"><a href="#SGRL-WWW投稿-1" class="headerlink" title="SGRL[WWW投稿]"></a>SGRL[WWW投稿]</h3><p>SGRL中通过对子图内顶点的特征表示做平均来得到子图的特征表示：</p>
+<script type="math/tex; mode=display">
+s_{i}=\frac{1}{\left|\mathcal{S}_{i}\right|} \sum_{j \in \mathcal{S}_{i}} \mathbf{h}_{j}</script><h3 id="SubGNN-NIPS’20-1"><a href="#SubGNN-NIPS’20-1" class="headerlink" title="SubGNN[NIPS’20]"></a>SubGNN[NIPS’20]</h3><p>而SubGNN中通过三个通道来学习子图的特征表示，因为子图内部的顶点与边界处顶点情况不同，所以三个通道各自包含内顶点和边界顶点两种情况，总共六种属性：</p>
+<p><a href="https://imgtu.com/i/IPAYKP" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/01/IPAYKP.png" alt="IPAYKP.png" border="0"></a></p>
+<ul>
+<li><p>位置</p>
+<p>子图内顶点间的距离以及子图与图上其余顶点间的距离。</p>
+</li>
+<li><p>邻域</p>
+<p>不同于传统意义上单个顶点的邻域，一个子图的邻域有内有外，内邻域也就是子图本身，而外邻域是子图内所有顶点的$k$阶邻居组成的顶点集合。子图内每个连通分量都会有对应的外邻域。</p>
+</li>
+<li><p>结构</p>
+<p>子图的内结构为内部顶点的连通性，而外结构为将内部顶点与外邻域相连的边的集合。</p>
+</li>
+</ul>
+<p><a href="https://imgtu.com/i/IPVBXq" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/01/IPVBXq.png" alt="IPVBXq.png" border="0"></a></p>
+<p>重点是如何将子图$S$的这六个属性转化为它的特征表示：</p>
+<ol>
+<li><p>在网络的每一层，对于每个通道$X\in\{N,S,P\}$，$N,S,P$分别指代邻域，结构和位置。从图$G$中随机采样若干个子图$\mathcal{A}_X=\{A_X^{(1)},\dots, A_X^{(n_A)}\}$</p>
+</li>
+<li><p>对于子图$S$中的每个连通分量$S^{(c)}$，与采样的子图集$\mathcal{A}_X$中的每个子图$A_X$进行信息传递，其中$\gamma_X$为相似度函数，$a_X$为$A_X$的特征表示：</p>
+<script type="math/tex; mode=display">
+\mathrm{MSG}_{\mathrm{X}}^{A \rightarrow S}=\gamma_{\mathrm{x}}\left(S^{(c)}, A_{\mathrm{X}}\right) \cdot \mathrm{a}_{\mathrm{X}}</script></li>
+<li><p>将传递的信息转化为当前通道下当前连通分量的特征表示：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\mathrm{g}_{\mathrm{x}, c}=\mathrm{AGG}_{M}\left(\left\{\mathrm{MSG}_{\mathrm{X}}^{A_{\mathrm{x}} \rightarrow S^{(c)}} \forall A_{\mathrm{x}} \in \mathcal{A}_{\mathrm{x}}\right\}\right) \\
+&\mathbf{h}_{\mathrm{X}, c} \leftarrow \sigma\left(\mathbf{W}_{\mathrm{X}} \cdot\left[\mathbf{g}_{\mathrm{x}, c} ; \mathbf{h}_{\mathrm{x}, c}\right]\right)
+\end{aligned}</script></li>
+<li><p>第三步中得到的特征表示次序无关，适合网络中层与层之间的传播，但对于位置与结构这两个通道来说，这种做法会限制特征表示的学习能力。所以，这两个通道的特征表示学习采用另一种方式：</p>
+</li>
+</ol>
+<div align="center">
+   <a href="https://imgtu.com/i/IP1PUI" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/01/IP1PUI.png" alt="IP1PUI.png" border="0"></a>
+</div>
+
+<ol>
+<li>对于每个连通分量$S^{(c)}$，将第$l$层学习到的三个通道的特征表示进行聚合，得到单个连通分量在这一层的特征表示，再将所有层的结果进行聚合，得到该连通分量通过网络学习到的特征表示。最后将子图内所有连通分量的特征表示进行聚合，就得到了子图的特征表示。</li>
+</ol>
+<p><a href="https://imgtu.com/i/IPVHAO" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/01/IPVHAO.png" alt="IPVHAO.png" border="0"></a></p>
+<p>第一步中的采样根据通道的不同使用不同的采样器$\phi_X$，同样地，内顶点和边界顶点分开处理：</p>
+<ul>
+<li><p>位置</p>
+<p>没看懂文中的表述，准备结合代码理解</p>
+</li>
+<li><p>邻域</p>
+<p>内采样器从连通分量$S^{(c)}$中采样顶点，边界采样器从$S^{(c)}$中顶点的$k$阶邻居中采样顶点。</p>
+</li>
+<li><p>结构</p>
+<p>内顶点和边界顶点使用相同的采样器，从图$G$中使用三角随机游走的形式采样连通分量。</p>
+</li>
+</ul>
+<p>第二步的式子中：</p>
+<script type="math/tex; mode=display">
+\mathrm{MSG}_{\mathrm{X}}^{A \rightarrow S}=\gamma_{\mathrm{x}}\left(S^{(c)}, A_{\mathrm{X}}\right) \cdot \mathrm{a}_{\mathrm{X}}</script><p>需要一个编码器$\varPsi_X$得到子图$A_X$的特征表示$a_X$，对于邻域和位置这两个通道，直接取其中顶点的embedding，而结构这个通道先进行若干次固定长度的三角随机游走得到一条顶点序列，随后将这个序列送入一个双向LSTM中，将LSTM的隐层表示求和作为子图$A_X$的特征表示。</p>
+<p>同时，还需要一个相似度衡量函数$\gamma_X$来衡量每个采样的子图$A_X$在构建子图$S$的特征表示中的重要性：</p>
+<ul>
+<li><p>位置</p>
+<p>内和边界一样处理，以两个子图之间的最短距离来衡量相似度，最短距离越短则相似度越高。</p>
+</li>
+<li><p>邻域</p>
+<p>与位置通道类似，不过对于内邻域$\gamma_{N_I}=1$而边界邻域$\gamma_{N_B}\le k$。</p>
+</li>
+<li><p>结构</p>
+<p>结构通道的相似度是通过DTW，一个衡量两个时间序列之间相似度的指标。在论文中使用的序列是将子图中顶点的度按照大小进行排序形成的序列；</p>
+</li>
+</ul>
+<h3 id="AQCL-1"><a href="#AQCL-1" class="headerlink" title="AQCL"></a>AQCL</h3><p>AQCL在顶点之间的对比学习的基础上加入了顶点和簇的对比学习：</p>
+<div align="center">
+<a href="https://imgtu.com/i/IFZnVP" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/02/IFZnVP.png" alt="IFZnVP.png" border="0"></a>
+</div>
+
+<ol>
+<li>顶点间对比：给点一个顶点$z$以及它对应的数据增强的正样本$z^+$和负采样得到的负样本$z^-$，则$z$的特征表示应该靠近$z^+$并且远离$z^-$。</li>
+<li>顶点与簇间对比：给定兴趣簇$Q$, $z$也应该靠近其中的正簇同时远离负簇。我的理解是，这里的兴趣类似于隐语义模型中的隐因子（latent factor），将用户的点击数据投影到特征空间时能够挖掘出其中隐藏的规律，例如用户A更喜欢点击与运动、数码相关的物品等，虽然实际中兴趣可能没有任何实质意义。</li>
+</ol>
+<p><div align="center">
+<a href="https://imgtu.com/i/IFerY8" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/02/IFerY8.png" alt="IFerY8.png" border="0" width="50%"></a>
+</div><br>AQCL解决的是CTR预估中的冷启动问题，这也是它加入顶点与簇间对比的动机。在这个问题中，用户的点击行为符合长尾分布，如果以一个用户点击过的所构成的序列长度来衡量他的活跃程度，只有极少数用户会点击很多物品，绝大多数用户的点击序列都很短。传统的顶点间对比学习无法捕获顶点邻域中的信息。一个直观的想法是，对于这些非活跃用户，可以让他们在特征空间中利用活跃用户的信息，来弥补交互数据的不足。</p>
+<p>从损失函数上从顶点间的对比学习：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\mathrm{ICL}}(\mathbf{z})=-\log \frac{\exp \left(\operatorname{sim}\left(\mathbf{z}, \mathbf{z}^{+}\right) / \tau\right)}{\sum_{\mathbf{z}^{\prime} \in\left\{\mathbf{z}^{+}\right\} \cup \mathrm{Z}^{-}} \exp \left(\operatorname{sim}\left(\mathbf{z}, \mathbf{z}^{\prime}\right) / \tau\right)}</script><p>加入顶点与簇间的对比学习：</p>
+<script type="math/tex; mode=display">
+Q^{+}=\arg \max _{\mathbf{q}^{1}, \mathbf{q}^{2}, \cdots, \mathbf{q}^{K} \in Q} \sum_{k=1}^{K} \operatorname{sim}\left(\mathbf{z}, \mathbf{q}^{k}\right)</script><script type="math/tex; mode=display">
+\begin{aligned}
+\mathcal{L}_{\mathrm{AQCL}}(\mathbf{z})=&-\log \frac{\left[d_{1}\left(\mathbf{z}, \mathbf{z}^{+}\right)\right]^{1-\alpha}\left[\sum_{\mathbf{q}^{+} \in Q^{+}} d_{2}\left(\mathbf{z}, \mathbf{q}^{+}\right)\right]^{\alpha}}{\sum_{\mathbf{z}^{\prime} \in\left\{\mathbf{z}^{+}\right\} \cup \mathbf{Z}^{-}} d_{1}\left(\mathbf{z}, \mathbf{z}^{\prime}\right)+\sum_{\mathbf{q}^{\prime} \in Q} d_{2}\left(\mathbf{z}, \mathbf{q}^{\prime}\right)} \\
+& d_{1}\left(\mathbf{z}, \mathbf{z}^{\prime}\right)=\exp \left(\operatorname{sim}\left(\mathbf{z}, \mathbf{z}^{\prime}\right) / \tau_{1}\right) \\
+& d_{2}\left(\mathbf{z}, \mathbf{q}^{\prime}\right)=\exp \left(\operatorname{sim}\left(\mathbf{z}, \mathbf{q}^{\prime}\right) / \tau_{2}\right)
+\end{aligned}</script><p>在数据增强上，论文采取的做法是，从用户的点击序列中随机mask一些物品，并且将embedding的某些位取零，最后经过一个MLP得到。给定一个兴趣簇$Q$，（6）式找到与当前顶点相关的前$K$个兴趣，并且用参数$\alpha$来平衡两部分对比学习的比例。</p>
+]]></content>
   </entry>
 </search>
