@@ -7584,9 +7584,10 @@ g_{m}\left(\boldsymbol{H}^{(l-1)}\right)=\frac{\partial\left(\mid\left[e_{1}^{(l
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>子图表示学习笔记</title>
     <url>/2021/11/17/%E5%AD%90%E5%9B%BE%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>[TOC]</p>
+    <content><![CDATA[<p>借这篇博客记录子图表示学习的笔记。<br><a id="more"></a></p>
+<p>[TOC]</p>
 <h1 id="子图表示学习"><a href="#子图表示学习" class="headerlink" title="子图表示学习"></a>子图表示学习</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><h3 id="SGRL-WWW投稿"><a href="#SGRL-WWW投稿" class="headerlink" title="SGRL[WWW投稿]"></a>SGRL[WWW投稿]</h3><h3 id="SubGNN-NIPS’20"><a href="#SubGNN-NIPS’20" class="headerlink" title="SubGNN[NIPS’20]"></a>SubGNN[NIPS’20]</h3><h3 id="AQCL"><a href="#AQCL" class="headerlink" title="AQCL"></a>AQCL</h3><h3 id="Sub2Vec-PAKDD’18"><a href="#Sub2Vec-PAKDD’18" class="headerlink" title="Sub2Vec[PAKDD’18]"></a>Sub2Vec[PAKDD’18]</h3><ul>
 <li>标签：随机游走</li>
 <li>链接：<a href="https://www.cc.gatech.edu/~badityap/papers/sub2vec-pakdd18.pdf" target="_blank" rel="noopener">https://www.cc.gatech.edu/~badityap/papers/sub2vec-pakdd18.pdf</a></li>
@@ -7700,5 +7701,8 @@ Q^{+}=\arg \max _{\mathbf{q}^{1}, \mathbf{q}^{2}, \cdots, \mathbf{q}^{K} \in Q} 
 & d_{2}\left(\mathbf{z}, \mathbf{q}^{\prime}\right)=\exp \left(\operatorname{sim}\left(\mathbf{z}, \mathbf{q}^{\prime}\right) / \tau_{2}\right)
 \end{aligned}</script><p>在数据增强上，论文采取的做法是，从用户的点击序列中随机mask一些物品，并且将embedding的某些位取零，最后经过一个MLP得到。给定一个兴趣簇$Q$，（6）式找到与当前顶点相关的前$K$个兴趣，并且用参数$\alpha$来平衡两部分对比学习的比例。</p>
 ]]></content>
+      <tags>
+        <tag>图神经网络</tag>
+      </tags>
   </entry>
 </search>

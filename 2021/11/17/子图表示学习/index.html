@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="图神经网络," />
 
 
 
@@ -81,12 +81,13 @@
 
 
 
-<meta name="description" content="[TOC] 子图表示学习摘要SGRL[WWW投稿]SubGNN[NIPS’20]AQCLSub2Vec[PAKDD’18] 标签：随机游走 链接：https://www.cc.gatech.edu/~badityap/papers/sub2vec-pakdd18.pdf 摘要：Sub2Vec通过随机游走来捕获子图结构和领域两个角度的特征，在结构角度将随机游走的边权重定义为顶点度数与子图大小的比值，">
+<meta name="description" content="借这篇博客记录子图表示学习的笔记。">
+<meta name="keywords" content="图神经网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原力小站">
+<meta property="og:title" content="子图表示学习笔记">
 <meta property="og:url" content="http://Bithub00.com/2021/11/17/子图表示学习/index.html">
 <meta property="og:site_name" content="原力小站">
-<meta property="og:description" content="[TOC] 子图表示学习摘要SGRL[WWW投稿]SubGNN[NIPS’20]AQCLSub2Vec[PAKDD’18] 标签：随机游走 链接：https://www.cc.gatech.edu/~badityap/papers/sub2vec-pakdd18.pdf 摘要：Sub2Vec通过随机游走来捕获子图结构和领域两个角度的特征，在结构角度将随机游走的边权重定义为顶点度数与子图大小的比值，">
+<meta property="og:description" content="借这篇博客记录子图表示学习的笔记。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://z3.ax1x.com/2021/11/12/IBwIy9.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/11/01/IPAYKP.png">
@@ -95,10 +96,10 @@
 <meta property="og:image" content="https://z3.ax1x.com/2021/11/01/IPVHAO.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/11/02/IFZnVP.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/11/02/IFerY8.png">
-<meta property="og:updated_time" content="2021-11-17T08:13:41.094Z">
+<meta property="og:updated_time" content="2021-12-17T14:58:51.389Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原力小站">
-<meta name="twitter:description" content="[TOC] 子图表示学习摘要SGRL[WWW投稿]SubGNN[NIPS’20]AQCLSub2Vec[PAKDD’18] 标签：随机游走 链接：https://www.cc.gatech.edu/~badityap/papers/sub2vec-pakdd18.pdf 摘要：Sub2Vec通过随机游走来捕获子图结构和领域两个角度的特征，在结构角度将随机游走的边权重定义为顶点度数与子图大小的比值，">
+<meta name="twitter:title" content="子图表示学习笔记">
+<meta name="twitter:description" content="借这篇博客记录子图表示学习的笔记。">
 <meta name="twitter:image" content="https://z3.ax1x.com/2021/11/12/IBwIy9.png">
 
 
@@ -135,7 +136,7 @@
 
 
 
-  <title> | 原力小站</title>
+  <title>子图表示学习笔记 | 原力小站</title>
   
 
 
@@ -337,7 +338,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">子图表示学习笔记</h1>
         
 
         <div class="post-meta">
@@ -367,7 +368,7 @@
 
           
           
-             <span id="/2021/11/17/子图表示学习/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2021/11/17/子图表示学习/" class="leancloud_visitors" data-flag-title="子图表示学习笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -392,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,923
+                  1,939
                 </span>
               
 
@@ -417,7 +418,8 @@
       
 
       
-        <p>[TOC]</p>
+        <p>借这篇博客记录子图表示学习的笔记。<br><a id="more"></a></p>
+<p>[TOC]</p>
 <h1 id="子图表示学习"><a href="#子图表示学习" class="headerlink" title="子图表示学习"></a>子图表示学习</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><h3 id="SGRL-WWW投稿"><a href="#SGRL-WWW投稿" class="headerlink" title="SGRL[WWW投稿]"></a>SGRL[WWW投稿]</h3><h3 id="SubGNN-NIPS’20"><a href="#SubGNN-NIPS’20" class="headerlink" title="SubGNN[NIPS’20]"></a>SubGNN[NIPS’20]</h3><h3 id="AQCL"><a href="#AQCL" class="headerlink" title="AQCL"></a>AQCL</h3><h3 id="Sub2Vec-PAKDD’18"><a href="#Sub2Vec-PAKDD’18" class="headerlink" title="Sub2Vec[PAKDD’18]"></a>Sub2Vec[PAKDD’18]</h3><ul>
 <li>标签：随机游走</li>
 <li>链接：<a href="https://www.cc.gatech.edu/~badityap/papers/sub2vec-pakdd18.pdf" target="_blank" rel="noopener">https://www.cc.gatech.edu/~badityap/papers/sub2vec-pakdd18.pdf</a></li>
@@ -544,6 +546,12 @@ Q^{+}=\arg \max _{\mathbf{q}^{1}, \mathbf{q}^{2}, \cdots, \mathbf{q}^{K} \in Q} 
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图神经网络/" rel="tag">#图神经网络</a>
+          
+        </div>
       
 
       
@@ -1356,7 +1364,33 @@ Q^{+}=\arg \max _{\mathbf{q}^{1}, \mathbf{q}^{2}, \cdots, \mathbf{q}^{K} \in Q} 
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1374,12 +1408,6 @@ Q^{+}=\arg \max _{\mathbf{q}^{1}, \mathbf{q}^{2}, \cdots, \mathbf{q}^{K} \in Q} 
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-  
-  
-
-  
   
 
 

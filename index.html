@@ -485,7 +485,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/11/17/子图表示学习/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2021/11/17/子图表示学习/" itemprop="url">子图表示学习笔记</a></h1>
         
 
         <div class="post-meta">
@@ -515,7 +515,7 @@
 
           
           
-             <span id="/2021/11/17/子图表示学习/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2021/11/17/子图表示学习/" class="leancloud_visitors" data-flag-title="子图表示学习笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -540,7 +540,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,923
+                  1,939
                 </span>
               
 
@@ -566,122 +566,14 @@
 
       
         
-          
-            <p>[TOC]</p>
-<h1 id="子图表示学习"><a href="#子图表示学习" class="headerlink" title="子图表示学习"></a>子图表示学习</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><h3 id="SGRL-WWW投稿"><a href="#SGRL-WWW投稿" class="headerlink" title="SGRL[WWW投稿]"></a>SGRL[WWW投稿]</h3><h3 id="SubGNN-NIPS’20"><a href="#SubGNN-NIPS’20" class="headerlink" title="SubGNN[NIPS’20]"></a>SubGNN[NIPS’20]</h3><h3 id="AQCL"><a href="#AQCL" class="headerlink" title="AQCL"></a>AQCL</h3><h3 id="Sub2Vec-PAKDD’18"><a href="#Sub2Vec-PAKDD’18" class="headerlink" title="Sub2Vec[PAKDD’18]"></a>Sub2Vec[PAKDD’18]</h3><ul>
-<li>标签：随机游走</li>
-<li>链接：<a href="https://www.cc.gatech.edu/~badityap/papers/sub2vec-pakdd18.pdf" target="_blank" rel="noopener">https://www.cc.gatech.edu/~badityap/papers/sub2vec-pakdd18.pdf</a></li>
-<li>摘要：Sub2Vec通过随机游走来捕获子图结构和领域两个角度的特征，在结构角度将随机游走的边权重定义为顶点度数与子图大小的比值，来避免子图规模带来的影响。Sub2Vec还借鉴了Paragraph2Vec的思想，在学习子图特征表示时保留相似（有着类似的node co-occurrence）子图间的距离</li>
-<li>有无开源代码：<a href="https://github.com/bijayaVT/sub2vec" target="_blank" rel="noopener">https://github.com/bijayaVT/sub2vec</a></li>
-</ul>
-<h3 id="Sub-graph-Contrast-for-Scalable-Self-Supervised-Graph-Representation-Learning-ICDM’20"><a href="#Sub-graph-Contrast-for-Scalable-Self-Supervised-Graph-Representation-Learning-ICDM’20" class="headerlink" title="Sub-graph Contrast for Scalable Self-Supervised Graph Representation Learning[ICDM’20]"></a>Sub-graph Contrast for Scalable Self-Supervised Graph Representation Learning[ICDM’20]</h3><ul>
-<li>标签：PPR</li>
-<li>链接：<a href="https://arxiv.org/abs/2009.10273v3" target="_blank" rel="noopener">https://arxiv.org/abs/2009.10273v3</a></li>
-<li>摘要：SUBG-CON将一个中心顶点邻域中PPR值topk的顶点作为子图，通过一个GNN将子图转换成特征表示。有了中心顶点和子图各自的特征表示后，进一步使用了对比学习：子图的表示作为中心顶点表示的正样本，将子图进行扰乱后作为负样本。因为正负样本实际都来自相同的子图，论文没有使用交叉熵损失函数，而是边缘损失。</li>
-<li>有无开源代码：<a href="https://github.com/yzjiao/Subg-Con" target="_blank" rel="noopener">https://github.com/yzjiao/Subg-Con</a></li>
-</ul>
-<h3 id="Inductive-and-Unsupervised-Representation-Learning-on-Graph-Structured-Objects-ICLR’20"><a href="#Inductive-and-Unsupervised-Representation-Learning-on-Graph-Structured-Objects-ICLR’20" class="headerlink" title="Inductive and Unsupervised Representation Learning on Graph Structured Objects[ICLR’20]"></a>Inductive and Unsupervised Representation Learning on Graph Structured Objects[ICLR’20]</h3><ul>
-<li><p>标签：随机游走</p>
-</li>
-<li><p>链接：<a href="https://openreview.net/forum?id=rkem91rtDB" target="_blank" rel="noopener">https://openreview.net/forum?id=rkem91rtDB</a></p>
-</li>
-<li><p>摘要：SEED通过一种记录最早访问时间的随机游走来产生一个中心顶点的子图，再通过一个自编码器得到子图的特征表示</p>
-<p><a href="https://imgtu.com/i/IBwIy9" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/12/IBwIy9.png" alt="IBwIy9.png" border="0"></a></p>
-</li>
-<li><p>有无开源代码：<a href="https://github.com/wenwen0319/SEED-Reimplementation" target="_blank" rel="noopener">https://github.com/wenwen0319/SEED-Reimplementation</a></p>
-</li>
-</ul>
-<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="SGRL-WWW投稿-1"><a href="#SGRL-WWW投稿-1" class="headerlink" title="SGRL[WWW投稿]"></a>SGRL[WWW投稿]</h3><p>SGRL中通过对子图内顶点的特征表示做平均来得到子图的特征表示：</p>
-<script type="math/tex; mode=display">
-s_{i}=\frac{1}{\left|\mathcal{S}_{i}\right|} \sum_{j \in \mathcal{S}_{i}} \mathbf{h}_{j}</script><h3 id="SubGNN-NIPS’20-1"><a href="#SubGNN-NIPS’20-1" class="headerlink" title="SubGNN[NIPS’20]"></a>SubGNN[NIPS’20]</h3><p>而SubGNN中通过三个通道来学习子图的特征表示，因为子图内部的顶点与边界处顶点情况不同，所以三个通道各自包含内顶点和边界顶点两种情况，总共六种属性：</p>
-<p><a href="https://imgtu.com/i/IPAYKP" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/01/IPAYKP.png" alt="IPAYKP.png" border="0"></a></p>
-<ul>
-<li><p>位置</p>
-<p>子图内顶点间的距离以及子图与图上其余顶点间的距离。</p>
-</li>
-<li><p>邻域</p>
-<p>不同于传统意义上单个顶点的邻域，一个子图的邻域有内有外，内邻域也就是子图本身，而外邻域是子图内所有顶点的$k$阶邻居组成的顶点集合。子图内每个连通分量都会有对应的外邻域。</p>
-</li>
-<li><p>结构</p>
-<p>子图的内结构为内部顶点的连通性，而外结构为将内部顶点与外邻域相连的边的集合。</p>
-</li>
-</ul>
-<p><a href="https://imgtu.com/i/IPVBXq" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/01/IPVBXq.png" alt="IPVBXq.png" border="0"></a></p>
-<p>重点是如何将子图$S$的这六个属性转化为它的特征表示：</p>
-<ol>
-<li><p>在网络的每一层，对于每个通道$X\in\{N,S,P\}$，$N,S,P$分别指代邻域，结构和位置。从图$G$中随机采样若干个子图$\mathcal{A}_X=\{A_X^{(1)},\dots, A_X^{(n_A)}\}$</p>
-</li>
-<li><p>对于子图$S$中的每个连通分量$S^{(c)}$，与采样的子图集$\mathcal{A}_X$中的每个子图$A_X$进行信息传递，其中$\gamma_X$为相似度函数，$a_X$为$A_X$的特征表示：</p>
-<script type="math/tex; mode=display">
-\mathrm{MSG}_{\mathrm{X}}^{A \rightarrow S}=\gamma_{\mathrm{x}}\left(S^{(c)}, A_{\mathrm{X}}\right) \cdot \mathrm{a}_{\mathrm{X}}</script></li>
-<li><p>将传递的信息转化为当前通道下当前连通分量的特征表示：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\mathrm{g}_{\mathrm{x}, c}=\mathrm{AGG}_{M}\left(\left\{\mathrm{MSG}_{\mathrm{X}}^{A_{\mathrm{x}} \rightarrow S^{(c)}} \forall A_{\mathrm{x}} \in \mathcal{A}_{\mathrm{x}}\right\}\right) \\
-&\mathbf{h}_{\mathrm{X}, c} \leftarrow \sigma\left(\mathbf{W}_{\mathrm{X}} \cdot\left[\mathbf{g}_{\mathrm{x}, c} ; \mathbf{h}_{\mathrm{x}, c}\right]\right)
-\end{aligned}</script></li>
-<li><p>第三步中得到的特征表示次序无关，适合网络中层与层之间的传播，但对于位置与结构这两个通道来说，这种做法会限制特征表示的学习能力。所以，这两个通道的特征表示学习采用另一种方式：</p>
-</li>
-</ol>
-<div align="center">
-   <a href="https://imgtu.com/i/IP1PUI" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/01/IP1PUI.png" alt="IP1PUI.png" border="0"></a>
-</div>
-
-<ol>
-<li>对于每个连通分量$S^{(c)}$，将第$l$层学习到的三个通道的特征表示进行聚合，得到单个连通分量在这一层的特征表示，再将所有层的结果进行聚合，得到该连通分量通过网络学习到的特征表示。最后将子图内所有连通分量的特征表示进行聚合，就得到了子图的特征表示。</li>
-</ol>
-<p><a href="https://imgtu.com/i/IPVHAO" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/01/IPVHAO.png" alt="IPVHAO.png" border="0"></a></p>
-<p>第一步中的采样根据通道的不同使用不同的采样器$\phi_X$，同样地，内顶点和边界顶点分开处理：</p>
-<ul>
-<li><p>位置</p>
-<p>没看懂文中的表述，准备结合代码理解</p>
-</li>
-<li><p>邻域</p>
-<p>内采样器从连通分量$S^{(c)}$中采样顶点，边界采样器从$S^{(c)}$中顶点的$k$阶邻居中采样顶点。</p>
-</li>
-<li><p>结构</p>
-<p>内顶点和边界顶点使用相同的采样器，从图$G$中使用三角随机游走的形式采样连通分量。</p>
-</li>
-</ul>
-<p>第二步的式子中：</p>
-<script type="math/tex; mode=display">
-\mathrm{MSG}_{\mathrm{X}}^{A \rightarrow S}=\gamma_{\mathrm{x}}\left(S^{(c)}, A_{\mathrm{X}}\right) \cdot \mathrm{a}_{\mathrm{X}}</script><p>需要一个编码器$\varPsi_X$得到子图$A_X$的特征表示$a_X$，对于邻域和位置这两个通道，直接取其中顶点的embedding，而结构这个通道先进行若干次固定长度的三角随机游走得到一条顶点序列，随后将这个序列送入一个双向LSTM中，将LSTM的隐层表示求和作为子图$A_X$的特征表示。</p>
-<p>同时，还需要一个相似度衡量函数$\gamma_X$来衡量每个采样的子图$A_X$在构建子图$S$的特征表示中的重要性：</p>
-<ul>
-<li><p>位置</p>
-<p>内和边界一样处理，以两个子图之间的最短距离来衡量相似度，最短距离越短则相似度越高。</p>
-</li>
-<li><p>邻域</p>
-<p>与位置通道类似，不过对于内邻域$\gamma_{N_I}=1$而边界邻域$\gamma_{N_B}\le k$。</p>
-</li>
-<li><p>结构</p>
-<p>结构通道的相似度是通过DTW，一个衡量两个时间序列之间相似度的指标。在论文中使用的序列是将子图中顶点的度按照大小进行排序形成的序列；</p>
-</li>
-</ul>
-<h3 id="AQCL-1"><a href="#AQCL-1" class="headerlink" title="AQCL"></a>AQCL</h3><p>AQCL在顶点之间的对比学习的基础上加入了顶点和簇的对比学习：</p>
-<div align="center">
-<a href="https://imgtu.com/i/IFZnVP" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/02/IFZnVP.png" alt="IFZnVP.png" border="0"></a>
-</div>
-
-<ol>
-<li>顶点间对比：给点一个顶点$z$以及它对应的数据增强的正样本$z^+$和负采样得到的负样本$z^-$，则$z$的特征表示应该靠近$z^+$并且远离$z^-$。</li>
-<li>顶点与簇间对比：给定兴趣簇$Q$, $z$也应该靠近其中的正簇同时远离负簇。我的理解是，这里的兴趣类似于隐语义模型中的隐因子（latent factor），将用户的点击数据投影到特征空间时能够挖掘出其中隐藏的规律，例如用户A更喜欢点击与运动、数码相关的物品等，虽然实际中兴趣可能没有任何实质意义。</li>
-</ol>
-<p><div align="center">
-<a href="https://imgtu.com/i/IFerY8" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/11/02/IFerY8.png" alt="IFerY8.png" border="0" width="50%"></a>
-</div><br>AQCL解决的是CTR预估中的冷启动问题，这也是它加入顶点与簇间对比的动机。在这个问题中，用户的点击行为符合长尾分布，如果以一个用户点击过的所构成的序列长度来衡量他的活跃程度，只有极少数用户会点击很多物品，绝大多数用户的点击序列都很短。传统的顶点间对比学习无法捕获顶点邻域中的信息。一个直观的想法是，对于这些非活跃用户，可以让他们在特征空间中利用活跃用户的信息，来弥补交互数据的不足。</p>
-<p>从损失函数上从顶点间的对比学习：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}_{\mathrm{ICL}}(\mathbf{z})=-\log \frac{\exp \left(\operatorname{sim}\left(\mathbf{z}, \mathbf{z}^{+}\right) / \tau\right)}{\sum_{\mathbf{z}^{\prime} \in\left\{\mathbf{z}^{+}\right\} \cup \mathrm{Z}^{-}} \exp \left(\operatorname{sim}\left(\mathbf{z}, \mathbf{z}^{\prime}\right) / \tau\right)}</script><p>加入顶点与簇间的对比学习：</p>
-<script type="math/tex; mode=display">
-Q^{+}=\arg \max _{\mathbf{q}^{1}, \mathbf{q}^{2}, \cdots, \mathbf{q}^{K} \in Q} \sum_{k=1}^{K} \operatorname{sim}\left(\mathbf{z}, \mathbf{q}^{k}\right)</script><script type="math/tex; mode=display">
-\begin{aligned}
-\mathcal{L}_{\mathrm{AQCL}}(\mathbf{z})=&-\log \frac{\left[d_{1}\left(\mathbf{z}, \mathbf{z}^{+}\right)\right]^{1-\alpha}\left[\sum_{\mathbf{q}^{+} \in Q^{+}} d_{2}\left(\mathbf{z}, \mathbf{q}^{+}\right)\right]^{\alpha}}{\sum_{\mathbf{z}^{\prime} \in\left\{\mathbf{z}^{+}\right\} \cup \mathbf{Z}^{-}} d_{1}\left(\mathbf{z}, \mathbf{z}^{\prime}\right)+\sum_{\mathbf{q}^{\prime} \in Q} d_{2}\left(\mathbf{z}, \mathbf{q}^{\prime}\right)} \\
-& d_{1}\left(\mathbf{z}, \mathbf{z}^{\prime}\right)=\exp \left(\operatorname{sim}\left(\mathbf{z}, \mathbf{z}^{\prime}\right) / \tau_{1}\right) \\
-& d_{2}\left(\mathbf{z}, \mathbf{q}^{\prime}\right)=\exp \left(\operatorname{sim}\left(\mathbf{z}, \mathbf{q}^{\prime}\right) / \tau_{2}\right)
-\end{aligned}</script><p>在数据增强上，论文采取的做法是，从用户的点击序列中随机mask一些物品，并且将embedding的某些位取零，最后经过一个MLP得到。给定一个兴趣簇$Q$，（6）式找到与当前顶点相关的前$K$个兴趣，并且用参数$\alpha$来平衡两部分对比学习的比例。</p>
-
-          
+          <p>借这篇博客记录子图表示学习的笔记。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/11/17/子图表示学习/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
